@@ -73,73 +73,78 @@
 
           <!------------ Pending Payments ------------>
 
-          <v-card-text
-            v-else-if="show_pending_payment"
-            v-for="(transaction_pending, index) in transactions_pending"
-            :key="index"
-            class="text-start"
-            :class="{
-              '': transaction_pending.status === 'RequireAction',
-              'bg-info text-white': transaction_pending.status === 'Processing',
-              'bg-danger text-white': transaction_pending.status === 'Canceled',
-            }"
-          >
-            <div>
-              <img
-                height="24"
-                class="mx-2"
-                :src="getShopImagePath(transaction_pending.logo)"
-              />
-              {{ transaction_pending.name }}
-              <b class="ms-2 small">({{$t('global.commons.payment_not_settled')}})</b>
+          <template v-else-if="show_pending_payment">
+            <v-card-text
+              v-for="(transaction_pending, index) in transactions_pending"
+              :key="index"
+              class="text-start"
+              :class="{
+                '': transaction_pending.status === 'RequireAction',
+                'bg-info text-white':
+                  transaction_pending.status === 'Processing',
+                'bg-danger text-white':
+                  transaction_pending.status === 'Canceled',
+              }"
+            >
+              <div>
+                <img
+                  height="24"
+                  class="mx-2"
+                  :src="getShopImagePath(transaction_pending.logo)"
+                />
+                {{ transaction_pending.name }}
+                <b class="ms-2 small"
+                  >({{ $t("global.commons.payment_not_settled") }})</b
+                >
 
-              <i
-                v-if="transaction_pending.status === 'Processing'"
-                class="fa fa-spinner fa-spin fa-fw mx-2"
-              ></i>
+                <i
+                  v-if="transaction_pending.status === 'Processing'"
+                  class="fa fa-spinner fa-spin fa-fw mx-2"
+                ></i>
 
-              <p class="my-1">
-                {{ $t("global.commons.issued_at") }}:
-                {{ getLocalTimeString(transaction_pending.issued_at) }}
-              </p>
-              <p class="my-1">
-                {{ $t("global.commons.last_status") }}:
-                <b>{{
-                  getTransactionStatusName(transaction_pending.status)
-                }}</b>
-              </p>
-            </div>
-            <div class="py-2">
-              <price-view
-                :amount="transaction_pending.amount"
-                :currency="transaction_pending.currency"
-                x-large
-              ></price-view>
-            </div>
+                <p class="my-1">
+                  {{ $t("global.commons.issued_at") }}:
+                  {{ getLocalTimeString(transaction_pending.issued_at) }}
+                </p>
+                <p class="my-1">
+                  {{ $t("global.commons.last_status") }}:
+                  <b>{{
+                    getTransactionStatusName(transaction_pending.status)
+                  }}</b>
+                </p>
+              </div>
+              <div class="py-2">
+                <price-view
+                  :amount="transaction_pending.amount"
+                  :currency="transaction_pending.currency"
+                  x-large
+                ></price-view>
+              </div>
 
-            <div>
-              <v-btn
-                x-large
-                color="success"
-                v-if="
-                  transaction_pending.status === 'RequireAction' &&
-                  !transaction_pending.expired &&
-                  !transaction_pending.cod &&
-                  !transaction_pending.cash
-                "
-                depressed
-                @click="
-                  TryToPayOrder(
-                    transaction_pending.gateway_code,
-                    transaction_pending.id,
-                    null
-                  )
-                "
-                class="mx-2 my-4"
-                >{{ $t("global.actions.pay_now") }}</v-btn
-              >
-            </div>
-          </v-card-text>
+              <div>
+                <v-btn
+                  x-large
+                  color="success"
+                  v-if="
+                    transaction_pending.status === 'RequireAction' &&
+                    !transaction_pending.expired &&
+                    !transaction_pending.cod &&
+                    !transaction_pending.cash
+                  "
+                  depressed
+                  @click="
+                    TryToPayOrder(
+                      transaction_pending.gateway_code,
+                      transaction_pending.id,
+                      null
+                    )
+                  "
+                  class="mx-2 my-4"
+                  >{{ $t("global.actions.pay_now") }}</v-btn
+                >
+              </div>
+            </v-card-text>
+          </template>
 
           <!------------ Payment ------------>
 
@@ -173,11 +178,11 @@
                 }}</span>
 
                 {{ getLocalTimeString(payment.payment_at) }}
-                <billing-details
+                <s-payment-billing-details
                   v-if="payment.billing_details"
                   class="min-width-200"
                   :billing-detail="payment.billing_details"
-                ></billing-details>
+                ></s-payment-billing-details>
               </div>
 
               <single-country-map
@@ -212,14 +217,14 @@ import OfflineBasketListItems from "../../../Backoffice/pages/pos/widgets/Offlin
 import PosBillView from "../../../Backoffice/pages/pos/widgets/PosBillView.vue";
 import { BasketStatus } from "../../../../../core/enums/basket/BasketStatus";
 import PaymentCard from "@/Components/payment/widgets/PaymentCard.vue";
-import BillingDetails from "@/Components/payment/widgets/BillingDetails.vue";
+import SPaymentBillingDetails from "@/Components/payment/widgets/SPaymentBillingDetails.vue";
 import SingleCountryMap from "@/Components/map/SingleCountryMap.vue";
 import { TransactionStatus } from "../../../../../core/enums/payment/TransactionStatus";
 export default {
   name: "ShopPOSPage",
   components: {
     SingleCountryMap,
-    BillingDetails,
+    SPaymentBillingDetails,
     PaymentCard,
     PosBillView,
     OfflineBasketListItems,

@@ -538,7 +538,7 @@
                       ></products-dense-images-circles>
                     </v-subheader>
 
-                    <v-smart-select
+                    <s-smart-select
                       :value="transportation?.type"
                       :dark="!light_checkout"
                       :items="transportation_exclude_pickup"
@@ -589,7 +589,7 @@
                           ></price-view>
                         </div>
                       </template>
-                    </v-smart-select>
+                    </s-smart-select>
 
                     <div class="spacer-line my-4" />
                   </template>
@@ -1285,7 +1285,7 @@ import SShopShareOrderButton from "@/Components/storefront/order/share-order/SSh
 import SShopBillingAddressForm from "@/Components/storefront/order/billing/SShopBillingAddressForm.vue";
 import BillingPeriod from "../../../../../core/enums/subscription/BillingPeriod";
 import SShopConnectShippingOptions from "@/Components/storefront/order/shipping/SShopConnectShippingOptions.vue";
-import VSmartSelect from "@/Components/smart/VSmartSelect.vue";
+import SSmartSelect from "@/Components/smart/SSmartSelect.vue";
 import ProductsDenseImagesCircles from "@/Components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import { ETA } from "../../../../../core/enums/logistic/ETA";
 import DateTimePickerGlobal from "@/Components/ui/calendar/dateTimePickerGlobal.vue";
@@ -1297,7 +1297,7 @@ export default {
   components: {
     DateTimePickerGlobal,
     ProductsDenseImagesCircles,
-    VSmartSelect,
+    SSmartSelect,
     SShopConnectShippingOptions,
     SShopBillingAddressForm,
     SShopShareOrderButton,
