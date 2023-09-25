@@ -53,7 +53,11 @@
         ></widget-header>
 
         <div v-if="USER()" class="text-start d-flex my-4 align-items-center">
-          <v-avatar v-if="USER().id" class="flex-grow-0 me-4 avatar-gradient -thin -user" size="4.2em">
+          <v-avatar
+            v-if="USER().id"
+            class="flex-grow-0 me-4 avatar-gradient -thin -user"
+            size="4.2em"
+          >
             <v-img :src="getUserAvatar(USER().id)"></v-img>
           </v-avatar>
           <div class="flex-grow-1">
@@ -118,7 +122,7 @@
 import SArticleEditor from "@/Components/article/SArticleEditor.vue";
 export default {
   name: "ShopContactUs",
-  components: {  SArticleEditor },
+  components: { SArticleEditor },
   props: {
     shop: {
       require: true,
@@ -146,9 +150,7 @@ export default {
     },
   },
 
-  watch: {
-
-  },
+  watch: {},
   created() {
     this.setPageTitle("Contact us"); // Set Page Title!
     this.fetchProfile();

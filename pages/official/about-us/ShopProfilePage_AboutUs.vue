@@ -45,9 +45,7 @@ export default {
   }),
 
   computed: {},
-  watch: {
-
-  },
+  watch: {},
   created() {
     this.setPageTitle("About us"); // Set Page Title!
 

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ReturnRequestsList from "@/Components/backoffice/return-request/ReturnRequestsList.vue";
+import ReturnRequestsList from "@/Components/backoffice/basket/return-request/ReturnRequestsList.vue";
 export default {
   name: "UserReturnRequests",
   components: {  ReturnRequestsList },
