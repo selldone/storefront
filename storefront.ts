@@ -29,7 +29,8 @@ import { StorefrontSDK } from "../../../SDKs/storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 
 // ━━━ Service Worker ━━━
-import "../../../core/utils/service-worker/registerServiceWorker"; // Register the service worker.
+import "../../../core/utils/service-worker/registerServiceWorker";
+import { CapiCommunity } from "../../../SDKs/community/CapiCommunity"; // Register the service worker.
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -68,6 +69,9 @@ require("../PageBuilder/PageBuilderPlugin");
 
 // ━━━ Storefront SDK (xapi,...) ━━━
 StorefrontSDK.Setup(); // Set up the Shop SDK.
+
+// ━━━ Community SDK (capi) ━━━
+CapiCommunity.Setup(); // Setup community.
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――――― Cookie ―――――――――――――――――
