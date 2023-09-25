@@ -1,0 +1,141 @@
+/*!
+ * Copyright (c) 2023. Selldone® Business OS™
+ *
+ * Author: M.Pajuhaan
+ * Web: https://selldone.com
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * All rights reserved. In the weave of time, where traditions and innovations intermingle, this content was crafted.
+ * From the essence of thought, through the corridors of creativity, each word, and sentiment has been molded.
+ * Not just to exist, but to inspire. Like an artist's stroke or a sculptor's chisel, every nuance is deliberate.
+ * Our journey is not just about reaching a destination, but about creating a masterpiece.
+ * Tread carefully, for you're treading on dreams.
+ */
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🎺 Variables ━━━━━━━━━━━━━━━━━━━━
+ */
+
+@import "variables";
+
+
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🪅 Classes ━━━━━━━━━━━━━━━━━━━━
+ */
+
+.s--product {
+  min-height: 100vh;
+  display: flex;      // We set as flex to be able set order of section dynamically!
+  flex-direction: column;
+  align-items: stretch;
+
+  & > * {
+    width: 100%;
+  }
+
+
+  // ━━━━━━━━━━━━━━━━━━━━ Typo ━━━━━━━━━━━━━━━━━━━━
+h2{
+  font-size: 2.25em;
+  @media screen and (max-width: 720px) {
+    font-size: 1.6em;
+  }
+}
+
+
+  // ━━━━━━━━━━━━━━━━━━━━ Top Menu ━━━━━━━━━━━━━━━━━━━━
+  .s--top-custom-menu{
+    margin-bottom: var(--menu-margin-bottom);
+    padding: 8px 0;
+    height: auto;
+
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Info (First) ━━━━━━━━━━━━━━━━━━━━
+
+  .s--product-section-info{
+
+    position: relative;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: var(--border-radius);
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE 10+
+    background: var(--background);
+
+    padding-bottom: 0;
+    min-height: 30vh;
+
+    // Apply border radius to first direct child element
+    > :first-child {
+      border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    }
+
+    box-shadow: rgba(26, 26, 26, 0.1) 0px 18px 50px 0px;
+
+    // Product info will have shadow and margin from left/right sides greater than this size
+    max-width: min(90vw,  var(--max-width));
+
+    @media screen and (max-width: 680px) {
+      box-shadow:none;
+      max-width:none;
+      --border-radius:0;
+      margin-top: 4px;
+    }
+
+
+
+
+  }
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Header Section ━━━━━━━━━━━━━━━━━━━━
+  .s--product-section-header{
+    max-width: var(--max-width) !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Comments ━━━━━━━━━━━━━━━━━━━━
+
+  .s--product-section-comments{
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Spec ━━━━━━━━━━━━━━━━━━━━
+
+  .s--product-section-spec{
+    max-width: var(--max-width) ;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Article ━━━━━━━━━━━━━━━━━━━━
+
+  .s--product-section-article{
+    max-width: var(--max-width) ;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  // ━━━━━━━━━━━━━━━━━━━━ General Use ━━━━━━━━━━━━━━━━━━━━
+
+.product-widget{
+  text-align: start;
+  background: #e5e5e5;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+  // ━━━━━━━━━━━━━━━━━━━━ Article view ━━━━━━━━━━━━━━━━━━━━
+  .medium-insert-images-safe{
+    --article-img-border-radius:1em;
+
+    figure{
+      img{
+        border-radius: var(--article-img-border-radius);
+      }
+    }
+  }
+}

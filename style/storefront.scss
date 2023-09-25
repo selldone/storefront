@@ -1,0 +1,77 @@
+/*!
+ * Copyright (c) 2023. Selldone® Business OS™
+ *
+ * Author: M.Pajuhaan
+ * Web: https://selldone.com
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * All rights reserved. In the weave of time, where traditions and innovations intermingle, this content was crafted.
+ * From the essence of thought, through the corridors of creativity, each word, and sentiment has been molded.
+ * Not just to exist, but to inspire. Like an artist's stroke or a sculptor's chisel, every nuance is deliberate.
+ * Our journey is not just about reaching a destination, but about creating a masterpiece.
+ * Tread carefully, for you're treading on dreams.
+ */
+
+/**
+ * It's the global style for entire storefront.
+ */
+
+@import "../pages/product/product";
+
+// --------------------------------------------------------
+.add-marginal-side-menu-open {
+  margin-left: var(--products-filter-width) !important;
+  @media (max-width: 960px) {
+    /* $vuetify.breakpoint.smAndDown */
+    margin-left: 0 !important;
+    transform: translateX(var(--products-filter-width));
+  }
+}
+
+.v-application--is-rtl {
+  .add-marginal-side-menu-open {
+    margin-left: 0px !important;
+    margin-right: var(--products-filter-width) !important;
+    @media (max-width: 960px) {
+      /* $vuetify.breakpoint.smAndDown */
+      margin-right: 0 !important;
+      transform: translateX(- var(--products-filter-width));
+    }
+  }
+}
+
+// --------------------------------------------------------
+.social-stick {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  transform: translate(0, -50%);
+  background-color: #fff;
+  z-index: 5;
+  border-radius: 24px;
+  box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.02), 0 3px 10px 2px rgba(166, 166, 166, 0.57);
+
+}
+
+.v-application--is-rtl {
+  .social-stick {
+    right: unset;
+    left: 10px;
+  }
+
+}
+
+// --------------------------------------------------------
+
+
+// Card windows shop
+.s--shop-card {
+  padding-bottom: 84px !important;
+  border-radius: 2.3rem !important;
+  min-height: 80vh;
+  overflow-x: hidden; // vase rebone discont bayad gheyre falesh konam faghat!
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  background: var(--background) !important;
+}
+

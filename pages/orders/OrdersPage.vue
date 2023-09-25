@@ -1,0 +1,134 @@
+<!--
+  - Copyright (c) 2023. Selldone® Business OS™
+  -
+  - Author: M.Pajuhaan
+  - Web: https://selldone.com
+  - ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -
+  - All rights reserved. In the weave of time, where traditions and innovations intermingle, this content was crafted.
+  - From the essence of thought, through the corridors of creativity, each word, and sentiment has been molded.
+  - Not just to exist, but to inspire. Like an artist's stroke or a sculptor's chisel, every nuance is deliberate.
+  - Our journey is not just about reaching a destination, but about creating a masterpiece.
+  - Tread carefully, for you're treading on dreams.
+  -->
+
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+  <v-container fluid>
+    <div class="widget-box -x-large">
+      <v-toolbar
+        flat
+        color="transparent"
+        style="overflow-x: auto"
+        extended
+        extension-height="18px"
+      >
+        <circle-button
+          v-for="type in types"
+          :key="type.code"
+          :src="type.image"
+          :tooltip="$t(type.name)"
+          :disabled="!type.enable"
+          :outline="$route.name === page_name(type)"
+          has-badge
+          :badge-number="getBadgeCount(type.code)"
+          @click="goToHistoryPage(type)"
+          persist-badge
+          tile
+        />
+
+        <circle-button
+          v-if="USER()"
+          key="pos"
+          :src="require('@/Components/assets/icons/pos-order-type.svg')"
+          :tooltip="$t('global.commons.pos')"
+          has-badge
+          :to="{ name: 'HistoryOrdersPOS' }"
+          exact
+          tile
+        />
+
+        <circle-button
+          v-if="USER()"
+          key="avo"
+          :src="require('@/Components/assets/icons/avocado.svg')"
+          :tooltip="$t('global.commons.avocado')"
+          :to="{ name: 'HistoryOrdersAvocado' }"
+          has-badge
+          :badge-number="getBadgeCount('AVO')"
+          persist-badge
+          exact
+          tile
+        />
+        <div style="min-width: 46px; height: 100%"></div>
+
+        <v-spacer />
+      </v-toolbar>
+
+      <!-- ======================= Container ======================= -->
+      <router-view />
+    </div>
+  </v-container>
+</template>
+
+<script>
+import { ProductType } from "../../../../../core/enums/product/ProductType";
+export default {
+  name: "OrdersPage",
+  components: {},
+  data: function () {
+    return {
+      types: ProductType,
+    };
+  },
+
+  computed: {
+
+  },
+  watch: {},
+  created() {
+    this.setPageTitle("My orders"); // Set Page Title!
+  },
+
+  methods: {
+    getBadgeCount(type) {
+      let out = 0;
+      if (this.getOrdersState())
+        this.getOrdersState()
+          .filter((it) => it.type === type)
+          .forEach((item) => {
+            out += item.count;
+          });
+
+      return out;
+    },
+
+    page_name(type) {
+      let page_name = null;
+      if (type === ProductType.PHYSICAL) {
+        page_name = "HistoryOrdersPhysical";
+      } else if (type === ProductType.VIRTUAL) {
+        page_name = "HistoryOrdersVirtual";
+      } else if (type === ProductType.FILE) {
+        page_name = "HistoryOrdersFile";
+      } else if (type === ProductType.SERVICE) {
+        page_name = "HistoryOrdersService";
+      }else if (type === ProductType.SUBSCRIPTION) {
+        page_name = "HistoryOrdersSubscription";
+      }
+
+      else if (type === "POS") {
+        page_name = "HistoryOrdersPOS";
+      }
+      return page_name;
+    },
+
+    goToHistoryPage(type) {
+      this.$router.replace({
+        name: this.page_name(type),
+      });
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss"></style>

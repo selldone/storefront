@@ -1,0 +1,24 @@
+.s--product {
+
+  --max-width:1720px; // Limited windows
+  // ━━━━━━━━━━━━━━━━━━━━ Top Menu ━━━━━━━━━━━━━━━━━━━━
+  .s--top-custom-menu {
+    --menu-margin-bottom: 1rem;
+  }
+
+
+  // ━━━━━━━━━━━━━━━━━━━━ Section > Info (First) ━━━━━━━━━━━━━━━━━━━━
+
+  .s--product-section-info {
+    // Card background color
+    --background: #fff;
+
+    // Border radius of cards like product info
+    --border-radius: 2.4rem;
+
+    // Shadow of product info card on top of the product page
+    --shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.01), 0 5px 55px 2px rgba(113, 112, 112, 0.24);
+  }
+
+
+}
