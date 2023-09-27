@@ -1,3 +1,5 @@
+![Selldone Components](docs/images/banner-storefront-app.jpg)
+
 ## Selldone ⮕ Storefront Official [Available Soon ~ Nov 2023]
 _Ready to build project!_
 
@@ -26,6 +28,8 @@ With our tools, businesses can now tailor their digital presence down to the fin
 | Products Filter  | https://bigmart.me/printful-category                                                      |
 
 
+## How to start
+_coming soon with an easy-to-use CLI..._
 
 
 ### Native app login
