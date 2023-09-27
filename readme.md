@@ -1,4 +1,4 @@
-![Selldone Components](docs/images/banner-storefront-app.jpg)
+![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
 
 ## Selldone ⮕ Storefront Official [Available Soon ~ Nov 2023]
 _Ready to build project!_
@@ -31,6 +31,15 @@ With our tools, businesses can now tailor their digital presence down to the fin
 ## How to start
 _coming soon with an easy-to-use CLI..._
 
+## Needed Modules
+
+| Module              | URL                                        |
+|---------------------|--------------------------------------------|
+| Selldone Core       | https://github.com/selldone/core           |
+| Storefront SDK      | https://github.com/selldone/storefront-sdk |
+| Selldone Components | https://github.com/selldone/components     |
+
+
 
 ### Native app login
 * Query to load native mode: native   ex. ?native=true
@@ -40,40 +49,40 @@ _coming soon with an easy-to-use CLI..._
 This is the project at hand: the open-source Selldone storefront. With it, you can craft a fully customizable storefront tailored to your business and branding requirements. Integrate it seamlessly into your website created by Selldone with just a single 'publish' command!
 
 ### Product Page
-![Selldone Components](docs/images/product-page.png)
+![Selldone Components](_docs/images/product-page.png)
 
 
 ### Cross-selling & Upselling
-![Selldone Components](docs/images/cross-selling-up-selling.png)
+![Selldone Components](_docs/images/cross-selling-up-selling.png)
 
 
 ### Pickup
-![Selldone Components](docs/images/pickup.png)
+![Selldone Components](_docs/images/pickup.png)
 
 
 ### Custom Layout
-![Selldone Components](docs/images/product-custom-layout.png)
+![Selldone Components](_docs/images/product-custom-layout.png)
 
 
 ### Pickup
-![Selldone Components](docs/images/pickup.png)
+![Selldone Components](_docs/images/pickup.png)
 
 
 ### Support Gift shopping
-![Selldone Components](docs/images/gift-shopping.png)
+![Selldone Components](_docs/images/gift-shopping.png)
 
 ### Smart Suggestions
-![Selldone Components](docs/images/product-suggestion.png)
+![Selldone Components](_docs/images/product-suggestion.png)
 
 ### Dynamic Listing View
-![Selldone Components](docs/images/products-listing-view.png)
+![Selldone Components](_docs/images/products-listing-view.png)
 
 ### Filter Products
-![Selldone Components](docs/images/products-listing-filter.png)
+![Selldone Components](_docs/images/products-listing-filter.png)
 
 
 ### Checkout
-![Selldone Components](docs/images/checkout.png)
+![Selldone Components](_docs/images/checkout.png)
 
 
 
@@ -85,17 +94,17 @@ This is the project at hand: the open-source Selldone storefront. With it, you c
 You can either manage your business using the ready-made cloud dashboard on selldone.com or construct a completely bespoke management dashboard using the pre-built backoffice SDK and components.
 
 ### Dashboard
-![Selldone Components](docs/images/backoffice-dashboard.png)
+![Selldone Components](_docs/images/backoffice-dashboard.png)
 
 ### Products
-![Selldone Components](docs/images/backoffice-products.png)
+![Selldone Components](_docs/images/backoffice-products.png)
 
 
 ### Orders
-![Selldone Components](docs/images/backoffice-orders.png)
+![Selldone Components](_docs/images/backoffice-orders.png)
 
 ### Fulfillment
-![Selldone Components](docs/images/Backoffice-order.png)
+![Selldone Components](_docs/images/Backoffice-order.png)
 
 ### Order timeline
-![Selldone Components](docs/images/backoffice-timeline.png)
+![Selldone Components](_docs/images/backoffice-timeline.png)
