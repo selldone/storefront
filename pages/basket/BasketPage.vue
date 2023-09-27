@@ -18,7 +18,7 @@
       '--color-bg-1': theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
       '--color-bg-2': ShadeColor(
         theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
-        -30
+        -30,
       ),
     }"
   >
@@ -66,7 +66,7 @@
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
-              <s-shop-basket-items :items="items" :shop="shop"/>
+              <s-shop-basket-items :items="items" :shop="shop" />
 
               <v-spacer></v-spacer>
               <!-- Share order - Secure link generator -->
@@ -531,8 +531,8 @@
                                 i.variant?.image
                                   ? i.variant.image
                                   : i.product.icon,
-                                128
-                              )
+                                128,
+                              ),
                             )
                         "
                       ></products-dense-images-circles>
@@ -557,7 +557,7 @@
                       @input="
                         (_type) => {
                           transportation = transportation_exclude_pickup.find(
-                            (x) => x.type === _type
+                            (x) => x.type === _type,
                           );
                           $nextTick(() => {
                             setBasketConfig();
@@ -641,7 +641,7 @@
                               transportation.logo
                                 ? getShopImagePath(transportation.logo)
                                 : getShopTransportationObject(
-                                    transportation.type
+                                    transportation.type,
                                   ).icon
                             "
                           />
@@ -856,7 +856,7 @@
                             :min="
                               new Date().addHours(
                                 transportation.etd +
-                                  (max_lead_time > 0 ? max_lead_time : 0)
+                                  (max_lead_time > 0 ? max_lead_time : 0),
                               )
                             "
                             class="mx-2 mt-3"
@@ -1107,7 +1107,8 @@
                       "
                       class="select-address-button"
                       :class="{
-                        's--shop-basket-buy-button slideInUp': !intersect_payment_btn,
+                        's--shop-basket-buy-button slideInUp':
+                          !intersect_payment_btn,
                         'is-mobile': isMobile,
                         '-up': bottom_nav_show,
                         disabled:
@@ -1138,7 +1139,8 @@
                         !isService
                       "
                       :class="{
-                        's--shop-basket-buy-button slideInUp': !intersect_payment_btn,
+                        's--shop-basket-buy-button slideInUp':
+                          !intersect_payment_btn,
                         'is-mobile': isMobile,
                         /*disabled: !bill,*/
                         '-up': bottom_nav_show,
@@ -1167,7 +1169,8 @@
                     <v-btn
                       v-if="canPayAndComplete && isService"
                       :class="{
-                        's--shop-basket-buy-button slideInUp': !intersect_payment_btn,
+                        's--shop-basket-buy-button slideInUp':
+                          !intersect_payment_btn,
                         'is-mobile': isMobile,
                         /*disabled: !bill,*/
                         '-up': bottom_nav_show,
@@ -1479,7 +1482,7 @@ export default {
         this.transportation &&
         this.transportation.cod &&
         [ProductType.PHYSICAL.code, ProductType.SERVICE.code].includes(
-          this.type
+          this.type,
         )
       ); // Only for physical and service!
     },
@@ -1662,7 +1665,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.find(
-          (t) => t.type === ShopTransportations.Pickup.code
+          (t) => t.type === ShopTransportations.Pickup.code,
         )
       );
     },
@@ -1670,7 +1673,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.filter(
-          (t) => t.type !== ShopTransportations.Pickup.code
+          (t) => t.type !== ShopTransportations.Pickup.code,
         )
       );
     },
@@ -1758,7 +1761,6 @@ export default {
       ) {
         this.receiver_info.pickup = false;
       }
-
     },
 
     transport_types(transport_types) {
@@ -1777,7 +1779,7 @@ export default {
         this.$router.replace({ params: { type: type } });
     },
     "$route.params"(params) {
-      this.resetToDefault();      // 🞇 Reset to default
+      this.resetToDefault(); // 🞇 Reset to default
       this.type = params.type;
     },
 
@@ -1799,13 +1801,13 @@ export default {
 
   created() {
     //  console.log("Debug basket",'Create basket page.')
-    this.center= this.$store.getters.getInitialLocation;
+    this.center = this.$store.getters.getInitialLocation;
 
     this.type = this.$route.params.type;
 
     this.setPageTitle("Open cart"); // Set Page Title!
 
-    GtagEcommerce.MeasuringCheckoutSteps( this.basket, 0, "");
+    GtagEcommerce.MeasuringCheckoutSteps(this.basket, 0, "");
 
     this.loadFromBasket();
   },
@@ -1936,7 +1938,7 @@ export default {
             receiver_info: this.receiver_info,
             delivery_info: this.delivery_info,
             billing: this.billing,
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -1982,7 +1984,7 @@ export default {
       // Return if delivery type selected and valid (exist in acceptable transportations)
       if (this.basket.delivery_info.type) {
         const found = this.transport_types.find(
-          (it) => it.type === this.basket.delivery_info.type
+          (it) => it.type === this.basket.delivery_info.type,
         );
         if (found) {
           this.transportation = found;
@@ -2005,7 +2007,7 @@ export default {
       //  this.transportation = this.transport_types[0];
       // Do not auto select pickup!
       const eligible_transportations = this.transport_types.filter(
-        (x) => x.type !== "Pickup"
+        (x) => x.type !== "Pickup",
       );
 
       if (eligible_transportations.length) {
@@ -2014,7 +2016,7 @@ export default {
         console.log(
           "%cautoSelectTransportationType: SELECT :::" +
             this.transportation.type,
-          "background: #0097A7; color: #fff"
+          "background: #0097A7; color: #fff",
         );
       }
     },
@@ -2031,7 +2033,7 @@ export default {
 
       this.setBasketConfig();
 
-      GtagEcommerce.MeasuringCheckoutSteps( this.basket, 1, "");
+      GtagEcommerce.MeasuringCheckoutSteps(this.basket, 1, "");
     },
 
     showMap() {
@@ -2072,7 +2074,7 @@ export default {
           (data) => {
             if (!this._isDestroyed)
               this.goToOrderInfo(this.type, data.target_id);
-          }
+          },
         );
         return;
       }
@@ -2097,14 +2099,13 @@ export default {
         /*Used for in site payment flow & free orders!*/
         (data) => {
           if (!this._isDestroyed) this.goToOrderInfo(this.type, data.target_id);
-        }
+        },
       );
 
       GtagEcommerce.MeasuringCheckoutSteps(
-
         this.basket,
         2,
-        gateway ? gateway : deliverySupportCOD ? "COD" : ""
+        gateway ? gateway : deliverySupportCOD ? "COD" : "",
       );
     },
     //―――――――――――――――――――――― Final Step > Submit service order (No payment here) (Service) ――――――――――――――――――――
@@ -2122,7 +2123,7 @@ export default {
               : null,
 
             code: this.basket.code /*🥶 Guest*/,
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -2132,14 +2133,14 @@ export default {
               LocalStorages.AddCurrentGuestCodeToHistory(
                 this.type,
                 data.basket_id,
-                data.code
+                data.code,
               );
             }
 
             this.fetchBasketAndShop();
             this.showSuccessAlert(
               "Order submitted",
-              "Your order has been submitted successfully. We will send bill to you."
+              "Your order has been submitted successfully. We will send bill to you.",
             );
             this.$router.push({
               name: "MyServiceOrderInfoPage",
@@ -2325,11 +2326,10 @@ export default {
   padding: 16px;
 }
 
-.s--shop-basket-buy-button{
+.s--shop-basket-buy-button {
   display: flex;
   align-items: center;
   justify-content: center;
-
 
   cursor: pointer;
   user-select: none;
@@ -2369,5 +2369,4 @@ export default {
     transition: all 0.35s;
   }
 }
-
 </style>

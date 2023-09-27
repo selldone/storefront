@@ -98,6 +98,12 @@
 
     <!-- ――――――――――――――――――――― Retrieve basket from secure links ――――――――――――――――――――― -->
     <s-retrieve-share-order v-if="shop" :shop="shop"></s-retrieve-share-order>
+
+    <!-- ―――――――――――――――――― Webapp debug view ―――――――――――――――――― --->
+    <s-webapp-debug-view></s-webapp-debug-view>
+
+
+
   </v-app>
 </template>
 
@@ -124,10 +130,12 @@ import SProductsComparisonButton from "@/Components/storefront/comparison/button
 import { EventName } from "../../../core/events/EventBus";
 import SShopApplicationLogin from "@/Components/storefront/login/SShopApplicationLogin.vue";
 import SMapDialog from "@/Components/map/SMapDialog.vue";
+import SWebappDebugView from "@/Components/debug/SWebappDebugView.vue";
 
 export default {
   name: "StorefrontApp",
   components: {
+    SWebappDebugView,
     SMapDialog,
     SShopApplicationLogin,
     SProductsComparisonButton,
