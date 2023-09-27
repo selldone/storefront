@@ -115,7 +115,7 @@
       transition="dialog-bottom-transition"
       content-class="bg-map"
     >
-      <map-view
+      <s-map-view
         v-if="dialog_pre"
         ref="map_view_dialog"
         v-model="map_location"

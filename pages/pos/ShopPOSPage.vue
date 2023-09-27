@@ -185,11 +185,11 @@
                 ></s-payment-billing-details>
               </div>
 
-              <single-country-map
+              <s-country-world-map
                 class="min-width-200 flex-grow-1 m-1"
                 v-if="payment.card && payment.card.country"
                 :country="payment.card.country"
-              ></single-country-map>
+              ></s-country-world-map>
             </v-row>
           </v-card-text>
         </div>
@@ -218,12 +218,12 @@ import PosBillView from "../../../Backoffice/pages/pos/widgets/PosBillView.vue";
 import { BasketStatus } from "../../../../../core/enums/basket/BasketStatus";
 import PaymentCard from "@/Components/payment/widgets/PaymentCard.vue";
 import SPaymentBillingDetails from "@/Components/payment/widgets/SPaymentBillingDetails.vue";
-import SingleCountryMap from "@/Components/map/SingleCountryMap.vue";
+import SCountryWorldMap from "@/Components/map/SCountryWorldMap.vue";
 import { TransactionStatus } from "../../../../../core/enums/payment/TransactionStatus";
 export default {
   name: "ShopPOSPage",
   components: {
-    SingleCountryMap,
+    SCountryWorldMap,
     SPaymentBillingDetails,
     PaymentCard,
     PosBillView,

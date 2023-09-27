@@ -40,7 +40,7 @@
 
       <!-- ▄▄▄▄▄▄▄▄▄▄▄ Search ▄▄▄▄▄▄▄▄▄▄▄ -->
       <div class="map-search-box">
-        <address-input-auto
+        <s-address-input
           v-model="address"
           @select:address="(it) => onSelectAddress(it)"
           :center="center"
@@ -51,7 +51,7 @@
           :rows="1"
           prepend-icon="near_me"
           prepend-icon-color="#222"
-        ></address-input-auto>
+        ></s-address-input>
 
         <div style="text-shadow: 1px 1px 3px #fff" class="pt-1 pen usn">
           <flag v-if="country" :iso="country" :squared="false" />
@@ -182,14 +182,14 @@
 import Mapbox from "@/Components/map/MapBox";
 import SetupService from "../../../../../../core/server/SetupService";
 import SShopProductsListing from "@/Components/storefront/products-listing/SShopProductsListing.vue";
-import AddressInputAuto from "@/Components/ui/input/address/AddressInputAuto.vue";
+import SAddressInput from "@/Components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@/Components/ui/text/SValueCopyBox.vue";
 import SShopProductCard from "@/Components/product/card/SShopProductCard.vue";
 import _ from "lodash-es";
 
 export default {
   name: "ShopMap",
-  components: { SShopProductCard, SValueCopyBox, AddressInputAuto, SShopProductsListing },
+  components: { SShopProductCard, SValueCopyBox, SAddressInput, SShopProductsListing },
 
   data() {
     return {

@@ -1237,7 +1237,7 @@
       :content-class="no_map ? 'bg-gray' : 'bg-map'"
     >
       <!-- Shop Configuration ➡ Map enabled / disabled -->
-      <map-view
+      <s-map-view
         v-if="dialog_pre"
         v-model="receiver_info"
         :color="SaminColorDark"
