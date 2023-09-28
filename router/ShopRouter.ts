@@ -137,9 +137,7 @@ const HyperOrderPage = () =>
     /* webpackChunkName: "shop-hyper" */ "../pages/hyper/HyperOrderPage.vue"
   );
 const HyperPage = () =>
-  import(
-    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/HyperPage.vue"
-  );
+  import(/* webpackChunkName: "shop-hyper" */ "../pages/hyper/HyperPage.vue");
 
 //――――――――――――――――――――――――― POS ―――――――――――――――――――――――――
 
@@ -176,8 +174,8 @@ import ShopInfoPageMobile from "@/Applications/Storefront/pages/official/info/Sh
 import { ShopOptionsHelper } from "../../../../core/helper/shop/ShopOptionsHelper";
 import SetupService from "../../../../core/server/SetupService";
 import { Shop } from "../../../../core/models/shop/shop.model";
-import type { Route} from "vue-router/types/router.d.ts";
-import  type {RouteConfigSingleView} from "vue-router/types/router.d.ts";
+import type { Route } from "vue-router/types/router.d.ts";
+import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -213,9 +211,13 @@ const CommunityMyCommentsPage = () =>
 
 //――――――――――――――――――――――――― Map ―――――――――――――――――――――――――
 const ShopMap = () =>
-  import(/* webpackChunkName: "shop-map" */ "../pages/map/products/ShopMap.vue");
+  import(
+    /* webpackChunkName: "shop-map" */ "../pages/map/products/ShopMap.vue"
+  );
 const ShopMapVendors = () =>
-  import(/* webpackChunkName: "shop-map" */ "../pages/map/vendors/ShopMapVendors.vue");
+  import(
+    /* webpackChunkName: "shop-map" */ "../pages/map/vendors/ShopMapVendors.vue"
+  );
 
 function getRouteForHome(): IVueRoute {
   switch (CUSTOM_HOME) {
@@ -305,7 +307,7 @@ function getRouteForHome(): IVueRoute {
 }
 
 Vue.use(Router);
-const routes :  IVueRoute[]= [
+const routes: IVueRoute[] = [
   //█████████████████████████████████████████████████████████████
   //――――――――――――――――――――― Shop General Layout ―――――――――――――――――――――――
   //█████████████████████████████████████████████████████████████
@@ -888,17 +890,12 @@ const routes :  IVueRoute[]= [
   //█████████████████████████████████████████████████████████████
   //―――――――――――――― Shop User Layout (Global - for all shops) ―――――――――――――――――
   //█████████████████████████████████████████████████████████████
-]
+];
 
-
-
-
-const router = new Router(
-{
+const router = new Router({
   mode: "history",
-      base: SHOP_PREFIX_ADDRESS, //process.env.BASE_URL
-    routes:routes
-
+  base: SHOP_PREFIX_ADDRESS, //process.env.BASE_URL
+  routes: routes,
 });
 
 let FIRST_LOAD = true; // Detect first load of app to solve multi-language page title problem! (Because of async load)
@@ -960,7 +957,7 @@ export default router;
 interface IVueRoute extends RouteConfigSingleView {
   meta?: IRouteMeta; // Metadata associated with the route.
   children?: IVueRoute[]; // Nested child routes.
-};
+}
 
 type IRouteMeta = {
   footer?: boolean; // Indicates if a footer should be displayed. Default is `false`.
@@ -970,11 +967,11 @@ type IRouteMeta = {
   fullscreen?: boolean; // Determines if the view should be in fullscreen mode. Default is `false`.
   bg_color?: string; // Sets the background color of the page. Default is not set.
   requiresAuth?: boolean; // If `true`, the route requires authentication. Default is `false`.
-  title?:string;
-  dark?:boolean;
-  light_header?:boolean;
-  page_background?:string;
-  transparent_header?:boolean;
-  channel?:string;// Force to set channel entry e,g: instagram (override auto-detection from previous url)
-  card?:boolean; // Show card mode
+  title?: string;
+  dark?: boolean;
+  light_header?: boolean;
+  page_background?: string;
+  transparent_header?: boolean;
+  channel?: string; // Force to set channel entry e,g: instagram (override auto-detection from previous url)
+  card?: boolean; // Show card mode
 };

@@ -67,7 +67,7 @@ require("../PageBuilder/PageBuilderPlugin");
 //――――――――――― Selldone® Storefront SDK ―――――――――――
 //█████████████████████████████████████████████████████████████
 
-// ━━━ Storefront SDK (xapi,...) ━━━
+// ━━━ Storefront SDK (xapi) ━━━
 StorefrontSDK.Setup(); // Set up the Shop SDK.
 
 // ━━━ Community SDK (capi) ━━━

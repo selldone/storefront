@@ -101,9 +101,6 @@
 
     <!-- ―――――――――――――――――― Webapp debug view ―――――――――――――――――― --->
     <s-webapp-debug-view></s-webapp-debug-view>
-
-
-
   </v-app>
 </template>
 

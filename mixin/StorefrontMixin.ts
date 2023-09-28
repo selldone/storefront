@@ -14,7 +14,10 @@
 
 import { ProductType } from "../../../../core/enums/product/ProductType";
 import { i18n, loadLanguageAsyncShop } from "./../lang/i18n_shop";
-import {type ILanguage, Language} from "../../../../core/enums/language/Language";
+import {
+  type ILanguage,
+  Language,
+} from "../../../../core/enums/language/Language";
 import merge from "lodash-es/merge";
 import {
   NativeInterfaceShop,
@@ -36,7 +39,7 @@ import type { ProductCompare } from "../../../../core/models/shop/product/produc
 import SetupService from "../../../../core/server/SetupService";
 import type { Coupon } from "../../../../core/models/shop/incentives/coupon/coupon.model";
 import type { Offer } from "../../../../core/models/shop/incentives/offer/offer.model";
-import type {RouteRecord} from "vue-router/types/router";
+import type { RouteRecord } from "vue-router/types/router";
 
 const StorefrontMixin = CoreMixin.extend({
   data() {
@@ -69,7 +72,7 @@ const StorefrontMixin = CoreMixin.extend({
         if (!basket) continue;
 
         const basket_item = basket.items.find(
-            (item:BasketItem) => item.product_id === product_id
+          (item: BasketItem) => item.product_id === product_id
         );
 
         if (basket_item && basket_item.product) return basket_item.product.type;
@@ -84,8 +87,8 @@ const StorefrontMixin = CoreMixin.extend({
     setPageTitle(title: string): void {
       if (this.getShop().title)
         document.title = title
-            ? `${this.getShop().title} | ${title}`
-            : this.getShop().title;
+          ? `${this.getShop().title} | ${title}`
+          : this.getShop().title;
     },
 
     /**
@@ -104,13 +107,15 @@ const StorefrontMixin = CoreMixin.extend({
       return i18n;
     },
 
-    async setCurrentLanguage(_local: string|ILanguage, save_on_local:boolean = false) {
-
-      let local:string;
-      if (typeof _local === 'object') {
+    async setCurrentLanguage(
+      _local: string | ILanguage,
+      save_on_local: boolean = false
+    ) {
+      let local: string;
+      if (typeof _local === "object") {
         local = _local.code;
-      }else{
-        local=_local;
+      } else {
+        local = _local;
       }
 
       console.log("🌐 Set Language: ", local);
@@ -121,14 +126,14 @@ const StorefrontMixin = CoreMixin.extend({
 
       // 🞧 Header: Language
       window.axios.defaults.headers.common["X-Localization"] =
-          window.$language.local;
+        window.$language.local;
 
       await loadLanguageAsyncShop(local, () => {
         console.log("🌐 SwitchLanguage | ✅ Load async package: ", local);
         this.$i18n.locale = local;
 
-        if (save_on_local){
-          window.$storefront.database.language.setLanguage(local)
+        if (save_on_local) {
+          window.$storefront.database.language.setLanguage(local);
         }
 
         //――――  Set global language object ―――
@@ -185,39 +190,39 @@ const StorefrontMixin = CoreMixin.extend({
         this.$store.commit("setBusyUser", true); // Set busy fetch user!
         //  console.log('cookies access_token',window.$cookies.get("access_token"))
         window.$storefront.user.fetchMyInfo(
-            (user) => {
-              this.$store.commit("setAuthUser", user);
-              NativeInterfaceUser(user);
+          (user) => {
+            this.$store.commit("setAuthUser", user);
+            NativeInterfaceUser(user);
 
-              this.fetchCoupons();
-              this.fetchOffers();
-              this.fetchLotteryPrizes(); // Only for user!
+            this.fetchCoupons();
+            this.fetchOffers();
+            this.fetchLotteryPrizes(); // Only for user!
 
-              this.EventBus.$emit("get-me:success", user);
+            this.EventBus.$emit("get-me:success", user);
 
-              this.$store.commit("setBusyUser", false);
-            },
-            (error) => {
-              console.log(
-                  "=============== REMOVE ACCESS TOKEN ================="
-              );
-              window.$cookies.remove(
-                  "access_token",
-                  window.$storefront.prefix_url,
-                  null
-              );
+            this.$store.commit("setBusyUser", false);
+          },
+          (error) => {
+            console.log(
+              "=============== REMOVE ACCESS TOKEN ================="
+            );
+            window.$cookies.remove(
+              "access_token",
+              window.$storefront.prefix_url,
+              null
+            );
 
-              this.showLaravelError(error);
+            this.showLaravelError(error);
 
-              NativeInterfaceUser(null);
+            NativeInterfaceUser(null);
 
-              this.fetchCoupons();
-              this.fetchOffers();
+            this.fetchCoupons();
+            this.fetchOffers();
 
-              this.EventBus.$emit("get-me:error", error);
+            this.EventBus.$emit("get-me:error", error);
 
-              this.$store.commit("setBusyUser", false);
-            }
+            this.$store.commit("setBusyUser", false);
+          }
         );
       } else {
         this.$store.commit("setBusyUser", false); // Set busy fetch user to false! (initial state is true)
@@ -236,9 +241,9 @@ const StorefrontMixin = CoreMixin.extend({
      * @constructor
      */
     LoginShop(
-        callback: (state: string) => void | null,
-        social = null,
-        popup = false
+      callback: (state: string) => void | null,
+      social = null,
+      popup = false
     ) {
       // 1) Save current url.
       sessionStorage.setItem("after-login-path", this.$route.path);
@@ -251,26 +256,26 @@ const StorefrontMixin = CoreMixin.extend({
         // In direct social login move to url normally (Not open popup because of close win problem)
         // Add hash query: Solve cache bug in CDN!
         window.location.href =
-            `${window.$storefront.prefix_url}/login?hash=${Math.random()
-                .toString(36)
-                .substring(7)}-${new Date().getTime()}` +
-            (social ? `&social=${social}` : "");
+          `${window.$storefront.prefix_url}/login?hash=${Math.random()
+            .toString(36)
+            .substring(7)}-${new Date().getTime()}` +
+          (social ? `&social=${social}` : "");
         return;
       }
 
       //New:
       function startLogin() {
         const login_url =
-            `${
-                window.$storefront.prefix_url
-            }/login?popup=true&hash=${Math.random()
-                .toString(36)
-                .substring(7)}-${new Date().getTime()}` +
-            (social ? `&social=${social}` : ""); // Add hash query: Solve cache bug in Arvan cloud!
+          `${
+            window.$storefront.prefix_url
+          }/login?popup=true&hash=${Math.random()
+            .toString(36)
+            .substring(7)}-${new Date().getTime()}` +
+          (social ? `&social=${social}` : ""); // Add hash query: Solve cache bug in Arvan cloud!
         const win = window.open(
-            login_url,
-            "Selldone Login",
-            "width=640, height=750"
+          login_url,
+          "Selldone Login",
+          "width=640, height=750"
         );
 
         const pollTimer = window.setInterval(function () {
@@ -349,25 +354,25 @@ const StorefrontMixin = CoreMixin.extend({
 
     Logout(callback: (state: string) => void | null) {
       window.$storefront.auth
-          .logout()
-          .then(() => {
-            this.LogoutProcess();
-            if (callback) callback("success");
-          })
-          .catch((e) => {
-            this.showLaravelError(e);
-            if (callback) callback("failed");
-          })
-          .finally(() => {});
+        .logout()
+        .then(() => {
+          this.LogoutProcess();
+          if (callback) callback("success");
+        })
+        .catch((e) => {
+          this.showLaravelError(e);
+          if (callback) callback("failed");
+        })
+        .finally(() => {});
     },
 
     LogoutProcess() {
       // localStorage.clear();
       // sessionStorage.clear();
       window.$cookies.remove(
-          "access_token",
-          window.$storefront.prefix_url,
-          null
+        "access_token",
+        window.$storefront.prefix_url,
+        null
       );
       // 🞧 Header: Authorization
       delete window.axios.defaults.headers.common["Authorization"];
@@ -385,26 +390,30 @@ const StorefrontMixin = CoreMixin.extend({
 
       this.fetchBasketAndShop();
 
-      if (this.$route.matched.some((record:RouteRecord) => record.meta.requiresAuth))
+      if (
+        this.$route.matched.some(
+          (record: RouteRecord) => record.meta.requiresAuth
+        )
+      )
         this.$router.push({ name: "ShopPage" });
     },
 
     //―――――――――――――――――――――― Update Exchange Rates ――――――――――――――――――――
     UpdateExchangeRates(show_success = false, callback: () => void | null) {
       window.$storefront.shop.exchange.fetchRates(
-          (data) => {
-            this.getShop().shop_exchange_rates = data.rates;
-            // this.$store.commit("setExchangeRates", data.rates);
-            if (show_success)
-              this.showSuccessAlert(
-                  "Update exchange rates",
-                  "Exchange rates were updated."
-              );
-            if (callback) callback();
-          },
-          (error) => {
-            this.showLaravelError(error);
-          }
+        (data) => {
+          this.getShop().shop_exchange_rates = data.rates;
+          // this.$store.commit("setExchangeRates", data.rates);
+          if (show_success)
+            this.showSuccessAlert(
+              "Update exchange rates",
+              "Exchange rates were updated."
+            );
+          if (callback) callback();
+        },
+        (error) => {
+          this.showLaravelError(error);
+        }
       );
     },
 
@@ -414,124 +423,125 @@ const StorefrontMixin = CoreMixin.extend({
       this.$store.commit("setBusyShop", true);
 
       window.$storefront.shop
-          .fetchShop()
-          .then(
-              ({
-                 shop,
-                 pending_transactions,
-                 initial_location,
-                 baskets,
-                 club,
-                 orders_state,
-                 seen_pops,
-               }) => {
-                window.shop = shop;
-                this.$store.commit("setShop", shop);
-                this.$store.commit("setPendingTransactions", pending_transactions);
+        .fetchShop()
+        .then(
+          ({
+            shop,
+            pending_transactions,
+            initial_location,
+            baskets,
+            club,
+            orders_state,
+            seen_pops,
+          }) => {
+            window.shop = shop;
+            this.$store.commit("setShop", shop);
+            this.$store.commit("setPendingTransactions", pending_transactions);
 
-                // Set default location calculated based on user IP:
-                this.$store.commit("setInitialLocation", initial_location);
+            // Set default location calculated based on user IP:
+            this.$store.commit("setInitialLocation", initial_location);
 
-                NativeInterfaceShop(shop);
+            NativeInterfaceShop(shop);
 
-                // ▀▀▀▀▀▀▀▀▀ 🥶 Guest ▀▀▀▀▀▀▀▀▀
-                // Set guest code (use for guest basket)
-                if (shop.guest_code) {
-                  // Must save in localstorage to reuse in all requests headers:
-                  LocalStorages.SetShopGuestCode(shop.guest_code);
-                  // 🞧 Header: Add guest code to all headers:
-                  window.axios.defaults.headers.common["S-Guest"] = shop.guest_code;
-                }
-                // ▀▀▀▀▀▀▀▀▀ 🥵 User ▀▀▀▀▀▀▀▀▀
-                else {
-                  try {
-                    // - Header: Remove guest code
-                    delete window.axios.defaults.headers.common["S-Guest"];
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }
-
-                // Set all baskets:
-                this.setBasket(null); // Clear all!
-                if (baskets)
-                  baskets
-                      .uniqueByKey(
-                          "type"
-                      ) /*Prevent to show last basket! Always reopen baskets has lower ID!*/
-                      .forEach((basket) => {
-                        this.setBasket(basket);
-                      });
-
-                this.setClub(club);
-                this.setOrdersState(orders_state);
-
-                //...........................................................................
-                // Set language by shop language:
-                // 1. Saved by user on local:
-                let saved_local = window.$storefront.database.language.getLanguage();
-
-                if (saved_local) {
-                  // Options:
-                  const language_option =
-                      shop.options &&
-                      shop.options.find((i) => i.code === "languages");
-
-                  if (
-                      language_option &&
-                      Array.isArray(language_option.value) &&
-                      language_option.value.includes(saved_local)
-                  ) {
-                    console.log("🌐 Valid language on the local.", saved_local);
-
-                    this.setCurrentLanguage(saved_local);
-                  } else {
-                    saved_local = null; // Not valid!
-                  }
-                }
-
-                // 2. Load main shop language:
-                if (shop.language && !saved_local) {
-                  console.log("🌐 Load default language...", shop.language);
-                  this.setCurrentLanguage(shop.language);
-                }
-                //...........................................................................
-
-                // Set Currency:
-                const user_selected_currency = window.$storefront.currency;
-                // Check selected currency available in shop!
-                // If selected currency not exist set first shop currency:
-                if (
-                    !user_selected_currency ||
-                    !shop.currencies!.includes(user_selected_currency.code)
-                ) {
-                  if (!shop.currencies?.length) {
-                    throw new Error("Shop has no currency!");
-                  }
-
-                  window.$storefront.currency = Currency[shop.currencies![0]];
-                  console.log(
-                      "Set currency automatically",
-                      window.$storefront.currency
-                  );
-                }
-
-                // Popup: We save seen_pops in localstorage (Client) and send in the header request
-                if (seen_pops) {
-                  localStorage.setItem(
-                      LocalStorages.GetSeenPopups(this.$localstorage_base_path()),
-                      JSON.stringify(seen_pops)
-                  );
-                }
+            // ▀▀▀▀▀▀▀▀▀ 🥶 Guest ▀▀▀▀▀▀▀▀▀
+            // Set guest code (use for guest basket)
+            if (shop.guest_code) {
+              // Must save in localstorage to reuse in all requests headers:
+              LocalStorages.SetShopGuestCode(shop.guest_code);
+              // 🞧 Header: Add guest code to all headers:
+              window.axios.defaults.headers.common["S-Guest"] = shop.guest_code;
+            }
+            // ▀▀▀▀▀▀▀▀▀ 🥵 User ▀▀▀▀▀▀▀▀▀
+            else {
+              try {
+                // - Header: Remove guest code
+                delete window.axios.defaults.headers.common["S-Guest"];
+              } catch (e) {
+                console.error(e);
               }
-          )
-          .catch((error) => {
-            this.showLaravelError(error);
-          })
+            }
 
-          .finally(() => {
-            this.$store.commit("setBusyShop", false);
-          });
+            // Set all baskets:
+            this.setBasket(null); // Clear all!
+            if (baskets)
+              baskets
+                .uniqueByKey(
+                  "type"
+                ) /*Prevent to show last basket! Always reopen baskets has lower ID!*/
+                .forEach((basket) => {
+                  this.setBasket(basket);
+                });
+
+            this.setClub(club);
+            this.setOrdersState(orders_state);
+
+            //...........................................................................
+            // Set language by shop language:
+            // 1. Saved by user on local:
+            let saved_local =
+              window.$storefront.database.language.getLanguage();
+
+            if (saved_local) {
+              // Options:
+              const language_option =
+                shop.options &&
+                shop.options.find((i) => i.code === "languages");
+
+              if (
+                language_option &&
+                Array.isArray(language_option.value) &&
+                language_option.value.includes(saved_local)
+              ) {
+                console.log("🌐 Valid language on the local.", saved_local);
+
+                this.setCurrentLanguage(saved_local);
+              } else {
+                saved_local = null; // Not valid!
+              }
+            }
+
+            // 2. Load main shop language:
+            if (shop.language && !saved_local) {
+              console.log("🌐 Load default language...", shop.language);
+              this.setCurrentLanguage(shop.language);
+            }
+            //...........................................................................
+
+            // Set Currency:
+            const user_selected_currency = window.$storefront.currency;
+            // Check selected currency available in shop!
+            // If selected currency not exist set first shop currency:
+            if (
+              !user_selected_currency ||
+              !shop.currencies!.includes(user_selected_currency.code)
+            ) {
+              if (!shop.currencies?.length) {
+                throw new Error("Shop has no currency!");
+              }
+
+              window.$storefront.currency = Currency[shop.currencies![0]];
+              console.log(
+                "Set currency automatically",
+                window.$storefront.currency
+              );
+            }
+
+            // Popup: We save seen_pops in localstorage (Client) and send in the header request
+            if (seen_pops) {
+              localStorage.setItem(
+                LocalStorages.GetSeenPopups(this.$localstorage_base_path()),
+                JSON.stringify(seen_pops)
+              );
+            }
+          }
+        )
+        .catch((error) => {
+          this.showLaravelError(error);
+        })
+
+        .finally(() => {
+          this.$store.commit("setBusyShop", false);
+        });
     },
 
     //―――――――――――――――――――――― Change User Selected Currency ――――――――――――――――――――
@@ -552,13 +562,13 @@ const StorefrontMixin = CoreMixin.extend({
       if (!currency_obj) return;
 
       window.$storefront.user
-          .setUserCurrency(currency_obj.code)
-          .then(() => {
-            this.fetchBasketAndShop(); // Need refresh baskets...
-          })
-          .catch((error) => {
-            this.showLaravelError(error);
-          });
+        .setUserCurrency(currency_obj.code)
+        .then(() => {
+          this.fetchBasketAndShop(); // Need refresh baskets...
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+        });
     },
     //―――――――――――――――――――――― Bill ――――――――――――――――――――
     /**
@@ -580,26 +590,26 @@ const StorefrontMixin = CoreMixin.extend({
       if (!currency_obj) return;
 
       window.$storefront.coupon
-          .fetchAvailableCoupons(currency_obj.code)
-          .then(({ coupons }) => {
-            this.$store.commit("setCoupons", coupons);
-          })
-          .catch((error) => {
-            this.showLaravelError(error);
-          });
+        .fetchAvailableCoupons(currency_obj.code)
+        .then(({ coupons }) => {
+          this.$store.commit("setCoupons", coupons);
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+        });
     },
 
     //―――――――――――――――――――――― Lottery ――――――――――――――――――――
 
     fetchLotteryPrizes() {
       window.$storefront.lottery
-          .fetchLotteryPrizes()
-          .then(({ prizes }) => {
-            this.$store.commit("setLotteryPrizes", prizes);
-          })
-          .catch((error) => {
-            // this.showLaravelError(error); Prevent show error on restricted shops!
-          });
+        .fetchLotteryPrizes()
+        .then(({ prizes }) => {
+          this.$store.commit("setLotteryPrizes", prizes);
+        })
+        .catch((error) => {
+          // this.showLaravelError(error); Prevent show error on restricted shops!
+        });
     },
 
     //―――――――――――――――――――――― Offers ――――――――――――――――――――
@@ -609,13 +619,13 @@ const StorefrontMixin = CoreMixin.extend({
       if (!currency_obj) return;
 
       window.$storefront.offer
-          .fetchOffers(currency_obj.code)
-          .then(({ offers }) => {
-            this.$store.commit("setOffers", offers);
-          })
-          .catch((error) => {
-            this.showLaravelError(error);
-          });
+        .fetchOffers(currency_obj.code)
+        .then(({ offers }) => {
+          this.$store.commit("setOffers", offers);
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+        });
     },
 
     //―――――――――――――――――――――― Shop ――――――――――――――――――――
@@ -697,71 +707,71 @@ const StorefrontMixin = CoreMixin.extend({
     },
 
     AddToBasket(
-        shop_name: string,
-        product: Product,
-        variant: ProductVariant,
-        count: number,
-        callbackError: (message: string) => void,
-        callbackSuccess: (basket: Basket) => void,
-        preferences: BasketItem.IPreferences | null = null,
-        vendor_product: VendorProduct | null = null, // 🟣 Marketplace 🟣
-        subscription_price: SubscriptionPrice | null = null // 🎗️ Subscription
+      shop_name: string,
+      product: Product,
+      variant: ProductVariant,
+      count: number,
+      callbackError: (message: string) => void,
+      callbackSuccess: (basket: Basket) => void,
+      preferences: BasketItem.IPreferences | null = null,
+      vendor_product: VendorProduct | null = null, // 🟣 Marketplace 🟣
+      subscription_price: SubscriptionPrice | null = null // 🎗️ Subscription
     ) {
       const product_id = product.id;
       const variant_id = variant ? variant.id : null;
       const vendor_product_id = vendor_product ? vendor_product.id : null; // 🟣 Marketplace 🟣
       const subscription_price_id = subscription_price
-          ? subscription_price.id
-          : null; // 🎗️ Subscription
+        ? subscription_price.id
+        : null; // 🎗️ Subscription
 
       // ▀▀▀▀▀▀▀▀▀ 🥵 User & 🥶 Guest ▀▀▀▀▀▀▀▀▀
 
       window.$storefront.basket
-          .addItem(product_id, variant_id, count, {
-            preferences: preferences,
-            vendor_product_id: vendor_product_id, // 🟣 Marketplace 🟣
-            price_id: subscription_price_id, // 🎗️ Subscription
-          })
+        .addItem(product_id, variant_id, count, {
+          preferences: preferences,
+          vendor_product_id: vendor_product_id, // 🟣 Marketplace 🟣
+          price_id: subscription_price_id, // 🎗️ Subscription
+        })
 
-          .then(({ basket, bill, refresh, error, error_msg }) => {
-            if (basket) {
-              this.setBasket(basket);
-              this.setBasketBill(basket, bill);
-              if (callbackSuccess) callbackSuccess(basket);
-            }
-
-            // There is an error in adding item to basket, but the correct basket with bill returned from backend.
-            if (error) {
-              this.showErrorAlert(null, error_msg);
-              if (callbackError) callbackError(error_msg!);
-            }
-
-            if (refresh) this.fetchBasketAndShop(); // Important! Fetch data from server. (Ex. Remove item automatically from basket)
-          })
-          .catch((error) => {
-            this.showLaravelError(error);
-            if (callbackError) callbackError(error);
-          });
-    },
-    RemoveFromBasket(
-        product_id: number,
-        variant_id: number | null,
-        callbackError: (message: string) => void,
-        callbackSuccess: (basket: Basket) => void
-    ) {
-      // ▀▀▀▀▀▀▀▀▀ 🥵 User & 🥶 Guest ▀▀▀▀▀▀▀▀▀
-      window.$storefront.basket
-          .removeItem(product_id, variant_id)
-
-          .then(({ basket, bill }) => {
+        .then(({ basket, bill, refresh, error, error_msg }) => {
+          if (basket) {
             this.setBasket(basket);
             this.setBasketBill(basket, bill);
             if (callbackSuccess) callbackSuccess(basket);
-          })
-          .catch((error) => {
-            this.showLaravelError(error);
-            if (callbackError) callbackError(error);
-          });
+          }
+
+          // There is an error in adding item to basket, but the correct basket with bill returned from backend.
+          if (error) {
+            this.showErrorAlert(null, error_msg);
+            if (callbackError) callbackError(error_msg!);
+          }
+
+          if (refresh) this.fetchBasketAndShop(); // Important! Fetch data from server. (Ex. Remove item automatically from basket)
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+          if (callbackError) callbackError(error);
+        });
+    },
+    RemoveFromBasket(
+      product_id: number,
+      variant_id: number | null,
+      callbackError: (message: string) => void,
+      callbackSuccess: (basket: Basket) => void
+    ) {
+      // ▀▀▀▀▀▀▀▀▀ 🥵 User & 🥶 Guest ▀▀▀▀▀▀▀▀▀
+      window.$storefront.basket
+        .removeItem(product_id, variant_id)
+
+        .then(({ basket, bill }) => {
+          this.setBasket(basket);
+          this.setBasketBill(basket, bill);
+          if (callbackSuccess) callbackSuccess(basket);
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+          if (callbackError) callbackError(error);
+        });
     },
 
     //―――――――――――――――――――――― Product ――――――――――――――――――――
@@ -782,13 +792,13 @@ const StorefrontMixin = CoreMixin.extend({
 
     //―――――――――――――――――――――― Event Bus ――――――――――――――――――――
     ShowPaymentDialogBasket(
-        code: string /*🥶 Guest*/,
-        type: keyof typeof ProductType,
-        bill: Basket.IBill,
-        prize_selected_variant_id: number | null = null,
-        gateway: string | null = null,
-        acceptCOD: boolean = false, // Based on delivery methods support COD!
-        callback: (() => void) | null = null // Not used yet!
+      code: string /*🥶 Guest*/,
+      type: keyof typeof ProductType,
+      bill: Basket.IBill,
+      prize_selected_variant_id: number | null = null,
+      gateway: string | null = null,
+      acceptCOD: boolean = false, // Based on delivery methods support COD!
+      callback: (() => void) | null = null // Not used yet!
     ) {
       this.EventBus.$emit("payment-form-basket", {
         code: code,
@@ -803,10 +813,10 @@ const StorefrontMixin = CoreMixin.extend({
 
     //―――――― 🎗️ Subscription ――――――
     ShowPaymentDialogSubscription(
-        currency: keyof typeof Currency,
-        bill: Basket.IBill,
-        gateway_codes: String,
-        callback: (() => void) | null = null // Not used yet!
+      currency: keyof typeof Currency,
+      bill: Basket.IBill,
+      gateway_codes: String,
+      callback: (() => void) | null = null // Not used yet!
     ) {
       this.EventBus.$emit("payment-form-subscription", {
         currency: currency,
@@ -825,17 +835,17 @@ const StorefrontMixin = CoreMixin.extend({
      * @constructor
      */
     TryToPayOrder(
-        gateway: string,
-        transaction_id: number,
-        order_id: number,
-        force_reset_payment: boolean = false
+      gateway: string,
+      transaction_id: number,
+      order_id: number,
+      force_reset_payment: boolean = false
     ) {
       console.log(
-          "====== TRY TO PAY ======",
-          gateway,
-          transaction_id,
-          order_id,
-          force_reset_payment ? "🆕 Reset payment" : "🆔 Retrieve payment"
+        "====== TRY TO PAY ======",
+        gateway,
+        transaction_id,
+        order_id,
+        force_reset_payment ? "🆕 Reset payment" : "🆔 Retrieve payment"
       );
 
       this.EventBus.$emit("try-to-pay", {
@@ -853,9 +863,9 @@ const StorefrontMixin = CoreMixin.extend({
     },
 
     ShowPaymentDialogBill(
-        code: string /*🥶 Guest*/,
-        bill: Basket.IBill,
-        callback: () => void
+      code: string /*🥶 Guest*/,
+      bill: Basket.IBill,
+      callback: () => void
     ) {
       this.EventBus.$emit("payment-form-bill", {
         code: code,
@@ -891,9 +901,9 @@ const StorefrontMixin = CoreMixin.extend({
     //―――――――――――――――――――――― Product Comparison ――――――――――――――――――――
 
     addToProductComparison(
-        product: Product,
-        variant: ProductVariant | null,
-        need_update: boolean = false /*In product list fast add to comparison! need full data by fetch!*/
+      product: Product,
+      variant: ProductVariant | null,
+      need_update: boolean = false /*In product list fast add to comparison! need full data by fetch!*/
     ) {
       let list = this.$store.getters.getProductsComparison;
 
@@ -913,8 +923,8 @@ const StorefrontMixin = CoreMixin.extend({
       this.$store.commit("setProductsComparison", list);
     },
     removeFromProductComparison(
-        product: Product,
-        variant: ProductVariant | null
+      product: Product,
+      variant: ProductVariant | null
     ) {
       const list = this.$store.getters.getProductsComparison;
       if (!list) return;
@@ -942,20 +952,20 @@ const StorefrontMixin = CoreMixin.extend({
       const CUSTOM_HOME = SetupService.GetMetaValue("custom-home"); // Address for shop page! null or shop
 
       return CUSTOM_HOME === "shop" // CUSTOM_HOME -> shop
-          ? null
-          : CUSTOM_HOME === "blog"
-              ? "Blogs"
-              : CUSTOM_HOME === "avocado"
-                  ? "AvocadoPage"
-                  : CUSTOM_HOME === "hyper"
-                      ? "HyperPage"
-                      : CUSTOM_HOME === "community"
-                          ? "CommunityHomePage"
-                          : CUSTOM_HOME === "map"
-                              ? "ShopMap"
-                              : CUSTOM_HOME
-                                  ? "CustomHomePage" // CUSTOM_HOME -> Page ID
-                                  : null;
+        ? null
+        : CUSTOM_HOME === "blog"
+        ? "Blogs"
+        : CUSTOM_HOME === "avocado"
+        ? "AvocadoPage"
+        : CUSTOM_HOME === "hyper"
+        ? "HyperPage"
+        : CUSTOM_HOME === "community"
+        ? "CommunityHomePage"
+        : CUSTOM_HOME === "map"
+        ? "ShopMap"
+        : CUSTOM_HOME
+        ? "CustomHomePage" // CUSTOM_HOME -> Page ID
+        : null;
     },
 
     //――――――――――――――――――――――――― Coupon ―――――――――――――――――――――――――
@@ -967,10 +977,10 @@ const StorefrontMixin = CoreMixin.extend({
       return coupons.some((coupon: Coupon) => {
         // console.log('coupon',coupon.products[product_id],variant_id,coupon.products && coupon.products[product_id] && (variant_id===null || coupon.products[product_id].includes(variant_id)))
         if (
-            coupon.products &&
-            coupon.products[product_id] &&
-            (variant_id === null ||
-                coupon.products[product_id].includes(variant_id))
+          coupon.products &&
+          coupon.products[product_id] &&
+          (variant_id === null ||
+            coupon.products[product_id].includes(variant_id))
         )
           return true;
       });
@@ -983,9 +993,9 @@ const StorefrontMixin = CoreMixin.extend({
 
       return offers.some((offer: Offer) => {
         if (
-            offer.buy_products[product_id] &&
-            (variant_id === null ||
-                offer.buy_products[product_id].includes(variant_id))
+          offer.buy_products[product_id] &&
+          (variant_id === null ||
+            offer.buy_products[product_id].includes(variant_id))
         )
           return true;
       });
@@ -998,9 +1008,9 @@ const StorefrontMixin = CoreMixin.extend({
 
       return offers.filter((offer: Offer) => {
         return (
-            offer.buy_products[product_id] &&
-            (variant_id === null ||
-                offer.buy_products[product_id].includes(variant_id))
+          offer.buy_products[product_id] &&
+          (variant_id === null ||
+            offer.buy_products[product_id].includes(variant_id))
         );
       });
     },
@@ -1057,8 +1067,8 @@ const StorefrontMixin = CoreMixin.extend({
 
       if (to) {
         if (
-            to.name === this.$route.name &&
-            "" + to.params.basket_id === "" + this.$route.params.basket_id
+          to.name === this.$route.name &&
+          "" + to.params.basket_id === "" + this.$route.params.basket_id
         ) {
           // Force refresh page:
           window.location.reload();
