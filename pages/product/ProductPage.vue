@@ -737,6 +737,7 @@ export default {
 
         // Auto buy (Check query)
         this.autoBuy();
+
       }
 
       window.$storefront.products.optimize(60).getInfo(this.getId(this.$route.params.product_id),{
@@ -752,6 +753,9 @@ export default {
           this.busy = false;
         });
     },
+
+
+
 
     /**
      * Use to automatically add product to cart
