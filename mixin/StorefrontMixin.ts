@@ -1016,6 +1016,12 @@ const StorefrontMixin = CoreMixin.extend({
     },
 
     //―――――――――――――――――――――― Basket Info ――――――――――――――――――――
+    /**
+     *
+     * @param order_type
+     * @param order_id
+     * @return true: Page is refreshing!
+     */
     goToOrderInfo(order_type: string, order_id: number) {
       let to = null;
 
@@ -1072,8 +1078,10 @@ const StorefrontMixin = CoreMixin.extend({
         ) {
           // Force refresh page:
           window.location.reload();
+          return true;
         } else {
           this.$router.push(to);
+          return false;
         }
       }
     },
