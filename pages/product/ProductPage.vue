@@ -129,7 +129,11 @@
 
       <!-- ▁▁▁▁▁▁ 🞇 Includes in the product 🞇 ▁▁▁▁▁▁ -->
 
-      <div v-if="product.includes?.length" :style="{ order: getOrder('includes') }" class="my-16">
+      <div
+        v-if="product.includes?.length"
+        :style="{ order: getOrder('includes') }"
+        class="my-16"
+      >
         <s-shop-product-includes :product="product"> </s-shop-product-includes>
       </div>
 
@@ -246,7 +250,11 @@
       <!-- █████████████████████ Internal Page █████████████████████ -->
 
       <div v-if="page" :style="{ order: getOrder('page') }">
-        <VuseRenderer :data="page.content" :augment="augment" :style="page.background" />
+        <VuseRenderer
+          :data="page.content"
+          :augment="augment"
+          :style="page.background"
+        />
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Comment ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
@@ -261,7 +269,8 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related products ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div :style="{ order: getOrder('related-products') }">
-        <s-shop-related-products :shop="shop" :product="product"> </s-shop-related-products>
+        <s-shop-related-products :shop="shop" :product="product">
+        </s-shop-related-products>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related categories ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -480,7 +489,9 @@ export default {
     },
 
     theme() {
-      return (this.shop.theme && !Array.isArray(this.shop.theme))?this.shop.theme:{};
+      return this.shop.theme && !Array.isArray(this.shop.theme)
+        ? this.shop.theme
+        : {};
     },
 
     current_variant() {
@@ -544,7 +555,6 @@ export default {
 
     tabs() {
       const tabs = [];
-
 
       if (this.warranty_article) {
         tabs.push({
@@ -646,11 +656,9 @@ export default {
       );
     },
 
-
     isFile() {
       return this.product && this.product.type === ProductType.FILE.code;
     },
-
 
     user() {
       return this.USER();
@@ -707,9 +715,11 @@ export default {
     getProduct() {
       this.busy = true;
 
-
-    const  handleSuccessResponse=({ product ,comments_count=0,categories=null}) => {
-
+      const handleSuccessResponse = ({
+        product,
+        comments_count = 0,
+        categories = null,
+      }) => {
         this.product = product;
         this.comments_count = comments_count;
         this.categories = categories;
@@ -719,15 +729,15 @@ export default {
         //Old version:
         else
           this.spec_array = SpecHelper.CONVERT_SPEC_JSON_TO_ARRAY(
-              this.product.spec,
-              this.product.spec_order
+            this.product.spec,
+            this.product.spec_order
           );
 
         GtagEcommerce.MeasuringViewsOfProductDetails(
-            this.shop,
-            product,
-            this.GetUserSelectedCurrency().code,
-            "product-page"
+          this.shop,
+          product,
+          this.GetUserSelectedCurrency().code,
+          "product-page"
         );
 
         this.setPageTitle(product.title); // Set Page Title!
@@ -737,14 +747,15 @@ export default {
 
         // Auto buy (Check query)
         this.autoBuy();
+      };
 
-      }
-
-      window.$storefront.products.optimize(60).getInfo(this.getId(this.$route.params.product_id),{
-        "augmented-categories": 3, // Return 3 categories in the parent folder of current category
-        "augmented-cross-sells": true, // Return max 3 cross-selling items
-      })
-          .cache(handleSuccessResponse)
+      window.$storefront.products
+        .optimize(60)
+        .getInfo(this.getId(this.$route.params.product_id), {
+          "augmented-categories": 3, // Return 3 categories in the parent folder of current category
+          "augmented-cross-sells": true, // Return max 3 cross-selling items
+        })
+        .cache(handleSuccessResponse)
         .then(handleSuccessResponse)
         .catch((e) => {
           this.showLaravelError(e);
@@ -753,9 +764,6 @@ export default {
           this.busy = false;
         });
     },
-
-
-
 
     /**
      * Use to automatically add product to cart
@@ -781,15 +789,8 @@ export default {
         });
       }
     },
-
-
   },
 };
 </script>
 
-<style scoped lang="scss">
-
-
-
-
-</style>
+<style scoped lang="scss"></style>

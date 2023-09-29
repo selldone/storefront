@@ -18,7 +18,7 @@
       '--color-bg-1': theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
       '--color-bg-2': ShadeColor(
         theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
-        -30,
+        -30
       ),
     }"
   >
@@ -531,8 +531,8 @@
                                 i.variant?.image
                                   ? i.variant.image
                                   : i.product.icon,
-                                128,
-                              ),
+                                128
+                              )
                             )
                         "
                       ></products-dense-images-circles>
@@ -557,7 +557,7 @@
                       @input="
                         (_type) => {
                           transportation = transportation_exclude_pickup.find(
-                            (x) => x.type === _type,
+                            (x) => x.type === _type
                           );
                           $nextTick(() => {
                             setBasketConfig();
@@ -641,7 +641,7 @@
                               transportation.logo
                                 ? getShopImagePath(transportation.logo)
                                 : getShopTransportationObject(
-                                    transportation.type,
+                                    transportation.type
                                   ).icon
                             "
                           />
@@ -856,7 +856,7 @@
                             :min="
                               new Date().addHours(
                                 transportation.etd +
-                                  (max_lead_time > 0 ? max_lead_time : 0),
+                                  (max_lead_time > 0 ? max_lead_time : 0)
                               )
                             "
                             class="mx-2 mt-3"
@@ -1132,38 +1132,42 @@
 
                     <!-- Payment button (Online) -->
 
-                    <v-btn
+                    <template
                       v-if="
                         canPayAndComplete &&
                         (!cod_check || !deliverySupportCOD) &&
                         !isService
                       "
-                      :class="{
-                        's--shop-basket-buy-button slideInUp':
-                          !intersect_payment_btn,
-                        'is-mobile': isMobile,
-                        /*disabled: !bill,*/
-                        '-up': bottom_nav_show,
-                        disabled:
-                          !can_pay /*System tell us that user can not pay! (on bill calculation step in server)*/,
-                      }"
-                      class="select-address-button"
-                      rounded
-                      color="#16a085"
-                      dark
-                      @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
-                      <v-icon class="me-2"> payment </v-icon>
-                      {{ $t("basket_page.pay_and_complete_action") }}
+                      <v-btn
+                        :class="{
+                          's--shop-basket-buy-button slideInUp':
+                            !intersect_payment_btn,
+                          'is-mobile': isMobile,
+                          /*disabled: !bill,*/
+                          '-up': bottom_nav_show,
+                          disabled:
+                            !can_pay /*System tell us that user can not pay! (on bill calculation step in server)*/,
+                        }"
+                        class="select-address-button"
+                        rounded
+                        color="#16a085"
+                        dark
+                        @click.stop="
+                          goToPaymentBasket(null, deliverySupportCOD)
+                        "
+                      >
+                        <v-icon class="me-2"> payment </v-icon>
+                        {{ $t("basket_page.pay_and_complete_action") }}
 
-                      <price-view
-                        v-if="final_price > 0 && !intersect_payment_btn"
-                        :amount="final_price"
-                        :currency="basket.currency"
-                        class="ms-3 ps-3 border-start"
-                      ></price-view>
-                    </v-btn>
-
+                        <price-view
+                          v-if="final_price > 0 && !intersect_payment_btn"
+                          :amount="final_price"
+                          :currency="basket.currency"
+                          class="ms-3 ps-3 border-start"
+                        ></price-view>
+                      </v-btn>
+                    </template>
                     <!-- Checkout without payment (Service) -->
 
                     <v-btn
@@ -1198,6 +1202,19 @@
                 </div>
 
                 <!-- ******************************************************************************************** -->
+
+                <template
+                  v-if="
+                    canPayAndComplete &&
+                    (!cod_check || !deliverySupportCOD) &&
+                    !isService
+                  "
+                >
+                  <s-stripe-split-payment-info
+                    :basket="basket"
+                    :dark="!light_checkout"
+                  ></s-stripe-split-payment-info>
+                </template>
               </div>
             </v-sheet>
           </v-col>
@@ -1294,10 +1311,12 @@ import { ETA } from "../../../../../core/enums/logistic/ETA";
 import DateTimePickerGlobal from "@/Components/ui/calendar/dateTimePickerGlobal.vue";
 import { ShadeColor } from "../../../../../core/helper/color/ColorGenerator";
 import _ from "lodash-es";
+import SStripeSplitPaymentInfo from "@/Components/payment/stripe/SStripeSplitPaymentInfo.vue";
 
 export default {
   name: "BasketPage",
   components: {
+    SStripeSplitPaymentInfo,
     DateTimePickerGlobal,
     ProductsDenseImagesCircles,
     SSmartSelect,
@@ -1482,7 +1501,7 @@ export default {
         this.transportation &&
         this.transportation.cod &&
         [ProductType.PHYSICAL.code, ProductType.SERVICE.code].includes(
-          this.type,
+          this.type
         )
       ); // Only for physical and service!
     },
@@ -1665,7 +1684,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.find(
-          (t) => t.type === ShopTransportations.Pickup.code,
+          (t) => t.type === ShopTransportations.Pickup.code
         )
       );
     },
@@ -1673,7 +1692,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.filter(
-          (t) => t.type !== ShopTransportations.Pickup.code,
+          (t) => t.type !== ShopTransportations.Pickup.code
         )
       );
     },
@@ -1938,7 +1957,7 @@ export default {
             receiver_info: this.receiver_info,
             delivery_info: this.delivery_info,
             billing: this.billing,
-          },
+          }
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -1984,7 +2003,7 @@ export default {
       // Return if delivery type selected and valid (exist in acceptable transportations)
       if (this.basket.delivery_info.type) {
         const found = this.transport_types.find(
-          (it) => it.type === this.basket.delivery_info.type,
+          (it) => it.type === this.basket.delivery_info.type
         );
         if (found) {
           this.transportation = found;
@@ -2007,7 +2026,7 @@ export default {
       //  this.transportation = this.transport_types[0];
       // Do not auto select pickup!
       const eligible_transportations = this.transport_types.filter(
-        (x) => x.type !== "Pickup",
+        (x) => x.type !== "Pickup"
       );
 
       if (eligible_transportations.length) {
@@ -2016,7 +2035,7 @@ export default {
         console.log(
           "%cautoSelectTransportationType: SELECT :::" +
             this.transportation.type,
-          "background: #0097A7; color: #fff",
+          "background: #0097A7; color: #fff"
         );
       }
     },
@@ -2074,7 +2093,7 @@ export default {
           (data) => {
             if (!this._isDestroyed)
               this.goToOrderInfo(this.type, data.target_id);
-          },
+          }
         );
         return;
       }
@@ -2099,13 +2118,13 @@ export default {
         /*Used for in site payment flow & free orders!*/
         (data) => {
           if (!this._isDestroyed) this.goToOrderInfo(this.type, data.target_id);
-        },
+        }
       );
 
       GtagEcommerce.MeasuringCheckoutSteps(
         this.basket,
         2,
-        gateway ? gateway : deliverySupportCOD ? "COD" : "",
+        gateway ? gateway : deliverySupportCOD ? "COD" : ""
       );
     },
     //―――――――――――――――――――――― Final Step > Submit service order (No payment here) (Service) ――――――――――――――――――――
@@ -2123,7 +2142,7 @@ export default {
               : null,
 
             code: this.basket.code /*🥶 Guest*/,
-          },
+          }
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -2133,14 +2152,14 @@ export default {
               LocalStorages.AddCurrentGuestCodeToHistory(
                 this.type,
                 data.basket_id,
-                data.code,
+                data.code
               );
             }
 
             this.fetchBasketAndShop();
             this.showSuccessAlert(
               "Order submitted",
-              "Your order has been submitted successfully. We will send bill to you.",
+              "Your order has been submitted successfully. We will send bill to you."
             );
             this.$router.push({
               name: "MyServiceOrderInfoPage",
