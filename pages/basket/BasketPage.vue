@@ -1213,6 +1213,7 @@
                   <s-stripe-split-payment-info
                     :basket="basket"
                     :dark="!light_checkout"
+                    :country-code="receiver_info?.country"
                   ></s-stripe-split-payment-info>
                 </template>
               </div>
