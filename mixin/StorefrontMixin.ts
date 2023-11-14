@@ -490,9 +490,9 @@ const StorefrontMixin = CoreMixin.extend({
               if (
                 language_option &&
                 Array.isArray(language_option.value) &&
-                language_option.value.includes(saved_local)
+                language_option.value.includes(saved_local.code)
               ) {
-                console.log("🌐 Valid language on the local.", saved_local);
+                console.log("🌐 Valid language on the local.", saved_local.code);
 
                 this.setCurrentLanguage(saved_local);
               } else {
