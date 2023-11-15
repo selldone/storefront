@@ -86,7 +86,7 @@ export class PushNotification {
   static AskForPermission() {
     try {
       if (!isSupported()) return;
-      Notification.requestPermission().then((permission) => {
+      Notification?.requestPermission().then((permission) => {
         if (permission === "granted") {
           console.log("Notification permission granted.");
 
