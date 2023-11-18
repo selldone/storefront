@@ -30,6 +30,20 @@ With our tools, businesses can now tailor their digital presence down to the fin
 
 ## How to start
 _coming soon with an easy-to-use CLI..._
+### 1. Clone project on your PC:
+```shell
+gh repo clone selldone/storefront
+```
+### 2. Install required packages:
+```shell
+yarn install
+```
+or
+```shell
+npm install
+```
+
+
 
 ## Needed Modules
 

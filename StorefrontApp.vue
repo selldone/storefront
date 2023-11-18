@@ -106,28 +106,28 @@
 
 <script>
 import _ from "lodash-es";
-import SShopMasterPaymentDialog from "@/Components/storefront/payment/SShopMasterPaymentDialog.vue";
-import { FirebaseNotificationCategories } from "../../../core/enums/push-notification/FirebaseNotificationCategories";
-import SNeedLoginDialog from "../../Components/storefront/login/SNeedLoginDialog.vue";
-import SNotificationsAndAlerts from "@/Components/ui/notification/SNotificationsAndAlerts.vue";
-import { Language } from "../../../core/enums/language/Language";
-import CookieDialog from "@/Applications/Backoffice/pages/shop/pages/setting/pages/gdpr/CookieDialog.vue";
-import SPwaUpdateSnackbar from "@/Components/ui/snackbar/SPwaUpdateSnackbar.vue";
-import SShopBottomNavigation from "../../Components/storefront/footer/SShopBottomNavigation.vue";
-import SetupService from "../../../core/server/SetupService";
-import SPopup from "@/Components/storefront/popup/SPopup.vue";
-import { FontHelper } from "../../../core/helper/font/FontHelper";
-import SFullscreenViewAnimator from "@/Components/ui/image/SFullscreenViewAnimator.vue";
-import SShopSocialButtons from "@/Components/storefront/social/SShopSocialButtons.vue";
-import STopBanner from "@/Components/storefront/banner/campaign-top-banner/STopBanner.vue";
-import { ShopRestriction } from "../../../core/enums/shop/ShopRestriction";
-import SShopPrivateAccessCheckView from "@/Components/storefront/access/SShopPrivateAccessCheckView.vue";
-import SRetrieveShareOrder from "@/Components/storefront/order/share-order/SRetrieveShareOrder.vue";
-import SProductsComparisonButton from "@/Components/storefront/comparison/button/SProductsComparisonButton.vue";
-import { EventName } from "../../../core/events/EventBus";
-import SShopApplicationLogin from "@/Components/storefront/login/SShopApplicationLogin.vue";
-import SMapDialog from "@/Components/map/SMapDialog.vue";
-import SWebappDebugView from "@/Components/debug/SWebappDebugView.vue";
+import SShopMasterPaymentDialog from "@components/storefront/payment/SShopMasterPaymentDialog.vue";
+import { FirebaseNotificationCategories } from "@core/enums/push-notification/FirebaseNotificationCategories";
+import SNeedLoginDialog from "@components/storefront/login/SNeedLoginDialog.vue";
+import SNotificationsAndAlerts from "@components/ui/notification/SNotificationsAndAlerts.vue";
+import { Language } from "@core/enums/language/Language";
+import CookieDialog from "@components/storefront/gdpr/CookieDialog.vue";
+import SPwaUpdateSnackbar from "@components/ui/snackbar/SPwaUpdateSnackbar.vue";
+import SShopBottomNavigation from "@components/storefront/footer/SShopBottomNavigation.vue";
+import SetupService from "@core/server/SetupService";
+import SPopup from "@components/storefront/popup/SPopup.vue";
+import { FontHelper } from "@core/helper/font/FontHelper";
+import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";
+import SShopSocialButtons from "@components/storefront/social/SShopSocialButtons.vue";
+import STopBanner from "@components/storefront/banner/campaign-top-banner/STopBanner.vue";
+import { ShopRestriction } from "@core/enums/shop/ShopRestriction";
+import SShopPrivateAccessCheckView from "@components/storefront/access/SShopPrivateAccessCheckView.vue";
+import SRetrieveShareOrder from "@components/storefront/order/share-order/SRetrieveShareOrder.vue";
+import SProductsComparisonButton from "@components/storefront/comparison/button/SProductsComparisonButton.vue";
+import { EventName } from "@core/events/EventBus";
+import SShopApplicationLogin from "@components/storefront/login/SShopApplicationLogin.vue";
+import SMapDialog from "@components/map/SMapDialog.vue";
+import SWebappDebugView from "@components/debug/SWebappDebugView.vue";
 
 export default {
   name: "StorefrontApp",
