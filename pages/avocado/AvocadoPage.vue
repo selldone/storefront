@@ -23,14 +23,14 @@
       ></v-progress-linear>
 
       <img
-        src="@/Components/assets/icons/avocado.svg"
+        src="@components/assets/icons/avocado.svg"
         width="32"
         height="32"
         class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
       />
 
@@ -137,7 +137,7 @@
         Powered by
         <a href="/" target="_blank">
           <img
-            src="../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
             height="10"
           />
@@ -152,10 +152,10 @@
 </template>
 
 <script>
-import { AvocadoOrderStates } from "../../../../../core/enums/avocado/AvocadoOrderStates";
+import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
-import SShopAvocadoCustomerOrderList from "../../../../Components/storefront/order/avocado/SShopAvocadoCustomerOrderList.vue";
-import SShopAvocadoCustomerOrderForm from "../../../../Components/storefront/order/avocado/SShopAvocadoCustomerOrderForm.vue";
+import SShopAvocadoCustomerOrderList from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderList.vue";
+import SShopAvocadoCustomerOrderForm from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderForm.vue";
 
 export default {
   name: "AvocadoPage",

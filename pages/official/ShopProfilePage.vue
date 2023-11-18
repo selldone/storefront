@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import { HierarchyHelper } from "../../../../../core/helper/breadcrumb/HierarchyHelper";
+import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 
-import SBreadcrumbImage from "@/Components/ui/breadcrumb/SBreadcrumbImage.vue";
+import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
 export default {
   name: "ProductPage",
   components: { SBreadcrumbImage },

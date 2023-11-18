@@ -20,17 +20,17 @@ import Vue from "vue";
 import App from "./StorefrontApp.vue";
 import router from "./router/ShopRouter";
 import store from "./store/ShopStore";
-import vuetify from "./../../Components/plugins/vuetify/vuetify";
+import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
 import { i18n } from "./lang/i18n_shop";
-import { Language } from "../../../core/enums/language/Language";
+import { Language } from "@core/enums/language/Language";
 import ShopApplicationInterface from "../../../core/enums/application/ShopApplicationInterface";
-import { StorefrontSDK } from "../../../SDKs/storefront/StorefrontSDK";
+import { StorefrontSDK } from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 
 // ━━━ Service Worker ━━━
 import "../../../core/utils/service-worker/registerServiceWorker";
-import { CapiCommunity } from "../../../SDKs/community/CapiCommunity"; // Register the service worker.
+import { CapiCommunity } from "@sdk-community/CapiCommunity"; // Register the service worker.
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -58,7 +58,7 @@ window.OverrideShopLanguagePacks = {};
 //█████████████████████████████████████████████████████████████
 
 // ━━━ Components ━━━
-require("../../Components/components.ts");
+require("@components/components.ts");
 
 // ━━━ Page Builder ━━━
 require("../PageBuilder/PageBuilderPlugin");

@@ -1,4 +1,4 @@
-import { XapiShop } from "../../../SDKs/storefront/shop/XapiShop";
+import { XapiShop } from "@sdk-storefront/shop/XapiShop";
 import ShopApplicationInterface from "../../../core/enums/application/ShopApplicationInterface";
 import { Store } from "vuex";
 

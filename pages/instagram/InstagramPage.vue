@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import InstagramView from "../../../Backoffice/pages/shop/pages/channels/pages/instagram/widgets/InstagramView.vue";
+import InstagramView from "@components/storefront/instagram/InstagramView.vue";
 export default {
   name: "InstagramPage",
   components: { InstagramView },

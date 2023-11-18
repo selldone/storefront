@@ -18,19 +18,18 @@
       <v-toolbar-title class="body-title">
         <router-link :to="{ name: 'HistoryOrdersFile' }" class="text-uppercase">
           <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{$t('global.commons.orders_list')}}</router-link
+          {{ $t("global.commons.orders_list") }}</router-link
         >
-
 
         <!-- 🎗️ Created by a subscription basket -->
         <span
-            v-if="basket.subscription_id"
-            title="This order created by a subscription."
+          v-if="basket.subscription_id"
+          title="This order created by a subscription."
         >
           <span class="mx-1 text-muted">/</span>
           <img :src="ProductType.SUBSCRIPTION.image" width="20" height="20" />
           <router-link
-              :to="{
+            :to="{
               name: 'MySubscriptionOrderInfoPage',
               params: { basket_id: basket.subscription_id },
             }"
@@ -39,16 +38,16 @@
           </router-link>
         </span>
 
-
         <span class="mx-1 text-muted">/</span>
         <b>{{ getBasketOrderCode(basket) }}</b>
-
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
       <!-- Share order - Secure link generator -->
-      <share-order-button :shop="shop" :basket="basket" ></share-order-button>
-
+      <s-shop-share-order-button
+        :shop="shop"
+        :basket="basket"
+      ></s-shop-share-order-button>
     </v-toolbar>
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -82,7 +81,11 @@
         <div class="widget-buttons">
           <v-btn x-large color="primary" @click="dialog_chat = true">
             <v-icon class="me-1">chat</v-icon>
-            {{ last_chat ? $t('global.actions.continue_chat') : $t('global.actions.add_message') }}</v-btn
+            {{
+              last_chat
+                ? $t("global.actions.continue_chat")
+                : $t("global.actions.add_message")
+            }}</v-btn
           >
         </div>
       </div>
@@ -167,7 +170,7 @@
             <v-img :src="getShopImagePath(shop.icon, IMAGE_SIZE_SMALL)" />
           </v-avatar>
 
-          {{$t('global.commons.chat')}}
+          {{ $t("global.commons.chat") }}
         </v-card-title>
         <v-card-text>
           <order-chat-widget :shop="shop" :basket="basket"></order-chat-widget>
@@ -186,14 +189,14 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "../../../../../../Components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
-import SShopBasketItemsList from "@/Components/storefront/order/basket/SShopBasketItemsList.vue";
-import BasketReturnItemsRequestView from "@/Components/backoffice/basket/BasketReturnItemsRequestView.vue";
-import SShopDeliveryState from "../../../../../../Components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import SShopProductFilesList from "../../../../../../Components/storefront/product/file/SShopProductFilesList.vue";
-import OrderChatWidget from "@/Components/storefront/order/chat/OrderChatWidget.vue";
-import {ProductType} from "../../../../../../../core/enums/product/ProductType";
-import SShopShareOrderButton from "@/Components/storefront/order/share-order/SShopShareOrderButton.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
+import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
+import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
+import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
+import { ProductType } from "@core/enums/product/ProductType";
+import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 export default {
   name: "MyFileOrderInfoPage",
   components: {

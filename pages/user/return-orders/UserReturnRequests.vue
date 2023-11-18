@@ -15,7 +15,11 @@
 <template>
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
-      <widget-header :title="$t('return_requests.title')" icon="assignment_return"> </widget-header>
+      <widget-header
+        :title="$t('return_requests.title')"
+        icon="assignment_return"
+      >
+      </widget-header>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -28,10 +32,10 @@
 </template>
 
 <script>
-import ReturnRequestsList from "@/Components/backoffice/basket/return-request/ReturnRequestsList.vue";
+import ReturnRequestsList from "@components/backoffice/basket/return-request/ReturnRequestsList.vue";
 export default {
   name: "UserReturnRequests",
-  components: {  ReturnRequestsList },
+  components: { ReturnRequestsList },
 
   data: function () {
     return {};

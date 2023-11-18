@@ -59,7 +59,7 @@
             title="Open product admin panel"
           >
             <img
-              src="../../../../Components/assets/selldone-logo/logo-mini-white.svg"
+              src="@components/assets/selldone-logo/logo-mini-white.svg"
               width="16"
               height="16"
               class="me-1"
@@ -76,7 +76,7 @@
             @click="show_qr = true"
             class="me-0 sub-caption -hover flex-grow-0"
             caption="Barcode"
-            ><img src="@/Components/assets/icons/qr-code.svg" width="32"
+            ><img src="@components/assets/icons/qr-code.svg" width="32"
           /></v-btn>
         </v-toolbar>
 
@@ -341,38 +341,38 @@
 </template>
 
 <script>
-import SArticleView from "@/Components/article/SArticleView.vue";
+import SArticleView from "@components/article/SArticleView.vue";
 
-import SShopProductMainCard from "@/Components/product/info/SShopProductMainCard.vue";
-import { HierarchyHelper } from "../../../../../core/helper/breadcrumb/HierarchyHelper";
-import SBreadcrumbImage from "@/Components/ui/breadcrumb/SBreadcrumbImage.vue";
-import ProductSpecView from "../../../Backoffice/components/product/spec/ProductSpecView.vue";
-import { ArticleTypes } from "../../../../../core/enums/article/ArticleTypes";
-import ProductInfoLoadingView from "@/Components/product/loading/ProductInfoLoadingView.vue";
-import { SpecHelper } from "../../../../../core/helper/product/SpecHelper";
+import SShopProductMainCard from "@components/product/info/SShopProductMainCard.vue";
+import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
+import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
+import ProductSpecView from "@components/storefront/product/spec/ProductSpecView.vue";
+import { ArticleTypes } from "@core/enums/article/ArticleTypes";
+import ProductInfoLoadingView from "@components/product/loading/ProductInfoLoadingView.vue";
+import { SpecHelper } from "@core/helper/product/SpecHelper";
 
 import GtagEcommerce from "../../plugins/gtag/GtagEcommerce";
-import { ProductType } from "../../../../../core/enums/product/ProductType";
-import SetupService from "../../../../../core/server/SetupService";
+import { ProductType } from "@core/enums/product/ProductType";
+import SetupService from "@core/server/SetupService";
 
-import SShopProductProsConsTable from "@/Components/product/pros-cons/SShopProductProsConsTable.vue";
-import FadeScroll from "@/Components/ui/fade-scroll/FadeScroll.vue";
-import SShopProductIncludes from "@/Components/product/includes/SShopProductIncludes.vue";
-import { ColorHelper } from "../../../../../core/helper/color/ColorHelper";
-import { ShadeColor } from "../../../../../core/helper/color/ColorGenerator";
-import SShopRelatedProducts from "@/Components/product/related-products/SShopRelatedProducts.vue";
-import SShopRelatedCategories from "@/Components/product/related-categories/SShopRelatedCategories.vue";
-import SShopProductSectionBoxBadges from "@/Components/product/sections/SShopProductSectionBoxBadges.vue";
-import { ShopTransportations } from "../../../../../core/enums/logistic/ShopTransportations";
-import SShopProductShipping from "@/Components/product/shipping/SShopProductShipping.vue";
-import SShopProductWarranty from "@/Components/product/warranty/SShopProductWarranty.vue";
-import SShopProductGuide from "@/Components/product/guide/SShopProductGuide.vue";
-import SShopProductFiles from "@/Components/product/files/SShopProductFiles.vue";
-import SShopProductComments from "@/Components/product/comments/SShopProductComments.vue";
-import SShopProductSubscriptionMembership from "@/Components/product/subscription/SShopProductSubscriptionMembership.vue";
-import SShopProductOffers from "@/Components/product/offers/SShopProductOffers.vue";
-import SShopProductCrossSellList from "@/Components/product/cross-sells/SShopProductCrossSellList.vue";
-import ProductSection from "../../../../../core/enums/product/ProductSection";
+import SShopProductProsConsTable from "@components/product/pros-cons/SShopProductProsConsTable.vue";
+import FadeScroll from "@components/ui/fade-scroll/FadeScroll.vue";
+import SShopProductIncludes from "@components/product/includes/SShopProductIncludes.vue";
+import { ColorHelper } from "@core/helper/color/ColorHelper";
+import { ShadeColor } from "@core/helper/color/ColorGenerator";
+import SShopRelatedProducts from "@components/product/related-products/SShopRelatedProducts.vue";
+import SShopRelatedCategories from "@components/product/related-categories/SShopRelatedCategories.vue";
+import SShopProductSectionBoxBadges from "@components/product/sections/SShopProductSectionBoxBadges.vue";
+import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
+import SShopProductShipping from "@components/product/shipping/SShopProductShipping.vue";
+import SShopProductWarranty from "@components/product/warranty/SShopProductWarranty.vue";
+import SShopProductGuide from "@components/product/guide/SShopProductGuide.vue";
+import SShopProductFiles from "@components/product/files/SShopProductFiles.vue";
+import SShopProductComments from "@components/product/comments/SShopProductComments.vue";
+import SShopProductSubscriptionMembership from "@components/product/subscription/SShopProductSubscriptionMembership.vue";
+import SShopProductOffers from "@components/product/offers/SShopProductOffers.vue";
+import SShopProductCrossSellList from "@components/product/cross-sells/SShopProductCrossSellList.vue";
+import ProductSection from "@core/enums/product/ProductSection";
 
 export default {
   name: "ProductPage",

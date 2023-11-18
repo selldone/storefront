@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import SShopProductsListing from "../../../Components/storefront/products-listing/SShopProductsListing.vue";
-import SShopVendorHeader from "@/Components/storefront/vendor/SShopVendorHeader.vue";
+import SShopProductsListing from "@components/storefront/products-listing/SShopProductsListing.vue";
+import SShopVendorHeader from "@components/storefront/vendor/SShopVendorHeader.vue";
 
 export default {
   name: "ShopPage",

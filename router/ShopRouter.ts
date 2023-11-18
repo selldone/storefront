@@ -171,9 +171,9 @@ import ShopFAQ from "@/Applications/Storefront/pages/official/faq/ShopFAQ.vue";
 import ShopContactUs from "@/Applications/Storefront/pages/official/contact-us/ShopContactUs.vue";
 
 import ShopInfoPageMobile from "@/Applications/Storefront/pages/official/info/ShopInfoPageMobile.vue";
-import { ShopOptionsHelper } from "../../../../core/helper/shop/ShopOptionsHelper";
-import SetupService from "../../../../core/server/SetupService";
-import { Shop } from "../../../../core/models/shop/shop.model";
+import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
+import SetupService from "@core/server/SetupService";
+import { Shop } from "@core/models/shop/shop.model";
 import type { Route } from "vue-router/types/router.d.ts";
 import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
 
@@ -181,32 +181,32 @@ import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
 
 const CommunityLayout = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/layout/CommunityLayout.vue"
+    /* webpackChunkName: "community" */ "@components/community/layout/CommunityLayout.vue"
   );
 
 const CommunityHomePage = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/pages/CommunityHomePage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/CommunityHomePage.vue"
   );
 
 const CommunityCategoryPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/pages/CommunityCategoryPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/CommunityCategoryPage.vue"
   );
 
 const CommunityTopicPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/pages/CommunityTopicPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/CommunityTopicPage.vue"
   );
 
 const CommunityFeedPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/pages/CommunityFeedPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/CommunityFeedPage.vue"
   );
 
 const CommunityMyCommentsPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@/Components/community/pages/CommunityMyCommentsPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/CommunityMyCommentsPage.vue"
   );
 
 //――――――――――――――――――――――――― Map ―――――――――――――――――――――――――

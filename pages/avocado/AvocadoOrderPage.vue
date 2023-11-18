@@ -16,14 +16,14 @@
   <div class="px-2">
     <v-container class="c-avocado">
       <img
-        src="../../../../Components/assets/icons/avocado.svg"
+        src="@components/assets/icons/avocado.svg"
         width="32"
         height="32"
         class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
       />
 
@@ -231,7 +231,7 @@
         Powered by
         <a href="/public" target="_blank">
           <img
-            src="../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
             height="10"
           />
@@ -251,15 +251,14 @@
 </template>
 
 <script>
-import SShopCustomerReceiverInfoWidget from "../../../../Components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
-import { BasketStatus } from "../../../../../core/enums/basket/BasketStatus";
+import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
+import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import GtagEcommerce from "../../plugins/gtag/GtagEcommerce";
-import Stamp from "@/Components/ui/stamp/Stamp.vue";
-import StatusStepper from "../../../Backoffice/pages/shop/widgets/order-status/StatusStepper.vue";
-import { AvocadoOrderStates } from "../../../../../core/enums/avocado/AvocadoOrderStates";
-import SShopAvocadoCustomerOrderItems from "../../../../Components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
-import { AvocadoItemStatus } from "../../../../../core/enums/avocado/AvocadoItemStatus";
-import updateReceiverInfo from "../../../../../SDKs/storefront/avocado/requests/xapi.avocado.receiver-info.put";
+import Stamp from "@components/ui/stamp/Stamp.vue";
+import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
+import { AvocadoItemStatus } from "@core/enums/avocado/AvocadoItemStatus";
 
 export default {
   name: "AvocadoOrderPage",

@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import SDataIteratorToolbar from "@/Components/ui/toolbar/SDataIteratorToolbar.vue";
+import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
 
 export default {

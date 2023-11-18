@@ -12,10 +12,10 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { XapiUser } from "../../../../../SDKs/storefront/user/XapiUser";
-import ShopApplicationInterface from "../../../../../core/enums/application/ShopApplicationInterface";
-import { ShopEventsName } from "../../../../../core/enums/application/ShopEventsName";
-import { Shop } from "../../../../../core/models/shop/shop.model";
+import { XapiUser } from "@sdk-storefront/user/XapiUser";
+import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
+import { ShopEventsName } from "@core/enums/application/ShopEventsName";
+import { Shop } from "@core/models/shop/shop.model";
 
 declare global {
   interface Window {}

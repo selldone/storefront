@@ -17,7 +17,7 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
         <router-link :to="{ name: 'HistoryOrdersPOS' }" class="text-uppercase">
-          <img :src="require('@/Components/assets/icons/pos-order-type.svg')" width="20" height="20" class="me-1" />
+          <img :src="require('@components/assets/icons/pos-order-type.svg')" width="20" height="20" class="me-1" />
           {{$t('global.commons.orders_list')}}</router-link
         >
         <span class="mx-1 text-muted">/</span>
@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "../../../../../../Components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
-import SShopBasketItemsList from "@/Components/storefront/order/basket/SShopBasketItemsList.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 
 export default {
   name: "MyPOSOrderInfoPage",

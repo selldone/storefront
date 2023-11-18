@@ -32,7 +32,7 @@
             />
             <img
               class="flipInX delay_300"
-              src="../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+              src="@components/assets/selldone-logo/selldone-text-draw.png"
               height="48"
             />
           </div>
@@ -200,7 +200,7 @@
         Powered by
         <a href="/" target="_blank">
           <img
-            src="../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
             height="10"
           />
@@ -213,13 +213,13 @@
 </template>
 
 <script>
-import OfflineBasketListItems from "../../../Backoffice/pages/pos/widgets/OfflineBasketListItems.vue";
-import PosBillView from "../../../Backoffice/pages/pos/widgets/PosBillView.vue";
-import { BasketStatus } from "../../../../../core/enums/basket/BasketStatus";
-import PaymentCard from "@/Components/payment/widgets/PaymentCard.vue";
-import SPaymentBillingDetails from "@/Components/payment/widgets/SPaymentBillingDetails.vue";
-import SCountryWorldMap from "@/Components/map/SCountryWorldMap.vue";
-import { TransactionStatus } from "../../../../../core/enums/payment/TransactionStatus";
+import OfflineBasketListItems from "@components/pos/OfflineBasketListItems.vue";
+import PosBillView from "@components/pos/PosBillView.vue";
+import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import PaymentCard from "@components/payment/widgets/PaymentCard.vue";
+import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
+import SCountryWorldMap from "@components/map/SCountryWorldMap.vue";
+import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 export default {
   name: "ShopPOSPage",
   components: {

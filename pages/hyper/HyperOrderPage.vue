@@ -16,14 +16,14 @@
   <div class="px-2">
     <v-container class="c-avocado">
       <img
-        src="../../../../Components/assets/icons/hyper.svg"
+        src="@components/assets/icons/hyper.svg"
         width="32"
         height="32"
         class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
       />
 
@@ -139,7 +139,7 @@
         Powered by
         <a href="/public" target="_blank">
           <img
-            src="../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
             height="10"
           />
@@ -159,10 +159,10 @@
 </template>
 
 <script>
-import { BasketStatus } from "../../../../../core/enums/basket/BasketStatus";
-import Stamp from "@/Components/ui/stamp/Stamp.vue";
-import SShopHyperItemsList from "../../../../Components/storefront/hyper/SShopHyperItemsList.vue";
-import SShopRowCustomerPendingPayment from "@/Components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
+import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import Stamp from "@components/ui/stamp/Stamp.vue";
+import SShopHyperItemsList from "@components/storefront/hyper/SShopHyperItemsList.vue";
+import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
   name: "HyperOrderPage",

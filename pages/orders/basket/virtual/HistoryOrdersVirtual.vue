@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { VirtualOrderStates } from "../../../../../../../core/enums/basket/VirtualOrderStates";
-import { ProductType } from "../../../../../../../core/enums/product/ProductType";
+import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
+import { ProductType } from "@core/enums/product/ProductType";
 import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
 
 export default {

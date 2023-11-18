@@ -23,21 +23,23 @@
       ></v-progress-linear>
 
       <img
-        src="@/Components/assets/icons/hyper.svg"
+        src="@components/assets/icons/hyper.svg"
         width="32"
         height="32"
         class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
       />
 
       <!-- ................ Not enabled info ................ -->
       <div v-if="!is_enable" style="min-height: 65vh">
         <v-img
-          :src="require('../../../Selldone/pages/avocado/assets/avocado-sleep.png')"
+          :src="
+            require('../../../Selldone/pages/avocado/assets/avocado-sleep.png')
+          "
           width="100%"
           max-width="450"
           class="mx-auto"
@@ -94,20 +96,24 @@
           depressed
           :loading="busy"
         >
-  <div>
-    <v-icon class="me-1">shopping_bag</v-icon>
-    {{ open_hyper_items && open_hyper_items.length? $t("hyper.continue_order"):$t("hyper.add_new_order") }}
+          <div>
+            <v-icon class="me-1">shopping_bag</v-icon>
+            {{
+              open_hyper_items && open_hyper_items.length
+                ? $t("hyper.continue_order")
+                : $t("hyper.add_new_order")
+            }}
 
-    <products-dense-images-circles v-if="open_hyper_items && open_hyper_items.length"    :ids="getProductsIDs(open_hyper)" class="d-block"></products-dense-images-circles>
-
-
-  </div>
-
+            <products-dense-images-circles
+              v-if="open_hyper_items && open_hyper_items.length"
+              :ids="getProductsIDs(open_hyper)"
+              class="d-block"
+            ></products-dense-images-circles>
+          </div>
         </v-btn>
       </div>
 
       <!-- ................ Add order (By customer) ................ -->
-
 
       <s-shop-hyper-add-order-form
         v-if="add_mode && open_hyper"
@@ -130,7 +136,7 @@
         Powered by
         <a href="/" target="_blank">
           <img
-            src="../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
             height="10"
           />
@@ -139,25 +145,23 @@
         | The Future Commerce Platform
       </div>
     </v-container>
-
-
-
-
-
   </div>
 </template>
 
 <script>
-import { AvocadoOrderStates } from "../../../../../core/enums/avocado/AvocadoOrderStates";
+import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
-import SShopHyperAddOrderForm from "../../../../Components/storefront/hyper/SShopHyperAddOrderForm.vue";
-import SShopHyperCustomerOrdersList from "../../../../Components/storefront/hyper/SShopHyperCustomerOrdersList.vue";
-import ProductsDenseImagesCircles
-  from "@/Components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import SShopHyperAddOrderForm from "@components/storefront/hyper/SShopHyperAddOrderForm.vue";
+import SShopHyperCustomerOrdersList from "@components/storefront/hyper/SShopHyperCustomerOrdersList.vue";
+import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
 export default {
   name: "HyperPage",
-  components: {ProductsDenseImagesCircles, SShopHyperCustomerOrdersList, SShopHyperAddOrderForm },
+  components: {
+    ProductsDenseImagesCircles,
+    SShopHyperCustomerOrdersList,
+    SShopHyperAddOrderForm,
+  },
 
   props: {
     shop: {
@@ -180,10 +184,6 @@ export default {
 
     page: 1,
     busy_fetch: false,
-
-
-
-
   }),
 
   computed: {
@@ -201,9 +201,9 @@ export default {
       return this.shop.avocado ? this.shop.avocado : {};
     },
 
-    open_hyper_items(){
-      return this.open_hyper && this.open_hyper.items
-    }
+    open_hyper_items() {
+      return this.open_hyper && this.open_hyper.items;
+    },
   },
   created() {
     if (!this.USER()) this.NeedLogin();
@@ -216,15 +216,9 @@ export default {
     },
   },
 
-  mounted() {
-
-  },
+  mounted() {},
 
   methods: {
-
-
-
-
     getOpenHyper() {
       // console.log("*******************************************");
       this.busy = true;
@@ -241,9 +235,8 @@ export default {
 
             // Check if in add mode:
             if (this.$route.query.product_id) {
-this.add_mode=true;
+              this.add_mode = true;
             }
-
           } else {
             this.showErrorAlert(null, data.error_msg);
           }
@@ -262,7 +255,7 @@ this.add_mode=true;
       axios
         .get(window.XAPI.GET_CUSTOMER_HISTORY_HYPERS(this.shop_name), {
           params: {
-            sortDesc:true,
+            sortDesc: true,
             offset: (this.page - 1) * 5,
             limit: 5,
           },
@@ -286,12 +279,10 @@ this.add_mode=true;
     getProductsIDs(basket) {
       const out = [];
       basket.items.forEach((item) => {
-        if (!out.includes("" + item.product_id))
-          out.push("" + item.product_id);
+        if (!out.includes("" + item.product_id)) out.push("" + item.product_id);
       });
       return out;
     },
-
   },
 };
 </script>

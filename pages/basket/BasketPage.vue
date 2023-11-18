@@ -303,7 +303,7 @@
                     <div v-if="coupon">
                       <div class="text-center mt-2">
                         <img
-                          src="@/Components/assets/icons/coupon.svg"
+                          src="@components/assets/icons/coupon.svg"
                           width="48"
                           height="48"
                           class="mx-auto mb-1"
@@ -336,7 +336,7 @@
                     <div v-if="prize">
                       <div class="text-center mt-2">
                         <img
-                          src="@/Components/assets/icons/lottery-win.svg"
+                          src="@components/assets/icons/lottery-win.svg"
                           width="48"
                           height="48"
                           class="mx-auto mb-1"
@@ -1229,7 +1229,7 @@
         :class="{ blured: busy_shop }"
       >
         <img
-          src="@/Components/assets/icons/baskets.svg"
+          src="@components/assets/icons/baskets.svg"
           height="120"
           class="m-5 img-grayscale"
         />
@@ -1288,31 +1288,31 @@
 </template>
 
 <script>
-import SShopBasketItems from "../../../../Components/storefront/order/basket/SShopBasketItems.vue";
-import { WeekDays } from "../../../../../core/enums/logistic/WeekDays";
-import { TimeSpans } from "../../../../../core/enums/logistic/TimeSpans";
-import { ShopTransportations } from "../../../../../core/enums/logistic/ShopTransportations";
-import DiscountField from "@/Components/backoffice/incentives/discount-code/DiscountField.vue";
+import SShopBasketItems from "@components/storefront/order/basket/SShopBasketItems.vue";
+import { WeekDays } from "@core/enums/logistic/WeekDays";
+import { TimeSpans } from "@core/enums/logistic/TimeSpans";
+import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
+import DiscountField from "@components/backoffice/incentives/discount-code/DiscountField.vue";
 import GtagEcommerce from "../../plugins/gtag/GtagEcommerce";
-import SCoupons from "@/Components/storefront/incentives/coupon/SCoupons.vue";
-import { ProductType } from "../../../../../core/enums/product/ProductType";
-import SShopLotteryPrizes from "@/Components/storefront/incentives/lottery/SShopLotteryPrizes.vue";
-import VariantItemMini from "../../../Backoffice/pages/product/widgets/variants/VariantItemMini.vue";
-import SShopCustomerReceiverInfoWidget from "../../../../Components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
-import { ShopOptionsHelper } from "../../../../../core/helper/shop/ShopOptionsHelper";
-import SValueDashed from "@/Components/ui/text/SValueDashed.vue";
-import { LocalStorages } from "../../../../../core/helper/local-storage/LocalStorages";
-import SShopShareOrderButton from "@/Components/storefront/order/share-order/SShopShareOrderButton.vue";
-import SShopBillingAddressForm from "@/Components/storefront/order/billing/SShopBillingAddressForm.vue";
-import BillingPeriod from "../../../../../core/enums/subscription/BillingPeriod";
-import SShopConnectShippingOptions from "@/Components/storefront/order/shipping/SShopConnectShippingOptions.vue";
-import SSmartSelect from "@/Components/smart/SSmartSelect.vue";
-import ProductsDenseImagesCircles from "@/Components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import { ETA } from "../../../../../core/enums/logistic/ETA";
-import DateTimePickerGlobal from "@/Components/ui/calendar/dateTimePickerGlobal.vue";
-import { ShadeColor } from "../../../../../core/helper/color/ColorGenerator";
+import SCoupons from "@components/storefront/incentives/coupon/SCoupons.vue";
+import { ProductType } from "@core/enums/product/ProductType";
+import SShopLotteryPrizes from "@components/storefront/incentives/lottery/SShopLotteryPrizes.vue";
+import VariantItemMini from "@app-backoffice/pages/product/widgets/variants/VariantItemMini.vue";
+import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
+import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
+import SValueDashed from "@components/ui/text/SValueDashed.vue";
+import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
+import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
+import BillingPeriod from "@core/enums/subscription/BillingPeriod";
+import SShopConnectShippingOptions from "@components/storefront/order/shipping/SShopConnectShippingOptions.vue";
+import SSmartSelect from "@components/smart/SSmartSelect.vue";
+import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import { ETA } from "@core/enums/logistic/ETA";
+import DateTimePickerGlobal from "@components/ui/calendar/dateTimePickerGlobal.vue";
+import { ShadeColor } from "@core/helper/color/ColorGenerator";
 import _ from "lodash-es";
-import SStripeSplitPaymentInfo from "@/Components/payment/stripe/SStripeSplitPaymentInfo.vue";
+import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
 
 export default {
   name: "BasketPage",

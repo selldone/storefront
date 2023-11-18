@@ -179,12 +179,12 @@
 </template>
 
 <script>
-import Mapbox from "@/Components/map/MapBox";
-import SetupService from "../../../../../../core/server/SetupService";
-import SShopProductsListing from "@/Components/storefront/products-listing/SShopProductsListing.vue";
-import SAddressInput from "@/Components/ui/input/address/SAddressInput.vue";
-import SValueCopyBox from "@/Components/ui/text/SValueCopyBox.vue";
-import SShopProductCard from "@/Components/product/card/SShopProductCard.vue";
+import Mapbox from "@components/map/MapBox";
+import SetupService from "@core/server/SetupService";
+import SShopProductsListing from "@components/storefront/products-listing/SShopProductsListing.vue";
+import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
+import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
+import SShopProductCard from "@components/product/card/SShopProductCard.vue";
 import _ from "lodash-es";
 
 export default {

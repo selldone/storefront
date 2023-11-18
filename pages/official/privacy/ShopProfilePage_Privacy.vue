@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import SArticleEditor from "@/Components/article/SArticleEditor.vue";
-import SShopCookiePreferences from "../../../../../Components/storefront/cookie/SShopCookiePreferences.vue";
+import SArticleEditor from "@components/article/SArticleEditor.vue";
+import SShopCookiePreferences from "@components/storefront/cookie/SShopCookiePreferences.vue";
 export default {
   name: "ShopProfilePagePrivacy",
   components: { SShopCookiePreferences, SArticleEditor },

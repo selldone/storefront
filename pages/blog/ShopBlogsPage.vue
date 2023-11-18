@@ -78,13 +78,13 @@
                 height="auto"
                 class="rounded fadeIn"
               />
-              <blog-user-category-view
+              <s-blog-user-category-view
                 v-if="latest_article.parent"
                 :user="latest_article.user"
                 :categories="categories"
                 :category-name="latest_article.parent.category_id"
                 class="mt-4"
-              ></blog-user-category-view>
+              ></s-blog-user-category-view>
 
               <h2 class="my-2 font-weight-black fadeInUp delay_200">
                 {{ latest_article.title }}
@@ -120,11 +120,11 @@
                 </v-list-item-avatar>
                 <v-list-item-content>
                   <v-list-item-subtitle>
-                    <blog-user-category-view
+                    <s-blog-user-category-view
                       :user="article.user"
                       :categories="categories"
                       :category-name="article.parent.category_id"
-                    ></blog-user-category-view>
+                    ></s-blog-user-category-view>
                   </v-list-item-subtitle>
                   <v-list-item-title>
                     <h2
@@ -278,13 +278,13 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <blog-user-category-view
+                <s-blog-user-category-view
                   :user="article.user"
                   :categories="categories"
                   :category-name="
                     article.parent ? article.parent.category_id : null
                   "
-                ></blog-user-category-view>
+                ></s-blog-user-category-view>
                 <v-list-item-title
                   class="font-weight-bold list-item-bold line-height-normal my-1"
                   style="white-space: normal; min-height: 40px"
@@ -488,12 +488,12 @@
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
-                      <blog-user-category-view
+                      <s-blog-user-category-view
                         v-if="article.parent"
                         :user="article.user"
                         :categories="categories"
                         :category-name="article.parent.category_id"
-                      ></blog-user-category-view>
+                      ></s-blog-user-category-view>
                     </v-list-item-subtitle>
                     <v-list-item-title>
                       <h2
@@ -542,14 +542,14 @@
 </template>
 
 <script>
-import SShopBlogCard from "@/Components/storefront/blog/SShopBlogCard.vue";
-import BlogUserCategoryView from "../../../Selldone/pages/blogs/widgets/BlogUserCategoryView.vue";
+import SShopBlogCard from "@components/storefront/blog/SShopBlogCard.vue";
+import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
 import _ from "lodash-es";
 
 export default {
   name: "ShopBlogsPage",
   components: {
-    BlogUserCategoryView,
+    SBlogUserCategoryView,
     SShopBlogCard,
   },
   data: () => ({

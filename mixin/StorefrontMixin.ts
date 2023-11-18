@@ -12,33 +12,30 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { ProductType } from "../../../../core/enums/product/ProductType";
+import { ProductType } from "@core/enums/product/ProductType";
 import { i18n, loadLanguageAsyncShop } from "./../lang/i18n_shop";
-import {
-  type ILanguage,
-  Language,
-} from "../../../../core/enums/language/Language";
+import { type ILanguage, Language } from "@core/enums/language/Language";
 import merge from "lodash-es/merge";
 import {
   NativeInterfaceShop,
   NativeInterfaceUser,
 } from "./../plugins/native/NativeAppInterface";
-import { LocalStorages } from "../../../../core/helper/local-storage/LocalStorages";
-import CoreMixin from "./../../../Components/mixin/CoreMixin";
-import type { Basket } from "../../../../core/models/shop/order/basket/basket.model";
-import { Club } from "../../../../core/models/shop/club/club.model";
-import { XapiShop } from "../../../../SDKs/storefront/shop/XapiShop";
-import { Product } from "../../../../core/models/shop/product/product.model";
-import type { ProductVariant } from "../../../../core/models/shop/product/product_variant.model";
-import type { BasketItem } from "../../../../core/models/shop/order/basket/basket_item.model";
-import type { SubscriptionPrice } from "../../../../core/models/shop/product/subscription_price.model";
-import { Currency } from "../../../../core/enums/payment/Currency";
-import { Avocado } from "../../../../core/models/shop/order/avocado/avocado.order";
-import type { Hyper } from "../../../../core/models/shop/order/hyper/hyper.order";
-import type { ProductCompare } from "../../../../core/models/shop/product/product-compare.model";
-import SetupService from "../../../../core/server/SetupService";
-import type { Coupon } from "../../../../core/models/shop/incentives/coupon/coupon.model";
-import type { Offer } from "../../../../core/models/shop/incentives/offer/offer.model";
+import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import CoreMixin from "@components/mixin/CoreMixin";
+import type { Basket } from "@core/models/shop/order/basket/basket.model";
+import { Club } from "@core/models/shop/club/club.model";
+import { XapiShop } from "@sdk-storefront/shop/XapiShop";
+import { Product } from "@core/models/shop/product/product.model";
+import type { ProductVariant } from "@core/models/shop/product/product_variant.model";
+import type { BasketItem } from "@core/models/shop/order/basket/basket_item.model";
+import type { SubscriptionPrice } from "@core/models/shop/product/subscription_price.model";
+import { Currency } from "@core/enums/payment/Currency";
+import { Avocado } from "@core/models/shop/order/avocado/avocado.order";
+import type { Hyper } from "@core/models/shop/order/hyper/hyper.order";
+import type { ProductCompare } from "@core/models/shop/product/product-compare.model";
+import SetupService from "@core/server/SetupService";
+import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
+import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
 import type { RouteRecord } from "vue-router/types/router";
 
 const StorefrontMixin = CoreMixin.extend({
@@ -492,7 +489,10 @@ const StorefrontMixin = CoreMixin.extend({
                 Array.isArray(language_option.value) &&
                 language_option.value.includes(saved_local.code)
               ) {
-                console.log("🌐 Valid language on the local.", saved_local.code);
+                console.log(
+                  "🌐 Valid language on the local.",
+                  saved_local.code
+                );
 
                 this.setCurrentLanguage(saved_local);
               } else {

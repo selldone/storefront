@@ -21,7 +21,7 @@
           class="text-uppercase"
         >
           <img
-            :src="require('@/Components/assets/icons/avocado.svg')"
+            :src="require('@components/assets/icons/avocado.svg')"
             width="20"
             height="20"
             class="me-1"
@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "../../../../../../Components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 
-import { PhysicalOrderStates } from "../../../../../../../core/enums/basket/PhysicalOrderStates";
-import SShopCustomerDeliveryInfoWidget from "../../../../../../Components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import SShopDeliveryState from "../../../../../../Components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import SShopAvocadoCustomerOrderItems from "../../../../../../Components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
+import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
+import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
+import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 
 export default {
   name: "AvocadoOrderDetailPage",

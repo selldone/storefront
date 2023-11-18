@@ -63,7 +63,7 @@
 
 <script>
 import GtagEcommerce from "../../../plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "../../../../../../core/enums/basket/BasketStatus";
+import { BasketStatus } from "@core/enums/basket/BasketStatus";
 
 export default {
   name: "MyOrderInfoPageMaster",

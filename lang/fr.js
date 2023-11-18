@@ -1,7 +1,7 @@
-import global from "../../../../core/lang/global/fr";
-import icons from "../../../../core/lang/global/icons/ltr";
-import community from "../../../../core/lang/global/community/fr";
-import pack from "../../../../core/lang/shop/fr";
+import global from "@core/lang/global/fr";
+import icons from "@core/lang/global/icons/ltr";
+import community from "@core/lang/global/community/fr";
+import pack from "@core/lang/shop/fr";
 
 export default {
   /** ---------------- Icons ---------------- **/

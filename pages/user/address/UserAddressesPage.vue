@@ -195,9 +195,9 @@
 </template>
 
 <script>
-import LocationMarker from "@/Components/map/widgets/LocationMarker.vue";
-import SValueDashed from "@/Components/ui/text/SValueDashed.vue";
-import WidgetHeader from "@/Components/widget/WidgetHeader.vue";
+import LocationMarker from "@components/map/widgets/LocationMarker.vue";
+import SValueDashed from "@components/ui/text/SValueDashed.vue";
+import WidgetHeader from "@components/widget/WidgetHeader.vue";
 
 export default {
   name: "UserAddressesPage",

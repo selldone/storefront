@@ -13,24 +13,21 @@
   -->
 
 <template>
-    <s-shop-footer v-if="isMobile" :shop="shop"></s-shop-footer>
-
+  <s-shop-footer v-if="isMobile" :shop="shop"></s-shop-footer>
 </template>
 
 <script>
-    import SShopFooter from "../../../../../Components/storefront/footer/SShopFooter.vue";
-    export default {
-        name: "ShopInfoPageMobile",
-        components: {SShopFooter},
-        props: {
-            shop: {
-                type: Object,
-                required: true
-            }
-        },
-    }
+import SShopFooter from "@components/storefront/footer/SShopFooter.vue";
+export default {
+  name: "ShopInfoPageMobile",
+  components: { SShopFooter },
+  props: {
+    shop: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

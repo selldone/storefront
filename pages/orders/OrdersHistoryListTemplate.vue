@@ -180,19 +180,19 @@
 </template>
 
 <script>
-import { VirtualOrderStates } from "../../../../../core/enums/basket/VirtualOrderStates";
-import StatusStepper from "../../../Backoffice/pages/shop/widgets/order-status/StatusStepper.vue";
-import { ProductType } from "../../../../../core/enums/product/ProductType";
-import ReturnRequestButtonBadge from "../../../Backoffice/pages/shop/widgets/order-return/ReturnRequestButtonBadge.vue";
-import { PhysicalOrderStates } from "../../../../../core/enums/basket/PhysicalOrderStates";
-import { FileOrderStates } from "../../../../../core/enums/basket/FileOrderStates";
-import ProductsDenseImagesCircles from "@/Components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import OrderStatusView from "@/Components/backoffice/basket/OrderStatusView.vue";
-import { ServiceOrderStates } from "../../../../../core/enums/basket/ServiceOrderStates";
-import { AvocadoOrderStates } from "../../../../../core/enums/avocado/AvocadoOrderStates";
-import ReceiverInfoWidget from "@/Applications/Backoffice/pages/shop/widgets/order-reciver-info/ReceiverInfoWidget.vue";
-import { LocalStorages } from "../../../../../core/helper/local-storage/LocalStorages";
-import {SubscriptionOrderStates} from "../../../../../core/enums/basket/SubscriptionOrderStates";
+import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
+import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import { ProductType } from "@core/enums/product/ProductType";
+import ReturnRequestButtonBadge from "@components/storefront/order/order-return/ReturnRequestButtonBadge.vue";
+import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
+import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
+import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import OrderStatusView from "@components/backoffice/basket/OrderStatusView.vue";
+import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
+import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import ReceiverInfoWidget from "@components/storefront/order/order-reciver-info/ReceiverInfoWidget.vue";
+import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
   name: "OrdersHistoryListTemplate",
@@ -475,7 +475,7 @@ export default {
           out.push(
             item.image
               ? item.image
-              : require("@/Components/assets/icons/circle-blue.svg")
+              : require("@components/assets/icons/circle-blue.svg")
           );
         });
       } else {

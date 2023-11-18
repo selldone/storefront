@@ -1,7 +1,7 @@
-import global from "../../../../core/lang/global/af";
-import icons from "../../../../core/lang/global/icons/ltr";
-import community from "../../../../core/lang/global/community/af";
-import pack from "../../../../core/lang/shop/af";
+import global from "@core/lang/global/af.js";
+import icons from "@core/lang/global/icons/ltr.js";
+import community from "@core/lang/global/community/af.js";
+import pack from "@core/lang/shop/af.js";
 
 export default {
   /** ---------------- Icons ---------------- **/

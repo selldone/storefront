@@ -105,9 +105,9 @@
 </template>
 
 <script>
-import SShopGiftCard from "../../../../../Components/storefront/incentives/giftcard/SShopGiftCard.vue";
-import SDataIteratorToolbar from "@/Components/ui/toolbar/SDataIteratorToolbar.vue";
-import SShopGiftCardAddDialog from "../../../../../Components/storefront/incentives/giftcard/SShopGiftCardAddDialog.vue";
+import SShopGiftCard from "@components/storefront/incentives/giftcard/SShopGiftCard.vue";
+import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
+import SShopGiftCardAddDialog from "@components/storefront/incentives/giftcard/SShopGiftCardAddDialog.vue";
 import _ from "lodash-es";
 
 export default {

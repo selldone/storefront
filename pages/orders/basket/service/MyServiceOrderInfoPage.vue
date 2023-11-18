@@ -153,15 +153,15 @@
 </template>
 
 <script>
-import SShopBasketItemsList from "@/Components/storefront/order/basket/SShopBasketItemsList.vue";
-import SShopDeliveryState from "../../../../../../Components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import BasketReturnItemsRequestView from "@/Components/backoffice/basket/BasketReturnItemsRequestView.vue";
-import SShopCustomerOrderPaymentWidget from "../../../../../../Components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
-import SShopCustomerDeliveryInfoWidget from "../../../../../../Components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import SShopServiceTasks from "@/Components/storefront/product/service/SShopServiceTasks.vue";
-import OrderChatWidget from "@/Components/storefront/order/chat/OrderChatWidget.vue";
-import SShopShareOrderButton from "@/Components/storefront/order/share-order/SShopShareOrderButton.vue";
-import { ProductType } from "../../../../../../../core/enums/product/ProductType";
+import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
+import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
+import SShopServiceTasks from "@components/storefront/product/service/SShopServiceTasks.vue";
+import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
+import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
+import { ProductType } from "@core/enums/product/ProductType";
 
 export default {
   name: "MyServiceOrderInfoPage",

@@ -143,16 +143,16 @@
 </template>
 
 <script>
-import ShopSearchBox from "@/Components/storefront/search/ShopSearchBox.vue";
-import SShopFooter from "../../../Components/storefront/footer/SShopFooter.vue";
-import ShopApplicationInterface from "../../../../core/enums/application/ShopApplicationInterface";
-import { ShopEventsName } from "../../../../core/enums/application/ShopEventsName";
+import ShopSearchBox from "@components/storefront/search/ShopSearchBox.vue";
+import SShopFooter from "@components/storefront/footer/SShopFooter.vue";
+import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
+import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
-import CustomNotification from "@/Components/ui/notification/CustomNotification.vue";
-import ShopContactsChatPopup from "../../Backoffice/pages/shop/widgets/shop-customer-chat/ShopContactsChatPopup.vue";
-import SShopTopMenu from "@/Components/storefront/menu/SShopTopMenu.vue";
-import SShopMainHeader from "@/Components/storefront/header/SShopMainHeader.vue";
-import SShopProductInBasketIndicator from "@/Components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
+import CustomNotification from "@components/ui/notification/CustomNotification.vue";
+import ShopContactsChatPopup from "@components/storefront/chat/ShopContactsChatPopup.vue";
+import SShopTopMenu from "@components/storefront/menu/SShopTopMenu.vue";
+import SShopMainHeader from "@components/storefront/header/SShopMainHeader.vue";
+import SShopProductInBasketIndicator from "@components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
 
 export default {
   name: "LayoutStorefront",

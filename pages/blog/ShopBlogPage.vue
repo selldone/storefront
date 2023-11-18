@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import { ArticleTypes } from "../../../../../core/enums/article/ArticleTypes";
-import SArticleView from "@/Components/article/SArticleView.vue";
-import CircleButton from "@/Components/ui/button/CircleButton.vue";
+import { ArticleTypes } from "@core/enums/article/ArticleTypes";
+import SArticleView from "@components/article/SArticleView.vue";
+import CircleButton from "@components/ui/button/CircleButton.vue";
 
 export default {
   name: "ShopBlogPage",

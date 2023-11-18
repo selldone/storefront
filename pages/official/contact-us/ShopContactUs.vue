@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import SArticleEditor from "@/Components/article/SArticleEditor.vue";
+import SArticleEditor from "@components/article/SArticleEditor.vue";
 export default {
   name: "ShopContactUs",
   components: { SArticleEditor },

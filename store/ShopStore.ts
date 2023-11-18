@@ -1,17 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import type { ActionContext } from "vuex";
-import { Currency } from "../../../../core/enums/payment/Currency";
-import type {  ICurrency } from "../../../../core/enums/payment/Currency";
-import { ProductType } from "../../../../core/enums/product/ProductType";
-import { OverrideCustomVariantsName } from "../../../../core/enums/product/ProductVariants";
-import { XapiShop } from "../../../../SDKs/storefront/shop/XapiShop";
-import type { ProductCompare } from "../../../../core/models/shop/product/product-compare.model";
-import type { Coupon } from "../../../../core/models/shop/incentives/coupon/coupon.model";
-import type { Offer } from "../../../../core/models/shop/incentives/offer/offer.model";
-import { Club } from "../../../../core/models/shop/club/club.model";
-import { Shop } from "../../../../core/models/shop/shop.model";
-import type { Basket } from "../../../../core/models/shop/order/basket/basket.model";
+import { Currency } from "@core/enums/payment/Currency";
+import type { ICurrency } from "@core/enums/payment/Currency";
+import { ProductType } from "@core/enums/product/ProductType";
+import { OverrideCustomVariantsName } from "@core/enums/product/ProductVariants";
+import { XapiShop } from "@sdk-storefront/shop/XapiShop";
+import type { ProductCompare } from "@core/models/shop/product/product-compare.model";
+import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
+import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
+import { Club } from "@core/models/shop/club/club.model";
+import { Shop } from "@core/models/shop/shop.model";
+import type { Basket } from "@core/models/shop/order/basket/basket.model";
 
 Vue.use(Vuex);
 

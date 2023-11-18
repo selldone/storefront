@@ -1,6 +1,5 @@
 <template>
   <v-card
-
     class="s--shop-card s--shadow-no-padding -hide1720 mb-16"
     :flat="isMobile"
   >
@@ -25,7 +24,7 @@
       <!-- ⦿ Address -->
 
       <circle-button
-          v-if="USER()"
+        v-if="USER()"
         icon="near_me"
         :tooltip="$t('user_page.menu.addresses')"
         :to="{ name: 'UserAddressesPage' }"
@@ -34,7 +33,7 @@
       <!-- ⦿ Return request -->
 
       <circle-button
-          v-if="USER()"
+        v-if="USER()"
         icon="keyboard_return"
         :tooltip="$t('user_page.menu.return_requests')"
         :to="{ name: 'UserReturnRequests' }"
@@ -43,7 +42,7 @@
       <!-- ⦿ Favorites -->
 
       <circle-button
-          v-if="USER()"
+        v-if="USER()"
         icon="star"
         :tooltip="$t('user_page.menu.favorites')"
         :to="{ name: 'UserFavoritesPage' }"
@@ -52,7 +51,7 @@
       <!-- ⦿ Comments -->
 
       <circle-button
-          v-if="USER()"
+        v-if="USER()"
         icon="comment"
         :tooltip="$t('user_page.menu.comments')"
         :to="{ name: 'UserCommentsPage' }"
@@ -62,7 +61,7 @@
       <!-- ⦿ Gift cards -->
 
       <circle-button
-          v-if="USER()"
+        v-if="USER()"
         icon="card_giftcard"
         :tooltip="$t('user_page.menu.gift_card')"
         :to="{ name: 'UserGiftCardsPage' }"
@@ -72,7 +71,6 @@
       <!-- ⦿ Profile -->
 
       <circle-button
-
         icon="person"
         :tooltip="$t('user_page.menu.profile')"
         :to="{ name: 'UserProfilePage' }"
@@ -92,7 +90,6 @@
 </template>
 
 <script>
-
 export default {
   name: "UserPagesLayout",
   props: {
@@ -100,9 +97,7 @@ export default {
       require: true,
     },
   },
-  components: {
-
-  },
+  components: {},
   data: () => ({
     mode: "",
   }),
@@ -110,8 +105,7 @@ export default {
 
   watch: {},
 
-  created() {
-  },
+  created() {},
   methods: {},
 };
 </script>

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ProductComparisonList from "@/Components/storefront/comparison/list/ProductComparisonList.vue";
+import ProductComparisonList from "@components/storefront/comparison/list/ProductComparisonList.vue";
 export default {
   name: "ComparisonPage",
   components: { ProductComparisonList },

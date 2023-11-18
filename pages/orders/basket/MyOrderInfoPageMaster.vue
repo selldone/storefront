@@ -72,15 +72,15 @@
 
 <script>
 import GtagEcommerce from "../../../plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "../../../../../../core/enums/basket/BasketStatus";
-import { ProductType } from "../../../../../../core/enums/product/ProductType";
-import StatusStepper from "../../../../Backoffice/pages/shop/widgets/order-status/StatusStepper.vue";
-import { PhysicalOrderStates } from "../../../../../../core/enums/basket/PhysicalOrderStates";
-import { VirtualOrderStates } from "../../../../../../core/enums/basket/VirtualOrderStates";
-import { FileOrderStates } from "../../../../../../core/enums/basket/FileOrderStates";
-import { ServiceOrderStates } from "../../../../../../core/enums/basket/ServiceOrderStates";
-import { LocalStorages } from "../../../../../../core/helper/local-storage/LocalStorages";
-import {SubscriptionOrderStates} from "../../../../../../core/enums/basket/SubscriptionOrderStates";
+import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import { ProductType } from "@core/enums/product/ProductType";
+import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
+import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
+import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
+import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
+import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
   name: "MyOrderInfoPageMaster",

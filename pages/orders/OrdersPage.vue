@@ -39,7 +39,7 @@
         <circle-button
           v-if="USER()"
           key="pos"
-          :src="require('@/Components/assets/icons/pos-order-type.svg')"
+          :src="require('@components/assets/icons/pos-order-type.svg')"
           :tooltip="$t('global.commons.pos')"
           has-badge
           :to="{ name: 'HistoryOrdersPOS' }"
@@ -50,7 +50,7 @@
         <circle-button
           v-if="USER()"
           key="avo"
-          :src="require('@/Components/assets/icons/avocado.svg')"
+          :src="require('@components/assets/icons/avocado.svg')"
           :tooltip="$t('global.commons.avocado')"
           :to="{ name: 'HistoryOrdersAvocado' }"
           has-badge
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { ProductType } from "../../../../../core/enums/product/ProductType";
+import { ProductType } from "@core/enums/product/ProductType";
 export default {
   name: "OrdersPage",
   components: {},

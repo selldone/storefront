@@ -85,8 +85,8 @@
 </template>
 
 <script>
-import SShopProductCard from "@/Components/product/card/SShopProductCard.vue";
-import SDataIteratorToolbar from "@/Components/ui/toolbar/SDataIteratorToolbar.vue";
+import SShopProductCard from "@components/product/card/SShopProductCard.vue";
+import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
 export default {
   name: "UserFavoritesPage",
