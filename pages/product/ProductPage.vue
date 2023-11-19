@@ -250,7 +250,7 @@
       <!-- █████████████████████ Internal Page █████████████████████ -->
 
       <div v-if="page" :style="{ order: getOrder('page') }">
-        <VuseRenderer
+        <SPageRender
           :data="page.content"
           :augment="augment"
           :style="page.background"

@@ -61,7 +61,7 @@ window.OverrideShopLanguagePacks = {};
 require("@components/components.ts");
 
 // ━━━ Page Builder ━━━
-require("../PageBuilder/PageBuilderPlugin");
+require("@app-page-builder/page-builder");
 
 //█████████████████████████████████████████████████████████████
 //――――――――――― Selldone® Storefront SDK ―――――――――――

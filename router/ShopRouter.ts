@@ -103,9 +103,9 @@ const HistoryOrdersPOS = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "../pages/orders/pos/pos/HistoryOrdersPOS.vue"
   );
-const PageRender = () =>
+const SPageLoader = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../../PageBuilder/PageRender.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-page-builder/SPageLoader.vue"
   );
 const UserReturnRequests = () =>
   import(
@@ -288,7 +288,7 @@ function getRouteForHome(): IVueRoute {
         return {
           path: "",
           name: "CustomHomePage", // Landing page loader!
-          component: PageRender,
+          component: SPageLoader,
           meta: {
             fullscreen: true,
           },
@@ -364,7 +364,7 @@ const routes: IVueRoute[] = [
       {
         path: "pages/:page_name",
         name: "PageRender",
-        component: PageRender,
+        component: SPageLoader,
         meta: {
           fullscreen: true,
         },
@@ -375,7 +375,7 @@ const routes: IVueRoute[] = [
       {
         path: "in/:path-:include_id(\\d+)",
         name: "IncludePageRender",
-        component: PageRender,
+        component: SPageLoader,
         meta: {
           fullscreen: true,
         },
