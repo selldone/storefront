@@ -41,18 +41,11 @@
       "@core/*": ["core/*"],
       "@components/*": ["src/Components/*"],
 
-      "@sdk-admin/*": ["SDKs/admin/*"],
       "@sdk-storefront/*": ["SDKs/storefront/*"],
-      "@sdk-backoffice/*": ["SDKs/backoffice/*"],
       "@sdk-community/*": ["SDKs/community/*"],
       "@sdk-vendor/*": ["SDKs/vendor/*"],
 
-      "@app-admin/*": ["src/Applications/Admin/*"],
-      "@app-backoffice/*": ["src/Applications/Backoffice/*"],
-      "@app-embeds/*": ["src/Applications/Embeds/*"],
-      "@app-guild/*": ["src/Applications/Guild/*"],
       "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
-      "@app-selldone/*": ["src/Applications/Selldone/*"],
       "@app-storefront/*": ["src/Applications/Storefront/*"],
       "@app-vendor/*": ["src/Applications/Vendor/*"],
 
