@@ -16,6 +16,7 @@ const webpack = require("webpack");
 const manifest = require("./manifest.json");
 const path = require("path");
 
+
 /**
  * Storefront layout version. This unique identifier is used for naming each app version published on Selldone.
  * @type {string}
