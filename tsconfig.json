@@ -46,7 +46,7 @@
       "@sdk-vendor/*": ["SDKs/vendor/*"],
 
       "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
-      "@app-storefront/*": ["src/Applications/Storefront/*"],
+      "@app-storefront/*": ["/*"],
       "@app-vendor/*": ["src/Applications/Vendor/*"],
 
 
