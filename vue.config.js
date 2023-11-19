@@ -135,7 +135,7 @@ module.exports = {
 
 
         "@app-page-builder": path.resolve(__dirname, "src/Applications/PageBuilder/"),
-        "@app-storefront": path.resolve(__dirname, "/"),
+        "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
