@@ -17,3 +17,7 @@ fi
 if [ ! -d "SDKs/vendor/.git" ]; then
    git submodule add https://github.com/selldone/vendor-sdk SDKs/vendor
 fi
+
+if [ ! -d "SDKs/community/.git" ]; then
+   git submodule add https://github.com/selldone/community-sdk SDKs/community
+fi
