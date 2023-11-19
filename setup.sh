@@ -35,3 +35,7 @@ fi
 if [ ! -d "SDKs/community/.git" ]; then
    git submodule add https://github.com/selldone/community-sdk SDKs/community
 fi
+
+if [ ! -d "src/Applications/PageBuilder/.git" ]; then
+   git submodule add https://github.com/selldone/pagebuilder src/Applications/PageBuilder
+fi
