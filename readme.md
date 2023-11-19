@@ -37,10 +37,12 @@ gh repo clone selldone/storefront
 ### 2. Install required packages:
 ```shell
 yarn install
+yarn setup
 ```
 or
 ```shell
 npm install
+npm setup
 ```
 
 
