@@ -47,6 +47,7 @@ npm setup
 
 
 
+
 ## Needed Modules
 
 | Module              | URL                                        |
@@ -55,6 +56,8 @@ npm setup
 | Storefront SDK      | https://github.com/selldone/storefront-sdk |
 | Selldone Components | https://github.com/selldone/components     |
 
+
+Command to update modules (fetch from git) : `git submodule update --remote --merge`
 
 
 ### Native app login

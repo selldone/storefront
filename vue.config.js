@@ -22,6 +22,9 @@ const path = require("path");
  */
 const VERSION_DIR = manifest.version;
 
+
+const IS_PRODUCTION=process.env.NODE_ENV === "production"
+
 function PAGES() {
   const out = {
     // ▃▃▃▃▃▃▃▃▃▃▃▃ Storefront Web App ▃▃▃▃▃▃▃▃▃▃▃▃
@@ -29,7 +32,7 @@ function PAGES() {
     shop: {
       entry: "storefront.ts",
       template: "public/index.html",
-      filename: "shop/shop.html",
+      filename: "index.html",
     },
   };
 
@@ -73,10 +76,10 @@ module.exports = {
     },
   },
 
-  publicPath: "/layers/",
+  publicPath:'/',
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
-  productionSourceMap: process.env.NODE_ENV !== "production",
+  productionSourceMap: !IS_PRODUCTION,
 
   configureWebpack: {
     plugins: [
@@ -110,19 +113,19 @@ module.exports = {
     output: {
       filename: (chunkData) => {
         return ["shop"].includes(chunkData.chunk.name)
-          ? VERSION_DIR + "/[name].js"
-          : VERSION_DIR + "/[name].[fullhash].js";
+            ? "layers/"+VERSION_DIR + "/[name].js"
+            : "layers/"+VERSION_DIR + "/[name].[fullhash].js";
       },
-      chunkFilename: VERSION_DIR + "/[name].[fullhash].js",
+      chunkFilename: "layers/"+VERSION_DIR + "/[name].[fullhash].js",
     },
     resolve: {
       extensions: [".js", ".vue"],
       alias: {
         "jquery-ui/widget": "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
         "jquery-fileupload":
-          "blueimp-file-upload/js/vendor/jquery.fileupload.js",
+            "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
+            "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
 
 
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
@@ -152,12 +155,12 @@ module.exports = {
     if (config.plugins.has("extract-css")) {
       const extractCSSPlugin = config.plugin("extract-css");
       extractCSSPlugin &&
-        extractCSSPlugin.tap(() => [
-          {
-            filename: VERSION_DIR + "/[name].css",
-            chunkFilename: VERSION_DIR + "/[name].[fullhash].css",
-          },
-        ]);
+      extractCSSPlugin.tap(() => [
+        {
+          filename: "layers/"+VERSION_DIR + "/[name].css",
+          chunkFilename: "layers/"+VERSION_DIR + "/[name].[fullhash].css",
+        },
+      ]);
     }
 
     config.optimization.splitChunks(false);
