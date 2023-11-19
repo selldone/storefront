@@ -14,6 +14,7 @@
 
 <template>
   <v-app
+    v-if="shop"
     class="s--shop"
     :class="[
       {
