@@ -35,16 +35,11 @@
       />
 
       <!-- ................ Not enabled info ................ -->
-      <div v-if="!is_enable" style="min-height: 65vh">
-        <v-img
-          :src="
-            require('../../../Selldone/pages/avocado/assets/avocado-sleep.png')
-          "
-          width="100%"
-          max-width="450"
-          class="mx-auto"
-        >
-        </v-img>
+      <div
+        v-if="!is_enable"
+        style="min-height: 65vh"
+        class="display-1 font-weight-thin"
+      >
         {{ $t("hyper.not_enable") }}
       </div>
 
