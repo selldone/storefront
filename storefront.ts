@@ -15,7 +15,7 @@
 //█████████████████████████████████████████████████████████████
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
-import "../../../core/utils/service-worker/registerServiceWorker"; // Register service worker:
+import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
 import Vue from "vue";
 import App from "./StorefrontApp.vue";
 import router from "./router/ShopRouter";
@@ -24,12 +24,12 @@ import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
 import { i18n } from "./lang/i18n_shop";
 import { Language } from "@core/enums/language/Language";
-import ShopApplicationInterface from "../../../core/enums/application/ShopApplicationInterface";
+import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
 import { StorefrontSDK } from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 
 // ━━━ Service Worker ━━━
-import "../../../core/utils/service-worker/registerServiceWorker";
+import "@core/utils/service-worker/registerServiceWorker";
 import { CapiCommunity } from "@sdk-community/CapiCommunity"; // Register the service worker.
 
 //█████████████████████████████████████████████████████████████
