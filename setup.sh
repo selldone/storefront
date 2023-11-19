@@ -13,29 +13,84 @@
 # Tread carefully, for you're treading on dreams.
 #
 
+# Color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'  # Yellow with bold
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'  # White with bold
+NC='\033[0m' # No Color
+GREEN_BOLD='\033[1;32m'
+GREEN_Dim='\033[2;32m'
+GREEN_INVERT='\033[7;32m'
+
+
+
+
+echo ""
+echo "███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗";
+echo "██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝";
+echo "███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  ";
+echo "╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  ";
+echo "███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗";
+echo "╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝";
+echo ""
+
+
+
+
+
 # setupSubmodules.sh
+echo -e "${GREEN}▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆${NC}"
+echo -e "${GREEN_BOLD}⬤ Setup Selldone® Business OS™ Storefront Project ⬤ ${NC}"
+echo -e "${GREEN_Dim}The #1 operating system for fast-growing companies.${NC}"
+echo -e "${GREEN}▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆${NC}"
 
-# Check if the submodule directories are empty
+echo ""
+
+echo -e "${GREEN_INVERT}Checking and adding submodules...${NC}"
+
+# Check and add the 'core' submodule
 if [ ! -d "core/.git" ]; then
-   git submodule add https://github.com/selldone/core core
+   echo "Adding 'core' submodule..."
+   git submodule add https://github.com/selldone/core core && echo "'core' submodule added successfully." || echo "Failed to add 'core' submodule."
 fi
 
+# Check and add the 'components' submodule
 if [ ! -d "src/Components/.git" ]; then
-   git submodule add https://github.com/selldone/components src/Components
+   echo "Adding 'components' submodule..."
+   git submodule add https://github.com/selldone/components src/Components && echo "'components' submodule added successfully." || echo "Failed to add 'components' submodule."
 fi
 
+# Check and add the 'storefront-sdk' submodule
 if [ ! -d "SDKs/storefront/.git" ]; then
-   git submodule add https://github.com/selldone/storefront-sdk SDKs/storefront
+   echo "Adding 'storefront-sdk' submodule..."
+   git submodule add https://github.com/selldone/storefront-sdk SDKs/storefront && echo "'storefront-sdk' submodule added successfully." || echo "Failed to add 'storefront-sdk' submodule."
 fi
 
+# Check and add the 'vendor-sdk' submodule
 if [ ! -d "SDKs/vendor/.git" ]; then
-   git submodule add https://github.com/selldone/vendor-sdk SDKs/vendor
+   echo "Adding 'vendor-sdk' submodule..."
+   git submodule add https://github.com/selldone/vendor-sdk SDKs/vendor && echo "'vendor-sdk' submodule added successfully." || echo "Failed to add 'vendor-sdk' submodule."
 fi
 
+# Check and add the 'community-sdk' submodule
 if [ ! -d "SDKs/community/.git" ]; then
-   git submodule add https://github.com/selldone/community-sdk SDKs/community
+   echo "Adding 'community-sdk' submodule..."
+   git submodule add https://github.com/selldone/community-sdk SDKs/community && echo "'community-sdk' submodule added successfully." || echo "Failed to add 'community-sdk' submodule."
 fi
 
+# Check and add the 'pagebuilder' submodule
 if [ ! -d "src/Applications/PageBuilder/.git" ]; then
-   git submodule add https://github.com/selldone/pagebuilder src/Applications/PageBuilder
+   echo "Adding 'pagebuilder' submodule..."
+   git submodule add https://github.com/selldone/pagebuilder src/Applications/PageBuilder && echo "'pagebuilder' submodule added successfully." || echo "Failed to add 'pagebuilder' submodule."
 fi
+
+echo ""
+# Display the status of submodules
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "${GREEN_INVERT}Displaying submodule status...${NC}"
+git submodule status
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
