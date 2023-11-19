@@ -150,7 +150,7 @@ import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
 import CustomNotification from "@components/ui/notification/CustomNotification.vue";
 import ShopContactsChatPopup from "@components/storefront/chat/ShopContactsChatPopup.vue";
-import SShopTopMenu from "@components/storefront/menu/SShopTopMenu.vue";
+import SShopTopMenu from "@components/storefront/menu/header/SShopTopMenu.vue";
 import SShopMainHeader from "@components/storefront/header/SShopMainHeader.vue";
 import SShopProductInBasketIndicator from "@components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
 

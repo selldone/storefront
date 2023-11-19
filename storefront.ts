@@ -111,7 +111,7 @@ Vue.mixin(StorefrontMixin); // Mixin with global helper methods.
 Vue.use(VueCookies); // Use Vue Cookies.
 
 // ━━━ Native App Interface ━━━
-require("@app-storefront/plugins/native/NativeAppInterface");
+require("@components/plugins/native/NativeAppInterface");
 
 // ━━━ Vue Instance ━━━
 const storefrontVueApp = new Vue({

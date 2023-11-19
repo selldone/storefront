@@ -19,7 +19,7 @@ import merge from "lodash-es/merge";
 import {
   NativeInterfaceShop,
   NativeInterfaceUser,
-} from "./../plugins/native/NativeAppInterface";
+} from "@components/plugins/native/NativeAppInterface";
 import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
 import CoreMixin from "@components/mixin/CoreMixin";
 import type { Basket } from "@core/models/shop/order/basket/basket.model";

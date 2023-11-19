@@ -351,7 +351,7 @@ import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import ProductInfoLoadingView from "@components/product/loading/ProductInfoLoadingView.vue";
 import { SpecHelper } from "@core/helper/product/SpecHelper";
 
-import GtagEcommerce from "../../plugins/gtag/GtagEcommerce";
+import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
 import { ProductType } from "@core/enums/product/ProductType";
 import SetupService from "@core/server/SetupService";
 
