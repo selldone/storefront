@@ -26,7 +26,7 @@
 <script>
 import ProductComparisonList from "@components/storefront/comparison/list/ProductComparisonList.vue";
 export default {
-  name: "ComparisonPage",
+  name: "StorefrontComparisonPage",
   components: { ProductComparisonList },
 
   data: () => ({

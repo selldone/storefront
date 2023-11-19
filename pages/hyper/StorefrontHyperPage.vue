@@ -151,7 +151,7 @@ import SShopHyperCustomerOrdersList from "@components/storefront/hyper/SShopHype
 import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
 export default {
-  name: "HyperPage",
+  name: "StorefrontHyperPage",
   components: {
     ProductsDenseImagesCircles,
     SShopHyperCustomerOrdersList,

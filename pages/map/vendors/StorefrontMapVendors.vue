@@ -15,22 +15,16 @@
 <template>
   <div class="map-con text-start">
     <div v-if="!$vuetify.breakpoint.xsOnly" class="map-items thin-scroll">
-      <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
+      <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Vendors List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-      <s-shop-products-listing
+      <shop-vendors-list-view
         v-if="bounds"
-        :shop="getShop()"
-        has-sort
-        has-filter
-        has-breadcrumb
-        route-mode
-        load-more
-        free-mode
+        :shop="shop"
+        @fetch-vendors="onfetchVendors"
         :location-bounds="bounds"
-        @fetch-products="onfetchProducts"
-        @product-hover:enter="(p) => productHover(p, true)"
-        @product-hover:leave="(p) => productHover(p, false)"
-      ></s-shop-products-listing>
+        @vendor-hover:enter="(p) => vendorHover(p, true)"
+        @vendor-hover:leave="(p) => vendorHover(p, false)"
+      ></shop-vendors-list-view>
     </div>
     <div class="map-viewer" :class="{ '-full': $vuetify.breakpoint.xsOnly }">
       <!-- Pre loading -->
@@ -93,22 +87,14 @@
           ></div>
         </div>
         <v-card-text style="padding-bottom: 20vh" class="px-0">
-          <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
+          <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Vendors List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-          <s-shop-products-listing
+          <s-shop-product-vendors-list
             v-if="bounds"
-            :shop="getShop()"
-            has-sort
-            has-filter
-            has-breadcrumb
-            route-mode
-            load-more
-            free-mode
+            :shop="shop"
+            @fetch-vendors="onfetchVendors"
             :location-bounds="bounds"
-            @fetch-products="onfetchProducts"
-            @product-hover:enter="(p) => productHover(p, true)"
-            @product-hover:leave="(p) => productHover(p, false)"
-          ></s-shop-products-listing>
+          ></s-shop-product-vendors-list>
         </v-card-text>
       </v-card>
     </div>
@@ -135,31 +121,41 @@
 
         <v-card-text>
           <v-carousel
-            v-if="share_products && share_products.length"
+            v-if="share_vendors && share_vendors.length"
             cycle
             height="500"
             hide-delimiter-background
             show-arrows-on-hover
             class="py-12"
           >
-            <v-carousel-item
-              v-for="product in share_products"
-              :key="product.id"
-            >
+            <v-carousel-item v-for="vendor in share_vendors" :key="vendor.id">
               <v-sheet height="100%" class="py-5" color="transparent">
-                <s-shop-product-card
-                  :product="product"
-                  class="max-w-400 mx-auto d-block"
-                  rounded
+                <v-card
+                  rounded="lg"
+                  outlined
+                  max-width="360"
+                  class="mx-auto"
                   :to="{
-                    name: 'ProductPage',
+                    name: 'VendorPublicPage',
                     params: {
-                      shop_name: shop_name,
-                      product_id: product.id,
+                      slug: slugify(vendor.name),
+                      vendor_id: vendor.id,
                     },
                   }"
                   target="_blank"
-                ></s-shop-product-card>
+                >
+                  <v-img
+                    :src="getShopImagePath(vendor.icon, 128)"
+                    :aspect-ratio="2"
+                  ></v-img>
+
+                  <v-card-title style="min-height: 64px">
+                    {{ vendor.name }}
+                  </v-card-title>
+                  <v-card-subtitle style="min-height: 64px">
+                    {{ vendor.description?.limitWords(12) }}
+                  </v-card-subtitle>
+                </v-card>
               </v-sheet>
             </v-carousel-item>
           </v-carousel>
@@ -181,15 +177,14 @@
 <script>
 import Mapbox from "@components/map/MapBox";
 import SetupService from "@core/server/SetupService";
-import SShopProductsListing from "@components/storefront/products-listing/SShopProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
-import SShopProductCard from "@components/product/card/SShopProductCard.vue";
+import SShopProductVendorsList from "@components/product/vendors/SShopProductVendorsList.vue";
 import _ from "lodash-es";
 
 export default {
-  name: "ShopMap",
-  components: { SShopProductCard, SValueCopyBox, SAddressInput, SShopProductsListing },
+  name: "StorefrontMapVendors",
+  components: { SShopProductVendorsList, SValueCopyBox, SAddressInput },
 
   data() {
     return {
@@ -206,7 +201,7 @@ export default {
 
       markers: [],
 
-      products: [],
+      vendors: [],
       // ▄▄▄▄▄ Search ▄▄▄▄▄
       address: null,
       country: null,
@@ -217,7 +212,7 @@ export default {
       share_sheet: false,
       share_url: null,
       share_title: null,
-      share_products: [],
+      share_vendors: [],
     };
   },
 
@@ -268,7 +263,7 @@ export default {
       }
 
       if (!this.center) {
-        this.center =  this.$store.getters.getInitialLocation;;
+        this.center = this.$store.getters.getInitialLocation;
       }
 
       // Override by location query (Share location url)
@@ -370,10 +365,10 @@ export default {
         1000
       );
     },
-    // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Fetch Products ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+    // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Fetch Vendors ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
-    onfetchProducts({ products, folders, total }) {
-      this.products = products;
+    onfetchVendors({ vendors, total }) {
+      this.vendors = vendors;
 
       if (!this.map_box) return; // Not initialized yet!
 
@@ -386,10 +381,10 @@ export default {
       });
       // this.markers = [];
 
-      products.forEach((product) => {
-        if (!product.map) return;
+      vendors.forEach((vendor) => {
+        if (!vendor.map) return;
 
-        const found = map_tags.find((i) => i.id === product.map.id);
+        const found = map_tags.find((i) => i.id === vendor.map.id);
         if (found) {
           // Just some updates!
           ++found.count;
@@ -399,8 +394,8 @@ export default {
         // Add new tag:
         map_tags.push(
           Object.assign(
-            { price: product.price, currency: product.currency, count: 1 },
-            product.map
+            { name: vendor.name /*Just show the first name!*/, count: 1 },
+            vendor.map
           )
         );
       });
@@ -413,8 +408,7 @@ export default {
         const el = document.createElement("div");
         el.className = "loc-pin";
         el.append(
-          `${map_tag.price} ${map_tag.currency}` +
-            (map_tag.count > 1 ? ` (${map_tag.count})` : "")
+          `${map_tag.name}` + (map_tag.count > 1 ? ` (${map_tag.count})` : "")
         );
 
         const marker = new Mapbox.Marker({
@@ -438,18 +432,18 @@ export default {
       });
     },
 
-    // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Hover Product ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
-    productHover(product, enter) {
+    // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Hover Vendor ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+    vendorHover(vendor, enter) {
       // 1. find corresponding marker:
-      const marker = this.markers.find((i) => i.map_tag.id === product.map.id);
+      const marker = this.markers.find((i) => i.map_tag.id === vendor.map.id);
       if (!marker) return;
       // 2. Set scale:
 
       if (enter) {
-        const image = this.getShopImagePath(product.icon, 128);
+        const image = this.getShopImagePath(vendor.icon, 128);
         marker.setPopup(
           new Mapbox.Popup({ offset: 32, maxWidth: 120 }).setHTML(
-            `<div class="text-center"><img class="mb-1 rounded-16px" style="object-fit: cover" src='${image}' width="84" height="84"><div class="small font-weight-bold max-w-120 single-line">${product.title}</div></div>`
+            `<div class="text-center"><img class="mb-1 rounded-16px" style="object-fit: cover" src='${image}' width="84" height="84"><div class="small font-weight-bold max-w-120 single-line">${vendor.name}</div></div>`
           )
         ); // add popup
         marker.togglePopup();
@@ -490,9 +484,7 @@ export default {
       this.share_title = `${this.shop.title} | ${this.$t(
         "global.commons.map"
       )}`;
-      this.share_products = this.products?.filter(
-        (p) => p.map_id === map_tag.id
-      );
+      this.share_vendors = this.vendors?.filter((p) => p.map_id === map_tag.id);
       this.share_url =
         this.getShopMainUrl(this.shop) +
         `/map?lat=${map_tag.lat}&lng=${map_tag.lng}`;

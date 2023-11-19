@@ -165,7 +165,7 @@ import SShopHyperItemsList from "@components/storefront/hyper/SShopHyperItemsLis
 import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
-  name: "HyperOrderPage",
+  name: "StorefrontHyperOrderPage",
   components: { SShopRowCustomerPendingPayment, SShopHyperItemsList, Stamp },
 
   props: {

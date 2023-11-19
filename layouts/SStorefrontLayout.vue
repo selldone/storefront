@@ -13,7 +13,7 @@
   -->
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-  <div class="s--shop-layout">
+  <div class="s--storefront-layout">
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
     <s-shop-main-header
@@ -27,7 +27,7 @@
       <shop-search-box
         v-if="showSearchBox && !isMobile"
         ref="search_box"
-        class="s--shop-layout-search-style me-2"
+        class="s--storefront-layout-search-style me-2"
         :class="{
           'is-mobile': isMobile,
           'full-width': searchmode && isMobile,
@@ -155,7 +155,7 @@ import SShopMainHeader from "@components/storefront/header/SShopMainHeader.vue";
 import SShopProductInBasketIndicator from "@components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
 
 export default {
-  name: "LayoutStorefront",
+  name: "SStorefrontLayout",
   components: {
     SShopProductInBasketIndicator,
     SShopMainHeader,
@@ -437,8 +437,8 @@ a {
 
 <!-- ━━━━━━━━━━━━━━━━━━━ 🦜 Style ● Local ━━━━━━━━━━━━━━━━━━━-->
 <style scoped lang="scss">
-.s--shop-layout {
-  .s--shop-layout-search-style {
+.s--storefront-layout {
+  .s--storefront-layout-search-style {
     position: absolute;
 
     transition: all 0.3s;

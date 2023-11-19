@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "LoginRedirect",
+  name: "StorefrontLoginRedirect",
   created() {
     let path = sessionStorage.getItem("after-login-path");
 

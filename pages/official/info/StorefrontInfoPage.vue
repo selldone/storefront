@@ -13,30 +13,21 @@
   -->
 
 <template>
-  <orders-history-list-template type="AVO" is-avocado>
-  </orders-history-list-template>
+  <s-shop-footer v-if="isMobile" :shop="shop"></s-shop-footer>
 </template>
 
 <script>
-import { ProductType } from "@core/enums/product/ProductType";
-import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
-
+import SShopFooter from "@components/storefront/footer/SShopFooter.vue";
 export default {
-  name: "HistoryOrdersAvocado",
-  components: { OrdersHistoryListTemplate },
-  props: {},
-
-  data: function () {
-    return {
-      ProductType: ProductType,
-    };
+  name: "StorefrontInfoPage",
+  components: { SShopFooter },
+  props: {
+    shop: {
+      type: Object,
+      required: true,
+    },
   },
-  computed: {},
-
-  watch: {},
-  created() {},
-
-  methods: {},
 };
 </script>
-<style scoped lang="scss"></style>
+
+<style scoped></style>

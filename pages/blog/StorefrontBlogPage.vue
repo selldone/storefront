@@ -62,7 +62,7 @@ import SArticleView from "@components/article/SArticleView.vue";
 import CircleButton from "@components/ui/button/CircleButton.vue";
 
 export default {
-  name: "ShopBlogPage",
+  name: "StorefrontBlogPage",
   components: {
     CircleButton,
     SArticleView,

@@ -151,7 +151,7 @@ import SShopAvocadoCustomerOrderList from "@components/storefront/order/avocado/
 import SShopAvocadoCustomerOrderForm from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderForm.vue";
 
 export default {
-  name: "AvocadoPage",
+  name: "StorefrontAvocadoPage",
   components: { SShopAvocadoCustomerOrderForm, SShopAvocadoCustomerOrderList },
 
   props: {

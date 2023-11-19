@@ -27,11 +27,7 @@
       <circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
-        :to="
-          $route.query.return_id
-            ? { name: 'UserReturnRequests', params: { STATE: RETURN } }
-            : { name: history_list_page_name, params: { STATE: RETURN } }
-        "
+        :to="{ name: 'HistoryOrdersAvocado', params: { STATE: RETURN } }"
       />
 
       <v-spacer></v-spacer>
@@ -40,8 +36,17 @@
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-title  class="text-uppercase small mt-3 d-flex flex-column align-center">
-        <img :src="require('@core/enums/product/assets/product-types/basket-pos.svg')" width="28" height="28" class="mx-1 mb-1" />
+      <v-toolbar-title
+        class="text-uppercase small mt-3 d-flex flex-column align-center"
+      >
+        <img
+          :src="
+            require('@core/enums/product/assets/product-types/basket-avocado.svg')
+          "
+          width="28"
+          height="28"
+          class="mx-1 mb-1"
+        />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
     </v-toolbar>
@@ -52,11 +57,7 @@
       flat
     >
       <!-- ======================= Container ======================= -->
-      <router-view
-        v-if="basket"
-        :basket="basket"
-        @request:refresh="fetchOrderInfo()"
-      />
+      <router-view v-if="basket" :basket="basket" />
     </v-card>
   </v-card>
 </template>
@@ -66,7 +67,7 @@ import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 
 export default {
-  name: "MyOrderInfoPageMaster",
+  name: "StorefrontAvocadoOrderDetailMasterLayout",
   components: {},
 
   props: {},
@@ -81,27 +82,13 @@ export default {
     };
   },
 
-  computed: {
-    history_list_page_name() {
-      return "HistoryOrdersPOS";
-    },
-  },
+  computed: {},
 
   watch: {},
   created() {
-    this.setPageTitle(`Order POS-` + this.$route.params.basket_id);
+    this.setPageTitle(`Order AVO-` + this.$route.params.basket_id);
     this.fetchOrderInfo();
   },
-  mounted() {
-    this.EventBus.$on("on-payment-completed", ({ order_type, order_id }) => {
-      console.log("on-payment-completed", order_type, order_id);
-      if (this.basket && this.basket.id === order_id) this.fetchOrderInfo();
-    });
-  },
-  beforeDestroy() {
-    this.EventBus.$off("on-payment-completed");
-  },
-
   methods: {
     fetchOrderInfo() {
       const shop_name = this.shop_name;
@@ -109,7 +96,7 @@ export default {
 
       this.busy = true;
       axios
-        .get(window.XAPI.GET_ORDER_POS_BASKET_INFO(shop_name, basket_id))
+        .get(window.XAPI.GET_ORDER_AVOCADO_BASKET_INFO(shop_name, basket_id))
         .then(({ data }) => {
           if (!data.error) {
             this.basket = data.basket;

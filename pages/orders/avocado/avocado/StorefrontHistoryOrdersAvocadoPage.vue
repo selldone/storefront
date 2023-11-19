@@ -13,43 +13,30 @@
   -->
 
 <template>
-  <div class="insta-card">
-    <instagram-view
-      v-if="instagram"
-      :shop="shop"
-      :instagram="instagram"
-    ></instagram-view>
-    <v-container v-else> Not exist! </v-container>
-  </div>
+  <orders-history-list-template type="AVO" is-avocado>
+  </orders-history-list-template>
 </template>
 
 <script>
-import InstagramView from "@components/storefront/instagram/InstagramView.vue";
-export default {
-  name: "InstagramPage",
-  components: { InstagramView },
+import { ProductType } from "@core/enums/product/ProductType";
+import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
 
-  computed: {
-    shop() {
-      return this.getShop();
-    },
-    instagram() {
-      return this.shop.instagram;
-    },
+export default {
+  name: "StorefrontHistoryOrdersAvocadoPage",
+  components: { OrdersHistoryListTemplate },
+  props: {},
+
+  data: function () {
+    return {
+      ProductType: ProductType,
+    };
   },
+  computed: {},
+
+  watch: {},
   created() {},
+
+  methods: {},
 };
 </script>
-
-<style scoped lang="scss">
-.insta-card {
-  background-color: #fafafa;
-  border-top: 1px solid #dee2e6;
-
-  @media only screen and (min-width: 1720px) {
-    //background-color: #fff;
-    border-top: none;
-    border-radius: 24px;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

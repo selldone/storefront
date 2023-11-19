@@ -1315,7 +1315,7 @@ import _ from "lodash-es";
 import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
 
 export default {
-  name: "BasketPage",
+  name: "StorefrontBasketPage",
   components: {
     SStripeSplitPaymentInfo,
     DateTimePickerGlobal,

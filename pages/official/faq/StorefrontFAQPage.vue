@@ -155,7 +155,7 @@
 import _ from "lodash-es";
 
 export default {
-  name: "ShopFAQ",
+  name: "StorefrontFAQPage",
   components: {},
   props: {
     shop: {

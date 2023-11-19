@@ -16,7 +16,7 @@
   <div>
     <v-container>
       <h1 class="text-start display-3 font-weight-black text-capitalize">
-        {{ $t("official_pages.terms") }}
+        {{ $t("official_pages.about_us") }}
       </h1>
       <progress-loading v-if="busy"></progress-loading>
 
@@ -27,7 +27,7 @@
           :only-view="true"
           :edit="false"
           :body="profile.body"
-          :enable-title="false"
+          :enableTitle="false"
         />
       </div>
     </v-container>
@@ -37,26 +37,27 @@
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
 export default {
-  name: "ShopProfilePageTerms",
+  name: "StorefrontAboutUsPage",
   components: { SArticleEditor },
   data: () => ({
-    state: "editing",
     profile: null,
     busy: false,
   }),
-  watch: {
 
-  },
+  computed: {},
+  watch: {},
   created() {
-    this.setPageTitle("Terms of use"); // Set Page Title!
+    this.setPageTitle("About us"); // Set Page Title!
 
     this.fetchProfile();
   },
+
   methods: {
     fetchProfile() {
       this.busy = true;
+
       axios
-        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "terms"))
+        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "about-us"))
         .then(({ data }) => {
           if (data.error) return this.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;

@@ -13,21 +13,43 @@
   -->
 
 <template>
-  <s-shop-footer v-if="isMobile" :shop="shop"></s-shop-footer>
+  <div class="insta-card">
+    <instagram-view
+      v-if="instagram"
+      :shop="shop"
+      :instagram="instagram"
+    ></instagram-view>
+    <v-container v-else> Not exist! </v-container>
+  </div>
 </template>
 
 <script>
-import SShopFooter from "@components/storefront/footer/SShopFooter.vue";
+import InstagramView from "@components/storefront/instagram/InstagramView.vue";
 export default {
-  name: "ShopInfoPageMobile",
-  components: { SShopFooter },
-  props: {
-    shop: {
-      type: Object,
-      required: true,
+  name: "StorefrontInstagramPage",
+  components: { InstagramView },
+
+  computed: {
+    shop() {
+      return this.getShop();
+    },
+    instagram() {
+      return this.shop.instagram;
     },
   },
+  created() {},
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.insta-card {
+  background-color: #fafafa;
+  border-top: 1px solid #dee2e6;
+
+  @media only screen and (min-width: 1720px) {
+    //background-color: #fff;
+    border-top: none;
+    border-radius: 24px;
+  }
+}
+</style>

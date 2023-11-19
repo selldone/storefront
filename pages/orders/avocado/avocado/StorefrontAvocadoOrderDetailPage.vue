@@ -69,7 +69,7 @@ import SShopDeliveryState from "@components/storefront/order/delivery-state/SSho
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 
 export default {
-  name: "AvocadoOrderDetailPage",
+  name: "StorefrontAvocadoOrderDetailPage",
   components: {
     SShopAvocadoCustomerOrderItems,
     SShopCustomerDeliveryInfoWidget,

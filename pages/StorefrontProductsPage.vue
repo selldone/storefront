@@ -58,7 +58,7 @@ import SShopProductsListing from "@components/storefront/products-listing/SShopP
 import SShopVendorHeader from "@components/storefront/vendor/SShopVendorHeader.vue";
 
 export default {
-  name: "ShopPage",
+  name: "StorefrontProductsPage",
   components: {
     SShopVendorHeader,
     SShopProductsListing,

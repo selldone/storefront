@@ -44,7 +44,14 @@ or
 npm install
 npm setup
 ```
-
+### 3. Start developing
+```shell
+yran serve
+```
+or
+```shell
+npm serve
+```
 
 
 

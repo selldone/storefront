@@ -84,7 +84,11 @@
             <p class="mb-0 mt-4 subtitle-2">
               {{ $t("avocado.items_list") }}
             </p>
-            <s-shop-avocado-customer-order-items :avocado="avocado" :items="items" class="my-3">
+            <s-shop-avocado-customer-order-items
+              :avocado="avocado"
+              :items="items"
+              class="my-3"
+            >
             </s-shop-avocado-customer-order-items>
 
             <hr />
@@ -261,8 +265,13 @@ import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado
 import { AvocadoItemStatus } from "@core/enums/avocado/AvocadoItemStatus";
 
 export default {
-  name: "AvocadoOrderPage",
-  components: { SShopAvocadoCustomerOrderItems, StatusStepper, Stamp, SShopCustomerReceiverInfoWidget },
+  name: "StorefrontAvocadoOrderPage",
+  components: {
+    SShopAvocadoCustomerOrderItems,
+    StatusStepper,
+    Stamp,
+    SShopCustomerReceiverInfoWidget,
+  },
 
   props: {
     shop: {
@@ -345,13 +354,14 @@ export default {
     fetchAvocado() {
       this.busy = true;
 
+      const handleSuccessResponse = ({ avocado }) => {
+        this.avocado = avocado;
+      };
 
-      const handleSuccessResponse=({ avocado }) => {
-          this.avocado = avocado;
-      }
-
-      window.$storefront.avocado.force().getOrder(this.$route.params.hash)
-          .cache(handleSuccessResponse)
+      window.$storefront.avocado
+        .force()
+        .getOrder(this.$route.params.hash)
+        .cache(handleSuccessResponse)
         .then(handleSuccessResponse)
         .catch((error) => {
           this.showLaravelError(error);
@@ -392,12 +402,11 @@ export default {
     saveInfo() {
       this.busy_save = true;
 
-
-      window.$storefront.avocado.updateReceiverInfo(this.$route.params.hash,this.avocado.receiver_info)
+      window.$storefront.avocado
+        .updateReceiverInfo(this.$route.params.hash, this.avocado.receiver_info)
 
         .then(({ avocado }) => {
-            this.avocado.receiver_info = avocado.receiver_info;
-
+          this.avocado.receiver_info = avocado.receiver_info;
         })
         .catch((error) => {
           this.showLaravelError(error);
@@ -414,7 +423,7 @@ export default {
         this.fetchAvocado(); // Refresh order info...
       });
 
-      GtagEcommerce.MeasuringCheckoutSteps( this.avocado, 2, null);
+      GtagEcommerce.MeasuringCheckoutSteps(this.avocado, 2, null);
     },
   },
 };

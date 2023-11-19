@@ -16,7 +16,7 @@
   <div>
     <v-container>
       <h1 class="text-start display-3 font-weight-black text-capitalize">
-        {{ $t("official_pages.about_us") }}
+        {{ $t("official_pages.privacy") }}
       </h1>
       <progress-loading v-if="busy"></progress-loading>
 
@@ -30,34 +30,43 @@
           :enableTitle="false"
         />
       </div>
+
+      <s-shop-cookie-preferences
+        :shop="shop"
+        class="s--shadow-no-padding text-start my-16"
+      ></s-shop-cookie-preferences>
     </v-container>
   </div>
 </template>
 
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
+import SShopCookiePreferences from "@components/storefront/cookie/SShopCookiePreferences.vue";
 export default {
-  name: "ShopProfilePageAboutUs",
-  components: { SArticleEditor },
+  name: "StorefrontPrivacyPage",
+  components: { SShopCookiePreferences, SArticleEditor },
   data: () => ({
+    state: "editing",
     profile: null,
     busy: false,
   }),
-
-  computed: {},
+  computed: {
+    shop() {
+      return this.getShop();
+    },
+  },
   watch: {},
   created() {
-    this.setPageTitle("About us"); // Set Page Title!
+    this.setPageTitle("Privacy"); // Set Page Title!
 
     this.fetchProfile();
   },
-
   methods: {
     fetchProfile() {
       this.busy = true;
 
       axios
-        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "about-us"))
+        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "privacy"))
         .then(({ data }) => {
           if (data.error) return this.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;

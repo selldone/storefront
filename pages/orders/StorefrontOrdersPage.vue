@@ -73,7 +73,7 @@
 <script>
 import { ProductType } from "@core/enums/product/ProductType";
 export default {
-  name: "OrdersPage",
+  name: "StorefrontOrdersPage",
   components: {},
   data: function () {
     return {

@@ -83,7 +83,7 @@ import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
-  name: "MyOrderInfoPageMaster",
+  name: "StorefrontBasketOrderDetailMasterLayout",
   components: { StatusStepper },
 
   props: {},

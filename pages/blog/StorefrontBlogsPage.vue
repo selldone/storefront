@@ -66,7 +66,10 @@
               v-if="latest_article"
               :to="{
                 name: 'ShopBlogPageSlug',
-                params: { blog_id: latest_article.parent_id,slug:latest_article.slug },
+                params: {
+                  blog_id: latest_article.parent_id,
+                  slug: latest_article.slug,
+                },
               }"
               class="black--text"
               exact
@@ -104,7 +107,7 @@
                 :key="article.id"
                 :to="{
                   name: 'ShopBlogPageSlug',
-                  params: { blog_id: article.parent_id ,slug:article.slug},
+                  params: { blog_id: article.parent_id, slug: article.slug },
                 }"
                 exact
                 style="min-height: 136px"
@@ -113,7 +116,7 @@
               >
                 <v-list-item-avatar rounded size="100">
                   <img
-                    :src="getShopImagePath(article.image,IMAGE_SIZE_BLOG)"
+                    :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                     :alt="article.title"
                     style="object-fit: cover"
                   />
@@ -267,7 +270,7 @@
             <v-list-item
               :to="{
                 name: 'ShopBlogPageSlug',
-                params: { blog_id: article.parent_id,slug:article.slug },
+                params: { blog_id: article.parent_id, slug: article.slug },
               }"
               exact
             >
@@ -300,10 +303,7 @@
 
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Interest ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-          <v-col
-            v-if="show_interested_blogs"
-            cols="12"
-          >
+          <v-col v-if="show_interested_blogs" cols="12">
             <hr />
             <p class="font-weight-bold fadeIn delay_500">
               <v-icon class="me-1" small>assistant</v-icon>
@@ -324,19 +324,21 @@
               :interval="8000 * chunk_size"
               height="600px"
             >
-              <v-carousel-item v-for="(chunk, i) in chunks" :key="i" >
+              <v-carousel-item v-for="(chunk, i) in chunks" :key="i">
                 <v-container fluid style="padding-top: 32px">
                   <v-row class="fill-height" align="stretch" justify="center">
                     <v-col
-                      v-for="(article) in chunk"
+                      v-for="article in chunk"
                       :key="article.id"
                       cols="12"
                       sm="6"
                       md="4"
                       lg="3"
-
                     >
-                      <s-shop-blog-card :article="article" :categories="categories" ></s-shop-blog-card>
+                      <s-shop-blog-card
+                        :article="article"
+                        :categories="categories"
+                      ></s-shop-blog-card>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -405,7 +407,6 @@
               <v-icon class="me-1" small>school</v-icon>
               {{ $t("blogs.title") }}
             </p>
-
           </v-col>
 
           <v-col
@@ -459,7 +460,7 @@
                   :key="article.id"
                   :to="{
                     name: 'ShopBlogPageSlug',
-                    params: { blog_id: article.parent_id ,slug:article.slug},
+                    params: { blog_id: article.parent_id, slug: article.slug },
                   }"
                   exact
                   style="min-height: 136px"
@@ -481,7 +482,7 @@
                     :height="$vuetify.breakpoint.smAndDown ? 100 : 137"
                   >
                     <img
-                      :src="getShopImagePath(article.image,IMAGE_SIZE_BLOG)"
+                      :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                       :alt="article.title"
                       style="object-fit: cover"
                     />
@@ -547,7 +548,7 @@ import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategory
 import _ from "lodash-es";
 
 export default {
-  name: "ShopBlogsPage",
+  name: "StorefrontBlogsPage",
   components: {
     SBlogUserCategoryView,
     SShopBlogCard,
@@ -587,7 +588,7 @@ export default {
     pageCount: 0,
     itemsPerPage: 12,
     totalItems: 0,
-    options: {sortDesc:[true]},
+    options: { sortDesc: [true] },
 
     //---------------------------
     first_start: true,
