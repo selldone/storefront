@@ -13,17 +13,17 @@
   -->
 
 <template>
-  <orders-history-list-template type="AVO" is-avocado>
-  </orders-history-list-template>
+  <s-storefront-orders-list type="AVO" is-avocado>
+  </s-storefront-orders-list>
 </template>
 
 <script>
 import { ProductType } from "@core/enums/product/ProductType";
-import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
+import SStorefrontOrdersList from "../../SStorefrontOrdersList.vue";
 
 export default {
   name: "StorefrontHistoryOrdersAvocadoPage",
-  components: { OrdersHistoryListTemplate },
+  components: { SStorefrontOrdersList },
   props: {},
 
   data: function () {

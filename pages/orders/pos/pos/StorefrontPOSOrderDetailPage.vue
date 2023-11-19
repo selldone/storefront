@@ -49,7 +49,7 @@ import SShopCustomerOrderPaymentWidget from "@components/storefront/order/paymen
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 
 export default {
-  name: "MyPOSOrderInfoPage",
+  name: "StorefrontPOSOrderDetailPage",
   components: {
     SShopCustomerOrderPaymentWidget,
     SShopBasketItemsList,

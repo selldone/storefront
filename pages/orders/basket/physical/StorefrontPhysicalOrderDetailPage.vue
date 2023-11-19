@@ -12,11 +12,14 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link :to="{ name: 'HistoryOrdersFile' }" class="text-uppercase">
+        <router-link
+          :to="{ name: 'HistoryOrdersPhysical' }"
+          class="text-uppercase"
+        >
           <img :src="orderType.image" width="20" height="20" class="me-1" />
           {{ $t("global.commons.orders_list") }}</router-link
         >
@@ -41,14 +44,11 @@
         <span class="mx-1 text-muted">/</span>
         <b>{{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
-
       <v-spacer></v-spacer>
       <!-- Share order - Secure link generator -->
-      <s-shop-share-order-button
-        :shop="shop"
-        :basket="basket"
-      ></s-shop-share-order-button>
+      <s-shop-share-order-button :shop="shop" :basket="basket"></s-shop-share-order-button>
     </v-toolbar>
+
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-shop-delivery-state v-if="basket" :basket="basket" />
@@ -90,22 +90,25 @@
         </div>
       </div>
 
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Payment ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+
       <s-shop-customer-order-payment-widget
         v-if="basket"
         :order="basket"
+        @request:refresh="$emit('request:refresh')"
       ></s-shop-customer-order-payment-widget>
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+
+      <s-shop-customer-delivery-info-widget
+        v-if="basket"
+        :basket="basket"
+      ></s-shop-customer-delivery-info-widget>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-shop-basket-items-list
         v-if="basket"
         :basket="basket"
         :items="basket.items"
-        @show-download-list="
-          (item) => {
-            files_show = true;
-            selected_item = item;
-          }
-        "
       />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -115,46 +118,6 @@
         class="mt-4"
         :basket="basket"
       />
-
-      <!-- █████████████████ Dialog > Files List █████████████████ -->
-      <v-dialog
-        scrollable
-        v-model="files_show"
-        fullscreen
-        transition="dialog-bottom-transition"
-      >
-        <v-card>
-          <v-card-title
-            ><v-icon class="me-1" color="black">folder</v-icon>
-            {{ $t("global.commons.files_list") }}</v-card-title
-          >
-
-          <v-card-text>
-            <div class="widget-box mb-5">
-              <v-subheader
-                ><v-icon class="me-1" small>warning_amber</v-icon> After
-                downloading files, check those with your antivirus.</v-subheader
-              >
-
-              <s-shop-product-files-list
-                v-if="selected_item"
-                :basket="basket"
-                :files="selected_item.product.files"
-                purchased
-              ></s-shop-product-files-list>
-            </div>
-          </v-card-text>
-
-          <v-card-actions>
-            <div class="widget-buttons">
-              <v-btn x-large text @click="files_show = false">
-                <v-icon class="me-1">close</v-icon>
-                {{ $t("global.actions.close") }}</v-btn
-              >
-            </div>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->
@@ -189,24 +152,26 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
 import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
+import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
+
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
-import { ProductType } from "@core/enums/product/ProductType";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
+import { ProductType } from "@core/enums/product/ProductType";
+
 export default {
-  name: "MyFileOrderInfoPage",
+  name: "StorefrontPhysicalOrderDetailPage",
   components: {
     SShopShareOrderButton,
     OrderChatWidget,
-    SShopProductFilesList,
-    SShopDeliveryState,
-    BasketReturnItemsRequestView,
-    SShopBasketItemsList,
+    SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
+    BasketReturnItemsRequestView,
+    SShopDeliveryState,
+    SShopBasketItemsList,
   },
 
   props: {
@@ -215,22 +180,15 @@ export default {
       require: true,
     },
   },
+
   data: function () {
     return {
-      orderType: ProductType.FILE,
-
-      files_show: false,
-      selected_item: null,
+      orderType: ProductType.PHYSICAL,
 
       dialog_chat: false,
     };
   },
   computed: {
-    files() {
-      if (!this.selected_item || !this.selected_item.product) return [];
-      return this.selected_item.product.files;
-    },
-
     shop() {
       return this.getShop();
     },

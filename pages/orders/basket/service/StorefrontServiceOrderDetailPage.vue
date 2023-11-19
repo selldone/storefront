@@ -164,7 +164,7 @@ import SShopShareOrderButton from "@components/storefront/order/share-order/SSho
 import { ProductType } from "@core/enums/product/ProductType";
 
 export default {
-  name: "MyServiceOrderInfoPage",
+  name: "StorefrontServiceOrderDetailPage",
   components: {
     SShopShareOrderButton,
     OrderChatWidget,

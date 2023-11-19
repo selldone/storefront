@@ -221,7 +221,7 @@ import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingD
 import SCountryWorldMap from "@components/map/SCountryWorldMap.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 export default {
-  name: "ShopPOSPage",
+  name: "StorefrontPOSPage",
   components: {
     SCountryWorldMap,
     SPaymentBillingDetails,

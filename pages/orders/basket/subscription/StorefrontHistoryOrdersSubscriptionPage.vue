@@ -13,17 +13,17 @@
   -->
 
 <template>
-  <orders-history-list-template :type="ProductType.SUBSCRIPTION">
-  </orders-history-list-template>
+  <s-storefront-orders-list :type="ProductType.SUBSCRIPTION">
+  </s-storefront-orders-list>
 </template>
 
 <script>
 import { ProductType } from "@core/enums/product/ProductType";
-import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
+import SStorefrontOrdersList from "../../SStorefrontOrdersList.vue";
 
 export default {
-  name: "HistoryOrdersSubscription",
-  components: { OrdersHistoryListTemplate },
+  name: "StorefrontHistoryOrdersSubscriptionPage",
+  components: { SStorefrontOrdersList },
   props: {},
 
   data: function () {

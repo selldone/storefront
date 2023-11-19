@@ -195,7 +195,7 @@ import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
-  name: "OrdersHistoryListTemplate",
+  name: "SStorefrontOrdersList",
   components: {
     ReceiverInfoWidget,
     OrderStatusView,

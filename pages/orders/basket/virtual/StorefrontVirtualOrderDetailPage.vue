@@ -12,20 +12,44 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link :to="{ name: 'HistoryOrdersSubscription' }" class="text-uppercase">
-          <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{$t('global.commons.orders_list')}}</router-link
+        <router-link
+          :to="{ name: 'HistoryOrdersVirtual' }"
+          class="text-uppercase"
         >
-        <span class="mx-1 text-muted">/</span>
-       <b> {{ getBasketOrderCode(basket) }}</b>
+          <img :src="orderType.image" width="20" height="20" class="me-1" />
+          {{ $t("global.commons.orders_list") }}</router-link
+        >
 
+        <!-- 🎗️ Created by a subscription basket -->
+        <span
+          v-if="basket.subscription_id"
+          title="This order created by a subscription."
+        >
+          <span class="mx-1 text-muted">/</span>
+          <img :src="ProductType.SUBSCRIPTION.image" width="20" height="20" />
+          <router-link
+            :to="{
+              name: 'MySubscriptionOrderInfoPage',
+              params: { basket_id: basket.subscription_id },
+            }"
+          >
+            SN-{{ basket.subscription_id }}
+          </router-link>
+        </span>
+
+        <span class="mx-1 text-muted">/</span>
+        <b>{{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <!-- Share order - Secure link generator -->
+      <s-shop-share-order-button :shop="shop" :basket="basket"></s-shop-share-order-button>
     </v-toolbar>
-      <v-container class="px-0">
+    <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-shop-delivery-state v-if="basket" :basket="basket" />
 
@@ -56,8 +80,8 @@
 
         <div class="widget-buttons">
           <v-btn x-large color="primary" @click="dialog_chat = true">
-            <v-icon class="me-1">chat</v-icon
-            >{{
+            <v-icon class="me-1">chat</v-icon>
+            {{
               last_chat
                 ? $t("global.actions.continue_chat")
                 : $t("global.actions.add_message")
@@ -65,20 +89,11 @@
           >
         </div>
       </div>
-      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Payment ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-order-payment-widget
         v-if="basket"
         :order="basket"
-        @request:refresh="$emit('request:refresh')"
       ></s-shop-customer-order-payment-widget>
-
-      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-
-      <s-shop-customer-delivery-info-widget
-          v-if="basket"
-          :basket="basket"
-      ></s-shop-customer-delivery-info-widget>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-shop-basket-items-list
@@ -87,14 +102,31 @@
         :items="basket.items"
       />
 
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Virtual item > info ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+      <div v-for="item in basket.items" :key="item.id" class="mt-3">
+        <virtual-item-info
+          v-for="virtual_item in item.virtual_items"
+          :key="`vi-${virtual_item.id}`"
+          :basket="basket"
+          :item="item"
+          :virtual-item="virtual_item"
+        />
+      </div>
+
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery > State ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+
+      <s-shop-customer-delivery-info-widget
+        v-if="basket"
+        :basket="basket"
+      ></s-shop-customer-delivery-info-widget>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-
-      <basket-return-items-request-view
-        v-if="basket"
-        class="mt-4"
-        :basket="basket"
-      />
+      <!--
+    <basket-return-items-request-view
+      v-if="basket"
+      class="mt-4"
+      :basket="basket"
+    />-->
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->
@@ -129,24 +161,24 @@
 </template>
 
 <script>
+import VirtualItemInfo from "@components/product/virtual/VirtualItemInfo.vue";
+import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
-import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
+import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
-
 export default {
-  name: "MySubscriptionOrderInfoPage",
+  name: "StorefrontVirtualOrderDetailPage",
   components: {
+    SShopShareOrderButton,
     OrderChatWidget,
-
     SShopCustomerDeliveryInfoWidget,
-    SShopCustomerOrderPaymentWidget,
-    BasketReturnItemsRequestView,
     SShopDeliveryState,
     SShopBasketItemsList,
+    SShopCustomerOrderPaymentWidget,
+    VirtualItemInfo,
   },
 
   props: {
@@ -158,7 +190,8 @@ export default {
 
   data: function () {
     return {
-      orderType: ProductType.SUBSCRIPTION,
+      orderType: ProductType.VIRTUAL,
+
       dialog_chat: false,
     };
   },

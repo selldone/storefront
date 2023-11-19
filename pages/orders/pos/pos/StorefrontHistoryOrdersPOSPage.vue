@@ -12,43 +12,26 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-  <orders-history-list-template :type="ProductType.VIRTUAL">
-  </orders-history-list-template>
+<template>
+  <s-storefront-orders-list type="POS" is-pos>
+  </s-storefront-orders-list>
 </template>
 
 <script>
-import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
 import { ProductType } from "@core/enums/product/ProductType";
-import OrdersHistoryListTemplate from "../../OrdersHistoryListTemplate.vue";
+import SStorefrontOrdersList from "../../SStorefrontOrdersList.vue";
 
 export default {
-  name: "HistoryOrdersVirtual",
-  components: { OrdersHistoryListTemplate },
+  name: "StorefrontHistoryOrdersPOSPage",
+  components: { SStorefrontOrdersList },
   props: {},
 
-  data: () => ({
-    ProductType: ProductType,
-
-    virtualOrderStates: VirtualOrderStates,
-
-    orders: [],
-
-    busy_fetch: false,
-
-    // Pagination:
-    page: 1,
-    pageCount: 0,
-    itemsPerPage: 10,
-    totalItems: 0,
-    options: {},
-  }),
-
-  computed: {
-    headers() {
-      return [];
-    },
+  data: function () {
+    return {
+      ProductType: ProductType,
+    };
   },
+  computed: {},
 
   watch: {},
   created() {},
@@ -56,5 +39,4 @@ export default {
   methods: {},
 };
 </script>
-
 <style scoped lang="scss"></style>

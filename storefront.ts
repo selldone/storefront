@@ -18,8 +18,8 @@
 import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
 import Vue from "vue";
 import App from "./StorefrontApp.vue";
-import router from "./router/ShopRouter";
-import store from "./store/ShopStore";
+import router from "./router/StorefrontRouter";
+import store from "./store/StorefrontStore";
 import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
 import { i18n } from "./lang/i18n_shop";

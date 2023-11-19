@@ -81,9 +81,7 @@ export default {
     };
   },
 
-  computed: {
-
-  },
+  computed: {},
   watch: {},
   created() {
     this.setPageTitle("My orders"); // Set Page Title!
@@ -112,11 +110,9 @@ export default {
         page_name = "HistoryOrdersFile";
       } else if (type === ProductType.SERVICE) {
         page_name = "HistoryOrdersService";
-      }else if (type === ProductType.SUBSCRIPTION) {
+      } else if (type === ProductType.SUBSCRIPTION) {
         page_name = "HistoryOrdersSubscription";
-      }
-
-      else if (type === "POS") {
+      } else if (type === "POS") {
         page_name = "HistoryOrdersPOS";
       }
       return page_name;

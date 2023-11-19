@@ -105,7 +105,7 @@
 
 <script>
 export default {
-  name: "UserPagesLayout",
+  name: "StorefrontUserPagesLayout",
   props: {
     shop: {
       require: true,

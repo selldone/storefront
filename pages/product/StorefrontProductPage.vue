@@ -375,7 +375,7 @@ import SShopProductCrossSellList from "@components/product/cross-sells/SShopProd
 import ProductSection from "@core/enums/product/ProductSection";
 
 export default {
-  name: "ProductPage",
+  name: "StorefrontProductPage",
   props: {
     shop: {
       require: true,

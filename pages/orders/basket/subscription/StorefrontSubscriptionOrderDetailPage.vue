@@ -16,40 +16,16 @@
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link
-          :to="{ name: 'HistoryOrdersPhysical' }"
-          class="text-uppercase"
-        >
+        <router-link :to="{ name: 'HistoryOrdersSubscription' }" class="text-uppercase">
           <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{ $t("global.commons.orders_list") }}</router-link
+          {{$t('global.commons.orders_list')}}</router-link
         >
-
-        <!-- 🎗️ Created by a subscription basket -->
-        <span
-          v-if="basket.subscription_id"
-          title="This order created by a subscription."
-        >
-          <span class="mx-1 text-muted">/</span>
-          <img :src="ProductType.SUBSCRIPTION.image" width="20" height="20" />
-          <router-link
-            :to="{
-              name: 'MySubscriptionOrderInfoPage',
-              params: { basket_id: basket.subscription_id },
-            }"
-          >
-            SN-{{ basket.subscription_id }}
-          </router-link>
-        </span>
-
         <span class="mx-1 text-muted">/</span>
-        <b>{{ getBasketOrderCode(basket) }}</b>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <!-- Share order - Secure link generator -->
-      <s-shop-share-order-button :shop="shop" :basket="basket"></s-shop-share-order-button>
-    </v-toolbar>
+       <b> {{ getBasketOrderCode(basket) }}</b>
 
-    <v-container class="px-0">
+      </v-toolbar-title>
+    </v-toolbar>
+      <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-shop-delivery-state v-if="basket" :basket="basket" />
 
@@ -80,8 +56,8 @@
 
         <div class="widget-buttons">
           <v-btn x-large color="primary" @click="dialog_chat = true">
-            <v-icon class="me-1">chat</v-icon>
-            {{
+            <v-icon class="me-1">chat</v-icon
+            >{{
               last_chat
                 ? $t("global.actions.continue_chat")
                 : $t("global.actions.add_message")
@@ -89,7 +65,6 @@
           >
         </div>
       </div>
-
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Payment ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-order-payment-widget
@@ -97,11 +72,12 @@
         :order="basket"
         @request:refresh="$emit('request:refresh')"
       ></s-shop-customer-order-payment-widget>
+
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-delivery-info-widget
-        v-if="basket"
-        :basket="basket"
+          v-if="basket"
+          :basket="basket"
       ></s-shop-customer-delivery-info-widget>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -110,6 +86,7 @@
         :basket="basket"
         :items="basket.items"
       />
+
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -157,16 +134,14 @@ import SShopDeliveryState from "@components/storefront/order/delivery-state/SSho
 import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
-import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 
 export default {
-  name: "MyPhysicalOrderInfoPage",
+  name: "StorefrontSubscriptionOrderDetailPage",
   components: {
-    SShopShareOrderButton,
     OrderChatWidget,
+
     SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
     BasketReturnItemsRequestView,
@@ -183,8 +158,7 @@ export default {
 
   data: function () {
     return {
-      orderType: ProductType.PHYSICAL,
-
+      orderType: ProductType.SUBSCRIPTION,
       dialog_chat: false,
     };
   },
