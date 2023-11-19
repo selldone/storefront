@@ -41,7 +41,7 @@
       >
         <img
           :src="
-            require('../../../../../../core/enums/product/assets/product-types/basket-avocado.svg')
+            require('@core/enums/product/assets/product-types/basket-avocado.svg')
           "
           width="28"
           height="28"

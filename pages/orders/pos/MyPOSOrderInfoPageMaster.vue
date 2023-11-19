@@ -41,7 +41,7 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-title  class="text-uppercase small mt-3 d-flex flex-column align-center">
-        <img :src="require('../../../../../../core/enums/product/assets/product-types/basket-pos.svg')" width="28" height="28" class="mx-1 mb-1" />
+        <img :src="require('@core/enums/product/assets/product-types/basket-pos.svg')" width="28" height="28" class="mx-1 mb-1" />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
     </v-toolbar>
