@@ -14,6 +14,7 @@
 
 const webpack = require("webpack");
 const manifest = require("./manifest.json");
+const path = require("path");
 
 /**
  * Storefront layout version. This unique identifier is used for naming each app version published on Selldone.
@@ -121,7 +122,24 @@ module.exports = {
         "jquery-fileupload":
           "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-          "blueimp-file-upload/js/vendor/jquery.ui.widget.js", //vase versione jadid blueimp-file-upload!!!
+          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
+
+
+        // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
+        "@core": path.resolve(__dirname, "core/"),
+        "@components": path.resolve(__dirname, "src/Components/"),
+        "@sdk-storefront": path.resolve(__dirname, "SDKs/storefront/"),
+        "@sdk-backoffice": path.resolve(__dirname, "SDKs/backoffice/"),
+        "@sdk-community": path.resolve(__dirname, "SDKs/community/"),
+        "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
+
+
+        "@app-page-builder": path.resolve(__dirname, "src/Applications/PageBuilder/"),
+        "@app-storefront": path.resolve(__dirname, "src/Applications/Storefront/"),
+        "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
       },
     },
 

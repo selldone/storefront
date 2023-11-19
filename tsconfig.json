@@ -1,0 +1,88 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ESNext",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    "noEmitOnError": false,
+
+    // Required in Vue projects
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+
+    // `"noImplicitThis": true` is part of `strict`
+    // Added again here in case some users decide to disable `strict`.
+    // This enables stricter inference for data properties on `this`.
+    "noImplicitThis": false,
+    "strict": true,
+
+    // <https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#verbatimmodulesyntax>
+    // Any imports or exports without a type modifier are left around. This is important for `<script setup>`.
+    // Anything that uses the type modifier is dropped entirely.
+  ////  "verbatimModuleSyntax": true,
+
+
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": [
+      "webpack-env"
+    ],
+    "paths": {
+
+      "@core/*": ["core/*"],
+      "@components/*": ["src/Components/*"],
+
+      "@sdk-admin/*": ["SDKs/admin/*"],
+      "@sdk-storefront/*": ["SDKs/storefront/*"],
+      "@sdk-backoffice/*": ["SDKs/backoffice/*"],
+      "@sdk-community/*": ["SDKs/community/*"],
+      "@sdk-vendor/*": ["SDKs/vendor/*"],
+
+      "@app-admin/*": ["src/Applications/Admin/*"],
+      "@app-backoffice/*": ["src/Applications/Backoffice/*"],
+      "@app-embeds/*": ["src/Applications/Embeds/*"],
+      "@app-guild/*": ["src/Applications/Guild/*"],
+      "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
+      "@app-selldone/*": ["src/Applications/Selldone/*"],
+      "@app-storefront/*": ["src/Applications/Storefront/*"],
+      "@app-vendor/*": ["src/Applications/Vendor/*"],
+
+
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+
+    "downlevelIteration": true
+
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "SDKs/**/*.ts",
+    "SDKs/**/*.tsx",
+    "core/**/*.ts",
+    "core/**/*.tsx",
+    "pages/**/*.ts",
+    "pages/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "docs",
+    "dist"
+  ],
+
+}
