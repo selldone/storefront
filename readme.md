@@ -16,7 +16,7 @@ Page builders, while convenient, often confine businesses within the boundaries 
 Their inherent limitations can stifle the true spirit of a brand, preventing it from shining in its full, authentic
 glory.
 
-We recognize this challenge. And so, we've chosen to disrupt the status quo of e-commerce. We believe in empowering
+We recognize this challenge. And so, [we've chosen to disrupt the status quo of e-commerce](https://selldone.com/blog/the-next-generation-of-founders-is-not-just-technical-147). We believe in empowering
 businesses, big or small, to showcase their uniqueness without barriers. By offering pre-made components that are fully
 open-source, we're unlocking a realm of limitless customization. No more compromises. No more settling for the 'almost
 right' look.
@@ -106,6 +106,7 @@ through a one-time purchase or a subscription-based model. For instance, develop
 designed for influencers and offer their LAYOUT for a monthly subscription fee of $599 on Selldone.
 
 ## Needed Modules
+![img.png](_docs/images/storefront-hierarchy.png)
 
 | Module                                                          | Description                                                                                     |
 |-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
