@@ -37,12 +37,16 @@ import SetupService from "@core/server/SetupService";
 import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
 import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
 import type { RouteRecord } from "vue-router/types/router";
+import { Shop } from "@core/models/shop/shop.model";
+import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 const StorefrontMixin = CoreMixin.extend({
   data() {
     return {
       // Data properties
       shop_name: window.$storefront.name,
+
+      StorefrontRoutesName: StorefrontRoutesName,
     };
   },
   computed: {
@@ -392,7 +396,7 @@ const StorefrontMixin = CoreMixin.extend({
           (record: RouteRecord) => record.meta.requiresAuth
         )
       )
-        this.$router.push({ name: "ShopPage" });
+        this.$router.push({ name: StorefrontRoutesName.SHOP_PAGE });
     },
 
     //―――――――――――――――――――――― Update Exchange Rates ――――――――――――――――――――
@@ -951,20 +955,20 @@ const StorefrontMixin = CoreMixin.extend({
     getCustomHomePage() {
       const CUSTOM_HOME = SetupService.GetMetaValue("custom-home"); // Address for shop page! null or shop
 
-      return CUSTOM_HOME === "shop" // CUSTOM_HOME -> shop
+      return CUSTOM_HOME === Shop.Home.SHOP // CUSTOM_HOME -> shop
         ? null
-        : CUSTOM_HOME === "blog"
-        ? "Blogs"
-        : CUSTOM_HOME === "avocado"
-        ? "AvocadoPage"
-        : CUSTOM_HOME === "hyper"
-        ? "HyperPage"
-        : CUSTOM_HOME === "community"
-        ? "CommunityHomePage"
-        : CUSTOM_HOME === "map"
-        ? "ShopMap"
+        : CUSTOM_HOME === Shop.Home.BLOG
+        ? StorefrontRoutesName.BLOGS_PAGE
+        : CUSTOM_HOME === Shop.Home.AVOCADO
+        ? StorefrontRoutesName.AVOCADO_PAGE
+        : CUSTOM_HOME === Shop.Home.HYPER
+        ? StorefrontRoutesName.HYPER_PAGE
+        : CUSTOM_HOME === Shop.Home.COMMUNITY
+        ? StorefrontRoutesName.COMMUNITY_PAGE
+        : CUSTOM_HOME === Shop.Home.MAP
+        ? StorefrontRoutesName.MAP_PRODUCTS_PAGE
         : CUSTOM_HOME
-        ? "CustomHomePage" // CUSTOM_HOME -> Page ID
+        ? StorefrontRoutesName.CUSTOM_HOME_PAGE // CUSTOM_HOME -> Page ID
         : null;
     },
 

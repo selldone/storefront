@@ -176,6 +176,7 @@ import SetupService from "@core/server/SetupService";
 import { Shop } from "@core/models/shop/shop.model";
 import type { Route } from "vue-router/types/router.d.ts";
 import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -225,7 +226,7 @@ function getRouteForHome(): IVueRoute {
     case Shop.Home.BLOG:
       return {
         path: "",
-        name: "Blogs",
+        name: StorefrontRoutesName.BLOGS_PAGE,
         component: StorefrontBlogsPage,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Avocado ▃▃▃▃▃▃▃▃▃▃▃*/
@@ -233,7 +234,7 @@ function getRouteForHome(): IVueRoute {
     case Shop.Home.AVOCADO:
       return {
         path: "",
-        name: "AvocadoPage",
+        name: StorefrontRoutesName.AVOCADO_PAGE,
         component: StorefrontAvocadoPage,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Hyper ▃▃▃▃▃▃▃▃▃▃▃*/
@@ -241,7 +242,7 @@ function getRouteForHome(): IVueRoute {
     case Shop.Home.HYPER:
       return {
         path: "",
-        name: "HyperPage",
+        name: StorefrontRoutesName.HYPER_PAGE,
         component: StorefrontHyperPage,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Community ▃▃▃▃▃▃▃▃▃▃▃*/
@@ -255,7 +256,7 @@ function getRouteForHome(): IVueRoute {
         children: [
           {
             path: "",
-            name: "CommunityHomePage",
+            name: StorefrontRoutesName.COMMUNITY_HOME_PAGE,
             component: CommunityHomePage,
           },
         ],
@@ -264,7 +265,7 @@ function getRouteForHome(): IVueRoute {
     case Shop.Home.SHOP:
       return {
         path: "",
-        name: "ShopPage",
+        name: StorefrontRoutesName.SHOP_PAGE,
         component: StorefrontProductsPage,
         meta: {
           search: true,
@@ -274,7 +275,7 @@ function getRouteForHome(): IVueRoute {
     case Shop.Home.MAP:
       return {
         path: "",
-        name: "ShopMap",
+        name: StorefrontRoutesName.MAP_PRODUCTS_PAGE,
         component: StorefrontMapProducts,
         meta: {
           fullscreen: true,
@@ -287,7 +288,7 @@ function getRouteForHome(): IVueRoute {
         // Landing page ID!
         return {
           path: "",
-          name: "CustomHomePage", // Landing page loader!
+          name: StorefrontRoutesName.CUSTOM_HOME_PAGE, // Landing page loader!
           component: SPageLoader,
           meta: {
             fullscreen: true,
@@ -297,7 +298,7 @@ function getRouteForHome(): IVueRoute {
       /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Default (Shop) ▃▃▃▃▃▃▃▃▃▃▃*/
       return {
         path: "",
-        name: "ShopPage",
+        name: StorefrontRoutesName.SHOP_PAGE,
         component: StorefrontProductsPage,
         meta: {
           search: true,
@@ -331,7 +332,7 @@ const routes: IVueRoute[] = [
       {
         // Order important! first route to ShopPage consider as ShopPage!
         path: "shop",
-        name: CUSTOM_HOME === "shop" ? "ShopPage-shop" : "ShopPage", // Prevent duplicated route name 'ShopPage'
+        name: CUSTOM_HOME === "shop" ? "ShopPage-shop" : StorefrontRoutesName.SHOP_PAGE, // Prevent duplicated route name 'ShopPage'
         component: StorefrontProductsPage,
         meta: {
           search: true,
@@ -538,7 +539,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Blog ▶ Blogs List ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "blog",
-        name: "Blogs",
+        name: StorefrontRoutesName.BLOGS_PAGE,
         component: StorefrontBlogsPage,
       },
       {
@@ -778,7 +779,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Avocado ▶ Form ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "/avocado",
-        name: "AvocadoPage",
+        name: StorefrontRoutesName.AVOCADO_PAGE,
         component: StorefrontAvocadoPage,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #9eb644, #e8db8e)`,
@@ -806,7 +807,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Hyper ▶ Form ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "/hyper",
-        name: "HyperPage",
+        name: StorefrontRoutesName.HYPER_PAGE,
         component: StorefrontHyperPage,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #C2185B, #FF5722)`,
@@ -852,7 +853,7 @@ const routes: IVueRoute[] = [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Categories (Home)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "",
-            name: "CommunityHomePage",
+            name: StorefrontRoutesName.COMMUNITY_HOME_PAGE,
             component: CommunityHomePage,
           },
 
@@ -935,7 +936,7 @@ router.beforeEach((to, from, next) => {
 
     if (!user && !busy && !has_guest_checkout) {
       next({
-        name: "ShopPage",
+        name: StorefrontRoutesName.SHOP_PAGE,
       });
     }
   }

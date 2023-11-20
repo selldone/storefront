@@ -192,7 +192,7 @@
                 v-for="(category, i) in stared_categories"
                 :key="category.category"
                 :to="{
-                  name: 'Blogs',
+                  name: StorefrontRoutesName.BLOGS_PAGE,
                   query: {
                     page: 1,
                     category: category.id,
@@ -546,6 +546,7 @@
 import SShopBlogCard from "@components/storefront/blog/SShopBlogCard.vue";
 import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
 import _ from "lodash-es";
+import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "StorefrontBlogsPage",
@@ -555,7 +556,7 @@ export default {
   },
   data: () => ({
     to_home: {
-      name: "Blogs",
+      name: StorefrontRoutesName.BLOGS_PAGE,
       query: {
         page: 1,
         category: undefined,
@@ -605,6 +606,7 @@ export default {
   }),
 
   computed: {
+
     // ......................... Headline .........................
 
     latest_article() {

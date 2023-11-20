@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+
 export default {
   name: "StorefrontLoginRedirect",
   created() {
@@ -26,7 +28,7 @@ export default {
       sessionStorage.removeItem("after-login-path");
       this.$router.push({ path: path });
     } else {
-      this.$router.push({ name: "ShopPage" });
+      this.$router.push({ name: StorefrontRoutesName.SHOP_PAGE });
     }
   },
 };

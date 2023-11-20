@@ -153,6 +153,7 @@ import ShopContactsChatPopup from "@components/storefront/chat/ShopContactsChatP
 import SShopTopMenu from "@components/storefront/menu/header/SShopTopMenu.vue";
 import SShopMainHeader from "@components/storefront/header/SShopMainHeader.vue";
 import SShopProductInBasketIndicator from "@components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "SStorefrontLayout",
@@ -356,17 +357,17 @@ export default {
   methods: {
     onSearch(event) {
       this.$router.push({
-        name: "ShopPage",
+        name: StorefrontRoutesName.SHOP_PAGE,
         params: { shop_name: this.shop.shop_name },
         query: { search: event.search, search_type: event.search_type },
       });
     },
 
     onClear() {
-      if (this.$route.name === "ShopPage")
+      if (this.$route.name === StorefrontRoutesName.SHOP_PAGE)
         //Only in shop page clear => show all products!
         this.$router.push({
-          name: "ShopPage",
+          name: StorefrontRoutesName.SHOP_PAGE,
           params: { shop_name: this.shop.shop_name },
         });
     },
@@ -392,7 +393,7 @@ export default {
 
     goToShopInfoPage() {
       if (this.$route.name === "ShopInfoPageMobile")
-        this.$router.push({ name: "ShopPage" });
+        this.$router.push({ name: StorefrontRoutesName.SHOP_PAGE });
       else this.$router.push({ name: "ShopInfoPageMobile" });
     },
 

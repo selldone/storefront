@@ -45,7 +45,7 @@
           rounded
           text
           link
-          :to="{ name: 'Blogs', query: { tags: tag } }"
+          :to="{ name: StorefrontRoutesName.BLOGS_PAGE, query: { tags: tag } }"
         >
           {{ tag }}
         </v-btn>
@@ -63,6 +63,9 @@ import CircleButton from "@components/ui/button/CircleButton.vue";
 
 export default {
   name: "StorefrontBlogPage",
+  computed: {
+
+  },
   components: {
     CircleButton,
     SArticleView,

@@ -129,6 +129,7 @@ import { EventName } from "@core/events/EventBus";
 import SShopApplicationLogin from "@components/storefront/login/SShopApplicationLogin.vue";
 import SMapDialog from "@components/map/SMapDialog.vue";
 import SWebappDebugView from "@components/debug/SWebappDebugView.vue";
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "StorefrontApp",
@@ -225,7 +226,7 @@ export default {
         this.$vuetify.goTo(0, {
           duration:
             _old?.name === _new?.name ||
-            (_old?.name === "ShopPage" &&
+            (_old?.name === StorefrontRoutesName.SHOP_PAGE &&
               _new?.name ===
                 "ShopCategoryPage") /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
               ? 800
