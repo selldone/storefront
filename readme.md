@@ -97,7 +97,7 @@ file.
 | VUE_APP_SAMPLE_SHOP_NAME        | Set your shop name @`my-shop-name`                                                                                            | toysworld |
 | VUE_APP_SAMPLE_SHOP_CUSTOM_HOME | The first page of storefront, it can be `blog`,`avocado`,`hyper`,`community`,`shop`,`map`,`number` _LANDING-PAGE-ID_ , `null` | 3001      |
 
-## Monetization 🤑 `[available soon]`
+## Monetization 🤑
 
 You can generate income by crafting storefronts for various verticals using Selldone and then publishing them directly
 on Selldone. Alternatively, you have the option to develop a SaaS (Software as a Service) on your own servers and
