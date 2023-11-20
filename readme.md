@@ -57,11 +57,15 @@ npm serve
 
 ## Needed Modules
 
-| Module              | URL                                        |
-|---------------------|--------------------------------------------|
-| Selldone Core       | https://github.com/selldone/core           |
-| Storefront SDK      | https://github.com/selldone/storefront-sdk |
-| Selldone Components | https://github.com/selldone/components     |
+| Module                                                          | Description                                                                                     |
+|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| [Selldone Core](https://github.com/selldone/core)               | SDK contains APIs and necessary files to interact with Selldone servers.                        |
+| [Storefront SDK](https://github.com/selldone/storefront-sdk)    | SDK for building and managing the storefront interface.                                         |
+| [Selldone Components](https://github.com/selldone/components)   | Contains all pre-built and professional commerce components to build storefront and backoffice. |
+| [Vendor SDK](https://github.com/selldone/vendor-sdk)            | SDK tailored for vendors to integrate and manage their offerings.                               |
+| [Community SDK](https://github.com/selldone/community-sdk)      | Community-driven SDK with additional tools and integrations.                                    |
+| [Selldone Pagebuilder](https://github.com/selldone/pagebuilder) | Tool for building and customizing pages within the Selldone platform.                           |
+
 
 
 Command to update modules (fetch from git) : `git submodule update --remote --merge`
