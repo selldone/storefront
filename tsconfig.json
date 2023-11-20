@@ -38,16 +38,16 @@
     ],
     "paths": {
 
-      "@core/*": ["core/*"],
-      "@components/*": ["src/Components/*"],
+      "@core/*": ["/core/*"],
+      "@components/*": ["/src/Components/*"],
 
-      "@sdk-storefront/*": ["SDKs/storefront/*"],
-      "@sdk-community/*": ["SDKs/community/*"],
-      "@sdk-vendor/*": ["SDKs/vendor/*"],
+      "@sdk-storefront/*": ["/SDKs/storefront/*"],
+      "@sdk-community/*": ["/SDKs/community/*"],
+      "@sdk-vendor/*": ["/SDKs/vendor/*"],
 
-      "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
+      "@app-page-builder/*": ["/src/Applications/PageBuilder/*"],
       "@app-storefront/*": ["/*"],
-      "@app-vendor/*": ["src/Applications/Vendor/*"],
+      "@app-vendor/*": ["/src/Applications/Vendor/*"],
 
 
     },
