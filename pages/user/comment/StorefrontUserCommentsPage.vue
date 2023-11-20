@@ -15,7 +15,8 @@
 <template>
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
-      <widget-header :title="$t('user_comments.title')" icon="chat_bubble"> </widget-header>
+      <widget-header :title="$t('user_comments.title')" icon="chat_bubble">
+      </widget-header>
 
       <progress-loading v-if="busy_fetch"></progress-loading>
 
@@ -33,8 +34,6 @@
         class="bg-transparent dense-padding"
         no-data-text=""
       >
-
-
         <template v-slot:header>
           <s-data-iterator-toolbar
             :sort-keys="keys"
@@ -65,11 +64,7 @@
                 <div class="comment-card widget-hover">
                   <v-img
                     height="136"
-                    :src="
-                      (
-                        getShopImagePath(comment.product.icon)
-                      )
-                    "
+                    :src="getShopImagePath(comment.product.icon)"
                     class="rounded-18px border"
                   >
                   </v-img>
@@ -118,8 +113,8 @@ import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vu
 import _ from "lodash-es";
 
 export default {
-  name: "UserCommentsPage",
-  components: {  SDataIteratorToolbar },
+  name: "StorefrontUserCommentsPage",
+  components: { SDataIteratorToolbar },
   data: () => ({
     comments: [],
 

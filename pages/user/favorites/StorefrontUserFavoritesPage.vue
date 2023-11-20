@@ -89,7 +89,7 @@ import SShopProductCard from "@components/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
 export default {
-  name: "UserFavoritesPage",
+  name: "StorefrontUserFavoritesPage",
   components: { SDataIteratorToolbar, SShopProductCard },
   data: () => ({
     products: [],

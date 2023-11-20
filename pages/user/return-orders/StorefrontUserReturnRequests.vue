@@ -34,7 +34,7 @@
 <script>
 import ReturnRequestsList from "@components/backoffice/basket/return-request/ReturnRequestsList.vue";
 export default {
-  name: "UserReturnRequests",
+  name: "StorefrontUserReturnRequests",
   components: { ReturnRequestsList },
 
   data: function () {

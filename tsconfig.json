@@ -65,12 +65,15 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+
     "SDKs/**/*.ts",
     "SDKs/**/*.tsx",
+
     "core/**/*.ts",
     "core/**/*.tsx",
-    "pages/**/*.ts",
-    "pages/**/*.tsx"
+
+    "/**/*.ts",
+    "/**/*.tsx"
   ],
   "exclude": [
     "node_modules",

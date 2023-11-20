@@ -190,7 +190,7 @@ import SetupService from "@core/server/SetupService";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
 
 export default {
-  name: "UserProfilePage",
+  name: "StorefrontUserProfilePage",
   components: { SValueDashed },
   props: {
     shop: {

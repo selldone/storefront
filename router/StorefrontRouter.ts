@@ -107,9 +107,9 @@ const SPageLoader = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-page-builder/SPageLoader.vue"
   );
-const UserReturnRequests = () =>
+const StorefrontUserReturnRequests = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/user/return-orders/UserReturnRequests.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/user/return-orders/StorefrontUserReturnRequests.vue"
   );
 
 //――――――――――――――――――――――――― Insta ―――――――――――――――――――――――――
@@ -156,11 +156,11 @@ const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
 import StorefrontLoginRedirect from "../pages/login/StorefrontLoginRedirect.vue";
 import StorefrontComparisonPage from "../pages/comparison/StorefrontComparisonPage.vue";
 import StorefrontUserPagesLayout from "../pages/user/StorefrontUserPagesLayout.vue";
-import UserProfilePage from "../pages/user/profile/UserProfilePage.vue";
-import UserAddressesPage from "@app-storefront/pages/user/address/UserAddressesPage.vue";
-import UserFavoritesPage from "../pages/user/favorites/UserFavoritesPage.vue";
-import UserCommentsPage from "../pages/user/comment/UserCommentsPage.vue";
-import UserGiftCardsPage from "../pages/user/giftcard/UserGiftCardsPage.vue";
+import StorefrontUserProfilePage from "../pages/user/profile/StorefrontUserProfilePage.vue";
+import StorefrontUserAddressesPage from "@app-storefront/pages/user/address/StorefrontUserAddressesPage.vue";
+import StorefrontUserFavoritesPage from "../pages/user/favorites/StorefrontUserFavoritesPage.vue";
+import StorefrontUserCommentsPage from "../pages/user/comment/StorefrontUserCommentsPage.vue";
+import StorefrontUserGiftCardsPage from "../pages/user/giftcard/StorefrontUserGiftCardsPage.vue";
 import StorefrontAboutUsPage from "@app-storefront/pages/official/about-us/StorefrontAboutUsPage.vue";
 import StorefrontTermsPage from "../pages/official/terms/StorefrontTermsPage.vue";
 import StorefrontPrivacyPage from "../pages/official/privacy/StorefrontPrivacyPage.vue";
@@ -484,42 +484,42 @@ const routes: IVueRoute[] = [
           {
             path: "profile",
             name: "UserProfilePage",
-            component: UserProfilePage,
+            component: StorefrontUserProfilePage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Addresses ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "addresses",
             name: "UserAddressesPage",
-            component: UserAddressesPage,
+            component: StorefrontUserAddressesPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User order returns ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "orders-return",
             name: "UserReturnRequests",
-            component: UserReturnRequests,
+            component: StorefrontUserReturnRequests,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Favorites ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "favorites",
             name: "UserFavoritesPage",
-            component: UserFavoritesPage,
+            component: StorefrontUserFavoritesPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Comments ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "comments",
             name: "UserCommentsPage",
-            component: UserCommentsPage,
+            component: StorefrontUserCommentsPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User gift cards ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "gift-cards",
             name: "UserGiftCardsPage",
-            component: UserGiftCardsPage,
+            component: StorefrontUserGiftCardsPage,
           },
         ],
       },

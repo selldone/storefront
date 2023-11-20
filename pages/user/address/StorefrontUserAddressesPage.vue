@@ -17,7 +17,10 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5">
-      <widget-header :title="$t('addresses_page.title')" icon="fmd_good"></widget-header>
+      <widget-header
+        :title="$t('addresses_page.title')"
+        icon="fmd_good"
+      ></widget-header>
 
       <v-subheader> </v-subheader>
 
@@ -151,7 +154,6 @@
           {{ $t("addresses_page.add_dialog.message") }}
         </v-card-subtitle>
         <v-card-text>
-
           <v-text-field
             v-model="new_address_title"
             :color="SaminColorLight"
@@ -200,8 +202,8 @@ import SValueDashed from "@components/ui/text/SValueDashed.vue";
 import WidgetHeader from "@components/widget/WidgetHeader.vue";
 
 export default {
-  name: "UserAddressesPage",
-  components: {WidgetHeader, SValueDashed, LocationMarker },
+  name: "StorefrontUserAddressesPage",
+  components: { WidgetHeader, SValueDashed, LocationMarker },
   data() {
     return {
       addresses: [],
