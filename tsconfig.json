@@ -38,18 +38,16 @@
     ],
     "paths": {
 
-      "@core/*": ["/core/*"],
-      "@components/*": ["/src/Components/*"],
-
+/*
       "@sdk-storefront/*": ["/SDKs/storefront/*"],
       "@sdk-community/*": ["/SDKs/community/*"],
       "@sdk-vendor/*": ["/SDKs/vendor/*"],
 
       "@app-page-builder/*": ["/src/Applications/PageBuilder/*"],
-      "@app-storefront/*": ["/*"],
+
       "@app-vendor/*": ["/src/Applications/Vendor/*"],
-
-
+*/
+      "@app-storefront/*": ["/*"]
     },
     "lib": [
       "esnext",
@@ -62,18 +60,9 @@
 
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-
-    "SDKs/**/*.ts",
-    "SDKs/**/*.tsx",
-
-    "core/**/*.ts",
-    "core/**/*.tsx",
-
     "/**/*.ts",
-    "/**/*.tsx"
+    "/**/*.tsx",
+    "/**/*.vue"
   ],
   "exclude": [
     "node_modules",
