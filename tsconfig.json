@@ -60,9 +60,9 @@
 
   },
   "include": [
-    "/**/*.ts",
-    "/**/*.tsx",
-    "/**/*.vue"
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue"
   ],
   "exclude": [
     "node_modules",
