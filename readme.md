@@ -1,6 +1,6 @@
 ![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
 
-## Selldone ⮕ Storefront Official [Available Soon ~ Nov 2023]
+## Selldone ⮕ Storefront Official
 _Ready to build project!_
 
 
