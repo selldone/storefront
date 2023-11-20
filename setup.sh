@@ -94,3 +94,19 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "${GREEN_INVERT}Displaying submodule status...${NC}"
 git submodule status
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Check if tsconfig.json already exists
+if [ ! -f "tsconfig.json" ]; then
+    # Check if _tsconfig.json exists
+    if [ -f "_tsconfig.json" ]; then
+        # Rename _tsconfig.json to tsconfig.json
+        mv _tsconfig.json tsconfig.json
+        echo "File [_tsconfig.json -> tsconfig.json] renamed successfully."
+    else
+        echo "_tsconfig.json does not exist."
+    fi
+else
+    echo "tsconfig.json already exists."
+fi
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
