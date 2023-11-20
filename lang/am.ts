@@ -12,10 +12,10 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import global from "@core/lang/global/am";
-import icons from "@core/lang/global/icons/ltr";
-import community from "@core/lang/global/community/am";
-import pack from "@core/lang/shop/am";
+import global from "@core/lang/global/am.js";
+import icons from "@core/lang/global/icons/ltr.js";
+import community from "@core/lang/global/community/am.js";
+import pack from "@core/lang/shop/am.js";
 
 export default {
   /** ---------------- Icons ---------------- **/
