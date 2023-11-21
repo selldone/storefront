@@ -797,6 +797,7 @@ const StorefrontMixin = CoreMixin.extend({
     //―――――――――――――――――――――― Event Bus ――――――――――――――――――――
     ShowPaymentDialogBasket(
       code: string /*🥶 Guest*/,
+      order: Basket | null,
       type: keyof typeof ProductType,
       bill: Basket.IBill,
       prize_selected_variant_id: number | null = null,
@@ -806,6 +807,7 @@ const StorefrontMixin = CoreMixin.extend({
     ) {
       this.EventBus.$emit("payment-form-basket", {
         code: code,
+        order: order,
         type: type,
         bill: bill,
         prize_selected_variant_id: prize_selected_variant_id,
@@ -818,6 +820,7 @@ const StorefrontMixin = CoreMixin.extend({
     //―――――― 🎗️ Subscription ――――――
     ShowPaymentDialogSubscription(
       currency: keyof typeof Currency,
+      order: Basket | null,
       bill: Basket.IBill,
       gateway_codes: String,
       callback: (() => void) | null = null // Not used yet!
@@ -827,6 +830,7 @@ const StorefrontMixin = CoreMixin.extend({
         bill: bill,
         gateway_codes: gateway_codes,
         callback: callback,
+        order: order,
       });
     },
 
@@ -868,6 +872,7 @@ const StorefrontMixin = CoreMixin.extend({
 
     ShowPaymentDialogBill(
       code: string /*🥶 Guest*/,
+      order: Basket | null,
       bill: Basket.IBill,
       callback: () => void
     ) {
@@ -875,6 +880,7 @@ const StorefrontMixin = CoreMixin.extend({
         code: code,
         bill: bill,
         callback: callback,
+        order:order,
       });
     },
 

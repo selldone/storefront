@@ -1136,7 +1136,7 @@
                       v-if="
                         canPayAndComplete &&
                         (!cod_check || !deliverySupportCOD) &&
-                        !isService
+                        !is_service_need_pricing
                       "
                     >
                       <v-btn
@@ -1171,7 +1171,7 @@
                     <!-- Checkout without payment (Service) -->
 
                     <v-btn
-                      v-if="canPayAndComplete && isService"
+                      v-if="canPayAndComplete && is_service_need_pricing"
                       :class="{
                         's--shop-basket-buy-button slideInUp':
                           !intersect_payment_btn,
@@ -1313,6 +1313,8 @@ import DateTimePickerGlobal from "@components/ui/calendar/dateTimePickerGlobal.v
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
 import _ from "lodash-es";
 import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
+import { PricingTypes } from "@core/enums/product/PricingTypes";
+import { BasketHelper } from "@core/helper/shop/BasketHelper";
 
 export default {
   name: "StorefrontBasketPage",
@@ -1457,6 +1459,12 @@ export default {
     },
     isService() {
       return this.type === ProductType.SERVICE.code;
+    },
+    is_service_need_pricing() {
+      /**
+       * It needs pricing by the seller after checkout.
+       */
+      return BasketHelper.IsServiceAndNeedPricing(this.basket);
     },
 
     net_price() {
@@ -2088,6 +2096,7 @@ export default {
 
         this.ShowPaymentDialogSubscription(
           this.basket.currency,
+          this.basket,
           this.bill,
           gateway_codes,
           /*Used for in site payment flow & free orders!*/
@@ -2109,6 +2118,7 @@ export default {
 
       this.ShowPaymentDialogBasket(
         this.basket.code /*🥶 Guest*/,
+        this.basket,
         this.type,
         this.bill,
         this.lottery_win_selected_variant
