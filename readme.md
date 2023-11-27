@@ -17,7 +17,9 @@ Page builders, while convenient, often confine businesses within the boundaries 
 Their inherent limitations can stifle the true spirit of a brand, preventing it from shining in its full, authentic
 glory.
 
-We recognize this challenge. And so, [we've chosen to disrupt the status quo of e-commerce](https://selldone.com/blog/the-next-generation-of-founders-is-not-just-technical-147). We believe in empowering
+We recognize this challenge. And
+so, [we've chosen to disrupt the status quo of e-commerce](https://selldone.com/blog/the-next-generation-of-founders-is-not-just-technical-147).
+We believe in empowering
 businesses, big or small, to showcase their uniqueness without barriers. By offering pre-made components that are fully
 open-source, we're unlocking a realm of limitless customization. No more compromises. No more settling for the 'almost
 right' look.
@@ -46,57 +48,79 @@ Selldone is a **fully independent web application** that operates seamlessly on 
 designed to be **fully customizable** and is **open source**, offering a more robust and flexible solution for
 e-commerce needs.
 
+
 ## How to start
 
-_coming soon with an easy-to-use CLI..._
+_Guide to Getting Started with Storefront Project (Vue Framework) for Selldone_
 
-### 1. Clone project on your PC:
+Create a fully customized storefront for Selldone using the Storefront Project built on the Vue framework. Follow these
+simple steps to get started:
+
+### Setting Up Your Development Environment
+
+#### Step 1: Clone the Storefront Project
+
+First, clone the project to your local machine using the following command:
 
 ```shell
 gh repo clone selldone/storefront
 ```
 
-### 2. Install required packages:
+#### Step 2: Install Necessary Packages
+
+Next, install all the required packages. You can use either Yarn or npm as your package manager.
+
+If you're using Yarn, run:
 
 ```shell
 yarn install
 yarn setup
 ```
 
-or
+For npm, use:
 
 ```shell
 npm install
 npm setup
 ```
 
-### 3. Start developing
+#### Step 3: Begin Development
+
+Now, you're ready to start developing your storefront. To launch the development server, use one of the following
+commands:
+
+With Yarn:
 
 ```shell
-yran serve
+yarn serve
 ```
 
-or
+With npm:
 
 ```shell
 npm serve
 ```
 
-## Manifest `manifest.json`
+### Configuring Your Storefront
 
-To prepare for publishing on Selldone and to make it available for yourself or others to use as their Storefront, you
-must configure your 'Layout' settings in the `manifest.json` file.
+#### Manifest File (`manifest.json`)
 
-## Test Environment `.env`
+To publish your storefront on Selldone and make it available for use, configure your layout settings in
+the `manifest.json` file. This step is crucial for personalizing and defining the structure of your storefront.
 
-As a developer building the project, the data will be sourced from an actual store, allowing you to test your design
-with real-time data from a Selldone account. To facilitate this, you simply need to make modifications to the `.env`
-file.
+#### Test Environment (`.env` File)
 
-| Variable                        | Description                                                                                                                   | Example   |
-|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-----------|
-| VUE_APP_SAMPLE_SHOP_NAME        | Set your shop name @`my-shop-name`                                                                                            | toysworld |
-| VUE_APP_SAMPLE_SHOP_CUSTOM_HOME | The first page of storefront, it can be `blog`,`avocado`,`hyper`,`community`,`shop`,`map`,`number` _LANDING-PAGE-ID_ , `null` | 3001      |
+For a realistic development experience, your project will use data from an actual Selldone store. To set this up, modify
+the `.env` file with the following variables:
+
+| Variable                        | Description                                                                                                                                                          | Example   |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| VUE_APP_SAMPLE_SHOP_NAME        | Your Selldone shop name. Use the format `my-shop-name`.                                                                                                              | toysworld |
+| VUE_APP_SAMPLE_SHOP_CUSTOM_HOME | Define the first page of your storefront. Options include `blog`, `avocado`, `hyper`, `community`, `shop`, `map`, `number`, a specific _LANDING-PAGE-ID_, or `null`. | 3001      |
+
+By following these steps, you'll be well on your way to developing a unique and fully customized storefront for Selldone
+using the Vue framework. Happy coding!
+
 
 ## Monetization 🤑
 
@@ -107,6 +131,7 @@ through a one-time purchase or a subscription-based model. For instance, develop
 designed for influencers and offer their LAYOUT for a monthly subscription fee of $599 on Selldone.
 
 ## Needed Modules
+
 ![img.png](_docs/images/storefront-hierarchy.png)
 
 | Module                                                          | Description                                                                                     |
