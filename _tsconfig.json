@@ -42,12 +42,12 @@
       "@components/*": ["src/Components/*"],
 
 
-      "@sdk-storefront/*": ["/SDKs/storefront/*"],
-      "@sdk-community/*": ["/SDKs/community/*"],
-      "@sdk-vendor/*": ["/SDKs/vendor/*"],
+      "@sdk-storefront/*": ["SDKs/storefront/*"],
+      "@sdk-community/*": ["SDKs/community/*"],
+      "@sdk-vendor/*": ["SDKs/vendor/*"],
 
-      "@app-page-builder/*": ["/src/Applications/PageBuilder/*"],
-      "@app-vendor/*": ["/src/Applications/Vendor/*"],
+      "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
+      "@app-vendor/*": ["src/Applications/Vendor/*"],
       "@app-storefront/*": ["/*"]
     },
     "lib": [
