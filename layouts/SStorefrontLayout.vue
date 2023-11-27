@@ -12,25 +12,63 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
+<!-- 
+  Primary Header 
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Primary Header             ┃
+  ┃ + Search Box               ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   Main Content 
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Main                       ┃
+  ┃ ┣━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+  ┃ ┃ router-view              ┃
+  ┃ ┃ + Content Header         ┃
+  ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+  
+  Primary Footer
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Primary Footer             ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+  
+  Absolute widgets
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Basket Indicator           ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Notifications              ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Customer Support           ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+  -->
+
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="s--storefront-layout">
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- This is the primary header at the top of the website, where you can display your site's name, logo, user avatar, and navigation menu. -->
 
-    <s-shop-main-header
-      v-if="!headerMode || headerMode === 'normal'"
+    <s-storefront-primary-header
+      v-if="
+        !header_mode ||
+        header_mode === 'normal' /*Show primary header in top of page!*/
+      "
       :shop="shop"
-      :searchmode="searchmode"
-    ></s-shop-main-header>
+      :search-mode="search_mode"
+    ></s-storefront-primary-header>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- This is the main search bar for the shop. -->
     <v-slide-y-reverse-transition leave-absolute>
-      <shop-search-box
-        v-if="showSearchBox && !isMobile"
+      <s-storefront-search-box
+        v-if="show_search_box && !isMobile"
         ref="search_box"
         class="s--storefront-layout-search-style me-2"
         :class="{
           'is-mobile': isMobile,
-          'full-width': searchmode && isMobile,
+          'full-width': search_mode && isMobile,
           'has-banner-offset': shop_main_banner,
         }"
         :title="$t('layout_shop.search_title', { shop_name: shop.title })"
@@ -41,14 +79,19 @@
         :dark="false"
         solo
         flat
-        :expandInput.sync="searchmode"
+        :expandInput.sync="search_mode"
         :negative-qr-margin="false"
       />
     </v-slide-y-reverse-transition>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- It's the main view of the storefront. -->
     <v-main
-      :style="{ 'max-width': max_width, 'margin-top': top_margin_content }"
+      :style="{
+        'max-width': max_width,
+        'margin-top':
+          top_margin_content /*The 's-storefront-primary-header' comes with a default height of 128px, and the use of negative margin contributes to creating an overlay effect on the storefront's main view. */,
+      }"
       fluid
       fill-height
       style="
@@ -60,112 +103,116 @@
         transition: none;
       "
     >
+      <!-- The 'router-view' will display the content of children components as defined in the Router. -->
       <router-view
         v-if="shop"
         :style="{ 'padding-bottom': bottom_padding_container }"
         :shop="shop"
         :class="{
           's--shop-card s--shadow-no-padding -hide1720 mb-16 bg-white position-relative':
-            card,
+            is_view_card_mode,
         }"
         @update:menu-transparent="
-          (val) => (transparentHeader = val) /*Update on custome pages*/
+          (val) => (transparent_header = val) /*Update on custome pages*/
         "
         @update:menu-dark="
-          (val) => (darkHeader = val) /*Update on custome pages*/
+          (val) => (dark_header = val) /*Update on custome pages*/
         "
         @update:header-mode="
-          (val) => (headerMode = val) /*Update on custome pages*/
+          (val) => (header_mode = val) /*Update on custome pages*/
         "
       >
+        <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+        <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
         <template v-slot:header="{ center }">
-          <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-
-          <s-shop-main-header
-            v-if="headerMode === 'overlay'"
+          <s-storefront-primary-header
+            v-if="
+              header_mode ===
+              'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
+            "
             overlay
-            :overlay-dark="!!darkHeader"
+            :overlay-dark="!!dark_header"
             :shop="shop"
-            :searchmode="searchmode"
-          ></s-shop-main-header>
+            :search-mode="search_mode"
+          ></s-storefront-primary-header>
 
-          <s-shop-top-menu
+          <!-- The storefront menu customized and set up by the merchant. -->
+          <s-storefront-top-menu
             v-if="top_menu && !header_disabled"
             :shop="shop"
             flat
             :tabs="top_menu.menu"
-            :transparent="transparentHeader"
-            :force-dark="darkHeader"
+            :transparent="transparent_header"
+            :force-dark="dark_header"
             :center="center"
             :fullscreen="is_fullscreen"
             :style="{
               marginTop:
-                headerMode === 'hidden'
+                header_mode === 'hidden'
                   ? '64px'
                   : 0 /*Cover -64px of main view of shop*/,
             }"
-          ></s-shop-top-menu>
+          ></s-storefront-top-menu>
         </template>
       </router-view>
     </v-main>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Green bottom bar to show this product exist in basket! ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-
-    <s-shop-product-in-basket-indicator></s-shop-product-in-basket-indicator>
-
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-
-    <s-shop-footer
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- Primary footer of the storefront. -->
+    <s-storefront-primary-footer
       v-if="!isMobile && !is_standalone && !isNative && shop && has_footer"
       class="m-0"
       :shop="shop"
       :dark="!is_light_footer"
     />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Basket Indicator ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- Display a green stripe at the bottom of product pages to indicate that the product has been added to the basket. -->
+    <s-storefront-product-in-basket-indicator></s-storefront-product-in-basket-indicator>
 
-    <custom-notification
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <!-- Show notifications to user. -->
+    <s-storefront-campaign-notification
       v-if="notification"
       v-model="show_notification"
       :notification="notification"
       :page-name="banner ? banner.page_name : null"
-    ></custom-notification>
+    ></s-storefront-campaign-notification>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Customer support ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-
-    <shop-contacts-chat-popup
+    <!-- Storefront chat box. -->
+    <s-storefront-chat-popup
       v-if="show_support_chat && has_support"
       :shop="shop"
       :bottom="isMobile ? 96 : 12"
       class="zoomIn"
-    ></shop-contacts-chat-popup>
+    ></s-storefront-chat-popup>
   </div>
 </template>
 
 <script>
-import ShopSearchBox from "@components/storefront/search/ShopSearchBox.vue";
-import SShopFooter from "@components/storefront/footer/SShopFooter.vue";
+import SStorefrontSearchBox from "@components/storefront/search/SStorefrontSearchBox.vue";
+import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
 import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
 import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
-import CustomNotification from "@components/ui/notification/CustomNotification.vue";
-import ShopContactsChatPopup from "@components/storefront/chat/ShopContactsChatPopup.vue";
-import SShopTopMenu from "@components/storefront/menu/header/SShopTopMenu.vue";
-import SShopMainHeader from "@components/storefront/header/SShopMainHeader.vue";
-import SShopProductInBasketIndicator from "@components/storefront/product/in-basket/SShopProductInBasketIndicator.vue";
-import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+import SStorefrontCampaignNotification from "@components/ui/notification/SStorefrontCampaignNotification.vue";
+import SStorefrontChatPopup from "@components/storefront/chat/SStorefrontChatPopup.vue";
+import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
+import SStorefrontPrimaryHeader from "@components/storefront/header/SStorefrontPrimaryHeader.vue";
+import SStorefrontProductInBasketIndicator from "@components/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
+import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "SStorefrontLayout",
   components: {
-    SShopProductInBasketIndicator,
-    SShopMainHeader,
-
-    SShopTopMenu,
-    ShopContactsChatPopup,
-    CustomNotification,
-    SShopFooter,
-    ShopSearchBox,
+    SStorefrontProductInBasketIndicator,
+    SStorefrontPrimaryHeader,
+    SStorefrontTopMenu,
+    SStorefrontChatPopup,
+    SStorefrontCampaignNotification,
+    SStorefrontPrimaryFooter,
+    SStorefrontSearchBox,
   },
 
   props: {
@@ -175,23 +222,54 @@ export default {
     },
   },
 
-  data: () => ({
-    prevScrollpos: 0,
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Data
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
 
+  data: () => ({
+    /**
+     * @property {boolean} show_notification - Controls the visibility of notifications. When true, notifications are shown.
+     */
     show_notification: false,
+
+    /**
+     * @property {boolean} show_notification_previously - Tracks if notifications were shown previously. Useful for toggle states or animations.
+     */
     show_notification_previously: false,
 
-    searchmode: false,
+    /**
+     * @property {boolean} search_mode - Indicates whether the search mode is active. When true, the component is in search mode.
+     */
+    search_mode: false,
 
-    //----------------------
+    /**
+     * @property {boolean} elapsed_support_delay - Flag to indicate if a certain delay has passed, typically used for support-related functionalities.
+     */
     elapsed_support_delay: false,
 
-    // Dynamic header style:
-    transparentHeader: null,
-    darkHeader: null,
-    headerMode: null, // can be: null, normal, overlay, hidden
+    /**
+     * @property {string|null} transparent_header - Manages the style of the header when it needs to be transparent. Null when not in use.
+     */
+    transparent_header: null,
+
+    /**
+     * @property {string|null} dark_header - Manages the style of the header when it needs to be dark-themed. Null when not in use.
+     */
+    dark_header: null,
+
+    /**
+     * @property {string|null} header_mode - Defines the current mode of the header. Can be 'null', 'normal', 'overlay', or 'hidden'.
+     */
+    header_mode: null,
   }),
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Compute Section
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   computed: {
     user() {
       return this.$store.getters.getUser;
@@ -200,17 +278,20 @@ export default {
       return this.user && this.user.profile;
     },
 
-    card() {
-      // show card shadow on main route view
-      return this.$route.matched.some((record) => record.meta.card);
-    },
-
+    // ━━━━━━━━━━━━━━━━━━━━ Campaign Banner ━━━━━━━━━━━━━━━━━━━━
+    /**
+     * Get campaign from shop.
+     * @return {*|null}
+     */
     campaign() {
       return this.shop ? this.shop.campaign : null;
     },
+    /**
+     * Get notification from campaign.
+     * @return {*|null}
+     */
     notification() {
-      return this.campaign &&
-        this.campaign.notification &&
+      return this.campaign?.notification &&
         !Array.isArray(this.campaign.notification)
         ? this.campaign.notification
         : null;
@@ -219,12 +300,26 @@ export default {
       return this.campaign ? this.campaign.banner : null;
     },
 
-    showSearchBox() {
+    // ━━━━━━━━━━━━━━━━━━━━ Appearance ━━━━━━━━━━━━━━━━━━━━
+
+    /**
+     * show card shadow on main route view.
+     * @return {boolean}
+     */
+    is_view_card_mode() {
+      return this.$route.matched.some((record) => record.meta.card);
+    },
+
+    show_search_box() {
       return (
         this.shop && this.$route.matched.some((record) => record.meta.search)
       );
     },
 
+    /**
+     * The 's-storefront-primary-header' is set to a default height of 128px, and to ensure the main storefront contents are displayed just 64px from the top of the page, we apply a top margin of -64px.
+     * @return {string}
+     */
     top_margin_content() {
       if (this.$store.getters.getIsNative) {
         return "0";
@@ -261,19 +356,17 @@ export default {
       return this.top_menu && this.top_menu.enable === false;
     },
 
-    theme() {
-      if (!this.shop) return null;
-      return this.shop.theme;
-    },
-
-    // --------------------------------------------------------------------------------
-
     has_footer() {
       return this.$route.matched.some((record) => record.meta.footer);
     },
 
     has_support() {
       return this.$route.matched.some((record) => record.meta.support);
+    },
+
+    theme() {
+      if (!this.shop) return null;
+      return this.shop.theme;
     },
 
     is_light_footer() {
@@ -286,12 +379,15 @@ export default {
     is_fullscreen() {
       return this.$route.matched.some((record) => record.meta.fullscreen);
     },
-    // --------------------------------------------------------------------------------
 
     shop_main_banner() {
       return this.$store.getters.getShopMainBanner;
     },
 
+    /**
+     * Establish a maximum width for the content displayed in the storefront.
+     * @return {string}
+     */
     max_width() {
       if (this.is_fullscreen) {
         return "100%";
@@ -300,10 +396,13 @@ export default {
       }
     },
   },
-
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Watch Section
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   watch: {
     $route(to, from) {
-      this.setMainMenuWidth();
       /*
        * 💡 Google Analytic  Page view
        */
@@ -322,39 +421,54 @@ export default {
         this.$route.name !== "CustomHomePage" &&
         this.$route.name !== "IncludePageRender"
       ) {
-        this.transparentHeader = null;
-        this.darkHeader = null; // Default value is null!
-        this.headerMode = null;
+        this.transparent_header = null;
+        this.dark_header = null; // Default value is null!
+        this.header_mode = null;
       }
     },
 
+    /**
+     * Watch notification and show notification to user.
+     * @param notification
+     */
     notification(notification) {
       if (this.show_notification_previously) return;
       this.show_notification = notification.enable;
       this.show_notification_previously = this.show_notification;
     },
-
-    // user(user) {},
-
-    showSearchBox(showSearchBox) {
-      if (!showSearchBox) this.searchmode = false;
+    /**
+     * Watch show_search_box and reset the search_mode.
+     * @param show_search_box
+     */
+    show_search_box(show_search_box) {
+      if (!show_search_box) this.search_mode = false;
     },
   },
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Lifecycle
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
+
   created() {
-    this.setMainMenuWidth();
-
-    this.prevScrollpos = window.pageYOffset;
-
     setTimeout(() => {
       this.elapsed_support_delay = true;
     }, 10000);
   },
 
-  mounted() {},
-  beforeDestroy() {},
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Methods
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
 
   methods: {
+    /**
+     * This is the main search bar for the shop, allowing users to look up products and categories.
+     * When a user searches for an item, the onSearch function is triggered, redirecting them to the product listing page to display the search results.
+     * @param event
+     */
     onSearch(event) {
       this.$router.push({
         name: StorefrontRoutesName.SHOP_PAGE,
@@ -363,6 +477,12 @@ export default {
       });
     },
 
+    /**
+     * Clears the search box and displays all products when called.
+     * This method is typically invoked when the search box is cleared.
+     * It checks if the current route is the shop page and, if so, navigates back to the shop page
+     * to show all products for the selected shop.
+     */
     onClear() {
       if (this.$route.name === StorefrontRoutesName.SHOP_PAGE)
         //Only in shop page clear => show all products!
@@ -372,39 +492,7 @@ export default {
         });
     },
 
-    setMainMenuWidth() {},
 
-    handleScroll(event) {
-      if (!this.showSearchBox || !this.$refs.search_box) return;
-
-      let currentScrollPos = window.pageYOffset;
-
-      if (this.prevScrollpos > currentScrollPos) {
-        this.$refs.search_box.$el.classList.remove("go-hide");
-        //   console.log('go-hide')
-        this.ScrollUp(this.prevScrollpos - currentScrollPos);
-      } else {
-        this.$refs.search_box.$el.classList.add("go-hide");
-        //  console.log('go-hide remove')
-        this.ScrollDown(this.prevScrollpos - currentScrollPos);
-      }
-      this.prevScrollpos = currentScrollPos;
-    },
-
-    goToShopInfoPage() {
-      if (this.$route.name === "ShopInfoPageMobile")
-        this.$router.push({ name: StorefrontRoutesName.SHOP_PAGE });
-      else this.$router.push({ name: "ShopInfoPageMobile" });
-    },
-
-    //―――――――――――――――――――――― Event Bus ――――――――――――――――――――
-
-    ScrollDown(dy) {
-      this.EventBus.$emit("user-scroll-down", dy);
-    },
-    ScrollUp(dy) {
-      this.EventBus.$emit("user-scroll-up", dy);
-    },
   },
 };
 </script>
@@ -412,6 +500,15 @@ export default {
 <!-- ━━━━━━━━━━━━━━━━━━━ 🦄 Style ● Global ━━━━━━━━━━━━━━━━━━━-->
 
 <style lang="scss">
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🎺 Variables ━━━━━━━━━━━━━━━━━━━━
+ */
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🪅 Classes ━━━━━━━━━━━━━━━━━━━━
+ */
+
 html {
   height: 100vh !important;
   //overflow: scroll!important;
@@ -438,6 +535,15 @@ a {
 
 <!-- ━━━━━━━━━━━━━━━━━━━ 🦜 Style ● Local ━━━━━━━━━━━━━━━━━━━-->
 <style scoped lang="scss">
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🎺 Variables ━━━━━━━━━━━━━━━━━━━━
+ */
+
+/*
+━━━━━━━━━━━━━━━━━━━━ 🪅 Classes ━━━━━━━━━━━━━━━━━━━━
+ */
+
 .s--storefront-layout {
   .s--storefront-layout-search-style {
     position: absolute;
