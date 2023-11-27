@@ -101,6 +101,8 @@ With npm:
 npm serve
 ```
 
+Open served address: e.g. `http://localhost:8080/`
+
 ### Configuring Your Storefront
 
 #### Manifest File (`manifest.json`)

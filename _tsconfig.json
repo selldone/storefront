@@ -48,7 +48,7 @@
 
       "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
       "@app-vendor/*": ["src/Applications/Vendor/*"],
-      "@app-storefront/*": ["/*"]
+      "@app-storefront/*": ["*"]
     },
     "lib": [
       "esnext",
