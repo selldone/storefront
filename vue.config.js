@@ -81,7 +81,7 @@ module.exports = {
     },
   },
 
-  publicPath: "/",
+  publicPath:IS_PRODUCTION? "/":'https://localhost:8080/',
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
