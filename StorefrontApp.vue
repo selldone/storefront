@@ -370,7 +370,7 @@ export default {
         window.$storefront.user
           .setFcmToken(token)
           .then(({}) => {})
-          .catch(function (error) {
+             .catch( (error) =>{
             console.error(error);
           });
       }, 5000);

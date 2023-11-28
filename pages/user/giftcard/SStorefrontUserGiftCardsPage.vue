@@ -192,7 +192,7 @@ export default {
           this.pageCount = Math.ceil(this.totalItems / this.itemsPerPage); //set by event not work!!!
         })
 
-        .catch(function (error) {})
+           .catch( (error) =>{})
         .then(() => {
           this.busy_fetch = false;
         });

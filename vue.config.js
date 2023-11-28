@@ -41,6 +41,12 @@ function PAGES() {
 module.exports = {
   lintOnSave: false,
 
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
+
   /* pluginOptions: {
      webpackBundleAnalyzer: {
        openAnalyzer: false
