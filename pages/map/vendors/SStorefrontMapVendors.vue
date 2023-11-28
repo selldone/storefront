@@ -136,7 +136,7 @@
                   max-width="360"
                   class="mx-auto"
                   :to="{
-                    name: 'VendorPublicPage',
+                    name: window.$storefront.routes.SHOP_VENDOR_PAGE,
                     params: {
                       slug: slugify(vendor.name),
                       vendor_id: vendor.id,
@@ -188,6 +188,8 @@ export default {
 
   data() {
     return {
+
+
       map_box: null,
       map_id: Math.round(Math.random() * 999999),
 

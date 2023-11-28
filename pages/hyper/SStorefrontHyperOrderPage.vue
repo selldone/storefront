@@ -33,7 +33,7 @@
         v-if="USER()"
         class="absolute-top-start slideInDown"
         text
-        :to="{ name: 'HyperPage' }"
+        :to="{ name: window.$storefront.routes.HYPER_PAGE }"
         exact
       >
         <v-icon class="ms-1">{{ $t("icons.chevron_back") }}</v-icon>

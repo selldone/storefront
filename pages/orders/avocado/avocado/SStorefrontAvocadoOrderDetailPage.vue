@@ -17,7 +17,7 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
         <router-link
-          :to="{ name: 'HistoryOrdersAvocado' }"
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
           class="text-uppercase"
         >
           <img

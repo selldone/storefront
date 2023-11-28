@@ -152,7 +152,7 @@
                   class="max-w-400 mx-auto d-block"
                   rounded
                   :to="{
-                    name: 'ProductPage',
+                    name: window.$storefront.routes.PRODUCT_PAGE,
                     params: {
                       shop_name: shop_name,
                       product_id: product.id,

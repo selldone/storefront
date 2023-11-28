@@ -203,7 +203,6 @@ import SStorefrontChatPopup from "@components/storefront/chat/SStorefrontChatPop
 import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
 import SStorefrontPrimaryHeader from "@components/storefront/header/SStorefrontPrimaryHeader.vue";
 import SStorefrontProductInBasketIndicator from "@components/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
-import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "SStorefrontLayout",
@@ -419,9 +418,9 @@ export default {
       // transparent top menu: (reset in page change!)
 
       if (
-        this.$route.name !== "PageRender" &&
+        this.$route.name !== window.$storefront.routes.PAGE_RENDER &&
         this.$route.name !== "CustomHomePage" &&
-        this.$route.name !== "IncludePageRender"
+        this.$route.name !== window.$storefront.routes.INCLUDE_PAGE_RENDER
       ) {
         this.transparent_header = null;
         this.dark_header = null; // Default value is null!
@@ -473,7 +472,7 @@ export default {
      */
     onSearch(event) {
       this.$router.push({
-        name: StorefrontRoutesName.SHOP_PAGE,
+        name: window.$storefront.routes.SHOP_PAGE,
         params: { shop_name: this.shop.shop_name },
         query: { search: event.search, search_type: event.search_type },
       });
@@ -486,10 +485,10 @@ export default {
      * to show all products for the selected shop.
      */
     onClear() {
-      if (this.$route.name === StorefrontRoutesName.SHOP_PAGE)
+      if (this.$route.name === window.$storefront.routes.SHOP_PAGE)
         //Only in shop page clear => show all products!
         this.$router.push({
-          name: StorefrontRoutesName.SHOP_PAGE,
+          name: window.$storefront.routes.SHOP_PAGE,
           params: { shop_name: this.shop.shop_name },
         });
     },

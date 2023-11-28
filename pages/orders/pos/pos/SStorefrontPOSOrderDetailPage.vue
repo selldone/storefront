@@ -16,16 +16,23 @@
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link :to="{ name: 'HistoryOrdersPOS' }" class="text-uppercase">
-          <img :src="require('@components/assets/icons/pos-order-type.svg')" width="20" height="20" class="me-1" />
-          {{$t('global.commons.orders_list')}}</router-link
+        <router-link
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_POS }"
+          class="text-uppercase"
+        >
+          <img
+            :src="require('@components/assets/icons/pos-order-type.svg')"
+            width="20"
+            height="20"
+            class="me-1"
+          />
+          {{ $t("global.commons.orders_list") }}</router-link
         >
         <span class="mx-1 text-muted">/</span>
         <b>{{ getBasketOrderCode(basket) }}</b>
-
       </v-toolbar-title>
     </v-toolbar>
-      <v-container class="px-0">
+    <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery > State ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-order-payment-widget

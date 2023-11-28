@@ -16,7 +16,7 @@
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link :to="{ name: 'HistoryOrdersSubscription' }" class="text-uppercase">
+        <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION }" class="text-uppercase">
           <img :src="orderType.image" width="20" height="20" class="me-1" />
           {{$t('global.commons.orders_list')}}</router-link
         >

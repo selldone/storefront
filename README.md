@@ -92,13 +92,13 @@ commands:
 With Yarn:
 
 ```shell
-yarn serve
+yarn serve --port 8080
 ```
 
 With npm:
 
 ```shell
-npm serve
+npm serve --port 8080
 ```
 
 Open served address: e.g. `http://localhost:8080/`

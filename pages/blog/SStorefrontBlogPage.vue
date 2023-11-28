@@ -45,7 +45,7 @@
           rounded
           text
           link
-          :to="{ name: StorefrontRoutesName.BLOGS_PAGE, query: { tags: tag } }"
+          :to="{ name: window.$storefront.routes.BLOGS_PAGE, query: { tags: tag } }"
         >
           {{ tag }}
         </v-btn>

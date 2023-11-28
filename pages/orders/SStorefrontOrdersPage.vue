@@ -42,7 +42,7 @@
           :src="require('@components/assets/icons/pos-order-type.svg')"
           :tooltip="$t('global.commons.pos')"
           has-badge
-          :to="{ name: 'HistoryOrdersPOS' }"
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_POS }"
           exact
           tile
         />
@@ -52,7 +52,7 @@
           key="avo"
           :src="require('@components/assets/icons/avocado.svg')"
           :tooltip="$t('global.commons.avocado')"
-          :to="{ name: 'HistoryOrdersAvocado' }"
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
           has-badge
           :badge-number="getBadgeCount('AVO')"
           persist-badge
@@ -103,17 +103,17 @@ export default {
     page_name(type) {
       let page_name = null;
       if (type === ProductType.PHYSICAL) {
-        page_name = "HistoryOrdersPhysical";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
       } else if (type === ProductType.VIRTUAL) {
-        page_name = "HistoryOrdersVirtual";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_VIRTUAL;
       } else if (type === ProductType.FILE) {
-        page_name = "HistoryOrdersFile";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_FILE;
       } else if (type === ProductType.SERVICE) {
-        page_name = "HistoryOrdersService";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_SERVICE;
       } else if (type === ProductType.SUBSCRIPTION) {
-        page_name = "HistoryOrdersSubscription";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION;
       } else if (type === "POS") {
-        page_name = "HistoryOrdersPOS";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_POS;
       }
       return page_name;
     },

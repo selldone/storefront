@@ -29,7 +29,7 @@
         :tooltip="$t('global.actions.back')"
         :to="
           $route.query.return_id
-            ? { name: 'UserReturnRequests', params: { STATE: RETURN } }
+            ? { name: window.$storefront.routes.USER_RETURN_REQUESTS, params: { STATE: RETURN } }
             : { name: history_list_page_name, params: { STATE: RETURN } }
         "
       />
@@ -110,17 +110,17 @@ export default {
       );
     },
     history_list_page_name() {
-      let page_name = "HistoryOrdersPhysical";
+      let page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
       if (this.type === ProductType.PHYSICAL) {
-        page_name = "HistoryOrdersPhysical";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
       } else if (this.type === ProductType.VIRTUAL) {
-        page_name = "HistoryOrdersVirtual";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_VIRTUAL;
       } else if (this.type === ProductType.FILE) {
-        page_name = "HistoryOrdersFile";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_FILE;
       } else if (this.type === ProductType.SERVICE) {
-        page_name = "HistoryOrdersService";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_SERVICE;
       } else if (this.type === ProductType.SUBSCRIPTION) {
-        page_name = "HistoryOrdersSubscription";
+        page_name = window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION;
       }
       return page_name;
     },

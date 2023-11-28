@@ -57,13 +57,13 @@ export default {
   computed: {
     page_name() {
       const name = this.$route.name;
-      return name === "ShopProfilePage_AboutUs"
+      return name === window.$storefront.routes.SHOP_PROFILE_PAGE_ABOUT_US
         ? this.$t("official_pages.about_us")
-        : name === "ShopProfilePage_Terms"
+        : name === window.$storefront.routes.SHOP_PROFILE_PAGE_TERMS
         ? this.$t("official_pages.terms")
-        : name === "ShopProfilePage_Privacy"
+        : name === window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY
         ? this.$t("official_pages.privacy")
-        : name === "ShopContactUs"
+        : name === window.$storefront.routes.SHOP_CONTACT_US
         ? this.$t("official_pages.contact_us")
         : "";
     },

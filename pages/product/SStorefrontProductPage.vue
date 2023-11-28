@@ -31,7 +31,7 @@
             :to="
               product.category
                 ? {
-                    name: 'ShopCategoryPage',
+                    name: window.$storefront.routes.SHOP_CATEGORY_PAGE,
                     params: { category_name: product.category.name },
                   }
                 : { name: 'ShopPage' }
@@ -406,6 +406,8 @@ export default {
 
   data: function () {
     return {
+
+
       show_article: true, // For refresh article!
 
       product: null,
@@ -428,6 +430,7 @@ export default {
   },
 
   computed: {
+
     is_physical() {
       return this.product.type === ProductType.PHYSICAL.code;
     },

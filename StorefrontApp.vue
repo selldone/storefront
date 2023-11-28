@@ -154,7 +154,6 @@ import { EventName } from "@core/events/EventBus";
 import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
 import SMapDialog from "@components/map/SMapDialog.vue";
 import SStorefrontWebappDebugView from "@components/debug/SStorefrontWebappDebugView.vue";
-import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "StorefrontApp",
@@ -267,9 +266,9 @@ export default {
         this.$vuetify.goTo(0, {
           duration:
             _old?.name === _new?.name ||
-            (_old?.name === StorefrontRoutesName.SHOP_PAGE &&
+            (_old?.name === window.$storefront.routes.SHOP_PAGE &&
               _new?.name ===
-                "ShopCategoryPage") /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
+                window.$storefront.routes.SHOP_CATEGORY_PAGE) /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
               ? 800
               : 0, // Can be 800ms,...
           offset: 0,

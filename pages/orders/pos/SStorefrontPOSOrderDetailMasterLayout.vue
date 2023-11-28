@@ -29,8 +29,8 @@
         :tooltip="$t('global.actions.back')"
         :to="
           $route.query.return_id
-            ? { name: 'UserReturnRequests', params: { STATE: RETURN } }
-            : { name: history_list_page_name, params: { STATE: RETURN } }
+            ? { name: window.$storefront.routes.USER_RETURN_REQUESTS, params: { STATE: RETURN } }
+            : { name: window.$storefront.routes.HISTORY_ORDERS_POS, params: { STATE: RETURN } }
         "
       />
 
@@ -82,9 +82,7 @@ export default {
   },
 
   computed: {
-    history_list_page_name() {
-      return "HistoryOrdersPOS";
-    },
+
   },
 
   watch: {},

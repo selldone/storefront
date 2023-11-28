@@ -27,7 +27,7 @@
       <circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
-        :to="{ name: 'HistoryOrdersAvocado', params: { STATE: RETURN } }"
+        :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO, params: { STATE: RETURN } }"
       />
 
       <v-spacer></v-spacer>

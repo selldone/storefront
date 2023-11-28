@@ -180,7 +180,8 @@ import SetupService from "@core/server/SetupService";
 import { Shop } from "@core/models/shop/shop.model";
 import type { Route } from "vue-router/types/router.d.ts";
 import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
-import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -260,7 +261,7 @@ function getRouteForHome(): IVueRoute {
         children: [
           {
             path: "",
-            name: StorefrontRoutesName.COMMUNITY_HOME_PAGE,
+            name: CommunityRoutesName.COMMUNITY_HOME_PAGE,
             component: CommunityHomePage,
           },
         ],
@@ -338,8 +339,8 @@ const routes: IVueRoute[] = [
         path: "shop",
         name:
           CUSTOM_HOME === "shop"
-            ? "ShopPage-shop"
-            : StorefrontRoutesName.SHOP_PAGE, // Prevent duplicated route name 'ShopPage'
+            ? "ShopPage-shop" // Prevent duplicated route name 'ShopPage'
+            : StorefrontRoutesName.SHOP_PAGE,
         component: SStorefrontProductsPage,
         meta: {
           search: true,
@@ -349,7 +350,7 @@ const routes: IVueRoute[] = [
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ Category ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: ":category_name-category",
-        name: "ShopCategoryPage",
+        name: StorefrontRoutesName.SHOP_CATEGORY_PAGE,
         component: SStorefrontProductsPage,
         meta: {
           search: true,
@@ -361,7 +362,7 @@ const routes: IVueRoute[] = [
       {
         path: "/@:slug-:vendor_id(\\d+)",
         component: SStorefrontProductsPage,
-        name: "VendorPublicPage",
+        name: StorefrontRoutesName.SHOP_VENDOR_PAGE,
         meta: {
           search: true,
         },
@@ -371,7 +372,7 @@ const routes: IVueRoute[] = [
 
       {
         path: "pages/:page_name",
-        name: "PageRender",
+        name: StorefrontRoutesName.PAGE_RENDER,
         component: SPageLoader,
         meta: {
           fullscreen: true,
@@ -382,7 +383,7 @@ const routes: IVueRoute[] = [
 
       {
         path: "in/:path-:include_id(\\d+)",
-        name: "IncludePageRender",
+        name: StorefrontRoutesName.INCLUDE_PAGE_RENDER,
         component: SPageLoader,
         meta: {
           fullscreen: true,
@@ -392,7 +393,7 @@ const routes: IVueRoute[] = [
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ product Page ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "product/:product_id",
-        name: "ProductPage",
+        name: StorefrontRoutesName.PRODUCT_PAGE,
         component: SStorefrontProductPage,
         meta: {
           search: true, // SHow search bar
@@ -403,7 +404,7 @@ const routes: IVueRoute[] = [
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ product Page ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "comparison",
-        name: "ComparisonPage",
+        name: StorefrontRoutesName.COMPARISON_PAGE,
         component: SStorefrontComparisonPage,
         meta: {
           bg_color: "#f0f0f0", // Page background color | Set as --background root style variable
@@ -413,14 +414,14 @@ const routes: IVueRoute[] = [
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ Shop info page (Instead of footer in mobile) ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "info",
-        name: "ShopInfoPageMobile",
+        name: StorefrontRoutesName.SHOP_INFO_PAGE_MOBILE,
         component: SStorefrontInfoPage,
       },
 
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ basket Page  ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "basket/:type",
-        name: "BasketPage",
+        name: StorefrontRoutesName.BASKET_PAGE,
         component: SStorefrontBasketPage,
       },
 
@@ -436,53 +437,53 @@ const routes: IVueRoute[] = [
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ My Orders Page (Virtual, Physical ...) ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "orders",
-            name: "OrdersPage",
+            name: StorefrontRoutesName.ORDERS_PAGE,
             component: SStorefrontOrdersPage,
 
             children: [
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Physical ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "physical",
-                name: "HistoryOrdersPhysical",
+                name: StorefrontRoutesName.HISTORY_ORDERS_PHYSICAL,
                 component: SStorefrontHistoryOrdersPhysicalPage,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Virtual ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "virtual",
-                name: "HistoryOrdersVirtual",
+                name: StorefrontRoutesName.HISTORY_ORDERS_VIRTUAL,
                 component: SStorefrontHistoryOrdersVirtualPage,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ File ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "file",
-                name: "HistoryOrdersFile",
+                name: StorefrontRoutesName.HISTORY_ORDERS_FILE,
                 component: SStorefrontHistoryOrdersFilePage,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Service ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "service",
-                name: "HistoryOrdersService",
+                name: StorefrontRoutesName.HISTORY_ORDERS_SERVICE,
                 component: SStorefrontHistoryOrdersServicePage,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Subscription ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "subscription",
-                name: "HistoryOrdersSubscription",
+                name: StorefrontRoutesName.HISTORY_ORDERS_SUBSCRIPTION,
                 component: SStorefrontHistoryOrdersSubscriptionPage,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ POS ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "pos",
-                name: "HistoryOrdersPOS",
+                name: StorefrontRoutesName.HISTORY_ORDERS_POS,
                 component: SStorefrontHistoryOrdersPOSPage,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Avocado ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "avocado",
-                name: "HistoryOrdersAvocado",
+                name: StorefrontRoutesName.HISTORY_ORDERS_AVOCADO,
                 component: SStorefrontHistoryOrdersAvocadoPage,
               },
             ],
@@ -491,42 +492,42 @@ const routes: IVueRoute[] = [
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Profile ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "profile",
-            name: "UserProfilePage",
+            name: StorefrontRoutesName.USER_PROFILE_PAGE,
             component: SStorefrontUserProfilePage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Addresses ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "addresses",
-            name: "UserAddressesPage",
+            name: StorefrontRoutesName.USER_ADDRESSES_PAGE,
             component: SStorefrontUserAddressesPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User order returns ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "orders-return",
-            name: "UserReturnRequests",
+            name: StorefrontRoutesName.USER_RETURN_REQUESTS,
             component: SStorefrontUserReturnRequests,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Favorites ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "favorites",
-            name: "UserFavoritesPage",
+            name: StorefrontRoutesName.USER_FAVORITES_PAGE,
             component: SStorefrontUserFavoritesPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Comments ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "comments",
-            name: "UserCommentsPage",
+            name: StorefrontRoutesName.USER_COMMENTS_PAGE,
             component: SStorefrontUserCommentsPage,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User gift cards ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "gift-cards",
-            name: "UserGiftCardsPage",
+            name:  StorefrontRoutesName.USER_GIFTCARDS_PAGE,
             component: SStorefrontUserGiftCardsPage,
           },
         ],
@@ -535,7 +536,7 @@ const routes: IVueRoute[] = [
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ Redirect login ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "selldone-callback",
-        name: "LoginRedirect",
+        name: StorefrontRoutesName.LOGIN_REDIRECT,
         component: SStorefrontLoginRedirect,
       },
 
@@ -552,13 +553,13 @@ const routes: IVueRoute[] = [
       {
         // Old version!
         path: "blog",
-        name: "ShopBlogsPage",
+        name: StorefrontRoutesName.SHOP_BLOGS_PAGE,
         component: SStorefrontBlogsPage,
       },
 
       {
         path: "/team/:author-:author_id(\\d+)",
-        name: "AuthorPage",
+        name: StorefrontRoutesName.AUTHOR_PAGE,
         component: SStorefrontBlogsPage,
         meta: {
           title: "Team | {author}",
@@ -571,12 +572,12 @@ const routes: IVueRoute[] = [
 
       {
         path: "blog/:slug-:blog_id(\\d+)",
-        name: "ShopBlogPageSlug",
+        name: StorefrontRoutesName.SHOP_BLOG_PAGE_SLUG,
         component: SStorefrontBlogPage,
       },
       {
         path: "blog/:blog_id",
-        name: "ShopBlogPage",
+        name: StorefrontRoutesName.SHOP_BLOG_PAGE,
         component: SStorefrontBlogPage,
       },
       {
@@ -587,26 +588,26 @@ const routes: IVueRoute[] = [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ About Us ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "about-us",
-            name: "ShopProfilePage_AboutUs",
+            name: StorefrontRoutesName.SHOP_PROFILE_PAGE_ABOUT_US,
             component: SStorefrontAboutUsPage,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ Terms ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "terms",
-            name: "ShopProfilePage_Terms",
+            name: StorefrontRoutesName.SHOP_PROFILE_PAGE_TERMS,
             component: SStorefrontTermsPage,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ Privacy ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "privacy",
-            name: "ShopProfilePage_Privacy",
+            name: StorefrontRoutesName.SHOP_PROFILE_PAGE_PRIVACY,
             component: SStorefrontPrivacyPage,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Contact US ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "contact-us",
-            name: "ShopContactUs",
+            name: StorefrontRoutesName.SHOP_CONTACT_US,
             component: SStorefrontContactUsPage,
           },
         ],
@@ -860,7 +861,7 @@ const routes: IVueRoute[] = [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Categories (Home)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "",
-            name: StorefrontRoutesName.COMMUNITY_HOME_PAGE,
+            name: CommunityRoutesName.COMMUNITY_HOME_PAGE,
             component: CommunityHomePage,
           },
 
@@ -880,14 +881,14 @@ const routes: IVueRoute[] = [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Category (Topics list)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: ":category_id-:category_slug",
-            name: "CommunityCategoryPage",
+            name: CommunityRoutesName.COMMUNITY_CATEGORY_PAGE,
             component: CommunityCategoryPage,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Topic  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: ":category_id-:category_slug/:topic_id-:topic_slug",
-            name: "CommunityTopicPage",
+            name: CommunityRoutesName.COMMUNITY_TOPIC_PAGE,
             component: CommunityTopicPage,
           },
         ],

@@ -17,7 +17,7 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
         <router-link
-          :to="{ name: 'HistoryOrdersService' }"
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_SERVICE }"
           class="text-uppercase"
         >
           <img :src="orderType.image" width="20" height="20" class="me-1" />

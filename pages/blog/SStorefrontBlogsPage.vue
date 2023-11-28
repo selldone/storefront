@@ -65,7 +65,7 @@
             <router-link
               v-if="latest_article"
               :to="{
-                name: 'ShopBlogPageSlug',
+                name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
                 params: {
                   blog_id: latest_article.parent_id,
                   slug: latest_article.slug,
@@ -106,7 +106,7 @@
                 v-for="(article, i) in latest4_articles"
                 :key="article.id"
                 :to="{
-                  name: 'ShopBlogPageSlug',
+                  name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
                   params: { blog_id: article.parent_id, slug: article.slug },
                 }"
                 exact
@@ -192,7 +192,7 @@
                 v-for="(category, i) in stared_categories"
                 :key="category.category"
                 :to="{
-                  name: StorefrontRoutesName.BLOGS_PAGE,
+                  name: window.$storefront.routes.BLOGS_PAGE,
                   query: {
                     page: 1,
                     category: category.id,
@@ -269,7 +269,7 @@
           >
             <v-list-item
               :to="{
-                name: 'ShopBlogPageSlug',
+                name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
                 params: { blog_id: article.parent_id, slug: article.slug },
               }"
               exact
@@ -459,7 +459,7 @@
                   v-for="article in props.items"
                   :key="article.id"
                   :to="{
-                    name: 'ShopBlogPageSlug',
+                    name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
                     params: { blog_id: article.parent_id, slug: article.slug },
                   }"
                   exact
@@ -546,7 +546,6 @@
 import SShopBlogCard from "@components/storefront/blog/SShopBlogCard.vue";
 import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
 import _ from "lodash-es";
-import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "SStorefrontBlogsPage",
@@ -562,7 +561,7 @@ export default {
    */
   data: () => ({
     to_home: {
-      name: StorefrontRoutesName.BLOGS_PAGE,
+      name: window.$storefront.routes.BLOGS_PAGE,
       query: {
         page: 1,
         category: undefined,
