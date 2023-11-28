@@ -72,16 +72,16 @@ export default new Vuex.Store<State>({
     user: null,
     debug: false,
 
-    //----------- 🔑 Permissions ----------
+    //━━━━━━━ 🔑 Permissions ━━━━━━━
     permissions: null,
 
-    //-----------Basket----------
+    //━━━━━━━ Basket ━━━━━━━
     basket_physical: null,
     basket_virtual: null,
     basket_file: null,
     basket_service: null,
     basket_subscription: null,
-    //----------- 📦 Gifts ----------
+    //━━━━━━━ 📦 Gifts ━━━━━━━
     gifts: null,
 
     shop: null,
@@ -89,54 +89,54 @@ export default new Vuex.Store<State>({
 
     pending_transactions: [],
 
-    //----------- User Currency ----------
+    //━━━━━━━ User Currency ━━━━━━━
     user_currency: null,
 
-    //----------- Products comparison ----------
+    //━━━━━━━ Products comparison ━━━━━━━
     products_comparison: null,
 
-    //----------- Customer Club ----------
+    //━━━━━━━ Customer Club ━━━━━━━
     club: null,
 
-    //----------- Orders state ----------
+    //━━━━━━━ Orders state ━━━━━━━
     orders_state: null,
 
-    //----------- Is native ----------
+    //━━━━━━━ Is native ━━━━━━━
 
     is_native: false,
 
-    //----------- Coupons ----------
+    //━━━━━━━ Coupons ━━━━━━━
     coupons: [],
 
-    //----------- Offers ----------
+    //━━━━━━━ Offers ━━━━━━━
     offers: [],
 
-    //----------- Countries ----------
+    //━━━━━━━ Countries ━━━━━━━
     countries: [],
 
-    //----------- Lottery ----------
+    //━━━━━━━ Lottery ━━━━━━━
     lottery_prizes: [],
 
-    //----------- Sales Channel Entry----------
+    //━━━━━━━ Sales Channel Entry ━━━━━━━
     channel_entry: null, // Can be : instagram,..
 
-    //----------- Community Configuration ----------
+    //━━━━━━━ Community Configuration ━━━━━━━
     community_config: {
       show_deletes: false /* Show Deleted Posts for admin and moderators*/,
     },
 
-    //----------- UI ----------
+    //━━━━━━━ UI ━━━━━━━
     bottom_nav_show: false,
     busy_user: true, // Initial state, important to decide what happen in router (meta : requiresAuth)
     show_filter_menu: false, // Show filters menu global access
 
-    //----------- Hide bottom navigation ----------
+    //━━━━━━━ Hide bottom navigation ━━━━━━━
     force_hide_navigation: false,
 
-    //----------- Product Page ----------
+    //━━━━━━━ Product Page ━━━━━━━
     current_selected_variant: null,
 
-    //----------- Shop Main Banner ----------
+    //━━━━━━━ Shop Main Banner ━━━━━━━
     /**
      * Current displayed campaign banner.
      */
@@ -169,12 +169,12 @@ export default new Vuex.Store<State>({
       state.debug = debug;
     },
 
-    //----------- 🔑 Permissions ----------
+    //━━━━━━━ 🔑 Permissions ━━━━━━━
     setUserPermissions(state, permissions) {
       state.permissions = permissions;
     },
 
-    //-----------Basket----------
+    //━━━━━━━ Basket ━━━━━━━
 
     setBasketPhysical(state, basket) {
       state.basket_physical = basket;
@@ -192,66 +192,66 @@ export default new Vuex.Store<State>({
       state.basket_subscription = basket;
     },
 
-    //----------- 📦 Gifts ----------
+    //━━━━━━━ 📦 Gifts ━━━━━━━
     setGifts(state, gifts) {
       state.gifts = gifts;
     },
 
-    //----------- User Currency ----------
+    //━━━━━━━ User Currency ━━━━━━━
     setUserCurrency(state, currency: ICurrency) {
       state.user_currency = currency.code;
     },
 
-    //----------- Products comparison ----------
+    //━━━━━━━ Products comparison ━━━━━━━
     setProductsComparison(state, products_comparison: ProductCompare[] | null) {
       state.products_comparison = products_comparison;
     },
-    //----------- Customer Club ----------
+    //━━━━━━━ Customer Club ━━━━━━━
     setClub(state, club) {
       state.club = club;
     },
 
-    //----------- Orders state ----------
+    //━━━━━━━ Orders state ━━━━━━━
     setOrdersState(state, orders_state) {
       state.orders_state = orders_state;
     },
 
-    //----------- Is native mode ----------
+    //━━━━━━━ Is native mode ━━━━━━━
     setIsNative(state, is_native) {
       state.is_native = is_native;
     },
 
-    //----------- Coupons ----------
+    //━━━━━━━ Coupons ━━━━━━━
     setCoupons(state, coupons) {
       state.coupons = coupons;
     },
 
-    //----------- Offers ----------
+    //━━━━━━━ Offers ━━━━━━━
     setOffers(state, offers) {
       state.offers = offers;
     },
 
-    //----------- Countries ----------
+    //━━━━━━━ Countries ━━━━━━━
     setCountries(state, countries) {
       state.countries = countries;
     },
 
-    //----------- Lottery ----------
+    //━━━━━━━ Lottery ━━━━━━━
     setLotteryPrizes(state, lottery_prizes) {
       state.lottery_prizes = lottery_prizes;
     },
 
-    //----------- Sales Channel Entry----------
+    //━━━━━━━ Sales Channel Entry━━━━━━━
     setChannelEntry(state, channel_entry) {
       state.channel_entry = channel_entry;
     },
 
-    //----------- Community Configuration ----------
+    //━━━━━━━ Community Configuration ━━━━━━━
     setCommunityConfiguration(state, community_config) {
       state.community_config = community_config;
     },
 
-    //----------- UI ----------
+    //━━━━━━━ UI ━━━━━━━
     setBottomNavShow(state, bottom_nav_show) {
       state.bottom_nav_show = bottom_nav_show;
     },
@@ -262,16 +262,16 @@ export default new Vuex.Store<State>({
       state.show_filter_menu = show_filter_menu;
     },
 
-    //----------- Hide bottom navigation ----------
+    //━━━━━━━ Hide bottom navigation ━━━━━━━
     setForceHideNavigation(state, force_hide_navigation) {
       state.force_hide_navigation = force_hide_navigation;
     },
 
-    //----------- Product Page ----------
+    //━━━━━━━ Product Page ━━━━━━━
     setCurrentSelectedVariant(state, variant) {
       state.current_selected_variant = variant;
     },
-    //----------- Shop Main Banner ----------
+    //━━━━━━━ Shop Main Banner ━━━━━━━
     /**
      * We update the banner's status in the store state to notify other components, such as the layout, whether the banner is displayed.
      * @param state
@@ -307,21 +307,21 @@ export default new Vuex.Store<State>({
       return state.debug;
     },
 
-    //----------- 🔑 Permissions ----------
+    //━━━━━━━ 🔑 Permissions ━━━━━━━
     getPermissions(state) {
       return state.permissions;
     },
-    //-----------External Accounts----------
+    //━━━━━━━External Accounts ━━━━━━━
     /*  getExchangeRates(state) {
       return state.exchangeRates;
     },*/
 
-    //----------- 📦 Gifts ----------
+    //━━━━━━━ 📦 Gifts ━━━━━━━
     getGifts(state) {
       return state.gifts;
     },
 
-    //-----------Basket----------
+    //━━━━━━━Basket━━━━━━━
     getBasketPhysical(state): object | null {
       return state.basket_physical;
     },
@@ -337,63 +337,63 @@ export default new Vuex.Store<State>({
     getBasketSubscription(state): object | null {
       return state.basket_subscription;
     },
-    //----------- User Currency ----------
+    //━━━━━━━ User Currency ━━━━━━━
     getUserCurrency(state) {
       if (!state.user_currency) return null;
       return Currency[state.user_currency];
     },
 
-    //----------- Products comparison ----------
+    //━━━━━━━ Products comparison ━━━━━━━
     getProductsComparison(state: State): ProductCompare[] | null {
       return state.products_comparison;
     },
-    //----------- Customer Club ----------
+    //━━━━━━━ Customer Club ━━━━━━━
     getClub(state) {
       return state.club;
     },
 
-    //----------- Orders state ----------
+    //━━━━━━━ Orders state ━━━━━━━
     getOrdersState(state) {
       return state.orders_state;
     },
 
-    //----------- Is native mode ----------
+    //━━━━━━━ Is native mode ━━━━━━━
     // this.$store.getters.getIsNative
     getIsNative(state) {
       return state.is_native;
     },
 
-    //----------- Coupons ----------
+    //━━━━━━━ Coupons ━━━━━━━
     getCoupons(state) {
       return state.coupons;
     },
 
-    //----------- Offers ----------
+    //━━━━━━━ Offers ━━━━━━━
     getOffers(state) {
       return state.offers;
     },
 
-    //----------- Countries ----------
+    //━━━━━━━ Countries ━━━━━━━
     getCountries(state) {
       return state.countries;
     },
 
-    //----------- Lottery ----------
+    //━━━━━━━ Lottery ━━━━━━━
     getLotteryPrizes(state) {
       return state.lottery_prizes;
     },
 
-    //----------- Sales Channel Entry----------
+    //━━━━━━━ Sales Channel Entry ━━━━━━━
     getChannelEntry(state) {
       return state.channel_entry;
     },
 
-    //----------- Community Configuration ----------
+    //━━━━━━━ Community Configuration ━━━━━━━
     getCommunityConfiguration(state) {
       return state.community_config;
     },
 
-    //----------- UI ----------
+    //━━━━━━━ UI ━━━━━━━
     getBottomNavShow(state) {
       return state.bottom_nav_show;
     },
@@ -403,21 +403,21 @@ export default new Vuex.Store<State>({
     getShowFilterMenu(state) {
       return state.show_filter_menu;
     },
-    //----------- Hide bottom navigation ----------
+    //━━━━━━━ Hide bottom navigation ━━━━━━━
     getForceHideNavigation(state) {
       return state.force_hide_navigation;
     },
 
-    //----------- Product Page ----------
+    //━━━━━━━ Product Page ━━━━━━━
     getCurrentSelectedVariant(state) {
       return state.current_selected_variant;
     },
 
-    //----------- Shop Main Banner ----------
+    //━━━━━━━ Shop Main Banner ━━━━━━━
     getShopMainBanner(state) {
       return state.shop_main_banner;
     },
-    // ――――――――――――――――――――――――― Initial Location ―――――――――――――――――――――――――
+    // ━━━━━━━ Initial Location ━━━━━━━
 
     getInitialLocation(state) {
       return state.initial_location;

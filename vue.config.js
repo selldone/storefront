@@ -16,15 +16,13 @@ const webpack = require("webpack");
 const manifest = require("./manifest.json");
 const path = require("path");
 
-
 /**
  * Storefront layout version. This unique identifier is used for naming each app version published on Selldone.
  * @type {string}
  */
 const VERSION_DIR = manifest.version;
 
-
-const IS_PRODUCTION=process.env.NODE_ENV === "production"
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 function PAGES() {
   const out = {
@@ -77,7 +75,7 @@ module.exports = {
     },
   },
 
-  publicPath:'/',
+  publicPath: "/",
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
@@ -114,20 +112,19 @@ module.exports = {
     output: {
       filename: (chunkData) => {
         return ["shop"].includes(chunkData.chunk.name)
-            ? "layers/"+VERSION_DIR + "/[name].js"
-            : "layers/"+VERSION_DIR + "/[name].[fullhash].js";
+          ? "layers/" + VERSION_DIR + "/[name].js"
+          : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
       },
-      chunkFilename: "layers/"+VERSION_DIR + "/[name].[fullhash].js",
+      chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].js",
     },
     resolve: {
       extensions: [".js", ".vue"],
       alias: {
         "jquery-ui/widget": "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
         "jquery-fileupload":
-            "blueimp-file-upload/js/vendor/jquery.fileupload.js",
+          "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-            "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
-
+          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
 
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
         "@core": path.resolve(__dirname, "core/"),
@@ -137,13 +134,13 @@ module.exports = {
         "@sdk-community": path.resolve(__dirname, "SDKs/community/"),
         "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
 
-
-        "@app-page-builder": path.resolve(__dirname, "src/Applications/PageBuilder/"),
+        "@app-page-builder": path.resolve(
+          __dirname,
+          "src/Applications/PageBuilder/"
+        ),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-
       },
     },
 
@@ -156,12 +153,12 @@ module.exports = {
     if (config.plugins.has("extract-css")) {
       const extractCSSPlugin = config.plugin("extract-css");
       extractCSSPlugin &&
-      extractCSSPlugin.tap(() => [
-        {
-          filename: "layers/"+VERSION_DIR + "/[name].css",
-          chunkFilename: "layers/"+VERSION_DIR + "/[name].[fullhash].css",
-        },
-      ]);
+        extractCSSPlugin.tap(() => [
+          {
+            filename: "layers/" + VERSION_DIR + "/[name].css",
+            chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
+          },
+        ]);
     }
 
     config.optimization.splitChunks(false);

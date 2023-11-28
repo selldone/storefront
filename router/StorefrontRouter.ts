@@ -137,12 +137,16 @@ const StorefrontHyperOrderPage = () =>
     /* webpackChunkName: "shop-hyper" */ "../pages/hyper/StorefrontHyperOrderPage.vue"
   );
 const StorefrontHyperPage = () =>
-  import(/* webpackChunkName: "shop-hyper" */ "../pages/hyper/StorefrontHyperPage.vue");
+  import(
+    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/StorefrontHyperPage.vue"
+  );
 
 //――――――――――――――――――――――――― POS ―――――――――――――――――――――――――
 
 const StorefrontPOSPage = () =>
-  import(/* webpackChunkName: "shop-pos" */ "../pages/pos/StorefrontPOSPage.vue");
+  import(
+    /* webpackChunkName: "shop-pos" */ "../pages/pos/StorefrontPOSPage.vue"
+  );
 
 //――――――――――――――――――――――――― Custom Home Page ―――――――――――――――――――――――――
 
@@ -176,7 +180,7 @@ import SetupService from "@core/server/SetupService";
 import { Shop } from "@core/models/shop/shop.model";
 import type { Route } from "vue-router/types/router.d.ts";
 import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
-import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -332,7 +336,10 @@ const routes: IVueRoute[] = [
       {
         // Order important! first route to ShopPage consider as ShopPage!
         path: "shop",
-        name: CUSTOM_HOME === "shop" ? "ShopPage-shop" : StorefrontRoutesName.SHOP_PAGE, // Prevent duplicated route name 'ShopPage'
+        name:
+          CUSTOM_HOME === "shop"
+            ? "ShopPage-shop"
+            : StorefrontRoutesName.SHOP_PAGE, // Prevent duplicated route name 'ShopPage'
         component: StorefrontProductsPage,
         meta: {
           search: true,
