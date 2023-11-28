@@ -12,7 +12,9 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<!-- 
+<!--
+  🍉 This view will be shown in the StorefrontApp.vue ▶ <router-view> component.
+
   Primary Header 
   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
   ┃ Primary Header             ┃
@@ -33,7 +35,7 @@
   ┃ Primary Footer             ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
   
-  Absolute widgets
+  Absolute/Fixed widgets
   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
   ┃ Basket Indicator           ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛

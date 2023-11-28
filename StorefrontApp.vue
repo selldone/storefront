@@ -12,6 +12,30 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
+<!--
+  🍉 This view will be shown in the HTML ▶ BODY ▶ <div id="app">.
+
+  Banner
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Campaign Banner            ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Main Content
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ router-view                ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Absolute/Fixed widgets
+  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+  ┃ Private / Restricted Shop  ┃
+  ┃ Social links (Floating)    ┃
+  ┃ Payment                    ┃
+  ┃ Products Comparison        ┃
+  ┃ Need Login                 ┃
+  ┃ ...                        ┃
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+-->
 <template>
   <v-app
     v-if="shop"
@@ -26,6 +50,7 @@
     @keyup.ctrl="SwitchLanguage"
     :style="[
       {
+        /* Global theme variable of the storefront */
         '--theme-dark': SaminColorDark,
         '--theme-light': SaminColorLight,
         '--theme-deep-dark': SaminColorDarkDeep,
@@ -37,126 +62,136 @@
       page_bg,
     ]"
   >
-    <!-- ――――――――――――――――――――― Campaign banner ――――――――――――――――――――― -->
-    <s-top-banner :shop="shop" />
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-top-banner :shop="shop" />
 
-    <!-- ――――――――――――――――――――― Main router view ――――――――――――――――――――― -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
 
-    <!-- ――――――――――――――――――――― Private / Restricted Shop ――――――――――――――――――――― -->
-    <s-shop-private-access-check-view
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Private / Restricted Shop ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-private-access-check-view
       v-else
       :shop="shop"
-    ></s-shop-private-access-check-view>
+    ></s-storefront-private-access-check-view>
 
-    <!-- ――――――――――――――――――――― Social links (Floating) ――――――――――――――――――――― -->
-    <s-shop-social-buttons
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-social-buttons
       v-if="shop"
       :shop="shop"
       class="social-stick"
       vertical
       active-only
-    ></s-shop-social-buttons>
+    ></s-storefront-social-buttons>
 
-    <!-- ――――――――――――――――――――― Payment ――――――――――――――――――――― -->
-    <s-shop-master-payment-dialog v-if="shop" :shop="shop" />
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-master-payment-dialog v-if="shop" :shop="shop" />
 
-    <!-- ――――――――――――――――――――― Products Comparison ――――――――――――――――――――― -->
-    <s-products-comparison-button v-if="has_comparison" />
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-products-comparison-button v-if="has_comparison" />
 
-    <!-- ――――――――――――――――――――― Need Login ――――――――――――――――――――― -->
-    <s-need-login-dialog />
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-need-login-dialog />
 
-    <!-- ――――――――――――――――――――― Notifications (Small bottom-Right) ――――――――――――――――――――― -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-notifications-and-alerts />
 
-    <!-- ――――――――――――――――――――― Application Shop Login ――――――――――――――――――――― -->
-    <s-shop-application-login :shop="shop"></s-shop-application-login>
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-application-login :shop="shop"></s-storefront-application-login>
 
-    <!-- ―――――――――――――――――― Select Address ―――――――――――――――――― -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-map-dialog></s-map-dialog>
 
-    <!-- ――――――――――――――――――――― Cookie Agreement ――――――――――――――――――――― -->
-    <cookie-dialog v-if="has_gdpr"></cookie-dialog>
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Cookie Agreement ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-cookie-dialog v-if="has_gdpr"></s-storefront-cookie-dialog>
 
-    <!-- ――――――――――――――――――――― PWA Update Snackbar ――――――――――――――――――――― -->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-pwa-update-snackbar
       :style="$vuetify.breakpoint.smAndDown ? 'margin-top:-42px' : ''"
     ></s-pwa-update-snackbar>
 
-    <!-- ――――――――――――――――――――― Bottom navigation bar ――――――――――――――――――――― -->
-    <s-shop-bottom-navigation v-if="isMobile"></s-shop-bottom-navigation>
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-bottom-navigation v-if="isMobile"></s-storefront-bottom-navigation>
 
-    <!-- ――――――――――――――――――――― Popup ――――――――――――――――――――― -->
-    <s-popup
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-popup
       v-if="popup && show_popup"
       :popup="popup"
       @close="show_popup = false"
-    ></s-popup>
+    ></s-storefront-popup>
 
-    <!-- ―――――――――――――――――― Open fullscreen images ―――――――――――――――――― --->
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Open fullscreen images ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-fullscreen-view-animator></s-fullscreen-view-animator>
 
-    <!-- ――――――――――――――――――――― Retrieve basket from secure links ――――――――――――――――――――― -->
-    <s-retrieve-share-order v-if="shop" :shop="shop"></s-retrieve-share-order>
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-retrieve-share-order v-if="shop" :shop="shop"></s-storefront-retrieve-share-order>
 
-    <!-- ―――――――――――――――――― Webapp debug view ―――――――――――――――――― --->
-    <s-webapp-debug-view></s-webapp-debug-view>
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-webapp-debug-view></s-storefront-webapp-debug-view>
   </v-app>
 </template>
 
 <script>
 import _ from "lodash-es";
-import SShopMasterPaymentDialog from "@components/storefront/payment/SShopMasterPaymentDialog.vue";
+import SStorefrontMasterPaymentDialog from "@components/storefront/payment/SStorefrontMasterPaymentDialog.vue";
 import { FirebaseNotificationCategories } from "@core/enums/push-notification/FirebaseNotificationCategories";
-import SNeedLoginDialog from "@components/storefront/login/SNeedLoginDialog.vue";
+import SStorefrontNeedLoginDialog from "@components/storefront/login/SStorefrontNeedLoginDialog.vue";
 import SNotificationsAndAlerts from "@components/ui/notification/SNotificationsAndAlerts.vue";
 import { Language } from "@core/enums/language/Language";
-import CookieDialog from "@components/storefront/gdpr/CookieDialog.vue";
+import SStorefrontCookieDialog from "@components/storefront/gdpr/SStorefrontCookieDialog.vue";
 import SPwaUpdateSnackbar from "@components/ui/snackbar/SPwaUpdateSnackbar.vue";
-import SShopBottomNavigation from "@components/storefront/footer/SShopBottomNavigation.vue";
+import SStorefrontBottomNavigation from "@components/storefront/footer/SStorefrontBottomNavigation.vue";
 import SetupService from "@core/server/SetupService";
-import SPopup from "@components/storefront/popup/SPopup.vue";
+import SStorefrontPopup from "@components/storefront/popup/SStorefrontPopup.vue";
 import { FontHelper } from "@core/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";
-import SShopSocialButtons from "@components/storefront/social/SShopSocialButtons.vue";
-import STopBanner from "@components/storefront/banner/campaign-top-banner/STopBanner.vue";
+import SStorefrontSocialButtons from "@components/storefront/social/SStorefrontSocialButtons.vue";
+import SStorefrontTopBanner from "@components/storefront/banner/campaign-top-banner/SStorefrontTopBanner.vue";
 import { ShopRestriction } from "@core/enums/shop/ShopRestriction";
-import SShopPrivateAccessCheckView from "@components/storefront/access/SShopPrivateAccessCheckView.vue";
-import SRetrieveShareOrder from "@components/storefront/order/share-order/SRetrieveShareOrder.vue";
-import SProductsComparisonButton from "@components/storefront/comparison/button/SProductsComparisonButton.vue";
+import SStorefrontPrivateAccessCheckView from "@components/storefront/access/SStorefrontPrivateAccessCheckView.vue";
+import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
+import SStorefrontProductsComparisonButton from "@components/storefront/comparison/button/SStorefrontProductsComparisonButton.vue";
 import { EventName } from "@core/events/EventBus";
-import SShopApplicationLogin from "@components/storefront/login/SShopApplicationLogin.vue";
+import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
 import SMapDialog from "@components/map/SMapDialog.vue";
-import SWebappDebugView from "@components/debug/SWebappDebugView.vue";
-import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+import SStorefrontWebappDebugView from "@components/debug/SStorefrontWebappDebugView.vue";
+import { StorefrontRoutesName } from "@core/enums/route/StorefrontRoutesName";
 
 export default {
   name: "StorefrontApp",
   components: {
-    SWebappDebugView,
+    SStorefrontWebappDebugView,
     SMapDialog,
-    SShopApplicationLogin,
-    SProductsComparisonButton,
-    SRetrieveShareOrder,
-    SShopPrivateAccessCheckView,
-    STopBanner,
-    SShopSocialButtons,
+    SStorefrontApplicationLogin,
+    SStorefrontProductsComparisonButton,
+    SStorefrontRetrieveShareOrder,
+    SStorefrontPrivateAccessCheckView,
+    SStorefrontTopBanner,
+    SStorefrontSocialButtons,
     SFullscreenViewAnimator,
-    SPopup,
-    SShopBottomNavigation,
+    SStorefrontPopup,
+    SStorefrontBottomNavigation,
     SPwaUpdateSnackbar,
-    CookieDialog,
+    SStorefrontCookieDialog,
     SNotificationsAndAlerts,
-    SNeedLoginDialog,
-    SShopMasterPaymentDialog,
+    SStorefrontNeedLoginDialog,
+    SStorefrontMasterPaymentDialog,
   },
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Data
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   data: () => ({
     IconFontsLoaded: false,
 
     show_popup: false,
   }),
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Compute Section
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   computed: {
     shop() {
       return this.getShop();
@@ -220,6 +255,12 @@ export default {
       return "";
     },
   },
+
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Watch Section
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   watch: {
     $route(_new, _old) {
       this.$nextTick(function () {
@@ -254,6 +295,11 @@ export default {
     },
   },
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Lifecycle
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   beforeCreate() {
     /**
      * Creates and dispatches an event called "selldone-app-loaded".
@@ -384,6 +430,11 @@ export default {
       clearInterval(this.update_exchange_rates_interval);
   },
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Methods
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   methods: {
     /**
      * Just for testing RTL/LTR!
