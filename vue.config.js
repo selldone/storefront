@@ -133,8 +133,8 @@ module.exports = {
     output: {
       filename: (chunkData) => {
         return ["shop"].includes(chunkData.chunk.name)
-          ? "layers/" + VERSION_DIR + "/[name].js"
-          : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
+            ? "layers/" + VERSION_DIR + "/[name].js"
+            : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
       },
       chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].js",
     },
@@ -143,9 +143,9 @@ module.exports = {
       alias: {
         "jquery-ui/widget": "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
         "jquery-fileupload":
-          "blueimp-file-upload/js/vendor/jquery.fileupload.js",
+            "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
+            "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
 
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
         "@core": path.resolve(__dirname, "core/"),
@@ -156,8 +156,8 @@ module.exports = {
         "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
 
         "@app-page-builder": path.resolve(
-          __dirname,
-          "src/Applications/PageBuilder/"
+            __dirname,
+            "src/Applications/PageBuilder/"
         ),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
@@ -171,15 +171,29 @@ module.exports = {
   },
 
   chainWebpack: (config) => {
+
+    // Only modify webpack config in production mode
+    if (process.env.NODE_ENV === 'production') {
+      // Remove fork-ts-checker-webpack-plugin
+      config.plugins.delete('fork-ts-checker');
+
+      // Alternatively, modify ts-loader or babel-loader here if you use them for TypeScript files
+      // This depends on your specific setup and may require custom adjustments
+    }
+
+
+    // Disable automatic prefetching
+    config.plugins.delete("prefetch");
+
     if (config.plugins.has("extract-css")) {
       const extractCSSPlugin = config.plugin("extract-css");
       extractCSSPlugin &&
-        extractCSSPlugin.tap(() => [
-          {
-            filename: "layers/" + VERSION_DIR + "/[name].css",
-            chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
-          },
-        ]);
+      extractCSSPlugin.tap(() => [
+        {
+          filename: "layers/" + VERSION_DIR + "/[name].css",
+          chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
+        },
+      ]);
     }
 
     // Prevent the inclusion of the default splitChunks configuration
@@ -206,7 +220,7 @@ function printDevServerConfig() {
   console.log("");
 
   const tableRow = (key, value) =>
-    `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
+      `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
 
   console.log("┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓");
   console.log("┃    Configuration     ┃       Value          ┃");
