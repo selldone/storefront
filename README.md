@@ -6,7 +6,9 @@ _Ready to build project!_
 
 * **Mode:** 🌍 Public
 * **Use case:** To build a fully-functional storefront for customers.
+* **Project Type:** Full Project
 * **Framework:** Vue
+
 
 ## Manifesto: Celebrating Business Uniqueness
 
