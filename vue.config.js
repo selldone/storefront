@@ -24,12 +24,11 @@ const VERSION_DIR = manifest.version;
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
-const DEV_HOST=process.env.VUE_DEV_SERVER_HOST || 'localhost';
-const DEV_PORT=process.env.VUE_DEV_SERVER_PORT || 8080;
-const IS_HTTPS=!!process.env.VUE_DEV_SERVER_HTTPS;
+const DEV_HOST = process.env.VUE_DEV_SERVER_HOST || "localhost";
+const DEV_PORT = process.env.VUE_DEV_SERVER_PORT || 8080;
+const IS_HTTPS = !!process.env.VUE_DEV_SERVER_HTTPS && process.env.VUE_DEV_SERVER_HTTPS!== "FALSE"
 
-printDevServerConfig()
-
+printDevServerConfig();
 
 function PAGES() {
   const out = {
@@ -53,15 +52,14 @@ module.exports = {
     host: DEV_HOST,
     port: DEV_PORT,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Origin": "*",
     },
 
     historyApiFallback: true, //This ensures that all routes are redirected to index.html, allowing Vue Router to handle them.
 
     client: {
-      overlay: false,  // This disables the warning shown in the browser when there are compiler errors or warnings.
+      overlay: false, // This disables the warning shown in the browser when there are compiler errors or warnings.
     },
-
   },
 
   /* pluginOptions: {
@@ -98,7 +96,7 @@ module.exports = {
     },
   },
 
-  publicPath:IS_PRODUCTION? "/":`https://${DEV_HOST}:${DEV_PORT}/`,
+  publicPath: IS_PRODUCTION ? "/" : `https://${DEV_HOST}:${DEV_PORT}/`,
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
@@ -135,8 +133,8 @@ module.exports = {
     output: {
       filename: (chunkData) => {
         return ["shop"].includes(chunkData.chunk.name)
-            ? "layers/" + VERSION_DIR + "/[name].js"
-            : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
+          ? "layers/" + VERSION_DIR + "/[name].js"
+          : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
       },
       chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].js",
     },
@@ -145,9 +143,9 @@ module.exports = {
       alias: {
         "jquery-ui/widget": "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
         "jquery-fileupload":
-            "blueimp-file-upload/js/vendor/jquery.fileupload.js",
+          "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-            "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
+          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
 
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
         "@core": path.resolve(__dirname, "core/"),
@@ -158,8 +156,8 @@ module.exports = {
         "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
 
         "@app-page-builder": path.resolve(
-            __dirname,
-            "src/Applications/PageBuilder/"
+          __dirname,
+          "src/Applications/PageBuilder/"
         ),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
@@ -176,26 +174,22 @@ module.exports = {
     if (config.plugins.has("extract-css")) {
       const extractCSSPlugin = config.plugin("extract-css");
       extractCSSPlugin &&
-      extractCSSPlugin.tap(() => [
-        {
-          filename: "layers/" + VERSION_DIR + "/[name].css",
-          chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
-        },
-      ]);
+        extractCSSPlugin.tap(() => [
+          {
+            filename: "layers/" + VERSION_DIR + "/[name].css",
+            chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
+          },
+        ]);
     }
 
     // Prevent the inclusion of the default splitChunks configuration
     config.optimization.splitChunks(false);
-
-
   },
 
   pages: PAGES(),
 };
 
-
 function printDevServerConfig() {
-
   console.log("");
   console.log("███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗");
   console.log("██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝");
@@ -211,26 +205,22 @@ function printDevServerConfig() {
   console.log("▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆");
   console.log("");
 
+  const tableRow = (key, value) =>
+    `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
 
-  const tableRow = (key, value) => `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
+  console.log("┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓");
+  console.log("┃    Configuration     ┃       Value          ┃");
+  console.log("┣━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫");
 
-  console.log('┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓');
-  console.log('┃    Configuration     ┃       Value          ┃');
-  console.log('┣━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫');
+  console.log(tableRow("ENVIRONMENT", process.env.NODE_ENV));
 
-  console.log(tableRow('ENVIRONMENT', process.env.NODE_ENV));
-
-  if(IS_PRODUCTION){
-
-  }else{
-    console.log(tableRow('DEV_HOST', DEV_HOST));
-    console.log(tableRow('DEV_PORT', DEV_PORT));
-    console.log(tableRow('IS_HTTPS', IS_HTTPS));
+  if (IS_PRODUCTION) {
+  } else {
+    console.log(tableRow("DEV_HOST", DEV_HOST));
+    console.log(tableRow("DEV_PORT", DEV_PORT));
+    console.log(tableRow("IS_HTTPS", IS_HTTPS));
   }
-  console.log('┗━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┛');
-
-
+  console.log("┗━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┛");
 
   console.log("");
-
 }
