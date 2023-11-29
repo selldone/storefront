@@ -24,6 +24,10 @@ const VERSION_DIR = manifest.version;
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
+const DEV_HOST=process.env.VUE_APP_HOST || 'localhost';
+const DEV_PORT=process.env.VUE_APP_PORT || 8080;
+
+
 function PAGES() {
   const out = {
     // ▃▃▃▃▃▃▃▃▃▃▃▃ Storefront Web App ▃▃▃▃▃▃▃▃▃▃▃▃
@@ -42,6 +46,8 @@ module.exports = {
   lintOnSave: false,
 
   devServer: {
+    host: DEV_HOST,
+    port: DEV_PORT,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
@@ -81,7 +87,7 @@ module.exports = {
     },
   },
 
-  publicPath:IS_PRODUCTION? "/":'https://localhost:8080/',
+  publicPath:IS_PRODUCTION? "/":`https://${DEV_HOST}:${DEV_PORT}/`,
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
