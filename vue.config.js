@@ -46,6 +46,7 @@ module.exports = {
   lintOnSave: false,
 
   devServer: {
+    https: true,
     host: DEV_HOST,
     port: DEV_PORT,
     headers: {

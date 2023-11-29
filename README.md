@@ -101,7 +101,7 @@ With npm:
 npm serve --https
 ```
 
-Open served address: e.g. `http://localhost:8080/`
+Open served address: e.g. `https://localhost:8080/`
 
 ### Configuring Your Storefront
 
