@@ -11,8 +11,7 @@
     "lint": "vue-cli-service lint",
     "build-report": "vue-cli-service build --report",
     "build-dashboard": "vue-cli-service build --max_old_space_size=356408  --dashboard  --silent --watch",
-    "setup": "sh ./setup.sh",
-    "deploy": "node deploy.mjs"
+    "setup": "sh ./setup.sh"
   },
   "repository": {
     "type": "git",
