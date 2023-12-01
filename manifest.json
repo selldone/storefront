@@ -1,4 +1,8 @@
 {
+  "package": "sample-custom-storefront",
   "name": "My Storefront",
-  "version": "v1"
+  "version": "v8",
+  "storefront": true,
+  "backoffice": false,
+  "description": null
 }

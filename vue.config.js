@@ -96,7 +96,7 @@ module.exports = {
     },
   },
 
-  publicPath: IS_PRODUCTION ? "/" : `https://${DEV_HOST}:${DEV_PORT}/`,
+  publicPath: IS_PRODUCTION ? `/layouts/${manifest.package}/${manifest.version}` : `https://${DEV_HOST}:${DEV_PORT}/`,
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
@@ -132,11 +132,25 @@ module.exports = {
 
     output: {
       filename: (chunkData) => {
-        return ["shop"].includes(chunkData.chunk.name)
-            ? "layers/" + VERSION_DIR + "/[name].js"
-            : "layers/" + VERSION_DIR + "/[name].[fullhash].js";
+
+        if(IS_PRODUCTION){
+          // layouts/version : will be the prefix for all files on the cloud
+
+          return ["shop"].includes(chunkData.chunk.name)
+              ?  "app/[name].js"
+              : "app/[name].[fullhash].js";
+
+
+        }else{
+          return ["shop"].includes(chunkData.chunk.name)
+              ? "layouts/" + VERSION_DIR + "/app/[name].js"
+              : "layouts/" + VERSION_DIR + "/app/[name].[fullhash].js";
+
+        }
+
+
       },
-      chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].js",
+      chunkFilename:IS_PRODUCTION ? "app/[name].[fullhash].js":  ("layouts/" + VERSION_DIR + "/app/[name].[fullhash].js"),
     },
     resolve: {
       extensions: [".js", ".vue"],
@@ -190,8 +204,8 @@ module.exports = {
       extractCSSPlugin &&
       extractCSSPlugin.tap(() => [
         {
-          filename: "layers/" + VERSION_DIR + "/[name].css",
-          chunkFilename: "layers/" + VERSION_DIR + "/[name].[fullhash].css",
+          filename:IS_PRODUCTION?"app/[name].css":  ("layouts/" + VERSION_DIR + "/app/[name].css"),
+          chunkFilename:IS_PRODUCTION?"app/[name].[fullhash].css":( "layouts/" + VERSION_DIR + "/app/[name].[fullhash].css"),
         },
       ]);
     }
