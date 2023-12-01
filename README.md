@@ -126,6 +126,20 @@ By following these steps, you'll be well on your way to developing a unique and 
 using the Vue framework. Happy coding!
 
 
+## Deploy
+
+Install `Selldone-CLI` globally:
+```shell
+npm install -g selldone-cli
+```
+
+Run `Selldone-CLI` to deploy:
+```shell
+selldone
+```
+
+Developers panel to manage your layouts: https://selldone.com/developer/layouts
+
 ## Monetization 🤑
 
 You can generate income by crafting storefronts for various verticals using Selldone and then publishing them directly
