@@ -138,7 +138,10 @@ Run `Selldone-CLI` to deploy:
 selldone
 ```
 
-Developers panel to manage your layouts: https://selldone.com/developer/layouts
+CLI: https://www.npmjs.com/package/selldone-cli
+
+## Developer Panel
+Access the developer panel to manage your layouts here: [**Selldone Developer Layouts**](https://selldone.com/developer/layouts).
 
 ## Monetization 🤑
 
