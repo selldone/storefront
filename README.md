@@ -1,4 +1,4 @@
-![License](https://img.shields.io/github/license/selldone/storefront.svg)
+![License](https://img.shields.io/github/license/selldone/storefront.svg?v=1)
 
 ![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
 
