@@ -144,7 +144,7 @@ selldone
 CLI: https://www.npmjs.com/package/selldone-cli
 
 [![npm version](https://img.shields.io/npm/v/selldone-cli.svg)](https://www.npmjs.com/package/selldone-cli)
-
+![img.png](_docs/images/shell-selldone-command.png)
 
 ## Developer Panel
 Access the developer panel to manage your layouts here: [**Selldone Developer Layouts**](https://selldone.com/developer/layouts).
@@ -159,7 +159,7 @@ designed for influencers and offer their LAYOUT for a monthly subscription fee o
 
 ## Needed Modules
 
-![img.png](_docs/images/storefront-hierarchy.png)
+![Shell run selldone command](_docs/images/storefront-hierarchy.png)
 
 | Module                                                          | Description                                                                                     |
 |-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
