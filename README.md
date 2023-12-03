@@ -1,3 +1,5 @@
+
+
 ![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
 
 ## Selldone ⮕ Storefront Official
@@ -139,6 +141,9 @@ selldone
 ```
 
 CLI: https://www.npmjs.com/package/selldone-cli
+
+[![npm version](https://img.shields.io/npm/v/selldone-cli.svg)](https://www.npmjs.com/package/selldone-cli)
+
 
 ## Developer Panel
 Access the developer panel to manage your layouts here: [**Selldone Developer Layouts**](https://selldone.com/developer/layouts).
