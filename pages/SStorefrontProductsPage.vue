@@ -58,7 +58,7 @@
       ></s-shop-vendor-header>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-      <s-shop-products-listing
+      <s-storefront-products-listing
         :shop="getShop()"
         has-sort
         has-filter
@@ -68,20 +68,20 @@
         @update:title="setPageTitle"
         load-more
         :vendor-id="vendor_id"
-      ></s-shop-products-listing>
+      ></s-storefront-products-listing>
     </v-card>
   </div>
 </template>
 
 <script>
-import SShopProductsListing from "@components/storefront/products-listing/SShopProductsListing.vue";
+import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
 import SShopVendorHeader from "@components/storefront/vendor/SShopVendorHeader.vue";
 
 export default {
   name: "SStorefrontProductsPage",
   components: {
     SShopVendorHeader,
-    SShopProductsListing,
+    SStorefrontProductsListing,
   },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

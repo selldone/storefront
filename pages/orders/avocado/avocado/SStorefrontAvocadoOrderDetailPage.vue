@@ -34,7 +34,7 @@
     </v-toolbar>
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery > State ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-shop-delivery-state v-if="basket" :basket="basket" is-avocado />
+      <s-order-delivery-state v-if="basket" :basket="basket" is-avocado />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -65,7 +65,7 @@ import SShopCustomerOrderPaymentWidget from "@components/storefront/order/paymen
 
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 
 export default {
@@ -74,7 +74,7 @@ export default {
     SShopAvocadoCustomerOrderItems,
     SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
-    SShopDeliveryState,
+    SOrderDeliveryState,
   },
 
   props: {

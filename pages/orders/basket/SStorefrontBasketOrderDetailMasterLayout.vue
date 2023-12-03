@@ -45,7 +45,7 @@
         :has-subscription="isSubscription"
         :is-subscribed="isSubscription && basket.status==='Payed'"
       />
-      <loading v-else css-mode></loading>
+      <s-loading v-else css-mode></s-loading>
 
       <v-spacer></v-spacer>
 

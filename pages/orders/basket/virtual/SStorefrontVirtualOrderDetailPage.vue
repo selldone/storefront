@@ -47,11 +47,14 @@
 
       <v-spacer></v-spacer>
       <!-- Share order - Secure link generator -->
-      <s-shop-share-order-button :shop="shop" :basket="basket"></s-shop-share-order-button>
+      <s-shop-share-order-button
+        :shop="shop"
+        :basket="basket"
+      ></s-shop-share-order-button>
     </v-toolbar>
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-shop-delivery-state v-if="basket" :basket="basket" />
+      <s-order-delivery-state v-if="basket" :basket="basket" />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Chat ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -120,13 +123,7 @@
         :basket="basket"
       ></s-shop-customer-delivery-info-widget>
 
-      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <!--
-    <basket-return-items-request-view
-      v-if="basket"
-      class="mt-4"
-      :basket="basket"
-    />-->
+
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->
@@ -164,7 +161,7 @@
 import VirtualItemInfo from "@components/product/virtual/VirtualItemInfo.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
@@ -175,7 +172,7 @@ export default {
     SShopShareOrderButton,
     OrderChatWidget,
     SShopCustomerDeliveryInfoWidget,
-    SShopDeliveryState,
+    SOrderDeliveryState,
     SShopBasketItemsList,
     SShopCustomerOrderPaymentWidget,
     VirtualItemInfo,

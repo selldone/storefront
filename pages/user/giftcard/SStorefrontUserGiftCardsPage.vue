@@ -41,7 +41,7 @@
         class="bg-transparent dense-padding"
       >
         <template v-slot:loading>
-          <loading css-mode light></loading>
+          <s-loading css-mode light></s-loading>
         </template>
 
         <template v-slot:header>

@@ -46,7 +46,7 @@
         style="min-height: 65vh"
         class="flex-column"
       >
-        <loading v-if="busy" css-mode light></loading>
+        <s-loading v-if="busy" css-mode light></s-loading>
 
         <v-col v-if="shop && avocado" cols="12" class="flex-grow-1">
           <!-- ................ Progress ................ -->

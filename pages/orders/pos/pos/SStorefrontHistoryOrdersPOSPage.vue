@@ -13,8 +13,7 @@
   -->
 
 <template>
-  <s-storefront-orders-list type="POS" is-pos>
-  </s-storefront-orders-list>
+  <s-storefront-orders-list type="POS" is-pos> </s-storefront-orders-list>
 </template>
 
 <script>

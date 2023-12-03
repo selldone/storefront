@@ -51,7 +51,7 @@
     </v-toolbar>
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-shop-delivery-state v-if="basket" :basket="basket" />
+      <s-order-delivery-state v-if="basket" :basket="basket" />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Chat ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -110,7 +110,7 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <basket-return-items-request-view
+      <s-basket-return-items-list
         v-if="basket"
         class="mt-4"
         :basket="basket"
@@ -191,8 +191,8 @@
 <script>
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
-import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
+import SBasketReturnItemsList from "@components/order/return-orders/SBasketReturnItemsList.vue";
+import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
 import { ProductType } from "@core/enums/product/ProductType";
@@ -203,8 +203,8 @@ export default {
     SShopShareOrderButton,
     OrderChatWidget,
     SShopProductFilesList,
-    SShopDeliveryState,
-    BasketReturnItemsRequestView,
+    SOrderDeliveryState,
+    SBasketReturnItemsList,
     SShopBasketItemsList,
     SShopCustomerOrderPaymentWidget,
   },

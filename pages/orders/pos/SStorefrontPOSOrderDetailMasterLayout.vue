@@ -36,7 +36,7 @@
 
       <v-spacer></v-spacer>
 
-      <loading v-if="busy" css-mode></loading>
+      <s-loading v-if="busy" css-mode></s-loading>
 
       <v-spacer></v-spacer>
 

@@ -16,18 +16,20 @@
   <div>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="body-title">
-        <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION }" class="text-uppercase">
+        <router-link
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION }"
+          class="text-uppercase"
+        >
           <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{$t('global.commons.orders_list')}}</router-link
+          {{ $t("global.commons.orders_list") }}</router-link
         >
         <span class="mx-1 text-muted">/</span>
-       <b> {{ getBasketOrderCode(basket) }}</b>
-
+        <b> {{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
     </v-toolbar>
-      <v-container class="px-0">
+    <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Status ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-shop-delivery-state v-if="basket" :basket="basket" />
+      <s-order-delivery-state v-if="basket" :basket="basket" />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Chat ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
@@ -76,8 +78,8 @@
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-delivery-info-widget
-          v-if="basket"
-          :basket="basket"
+        v-if="basket"
+        :basket="basket"
       ></s-shop-customer-delivery-info-widget>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -87,10 +89,9 @@
         :items="basket.items"
       />
 
-
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <basket-return-items-request-view
+      <s-basket-return-items-list
         v-if="basket"
         class="mt-4"
         :basket="basket"
@@ -130,8 +131,8 @@
 
 <script>
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import SShopDeliveryState from "@components/storefront/order/delivery-state/SShopDeliveryState.vue";
-import BasketReturnItemsRequestView from "@components/backoffice/basket/BasketReturnItemsRequestView.vue";
+import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
+import SBasketReturnItemsList from "@components/order/return-orders/SBasketReturnItemsList.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
@@ -144,8 +145,8 @@ export default {
 
     SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
-    BasketReturnItemsRequestView,
-    SShopDeliveryState,
+    SBasketReturnItemsList,
+    SOrderDeliveryState,
     SShopBasketItemsList,
   },
 

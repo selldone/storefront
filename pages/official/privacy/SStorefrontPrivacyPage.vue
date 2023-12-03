@@ -31,20 +31,20 @@
         />
       </div>
 
-      <s-shop-cookie-preferences
+      <s-storefront-cookie-preferences
         :shop="shop"
         class="s--shadow-no-padding text-start my-16"
-      ></s-shop-cookie-preferences>
+      ></s-storefront-cookie-preferences>
     </v-container>
   </div>
 </template>
 
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
-import SShopCookiePreferences from "@components/storefront/cookie/SShopCookiePreferences.vue";
+import SStorefrontCookiePreferences from "@components/storefront/cookie/SStorefrontCookiePreferences.vue";
 export default {
   name: "SStorefrontPrivacyPage",
-  components: { SShopCookiePreferences, SArticleEditor },
+  components: { SStorefrontCookiePreferences, SArticleEditor },
   data: () => ({
     state: "editing",
     profile: null,

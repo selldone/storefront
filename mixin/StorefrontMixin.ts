@@ -44,7 +44,6 @@ const StorefrontMixin = CoreMixin.extend({
     return {
       // Data properties
       shop_name: window.$storefront.name,
-
     };
   },
   computed: {
@@ -878,7 +877,7 @@ const StorefrontMixin = CoreMixin.extend({
         code: code,
         bill: bill,
         callback: callback,
-        order:order,
+        order: order,
       });
     },
 

@@ -35,7 +35,11 @@
       />
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Not enabled info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-      <div v-if="!is_enable" style="min-height: 65vh" class="display-1 font-weight-thin">
+      <div
+        v-if="!is_enable"
+        style="min-height: 65vh"
+        class="display-1 font-weight-thin"
+      >
         {{ $t("avocado.not_enable") }}
       </div>
 
@@ -55,11 +59,11 @@
         <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Orders history ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
         <div class="my-14 fadeIn">
-          <s-shop-avocado-customer-order-list
+          <s-storefront-avocado-customer-order-list
             :orders="orders"
             class="mx-auto mb-4 my-3"
             style="max-width: 420px"
-          ></s-shop-avocado-customer-order-list>
+          ></s-storefront-avocado-customer-order-list>
 
           <v-pagination
             v-if="pages > 1"
@@ -109,7 +113,7 @@
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Add order (By customer) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
-      <s-shop-avocado-customer-order-form
+      <s-storefront-avocado-customer-order-form
         v-if="add_mode && open_avocado"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
@@ -122,7 +126,7 @@
             getOpenAvocado();
           }
         "
-      ></s-shop-avocado-customer-order-form>
+      ></s-storefront-avocado-customer-order-form>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
@@ -147,12 +151,15 @@
 <script>
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
-import SShopAvocadoCustomerOrderList from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderList.vue";
-import SShopAvocadoCustomerOrderForm from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderForm.vue";
+import SStorefrontAvocadoCustomerOrderList from "@components/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
+import SStorefrontAvocadoCustomerOrderForm from "@components/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";
 
 export default {
   name: "SStorefrontAvocadoPage",
-  components: { SShopAvocadoCustomerOrderForm, SShopAvocadoCustomerOrderList },
+  components: {
+    SStorefrontAvocadoCustomerOrderForm,
+    SStorefrontAvocadoCustomerOrderList,
+  },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Props Section
@@ -235,7 +242,6 @@ export default {
    */
   methods: {
     getOpenAvocado() {
-
       this.busy = true;
       axios
         .get(window.XAPI.GET_CUSTOMER_OPEN_AVOCADO(this.shop_name), {
@@ -260,7 +266,6 @@ export default {
     },
 
     fetchOrders() {
-
       this.busy_fetch = true;
       axios
         .get(window.XAPI.GET_CUSTOMER_HISTORY_AVOCADOS(this.shop_name), {

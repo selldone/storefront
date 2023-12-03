@@ -110,7 +110,7 @@
 
       <!-- ................ Add order (By customer) ................ -->
 
-      <s-shop-hyper-add-order-form
+      <s-storefront-hyper-add-order-form
         v-if="add_mode && open_hyper"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
@@ -123,7 +123,7 @@
             getOpenHyper();
           }
         "
-      ></s-shop-hyper-add-order-form>
+      ></s-storefront-hyper-add-order-form>
 
       <!-- ................ Footer ................ -->
 
@@ -146,7 +146,7 @@
 <script>
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
-import SShopHyperAddOrderForm from "@components/storefront/hyper/SShopHyperAddOrderForm.vue";
+import SStorefrontHyperAddOrderForm from "@components/storefront/hyper/SStorefrontHyperAddOrderForm.vue";
 import SShopHyperCustomerOrdersList from "@components/storefront/hyper/SShopHyperCustomerOrdersList.vue";
 import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
@@ -155,7 +155,7 @@ export default {
   components: {
     ProductsDenseImagesCircles,
     SShopHyperCustomerOrdersList,
-    SShopHyperAddOrderForm,
+    SStorefrontHyperAddOrderForm,
   },
 
   props: {

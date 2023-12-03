@@ -23,7 +23,7 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <return-requests-list
+      <s-backoffice-return-requests-list
         :url="window.XAPI.GET_MY_BASKET_ITEM_RETURNS(shop_name)"
         @select="handleSelected"
       />
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import ReturnRequestsList from "@components/backoffice/basket/return-request/ReturnRequestsList.vue";
+import SBackofficeReturnRequestsList from "@components/order/return-request/SBackofficeReturnRequestsList.vue";
 export default {
   name: "SStorefrontUserReturnRequests",
-  components: { ReturnRequestsList },
+  components: { SBackofficeReturnRequestsList },
 
   data: function () {
     return {};

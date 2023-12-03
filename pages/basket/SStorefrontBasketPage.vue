@@ -79,7 +79,7 @@
 
             <!-- NOTE: In service all calculated by seller manually -->
 
-            <s-coupons
+            <s-storefront-coupons
               v-if="!isSubscription"
               force-show
               selectable
@@ -88,11 +88,11 @@
               :basket="basket"
               return-object
               @loading="(val) => (refreshing_price = val)"
-            ></s-coupons>
+            ></s-storefront-coupons>
 
             <!-- NOTE: In service all calculated by seller manually -->
 
-            <s-shop-lottery-prizes
+            <s-storefront-lottery-prizes
               v-if="!isSubscription"
               force-show
               selectable
@@ -102,7 +102,7 @@
               return-object
               @loading="(val) => (refreshing_price = val)"
             >
-            </s-shop-lottery-prizes>
+            </s-storefront-lottery-prizes>
           </v-col>
 
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Receipt ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -127,7 +127,7 @@
                 <progress-loading v-if="busy_save"></progress-loading>
 
                 <div v-if="busy_bill" class="text-center">
-                  <loading css-mode></loading>
+                  <s-loading css-mode></s-loading>
                 </div>
                 <div v-else-if="bill">
                   <!-- START OF PRICES -->
@@ -471,7 +471,7 @@
                         :
                       </p>
                       <p class="value font-weight-black">
-                        <loading v-if="refreshing_price" css-mode></loading>
+                        <s-loading v-if="refreshing_price" css-mode></s-loading>
 
                         <price-view
                           v-else
@@ -1294,9 +1294,9 @@ import { TimeSpans } from "@core/enums/logistic/TimeSpans";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
 import DiscountField from "@components/backoffice/incentives/discount-code/DiscountField.vue";
 import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
-import SCoupons from "@components/storefront/incentives/coupon/SCoupons.vue";
+import SStorefrontCoupons from "@components/storefront/incentives/coupon/SStorefrontCoupons.vue";
 import { ProductType } from "@core/enums/product/ProductType";
-import SShopLotteryPrizes from "@components/storefront/incentives/lottery/SShopLotteryPrizes.vue";
+import SStorefrontLotteryPrizes from "@components/storefront/incentives/lottery/SStorefrontLotteryPrizes.vue";
 import VariantItemMini from "@components/product/variant/VariantItemMini.vue";
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
@@ -1330,8 +1330,8 @@ export default {
     SValueDashed,
     SShopCustomerReceiverInfoWidget,
     VariantItemMini,
-    SShopLotteryPrizes,
-    SCoupons,
+    SStorefrontLotteryPrizes,
+    SStorefrontCoupons,
     DiscountField,
     SShopBasketItems,
   },

@@ -14,20 +14,20 @@
 
 <template>
   <div class="insta-card">
-    <instagram-view
+    <s-instagram-view
       v-if="instagram"
       :shop="shop"
       :instagram="instagram"
-    ></instagram-view>
+    ></s-instagram-view>
     <v-container v-else> Not exist! </v-container>
   </div>
 </template>
 
 <script>
-import InstagramView from "@components/storefront/instagram/InstagramView.vue";
+import SInstagramView from "@components/storefront/instagram/SInstagramView.vue";
 export default {
   name: "SStorefrontInstagramPage",
-  components: { InstagramView },
+  components: { SInstagramView },
 
   computed: {
     shop() {

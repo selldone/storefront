@@ -17,18 +17,18 @@
     <div v-if="!$vuetify.breakpoint.xsOnly" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Vendors List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-      <shop-vendors-list-view
+      <s-storefront-product-vendors-list
         v-if="bounds"
         :shop="shop"
         @fetch-vendors="onfetchVendors"
         :location-bounds="bounds"
         @vendor-hover:enter="(p) => vendorHover(p, true)"
         @vendor-hover:leave="(p) => vendorHover(p, false)"
-      ></shop-vendors-list-view>
+      ></s-storefront-product-vendors-list>
     </div>
     <div class="map-viewer" :class="{ '-full': $vuetify.breakpoint.xsOnly }">
       <!-- Pre loading -->
-      <loading css-mode light v-if="!map_box" class="center-absolute"></loading>
+      <s-loading css-mode light v-if="!map_box" class="center-absolute"></s-loading>
       <!-- MAP -->
       <div :id="`map_box${map_id}`" class="-map"></div>
 
@@ -89,12 +89,12 @@
         <v-card-text style="padding-bottom: 20vh" class="px-0">
           <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Vendors List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-          <s-shop-product-vendors-list
+          <s-storefront-product-vendors-list
             v-if="bounds"
             :shop="shop"
             @fetch-vendors="onfetchVendors"
             :location-bounds="bounds"
-          ></s-shop-product-vendors-list>
+          ></s-storefront-product-vendors-list>
         </v-card-text>
       </v-card>
     </div>
@@ -179,12 +179,12 @@ import Mapbox from "@components/map/MapBox";
 import SetupService from "@core/server/SetupService";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
-import SShopProductVendorsList from "@components/product/vendors/SShopProductVendorsList.vue";
+import SStorefrontProductVendorsList from "@components/product/vendors/SStorefrontProductVendorsList.vue";
 import _ from "lodash-es";
 
 export default {
   name: "SStorefrontMapVendors",
-  components: { SShopProductVendorsList, SValueCopyBox, SAddressInput },
+  components: { SStorefrontProductVendorsList, SValueCopyBox, SAddressInput },
 
   data() {
     return {

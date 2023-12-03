@@ -17,7 +17,7 @@
     <div v-if="!$vuetify.breakpoint.xsOnly" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-      <s-shop-products-listing
+      <s-storefront-products-listing
         v-if="bounds"
         :shop="getShop()"
         has-sort
@@ -30,11 +30,16 @@
         @fetch-products="onfetchProducts"
         @product-hover:enter="(p) => productHover(p, true)"
         @product-hover:leave="(p) => productHover(p, false)"
-      ></s-shop-products-listing>
+      ></s-storefront-products-listing>
     </div>
     <div class="map-viewer" :class="{ '-full': $vuetify.breakpoint.xsOnly }">
       <!-- Pre loading -->
-      <loading css-mode light v-if="!map_box" class="center-absolute"></loading>
+      <s-loading
+        css-mode
+        light
+        v-if="!map_box"
+        class="center-absolute"
+      ></s-loading>
       <!-- MAP -->
       <div :id="`map_box${map_id}`" class="-map"></div>
 
@@ -95,7 +100,7 @@
         <v-card-text style="padding-bottom: 20vh" class="px-0">
           <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-          <s-shop-products-listing
+          <s-storefront-products-listing
             v-if="bounds"
             :shop="getShop()"
             has-sort
@@ -108,7 +113,7 @@
             @fetch-products="onfetchProducts"
             @product-hover:enter="(p) => productHover(p, true)"
             @product-hover:leave="(p) => productHover(p, false)"
-          ></s-shop-products-listing>
+          ></s-storefront-products-listing>
         </v-card-text>
       </v-card>
     </div>
@@ -181,7 +186,7 @@
 <script>
 import Mapbox from "@components/map/MapBox";
 import SetupService from "@core/server/SetupService";
-import SShopProductsListing from "@components/storefront/products-listing/SShopProductsListing.vue";
+import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
 import SShopProductCard from "@components/product/card/SShopProductCard.vue";
@@ -193,7 +198,7 @@ export default {
     SShopProductCard,
     SValueCopyBox,
     SAddressInput,
-    SShopProductsListing,
+    SStorefrontProductsListing,
   },
 
   data() {

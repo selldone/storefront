@@ -60,7 +60,7 @@
         {{ $t("global.faq.add_question_action") }}
       </v-btn>
 
-      <loading css-mode light v-if="!faqs.length && busy_fetch" ></loading>
+      <s-loading css-mode light v-if="!faqs.length && busy_fetch" ></s-loading>
 
 
       <v-fade-transition

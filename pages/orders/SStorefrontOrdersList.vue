@@ -35,7 +35,7 @@
       style="min-height: 60vh"
     >
       <template v-slot:loading>
-        <loading css-mode light></loading>
+        <s-loading css-mode light></s-loading>
       </template>
 
       <template v-slot:item.id="{ item }">
@@ -86,7 +86,7 @@
       </template>
 
       <template v-slot:item.status="{ item }">
-        <order-status-view :status="item.status"></order-status-view>
+        <s-order-status-view :status="item.status"></s-order-status-view>
       </template>
 
       <template v-if="!isPos" v-slot:item.delivery_state="{ item }">
@@ -187,7 +187,7 @@ import ReturnRequestButtonBadge from "@components/storefront/order/order-return/
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
 import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import OrderStatusView from "@components/backoffice/basket/OrderStatusView.vue";
+import SOrderStatusView from "@components/order/order-status/SOrderStatusView.vue";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import ReceiverInfoWidget from "@components/storefront/order/order-reciver-info/ReceiverInfoWidget.vue";
@@ -198,7 +198,7 @@ export default {
   name: "SStorefrontOrdersList",
   components: {
     ReceiverInfoWidget,
-    OrderStatusView,
+    SOrderStatusView,
     ProductsDenseImagesCircles,
     ReturnRequestButtonBadge,
     StatusStepper,
