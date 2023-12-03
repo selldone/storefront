@@ -1,4 +1,5 @@
 ![License](https://img.shields.io/github/license/selldone/storefront.svg?v=1)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ede7c7fdeac4daa9136fd040672ac22)](https://app.codacy.com/gh/selldone/storefront/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 ![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
 
