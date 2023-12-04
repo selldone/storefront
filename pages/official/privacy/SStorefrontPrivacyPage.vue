@@ -18,7 +18,7 @@
       <h1 class="text-start display-3 font-weight-black text-capitalize">
         {{ $t("official_pages.privacy") }}
       </h1>
-      <progress-loading v-if="busy"></progress-loading>
+      <s-progress-loading v-if="busy"></s-progress-loading>
 
       <div class="text-start px-lg-5 px-md-4 px-3 master-article-container">
         <s-article-editor

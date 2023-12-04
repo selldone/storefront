@@ -18,7 +18,7 @@
       <widget-header :title="$t('user_comments.title')" icon="chat_bubble">
       </widget-header>
 
-      <progress-loading v-if="busy_fetch"></progress-loading>
+      <s-progress-loading v-if="busy_fetch"></s-progress-loading>
 
       <v-data-iterator
         :items="comments"

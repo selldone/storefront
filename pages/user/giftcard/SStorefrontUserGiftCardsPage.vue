@@ -25,7 +25,7 @@
       </widget-header>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ My Gift cards  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <progress-loading v-if="busy_fetch"></progress-loading>
+      <s-progress-loading v-if="busy_fetch"></s-progress-loading>
 
       <v-data-iterator
         :items="giftcards"

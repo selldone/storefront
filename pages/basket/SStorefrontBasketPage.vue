@@ -124,7 +124,7 @@
               }"
             >
               <div class="receipt-container m-lg-2 m-md-1 position-relative">
-                <progress-loading v-if="busy_save"></progress-loading>
+                <s-progress-loading v-if="busy_save"></s-progress-loading>
 
                 <div v-if="busy_bill" class="text-center">
                   <s-loading css-mode></s-loading>

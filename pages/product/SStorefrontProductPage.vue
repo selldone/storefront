@@ -89,7 +89,7 @@
         />
         <product-info-loading-view v-else />
 
-        <progress-loading v-if="busy"></progress-loading>
+        <s-progress-loading v-if="busy"></s-progress-loading>
       </div>
     </div>
 

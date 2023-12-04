@@ -24,7 +24,7 @@
 
       <v-subheader> </v-subheader>
 
-      <progress-loading v-if="busy"></progress-loading>
+      <s-progress-loading v-if="busy"></s-progress-loading>
       <div class="widget-buttons">
         <v-btn
           x-large
