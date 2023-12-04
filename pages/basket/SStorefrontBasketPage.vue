@@ -1812,7 +1812,7 @@ export default {
       }
     },
 
-    transport_types(transport_types) {
+    transport_types() {
       this.autoSelectTransportationType();
     },
 
@@ -1872,7 +1872,12 @@ export default {
         !this.basket.receiver_info.location)
     )
       try {
-        navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.getCurrentPosition((position, error) => {
+          if (error) {
+            console.error("Get current location", error);
+            return;
+          }
+
           if (this.basket?.receiver_info?.location) return; // Prevent lagged update location bug!
           //const userCoordinates = [position.coords.longitude, position.coords.latitude];
           this.center = {

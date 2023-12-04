@@ -391,7 +391,6 @@ export default {
       );
     },
     onClickSetLocation(info) {
-      //   console.log("info", info);
 
       if (!info.phone && this.USER()) info.phone = this.USER().phone; // Auto fill phone!
 

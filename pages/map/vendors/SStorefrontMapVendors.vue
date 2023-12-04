@@ -28,7 +28,12 @@
     </div>
     <div class="map-viewer" :class="{ '-full': $vuetify.breakpoint.xsOnly }">
       <!-- Pre loading -->
-      <s-loading css-mode light v-if="!map_box" class="center-absolute"></s-loading>
+      <s-loading
+        css-mode
+        light
+        v-if="!map_box"
+        class="center-absolute"
+      ></s-loading>
       <!-- MAP -->
       <div :id="`map_box${map_id}`" class="-map"></div>
 
@@ -188,8 +193,6 @@ export default {
 
   data() {
     return {
-
-
       map_box: null,
       map_id: Math.round(Math.random() * 999999),
 
@@ -342,6 +345,11 @@ export default {
 
     goToMyLocation() {
       navigator.geolocation.getCurrentPosition((location, error) => {
+        if (error) {
+          console.error("Get current location", error);
+          return;
+        }
+
         console.log("🗺 My location.");
 
         if (location) {
@@ -369,7 +377,7 @@ export default {
     },
     // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Fetch Vendors ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
-    onfetchVendors({ vendors, total }) {
+    onfetchVendors({ vendors }) {
       this.vendors = vendors;
 
       if (!this.map_box) return; // Not initialized yet!

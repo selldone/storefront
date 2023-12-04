@@ -952,7 +952,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach((to: Route, from: Route) => {
+router.afterEach((/*to: Route, from: Route*/) => {
   // Update the current location in header:
   window.axios.defaults.headers.common["S-Location"] = window.location.href;
 });

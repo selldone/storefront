@@ -91,11 +91,7 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-basket-return-items-list
-        v-if="basket"
-        class="mt-4"
-        :basket="basket"
-      />
+      <s-basket-return-items-list v-if="basket" class="mt-4" :basket="basket" />
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->

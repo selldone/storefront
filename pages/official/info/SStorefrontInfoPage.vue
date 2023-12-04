@@ -13,7 +13,10 @@
   -->
 
 <template>
-  <s-storefront-primary-footer v-if="isMobile" :shop="shop"></s-storefront-primary-footer>
+  <s-storefront-primary-footer
+    v-if="isMobile"
+    :shop="shop"
+  ></s-storefront-primary-footer>
 </template>
 
 <script>

@@ -14,12 +14,18 @@
 #
 
 # Color codes
+# shellcheck disable=SC2034
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+# shellcheck disable=SC2034
 YELLOW='\033[1;33m'  # Yellow with bold
+# shellcheck disable=SC2034
 BLUE='\033[0;34m'
+# shellcheck disable=SC2034
 PURPLE='\033[0;35m'
+# shellcheck disable=SC2034
 CYAN='\033[0;36m'
+# shellcheck disable=SC2034
 WHITE='\033[1;37m'  # White with bold
 NC='\033[0m' # No Color
 GREEN_BOLD='\033[1;32m'

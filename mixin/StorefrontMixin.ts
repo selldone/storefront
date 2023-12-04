@@ -608,7 +608,7 @@ const StorefrontMixin = CoreMixin.extend({
         .then(({ prizes }) => {
           this.$store.commit("setLotteryPrizes", prizes);
         })
-        .catch((error) => {
+        .catch(() => {
           // this.showLaravelError(error); Prevent show error on restricted shops!
         });
     },

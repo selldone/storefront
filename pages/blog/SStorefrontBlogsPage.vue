@@ -723,7 +723,7 @@ export default {
       );
     },
 
-    search: _.throttle(function (newVal, oldVal) {
+    search: _.throttle(function () {
       this.fetchBlogs(1, false);
     }, window.SERACH_THROTTLE),
   },

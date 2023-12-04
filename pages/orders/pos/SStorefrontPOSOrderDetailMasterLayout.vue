@@ -12,7 +12,7 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-card class="s--shop-card s--shadow-with-padding">
     <v-toolbar
       :color="SaminColorDarkDeep"
@@ -29,8 +29,14 @@
         :tooltip="$t('global.actions.back')"
         :to="
           $route.query.return_id
-            ? { name: window.$storefront.routes.USER_RETURN_REQUESTS, params: { STATE: RETURN } }
-            : { name: window.$storefront.routes.HISTORY_ORDERS_POS, params: { STATE: RETURN } }
+            ? {
+                name: window.$storefront.routes.USER_RETURN_REQUESTS,
+                params: { STATE: RETURN },
+              }
+            : {
+                name: window.$storefront.routes.HISTORY_ORDERS_POS,
+                params: { STATE: RETURN },
+              }
         "
       />
 
@@ -40,8 +46,17 @@
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-title  class="text-uppercase small mt-3 d-flex flex-column align-center">
-        <img :src="require('@core/enums/product/assets/product-types/basket-pos.svg')" width="28" height="28" class="mx-1 mb-1" />
+      <v-toolbar-title
+        class="text-uppercase small mt-3 d-flex flex-column align-center"
+      >
+        <img
+          :src="
+            require('@core/enums/product/assets/product-types/basket-pos.svg')
+          "
+          width="28"
+          height="28"
+          class="mx-1 mb-1"
+        />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
     </v-toolbar>
@@ -81,9 +96,7 @@ export default {
     };
   },
 
-  computed: {
-
-  },
+  computed: {},
 
   watch: {},
   created() {
@@ -113,7 +126,7 @@ export default {
             this.basket = data.basket;
 
             if (this.basket.status === BasketStatus.Payed.code)
-              GtagEcommerce.MeasuringPurchasesBasket( this.basket);
+              GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             this.showErrorAlert(null, data.error_msg);
           }

@@ -355,6 +355,11 @@ export default {
 
     goToMyLocation() {
       navigator.geolocation.getCurrentPosition((location, error) => {
+        if (error) {
+          console.error("Get current location", error);
+          return;
+        }
+
         console.log("🗺 My location.");
 
         if (location) {

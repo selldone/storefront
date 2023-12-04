@@ -12,7 +12,7 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-container fluid>
     <div class="widget-box -x-large">
       <v-toolbar

@@ -30,8 +30,6 @@
       </v-toolbar-title>
 
       <v-spacer />
-
-
     </v-app-bar>
 
     <v-container class="faq-container">
@@ -60,8 +58,7 @@
         {{ $t("global.faq.add_question_action") }}
       </v-btn>
 
-      <s-loading css-mode light v-if="!faqs.length && busy_fetch" ></s-loading>
-
+      <s-loading css-mode light v-if="!faqs.length && busy_fetch"></s-loading>
 
       <v-fade-transition
         group
@@ -95,7 +92,7 @@
       />
     </v-container>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary  >
+    <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list dense tile>
         <v-list-item :to="{ name: 'ShopFAQ' }" exact>
           <v-list-item-icon><v-icon>home</v-icon></v-list-item-icon>
@@ -130,8 +127,8 @@
             v-model="question"
             :label="$t('global.faq.question_input')"
             :placeholder="$t('global.faq.question_input_placeholder')"
-            filled rounded
-
+            filled
+            rounded
           />
 
           <v-btn
@@ -197,7 +194,7 @@ export default {
       this.offset = 0;
       this.fetchFAQData();
     },
-    search: _.throttle(function (newVal, oldVal) {
+    search: _.throttle(function (newVal) {
       this.page = 1;
       this.fetchFAQData(newVal);
     }, window.SERACH_THROTTLE),
@@ -219,7 +216,7 @@ export default {
     //――――――――――――――――――――――― FAQs ―――――――――――――――――――――――
 
     fetchFAQData() {
-      this.busy_fetch=true;
+      this.busy_fetch = true;
       axios
         .get(window.XAPI.GET_FAQ(this.shop.name), {
           params: {
@@ -232,9 +229,10 @@ export default {
         .then(({ data }) => {
           this.faqs = data.faqs;
           this.total = data.total;
-        }).finally(() => {
-        this.busy_fetch = false;
-      });
+        })
+        .finally(() => {
+          this.busy_fetch = false;
+        });
     },
 
     sendFAQ() {
@@ -247,7 +245,7 @@ export default {
           if (data.error) {
             this.showErrorAlert(null, data.error_msg);
           } else {
-            this.question=null;
+            this.question = null;
             this.showSuccessAlert(
               null,
               this.$t("global.faq.notifications.success_add")

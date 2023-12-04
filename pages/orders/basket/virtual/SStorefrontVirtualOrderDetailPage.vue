@@ -122,8 +122,6 @@
         v-if="basket"
         :basket="basket"
       ></s-shop-customer-delivery-info-widget>
-
-
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->

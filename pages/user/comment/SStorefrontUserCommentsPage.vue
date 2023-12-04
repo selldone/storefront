@@ -147,15 +147,14 @@ export default {
     // Pagination:
     options: {
       handler() {
-        const { sortBy, sortDesc, page, itemsPerPage } = this.options;
+        const { sortBy, sortDesc, page } = this.options;
         this.fetchData(page, sortBy ? sortBy[0] : null, sortDesc[0]);
       },
       deep: true,
     },
 
-    search: _.throttle(function (newVal, oldVal) {
-      //    console.log("search", newVal);
-      const { sortBy, sortDesc, page, itemsPerPage } = this.options;
+    search: _.throttle(function () {
+      const { sortBy, sortDesc } = this.options;
       this.fetchData(1, sortBy ? sortBy[0] : null, sortDesc[0]);
     }, window.SERACH_THROTTLE),
   },
@@ -185,7 +184,7 @@ export default {
           this.pageCount = Math.ceil(this.totalItems / this.itemsPerPage); //set by event not work!!!
         })
 
-           .catch( (error) =>{})
+        .catch(() => {})
         .then(() => {
           this.busy_fetch = false;
         });

@@ -12,7 +12,7 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <s-storefront-orders-list :type="ProductType.VIRTUAL">
   </s-storefront-orders-list>
 </template>

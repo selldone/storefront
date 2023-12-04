@@ -681,7 +681,7 @@ export default {
   },
 
   watch: {
-    $route(to, from) {
+    $route() {
       this.getProduct();
       this.$forceUpdate(); // Notice we have to use a $ here
     },

@@ -291,7 +291,7 @@ export default {
         });
     },
 
-    onClickSetLocation(info) {
+    onClickSetLocation() {
       if (this.isNewAddress) {
         this.$refs.map_view_dialog.saveCurrentPosition();
       } else {

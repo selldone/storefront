@@ -386,7 +386,7 @@ export default {
     // Pagination:
     options: {
       handler() {
-        const { sortBy, sortDesc, page, itemsPerPage } = this.options;
+        const { sortBy, sortDesc, page } = this.options;
         this.fetchOrders(page, sortBy[0], sortDesc[0]);
       },
       deep: true,
