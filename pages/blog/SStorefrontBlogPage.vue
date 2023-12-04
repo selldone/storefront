@@ -19,7 +19,7 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <v-toolbar flat color="transparent">
-      <circle-button
+      <s-circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
         :to="{ name: 'Blogs' }"
@@ -59,13 +59,13 @@
 <script>
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import SArticleView from "@components/article/SArticleView.vue";
-import CircleButton from "@components/ui/button/CircleButton.vue";
+
 
 export default {
   name: "SStorefrontBlogPage",
 
   components: {
-    CircleButton,
+
     SArticleView,
   },
 

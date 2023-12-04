@@ -22,7 +22,7 @@
         extended
         extension-height="18px"
       >
-        <circle-button
+        <s-circle-button
           v-for="type in types"
           :key="type.code"
           :src="type.image"
@@ -36,7 +36,7 @@
           tile
         />
 
-        <circle-button
+        <s-circle-button
           v-if="USER()"
           key="pos"
           :src="require('@components/assets/icons/pos-order-type.svg')"
@@ -47,7 +47,7 @@
           tile
         />
 
-        <circle-button
+        <s-circle-button
           v-if="USER()"
           key="avo"
           :src="require('@components/assets/icons/avocado.svg')"

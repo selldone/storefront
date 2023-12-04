@@ -24,7 +24,7 @@
     >
       <!-- ⦿ Back -->
 
-      <circle-button
+      <s-circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
         :to="

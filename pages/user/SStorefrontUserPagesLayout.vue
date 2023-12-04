@@ -28,7 +28,7 @@
 
       <!-- ⦿ Orders History -->
 
-      <circle-button
+      <s-circle-button
         icon="history"
         :tooltip="$t('user_page.menu.orders')"
         :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }"
@@ -37,7 +37,7 @@
 
       <!-- ⦿ Address -->
 
-      <circle-button
+      <s-circle-button
         v-if="USER()"
         icon="near_me"
         :tooltip="$t('user_page.menu.addresses')"
@@ -46,7 +46,7 @@
       />
       <!-- ⦿ Return request -->
 
-      <circle-button
+      <s-circle-button
         v-if="USER()"
         icon="keyboard_return"
         :tooltip="$t('user_page.menu.return_requests')"
@@ -55,7 +55,7 @@
       />
       <!-- ⦿ Favorites -->
 
-      <circle-button
+      <s-circle-button
         v-if="USER()"
         icon="star"
         :tooltip="$t('user_page.menu.favorites')"
@@ -64,7 +64,7 @@
       />
       <!-- ⦿ Comments -->
 
-      <circle-button
+      <s-circle-button
         v-if="USER()"
         icon="comment"
         :tooltip="$t('user_page.menu.comments')"
@@ -74,7 +74,7 @@
 
       <!-- ⦿ Gift cards -->
 
-      <circle-button
+      <s-circle-button
         v-if="USER()"
         icon="card_giftcard"
         :tooltip="$t('user_page.menu.gift_card')"
@@ -84,7 +84,7 @@
 
       <!-- ⦿ Profile -->
 
-      <circle-button
+      <s-circle-button
         icon="person"
         :tooltip="$t('user_page.menu.profile')"
         :to="{ name: window.$storefront.routes.USER_PROFILE_PAGE }"

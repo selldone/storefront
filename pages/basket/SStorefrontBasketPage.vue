@@ -40,7 +40,7 @@
       </v-toolbar>
 
       <div class="text-center pt-2" v-if="filtered_types.length > 1">
-        <circle-button
+        <s-circle-button
           v-for="item in filtered_types"
           :key="item.code"
           :src="item.image"
@@ -849,7 +849,7 @@
                         <template v-if="need_ask_shipping_date">
                           <v-subheader> Receive date </v-subheader>
 
-                          <date-time-picker-global
+                          <s-date-input
                             return-utc
                             v-model="delivery_info.date"
                             @change="setBasketConfig"
@@ -874,7 +874,7 @@
                                 >warning</v-icon
                               >
                             </template>
-                          </date-time-picker-global>
+                          </s-date-input>
                         </template>
                       </div>
                     </v-expand-transition>
@@ -1309,18 +1309,17 @@ import SShopConnectShippingOptions from "@components/storefront/order/shipping/S
 import SSmartSelect from "@components/smart/SSmartSelect.vue";
 import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import { ETA } from "@core/enums/logistic/ETA";
-import DateTimePickerGlobal from "@components/ui/calendar/dateTimePickerGlobal.vue";
+import SDateInput from "@components/ui/calendar/date-input/SDateInput.vue";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
 import _ from "lodash-es";
 import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
-import { PricingTypes } from "@core/enums/product/PricingTypes";
 import { BasketHelper } from "@core/helper/shop/BasketHelper";
 
 export default {
   name: "SStorefrontBasketPage",
   components: {
     SStripeSplitPaymentInfo,
-    DateTimePickerGlobal,
+    SDateInput,
     ProductsDenseImagesCircles,
     SSmartSelect,
     SShopConnectShippingOptions,
