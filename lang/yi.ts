@@ -1,7 +1,7 @@
-import global from "@core/lang/global/ar";
+import global from "@core/lang/global/yi";
 import icons from "@core/lang/global/icons/rtl";
-import community from "@core/lang/global/community/ar";
-import pack from "@core/lang/shop/ar";
+import community from "@core/lang/global/community/yi";
+import pack from "@core/lang/shop/yi";
 
 export default {
   /** ---------------- Icons ---------------- **/

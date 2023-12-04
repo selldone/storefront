@@ -35,7 +35,7 @@ export const i18n = new VueI18n({
 });
 
 // Attach $t to the window object
-window.$t = (key: VueI18n.Path, values?: VueI18n.Values) => i18n.t(key,values);
+window.$t = (key: VueI18n.Path, values?: VueI18n.Values) => i18n.t(key, values);
 
 // List of pre-loaded languages.
 const loadedLanguages: string[] = ["en" /*,'fa','de','sv'*/];
@@ -52,12 +52,10 @@ export function loadLanguageAsyncShop(
   setI18nLanguage: (value: string) => void
 ): Promise<any> {
   // If the requested language is already the current language or If the requested language is already the current language or has been loaded
-  if (i18n.locale === lang  || loadedLanguages.includes(lang)) {
+  if (i18n.locale === lang || loadedLanguages.includes(lang)) {
     setI18nLanguage(lang);
     return Promise.resolve();
   }
-
-
 
   // If the language hasn't been loaded yet, import it
   return import(
