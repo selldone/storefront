@@ -180,7 +180,7 @@
 </template>
 
 <script>
-import Mapbox from "@components/map/MapBox";
+import Mapbox from "@components/map/plugins/MapBox";
 import SetupService from "@core/server/SetupService";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";

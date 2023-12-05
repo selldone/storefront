@@ -15,8 +15,8 @@
 <template>
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
-      <widget-header :title="$t('user_favorites.title')" icon="favorite">
-      </widget-header>
+      <s-widget-header :title="$t('user_favorites.title')" icon="favorite">
+      </s-widget-header>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ User favorites  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-progress-loading v-if="busy_fetch"></s-progress-loading>

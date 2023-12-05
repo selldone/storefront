@@ -184,7 +184,7 @@
 </template>
 
 <script>
-import Mapbox from "@components/map/MapBox";
+import Mapbox from "@components/map/plugins/MapBox";
 import SetupService from "@core/server/SetupService";
 import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";

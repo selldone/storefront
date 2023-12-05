@@ -17,10 +17,10 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5">
-      <widget-header
+      <s-widget-header
         :title="$t('addresses_page.title')"
         icon="fmd_good"
-      ></widget-header>
+      ></s-widget-header>
 
       <v-subheader> </v-subheader>
 
@@ -96,7 +96,7 @@
               class="map-image"
               :src="`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${address.location.lng},${address.location.lat},13.96,0,0/200x200?access_token=pk.eyJ1IjoicGFqdWhhYW4iLCJhIjoiY2sxaHNtbnU3MDFjcjNta2V0OTZ0d2ExYiJ9.YKRh0EP7NnhbmuSil7AvSw`"
             />
-            <location-marker class="map-pointer"></location-marker>
+            <s-map-location-marker class="map-pointer"></s-map-location-marker>
           </div>
         </div>
 
@@ -196,13 +196,13 @@
 </template>
 
 <script>
-import LocationMarker from "@components/map/widgets/LocationMarker.vue";
+import SMapLocationMarker from "@components/map/market/SMapLocationMarker.vue";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
-import WidgetHeader from "@components/widget/WidgetHeader.vue";
+
 
 export default {
   name: "SStorefrontUserAddressesPage",
-  components: { WidgetHeader, SValueDashed, LocationMarker },
+  components: {  SValueDashed, SMapLocationMarker },
   data() {
     return {
       addresses: [],

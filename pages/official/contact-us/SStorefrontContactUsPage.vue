@@ -47,10 +47,10 @@
         </div>
       </div>
       <div v-else>
-        <widget-header
+        <s-widget-header
           :title="$t('contact_us_form.title')"
           icon="contact_mail"
-        ></widget-header>
+        ></s-widget-header>
 
         <div v-if="USER()" class="text-start d-flex my-4 align-items-center">
           <v-avatar

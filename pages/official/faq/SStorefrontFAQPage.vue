@@ -33,18 +33,10 @@
     </v-app-bar>
 
     <v-container class="faq-container">
-      <simple-inner-title>
-        <template v-slot:title>
-          {{ $t("global.faq.title") }}
-        </template>
-        <template v-slot:sub-title>
-          {{ $t("global.faq.sub_title") }}
-        </template>
-
-        <template v-slot:info>
-          {{ $t("global.faq.message") }}
-        </template>
-      </simple-inner-title>
+      <s-widget-header :title="$t('global.faq.title')"></s-widget-header>
+      <v-subheader>
+        {{ $t("global.faq.message") }}
+      </v-subheader>
 
       <v-btn
         v-if="USER()"

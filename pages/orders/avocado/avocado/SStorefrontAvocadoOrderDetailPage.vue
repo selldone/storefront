@@ -38,14 +38,14 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <widget>
+      <s-widget>
         <s-shop-avocado-customer-order-items
           :avocado="basket"
           :items="basket.items"
           view-only
           class="max-width-field-large mx-auto w-100"
         ></s-shop-avocado-customer-order-items>
-      </widget>
+      </s-widget>
 
       <s-shop-customer-order-payment-widget
         v-if="basket"

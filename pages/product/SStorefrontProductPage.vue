@@ -285,14 +285,14 @@
 
       <!-- ▁▁▁▁▁▁ 🞇 Badges 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('badges') }">
-        <fade-scroll>
+        <s-fade-scroll>
           <s-shop-product-section-box-badges
             :shop="shop"
             :product="product"
             :large="$vuetify.breakpoint.mdAndUp"
             class="py-16"
           ></s-shop-product-section-box-badges>
-        </fade-scroll>
+        </s-fade-scroll>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Dialog > QR Code ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -356,7 +356,7 @@ import { ProductType } from "@core/enums/product/ProductType";
 import SetupService from "@core/server/SetupService";
 
 import SShopProductProsConsTable from "@components/product/pros-cons/SShopProductProsConsTable.vue";
-import FadeScroll from "@components/ui/fade-scroll/FadeScroll.vue";
+import SFadeScroll from "@components/ui/fade-scroll/SFadeScroll.vue";
 import SShopProductIncludes from "@components/product/includes/SShopProductIncludes.vue";
 import { ColorHelper } from "@core/helper/color/ColorHelper";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
@@ -394,7 +394,7 @@ export default {
     SShopRelatedCategories,
     SShopRelatedProducts,
     SShopProductIncludes,
-    FadeScroll,
+    SFadeScroll,
     SShopProductProsConsTable,
 
     ProductInfoLoadingView,
@@ -406,8 +406,6 @@ export default {
 
   data: function () {
     return {
-
-
       show_article: true, // For refresh article!
 
       product: null,
@@ -430,7 +428,6 @@ export default {
   },
 
   computed: {
-
     is_physical() {
       return this.product.type === ProductType.PHYSICAL.code;
     },

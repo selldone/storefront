@@ -15,14 +15,14 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
-      <widget-header
+      <s-widget-header
         :title="$t('user_gift_cards.title')"
         icon="card_giftcard"
         :add-caption="$t('user_gift_cards.add_card_dialog.title')"
         @click:add="showAddCardDialog"
         add-icon="card_giftcard"
       >
-      </widget-header>
+      </s-widget-header>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ My Gift cards  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <s-progress-loading v-if="busy_fetch"></s-progress-loading>

@@ -152,7 +152,7 @@ import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-or
 import SStorefrontProductsComparisonButton from "@components/storefront/comparison/button/SStorefrontProductsComparisonButton.vue";
 import { EventName } from "@core/events/EventBus";
 import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
-import SMapDialog from "@components/map/SMapDialog.vue";
+import SMapDialog from "@components/map/map-dialog/SMapDialog.vue";
 import SStorefrontWebappDebugView from "@components/debug/SStorefrontWebappDebugView.vue";
 
 export default {

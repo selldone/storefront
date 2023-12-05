@@ -55,9 +55,13 @@
             >
           </div>
 
-          <offline-basket-list-items v-if="basket" :basket="basket" view-only />
+          <s-offline-basket-items-list
+            v-if="basket"
+            :basket="basket"
+            view-only
+          />
 
-          <pos-bill-view v-if="bill" :bill="bill"></pos-bill-view>
+          <s-pos-bill-view v-if="bill" :bill="bill"></s-pos-bill-view>
 
           <!------------ Bill View ------------>
 
@@ -213,12 +217,12 @@
 </template>
 
 <script>
-import OfflineBasketListItems from "@components/pos/OfflineBasketListItems.vue";
-import PosBillView from "@components/pos/PosBillView.vue";
+import SOfflineBasketItemsList from "@components/pos/basket-items-list/SOfflineBasketItemsList.vue";
+import SPosBillView from "@components/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import PaymentCard from "@components/payment/widgets/PaymentCard.vue";
 import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
-import SCountryWorldMap from "@components/map/SCountryWorldMap.vue";
+import SCountryWorldMap from "@components/map/countries-svg/SCountryWorldMap.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 export default {
   name: "SStorefrontPOSPage",
@@ -226,8 +230,8 @@ export default {
     SCountryWorldMap,
     SPaymentBillingDetails,
     PaymentCard,
-    PosBillView,
-    OfflineBasketListItems,
+    SPosBillView,
+    SOfflineBasketItemsList,
   },
 
   data: () => ({

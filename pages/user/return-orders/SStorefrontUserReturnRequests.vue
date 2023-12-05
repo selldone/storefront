@@ -15,11 +15,11 @@
 <template>
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
-      <widget-header
+      <s-widget-header
         :title="$t('return_requests.title')"
         icon="assignment_return"
       >
-      </widget-header>
+      </s-widget-header>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
