@@ -63,7 +63,7 @@
     ]"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-top-banner :shop="shop" />
+    <s-storefront-campaign-banner :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
@@ -145,7 +145,7 @@ import SStorefrontPopup from "@components/storefront/popup/SStorefrontPopup.vue"
 import { FontHelper } from "@core/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";
 import SStorefrontSocialButtons from "@components/storefront/social/SStorefrontSocialButtons.vue";
-import SStorefrontTopBanner from "@components/storefront/banner/campaign-top-banner/SStorefrontTopBanner.vue";
+import SStorefrontCampaignBanner from "@components/storefront/campaign/banner/SStorefrontCampaignBanner.vue";
 import { ShopRestriction } from "@core/enums/shop/ShopRestriction";
 import SStorefrontPrivateAccessCheckView from "@components/storefront/access/SStorefrontPrivateAccessCheckView.vue";
 import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
@@ -164,7 +164,7 @@ export default {
     SStorefrontProductsComparisonButton,
     SStorefrontRetrieveShareOrder,
     SStorefrontPrivateAccessCheckView,
-    SStorefrontTopBanner,
+    SStorefrontCampaignBanner,
     SStorefrontSocialButtons,
     SFullscreenViewAnimator,
     SStorefrontPopup,

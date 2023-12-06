@@ -66,7 +66,7 @@
               lg="3"
               class="p-2"
             >
-              <s-shop-gift-card :gift-card="gift_card" />
+              <s-storefront-giftcard-view :gift-card="gift_card" />
             </v-col>
           </v-fade-transition>
         </template>
@@ -91,7 +91,7 @@
     </div>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add card  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <s-shop-gift-card-add-dialog
+    <s-storefront-giftcard-add-dialog
       v-model="dialog"
       @add="
         (gift_card) => {
@@ -100,22 +100,22 @@
           dialog = false;
         }
       "
-    ></s-shop-gift-card-add-dialog>
+    ></s-storefront-giftcard-add-dialog>
   </v-container>
 </template>
 
 <script>
-import SShopGiftCard from "@components/storefront/incentives/giftcard/SShopGiftCard.vue";
+import SStorefrontGiftcardView from "@components/storefront/giftcard/view/SStorefrontGiftcardView.vue";
 import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
-import SShopGiftCardAddDialog from "@components/storefront/incentives/giftcard/SShopGiftCardAddDialog.vue";
+import SStorefrontGiftcardAddDialog from "@components/storefront/giftcard/add-dialog/SStorefrontGiftcardAddDialog.vue";
 import _ from "lodash-es";
 
 export default {
   name: "SStorefrontUserGiftCardsPage",
   components: {
-    SShopGiftCardAddDialog,
+    SStorefrontGiftcardAddDialog,
     SDataIteratorToolbar,
-    SShopGiftCard,
+    SStorefrontGiftcardView,
   },
   data: () => ({
     giftcards: [],
