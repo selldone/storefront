@@ -420,7 +420,7 @@ export default {
       if (
         this.$route.name !== window.$storefront.routes.PAGE_RENDER &&
         this.$route.name !== "CustomHomePage" &&
-        this.$route.name !== window.$storefront.routes.INCLUDE_PAGE_RENDER
+        this.$route.name !== window.$storefront?.routes.INCLUDE_PAGE_RENDER
       ) {
         this.transparent_header = null;
         this.dark_header = null; // Default value is null!
