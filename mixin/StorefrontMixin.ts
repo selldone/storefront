@@ -33,7 +33,7 @@ import { Currency } from "@core/enums/payment/Currency";
 import { Avocado } from "@core/models/shop/order/avocado/avocado.order";
 import type { Hyper } from "@core/models/shop/order/hyper/hyper.order";
 import type { ProductCompare } from "@core/models/shop/product/product-compare.model";
-import SetupService from "@core/server/SetupService";
+import { SetupService } from "@core/server/SetupService";
 import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
 import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
 import type { RouteRecord } from "vue-router/types/router";

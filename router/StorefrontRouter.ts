@@ -176,7 +176,7 @@ import SStorefrontContactUsPage from "@app-storefront/pages/official/contact-us/
 
 import SStorefrontInfoPage from "@app-storefront/pages/official/info/SStorefrontInfoPage.vue";
 import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
-import SetupService from "@core/server/SetupService";
+import { SetupService } from "@core/server/SetupService";
 import { Shop } from "@core/models/shop/shop.model";
 import type { Route } from "vue-router/types/router.d.ts";
 import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";

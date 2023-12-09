@@ -257,7 +257,7 @@
 <script>
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
+import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import Stamp from "@components/ui/stamp/Stamp.vue";
 import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";

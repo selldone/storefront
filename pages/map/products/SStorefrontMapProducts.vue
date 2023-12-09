@@ -185,7 +185,7 @@
 
 <script>
 import Mapbox from "@components/map/plugins/MapBox";
-import SetupService from "@core/server/SetupService";
+import { SetupService } from "@core/server/SetupService";
 import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";

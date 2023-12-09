@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
+import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { ProductType } from "@core/enums/product/ProductType";
 import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";

@@ -1293,7 +1293,7 @@ import { WeekDays } from "@core/enums/logistic/WeekDays";
 import { TimeSpans } from "@core/enums/logistic/TimeSpans";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
 import SStorefrontDiscountCodeInput from "@components/storefront/discount-code/input/SStorefrontDiscountCodeInput.vue";
-import GtagEcommerce from "@components/plugins/gtag/GtagEcommerce";
+import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import SStorefrontCouponsList from "@components/storefront/coupon/list/SStorefrontCouponsList.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 import SStorefrontLotteryPrizesList from "@components/storefront/lottery/prizes-list/SStorefrontLotteryPrizesList.vue";

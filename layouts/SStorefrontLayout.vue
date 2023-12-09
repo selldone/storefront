@@ -195,7 +195,7 @@
 <script>
 import SStorefrontSearchBox from "@components/storefront/search/SStorefrontSearchBox.vue";
 import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
-import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
+import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
 import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
 import SStorefrontCampaignNotification from "@components/ui/notification/SStorefrontCampaignNotification.vue";

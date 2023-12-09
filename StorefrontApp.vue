@@ -140,7 +140,7 @@ import { Language } from "@core/enums/language/Language";
 import SStorefrontCookieDialog from "@components/storefront/gdpr/SStorefrontCookieDialog.vue";
 import SPwaUpdateSnackbar from "@components/ui/snackbar/SPwaUpdateSnackbar.vue";
 import SStorefrontBottomNavigation from "@components/storefront/footer/SStorefrontBottomNavigation.vue";
-import SetupService from "@core/server/SetupService";
+import { SetupService } from "@core/server/SetupService";
 import SStorefrontPopup from "@components/storefront/popup/SStorefrontPopup.vue";
 import { FontHelper } from "@core/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";

@@ -24,7 +24,7 @@ import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
 import { i18n } from "./lang/i18n_shop";
 import { Language } from "@core/enums/language/Language";
-import ShopApplicationInterface from "@core/enums/application/ShopApplicationInterface";
+import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
 import { StorefrontSDK } from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 

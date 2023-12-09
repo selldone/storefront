@@ -186,7 +186,7 @@
 </template>
 
 <script>
-import SetupService from "@core/server/SetupService";
+import { SetupService } from "@core/server/SetupService";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
 
 export default {
