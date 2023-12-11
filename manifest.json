@@ -1,7 +1,10 @@
 {
+  "deploy_server": "https://layouts.selldone.com",
+  "deploy_path": "",
+
   "package": "sample-custom-storefront",
   "name": "My Storefront",
-  "version": "0.0.1",
+  "version": "0.0.22",
   "storefront": true,
   "backoffice": false,
   "description": null

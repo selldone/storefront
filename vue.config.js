@@ -96,7 +96,7 @@ module.exports = {
     },
   },
 
-  publicPath: IS_PRODUCTION ? `/layouts/${manifest.package}/${manifest.version}` : `https://${DEV_HOST}:${DEV_PORT}/`,
+  publicPath: IS_PRODUCTION ? fixPath(`${manifest.deploy_server}/${manifest.deploy_path}/${manifest.package}/${manifest.version}`) : `https://${DEV_HOST}:${DEV_PORT}/`,
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
@@ -216,6 +216,10 @@ module.exports = {
 
   pages: PAGES(),
 };
+
+function fixPath(str) {
+  return str.replace(/\/{2,}/g, '/');
+}
 
 function printDevServerConfig() {
   console.log("");
