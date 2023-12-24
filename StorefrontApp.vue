@@ -262,6 +262,9 @@ export default {
    */
   watch: {
     $route(_new, _old) {
+
+      if (_new.query["no-scroll"]) return; // Do not scroll if no-scroll query exist!
+
       this.$nextTick(function () {
         this.$vuetify.goTo(0, {
           duration:
