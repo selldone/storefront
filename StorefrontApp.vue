@@ -146,7 +146,7 @@ import { FontHelper } from "@core/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";
 import SStorefrontSocialButtons from "@components/storefront/social/SStorefrontSocialButtons.vue";
 import SStorefrontCampaignBanner from "@components/storefront/campaign/banner/SStorefrontCampaignBanner.vue";
-import { ShopRestriction } from "@core/enums/shop/ShopRestriction";
+import { ShopRestriction } from "@core/enums/shop/options/ShopRestriction";
 import SStorefrontPrivateAccessCheckView from "@components/storefront/access/SStorefrontPrivateAccessCheckView.vue";
 import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
 import SStorefrontProductsComparisonButton from "@components/storefront/comparison/button/SStorefrontProductsComparisonButton.vue";

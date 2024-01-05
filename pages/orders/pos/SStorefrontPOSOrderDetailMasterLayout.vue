@@ -51,7 +51,7 @@
       >
         <img
           :src="
-            require('@core/enums/product/assets/product-types/basket-pos.svg')
+            require('@core/assets/order-types/basket-pos.svg')
           "
           width="28"
           height="28"

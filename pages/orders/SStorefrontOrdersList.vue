@@ -42,9 +42,9 @@
         <img
           :src="
             isAvocado
-              ? require('@core/enums/product/assets/product-types/basket-avocado.svg')
+              ? require('@core/assets/order-types/basket-avocado.svg')
               : isPos
-              ? require('@core/enums/product/assets/product-types/basket-pos.svg')
+              ? require('@core/assets/order-types/basket-pos.svg')
               : type.basket
           "
           height="42"

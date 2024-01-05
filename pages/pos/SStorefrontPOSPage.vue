@@ -39,7 +39,8 @@
 
           <div class="d-flex mt-16 align-items-center" dir="ltr">
             <h1 v-if="basket" class="text-left flex-grow-1">
-              POS-{{ basket.id }}
+
+              {{getBasketOrderCode(basket) }}
             </h1>
 
             <v-btn

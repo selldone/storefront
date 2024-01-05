@@ -51,13 +51,13 @@
         <v-col v-if="shop && hyper" cols="12" class="flex-grow-1">
           <!-- ................ Show Hyper Details ................ -->
           <div class="text-start max-width-field mx-auto my-16 fadeIn">
-            <h1>{{ "HYP-" + hyper.id }}</h1>
+            <h1>{{ getBasketOrderCode(hyper) }}</h1>
 
             <small :title="getLocalTimeString(hyper.created_at)">
               {{ getFromNowString(hyper.created_at) }}
 
               |
-              {{ "HYP-" + hyper.id }}
+              {{ getBasketOrderCode(hyper) }}
             </small>
 
             <p class="mb-0 mt-4 subtitle-2">
