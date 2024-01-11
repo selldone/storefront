@@ -59,7 +59,7 @@ e-commerce needs.
 _Guide to Getting Started with Storefront Project (Vue Framework) for Selldone_
 
 
-[![Watch the video](https://img.youtube.com/vi/UBwjxznQz0U/maxresdefault.jpg)](https://youtu.be/UBwjxznQz0U)
+[![Watch the video](_docs/images/cover-code-youtube.jpg)](https://youtu.be/UBwjxznQz0U)
 
 
 Create a fully customized storefront for Selldone using the Storefront Project built on the Vue framework. Follow these
