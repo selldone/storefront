@@ -133,6 +133,34 @@ By following these steps, you'll be well on your way to developing a unique and 
 using the Vue framework. Happy coding!
 
 
+Sample .env file to load data from Selldone:
+
+```dotenv
+
+# ▃▃▃▃▃▃▃▃▃▃▃▃ Sample Storefront ▃▃▃▃▃▃▃▃▃▃▃▃
+
+VUE_APP_SAMPLE_SHOP_NAME=toysworld
+
+#Number: custom landing page number
+VUE_APP_SAMPLE_SHOP_CUSTOM_HOME=3001
+
+VUE_APP_SAMPLE_DEFAULT_CURRENCY=GBP
+VUE_APP_SAMPLE_DEFAULT_COUNTRY=GB
+VUE_APP_SAMPLE_DEFAULT_LANGUAGE=en
+
+
+VUE_APP_SAMPLE_THEME_COLOR_LIGHT="#70557E"
+VUE_APP_SAMPLE_THEME_COLOR_DARK="#000000"
+VUE_APP_SAMPLE_THEME_COLOR_DEEP_DARK="#000000"
+VUE_APP_SAMPLE_THEME_COLOR_INFO="#E91E63"
+
+# ▃▃▃▃▃▃▃▃▃▃▃▃ Dev Server ▃▃▃▃▃▃▃▃▃▃▃▃
+
+VUE_DEV_SERVER_HOST=
+VUE_DEV_SERVER_PORT=
+VUE_DEV_SERVER_HTTPS=TRUE
+```
+
 ## Deploy
 
 Install `Selldone-CLI` globally:
