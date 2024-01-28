@@ -12,8 +12,7 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import Vue from "vue";
-import Router from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import store from "../store/StorefrontStore";
 import SStorefrontLayout from "../layouts/SStorefrontLayout.vue";
 
@@ -312,7 +311,6 @@ function getRouteForHome(): IVueRoute {
   }
 }
 
-Vue.use(Router);
 const routes: IVueRoute[] = [
   //█████████████████████████████████████████████████████████████
   //――――――――――――――――――――― Shop General Layout ―――――――――――――――――――――――
@@ -901,9 +899,9 @@ const routes: IVueRoute[] = [
   //█████████████████████████████████████████████████████████████
 ];
 
-const router = new Router({
-  mode: "history",
-  base: SHOP_PREFIX_ADDRESS, //process.env.BASE_URL
+const router = createRouter({
+  history: createWebHistory(SHOP_PREFIX_ADDRESS /*process.env.BASE_URL*/),
+
   routes: routes,
 });
 

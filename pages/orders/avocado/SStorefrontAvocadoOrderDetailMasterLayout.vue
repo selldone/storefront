@@ -52,7 +52,7 @@
     </v-toolbar>
 
     <v-card
-      class="card--flex-toolbar mx-0 mx-sm-3"
+      class="s--card-window-content mx-0 mx-sm-3"
       style="min-height: 80vh"
       flat
     >

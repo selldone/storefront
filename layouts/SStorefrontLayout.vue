@@ -103,7 +103,7 @@
         margin-right: auto;
         min-height: 60vh;
         transition: none;
-      "
+      " class="d-block"
     >
       <!-- The 'router-view' will display the content of children components as defined in the Router. -->
       <router-view
@@ -347,7 +347,7 @@ export default {
 
     top_menu() {
       return (
-        this.$vuetify.breakpoint.mdAndUp &&
+        this.$vuetify.display.mdAndUp &&
         this.shop &&
         this.shop.menus &&
         this.shop.menus.find((it) => it.type === "HEADER")

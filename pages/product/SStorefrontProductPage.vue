@@ -51,7 +51,7 @@
           <!-- ████████████████████ Go to admin panel button ████████████████████ -->
 
           <v-btn
-            v-if="$vuetify.breakpoint.mdAndUp && admin_url"
+            v-if="$vuetify.display.mdAndUp && admin_url"
             dark
             :href="admin_url"
             target="_blank"
@@ -144,16 +144,16 @@
         <v-container fluid class="s--product-section-header my-16">
           <v-row align="center">
             <v-col cols="12" md="6" class="text-start">
-              <v-subheader
+              <v-list-subheader
                 >●
                 {{
                   $t("product_info.product_description_header", {
                     product: product.title,
                   })
                 }}
-              </v-subheader>
+              </v-list-subheader>
               <h2
-                class="display-2 line-height-normal font-weight-black"
+                class="text-h3 line-height-normal font-weight-black"
                 :style="{ color: page_article_title_color }"
               >
                 {{ article.title }}
@@ -289,7 +289,7 @@
           <s-shop-product-section-box-badges
             :shop="shop"
             :product="product"
-            :large="$vuetify.breakpoint.mdAndUp"
+            :large="$vuetify.display.mdAndUp"
             class="py-16"
           ></s-shop-product-section-box-badges>
         </s-fade-scroll>
@@ -313,7 +313,7 @@
           class="dialog-shadow"
         >
           <div>
-            <qrcode
+            <vue-qrcode
               v-if="qrcode_value"
               :value="qrcode_value"
               :options="{
@@ -561,7 +561,7 @@ export default {
           title: this.$t("product.warranty"),
           value: "tab-warranty",
           color: "#673AB7",
-          icon: "fas fa-certificate me-2",
+          icon: "fa:fas fa-certificate me-2",
           code: "warranty",
         });
       }
@@ -571,7 +571,7 @@ export default {
           title: this.$t("product.return_policy"),
           value: "tab-return-policy",
           color: "#455A64",
-          icon: "fas fa-people-carry me-2",
+          icon: "fa:fas fa-people-carry me-2",
           code: "return-policy",
         });
       }
@@ -581,7 +581,7 @@ export default {
           title: this.$t("product.guide"),
           value: "tab-guide",
           color: "#FFA000",
-          icon: "fas fa-life-ring me-2",
+          icon: "fa:fas fa-life-ring me-2",
           code: "guide",
         });
       }
@@ -591,7 +591,7 @@ export default {
           title: this.$t("product.shipping"),
           value: "tab-shipping",
           color: "#3F51B5",
-          icon: "fas fa-shipping-fast me-2",
+          icon: "fa:fas fa-shipping-fast me-2",
           code: "shipping",
         });
       }
@@ -601,7 +601,7 @@ export default {
           title: this.$t("global.commons.files"),
           value: "tab-files",
           color: "#F57C00",
-          icon: "fas fa-folder me-2",
+          icon: "fa:fas fa-folder me-2",
           code: "files",
         });
       }
@@ -611,7 +611,7 @@ export default {
           title: this.$t("global.commons.contents"),
           value: "tab-content",
           color: "#212121",
-          icon: "fas fa-folder me-2",
+          icon: "fa:fas fa-folder me-2",
           code: "contents",
         });
       }

@@ -20,7 +20,7 @@ import {
   NativeInterfaceShop,
   NativeInterfaceUser,
 } from "@components/plugins/native/NativeAppInterface";
-import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import CoreMixin from "@components/mixin/CoreMixin";
 import type { Basket } from "@core/models/shop/order/basket/basket.model";
 import { Club } from "@core/models/shop/club/club.model";
@@ -445,7 +445,7 @@ const StorefrontMixin = CoreMixin.extend({
             // Set guest code (use for guest basket)
             if (shop.guest_code) {
               // Must save in localstorage to reuse in all requests headers:
-              LocalStorages.SetShopGuestCode(shop.guest_code);
+              StorefrontLocalStorages.SetShopGuestCode(shop.guest_code);
               // 🞧 Header: Add guest code to all headers:
               window.axios.defaults.headers.common["S-Guest"] = shop.guest_code;
             }
@@ -530,7 +530,7 @@ const StorefrontMixin = CoreMixin.extend({
             // Popup: We save seen_pops in localstorage (Client) and send in the header request
             if (seen_pops) {
               localStorage.setItem(
-                LocalStorages.GetSeenPopups(this.$localstorage_base_path()),
+                StorefrontLocalStorages.GetSeenPopups(this.$localstorage_base_path()),
                 JSON.stringify(seen_pops)
               );
             }

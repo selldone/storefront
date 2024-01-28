@@ -38,7 +38,7 @@
       <div
         v-if="!is_enable"
         style="min-height: 65vh"
-        class="display-1 font-weight-thin"
+        class="text-h4 font-weight-thin"
       >
         {{ $t("avocado.not_enable") }}
       </div>

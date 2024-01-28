@@ -56,7 +56,7 @@
     </v-toolbar>
 
     <v-card
-      class="card--flex-toolbar mx-0 mx-sm-3"
+      class="s--card-window-content mx-0 mx-sm-3"
       style="min-height: 80vh"
       flat
     >
@@ -79,7 +79,7 @@ import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
-import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
@@ -179,7 +179,7 @@ export default {
         .get(window.XAPI.GET_ORDER_BASKET_INFO(shop_name, basket_id), {
           params: {
             code: !this.USER()
-              ? LocalStorages.GetShopHistoryGuestCodeOfOrder(
+              ? StorefrontLocalStorages.GetShopHistoryGuestCodeOfOrder(
                   this.$route.params.basket_id
                 ) /*🥶 Guest*/
               : undefined,

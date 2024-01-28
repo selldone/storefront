@@ -56,7 +56,7 @@
         <v-icon class="me-1">mail_outline</v-icon
         >{{ $t("user_profile.subscription") }}
       </h2>
-      <v-subheader> </v-subheader>
+      <v-list-subheader> </v-list-subheader>
 
       <div class="widget-buttons">
         <v-btn
@@ -86,18 +86,18 @@
 
       <s-value-dashed>
         <template v-slot:label>
-          <v-subheader>
+          <v-list-subheader>
             {{ $t("user_profile.tel") }}
-          </v-subheader></template
+          </v-list-subheader></template
         >
         <b>{{ USER().phone }}</b>
       </s-value-dashed>
 
       <s-value-dashed>
         <template v-slot:label>
-          <v-subheader>
+          <v-list-subheader>
             {{ $t("user_profile.identity") }}
-          </v-subheader></template
+          </v-list-subheader></template
         >
         <div class="text-success">
           <check
@@ -120,9 +120,9 @@
       <template v-if="getClub()">
         <hr class="my-4" />
 
-        <v-subheader>
+        <v-list-subheader>
           {{ $t("user_profile.club") }}
-        </v-subheader>
+        </v-list-subheader>
         <div class="text-center">
           <img
             :src="getCustomerClubLevel(getClub().level).icon"
@@ -160,7 +160,7 @@
               <small class="d-block">{{
                 $t("user_profile.club_table.free_shipping")
               }}</small>
-              <v-icon color="success" small>fas fa-shipping-fast</v-icon>
+              <v-icon color="success" small>fa:fas fa-shipping-fast</v-icon>
             </div>
           </div>
         </div>

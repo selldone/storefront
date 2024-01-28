@@ -58,7 +58,7 @@
         v-if="basket && basket.items && basket.items.length"
         class="mt-4 blur-animate"
         style="max-width: 100%; overflow: hidden"
-        :class="{ blured: busy_shop }"
+        :class="{ blurred: busy_shop }"
       >
         <v-row dense>
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -196,7 +196,7 @@
                             small
                             color="#2ab27b"
                             class="align-baseline vertical-align-baseline me-1"
-                            >fas fa-gift</v-icon
+                            >fa:fas fa-gift</v-icon
                           >
                           <price-view
                             :amount="-total_offers_amount"
@@ -489,7 +489,7 @@
                   <div v-if="has_delivery" class="spacer-line my-3" />
                 </div>
                 <!-- END OF PRICES -->
-                <div v-else class="display-1 text-center p-3">
+                <div v-else class="text-h4 text-center p-3">
                   Sorry, Can not calculate the bill. contact us by :
                   info@selldone.com
                 </div>
@@ -518,7 +518,7 @@
                       has_direct_delivery
                     "
                   >
-                    <v-subheader class="my-2">
+                    <v-list-subheader class="my-2">
                       {{ $t("global.commons.shipping") }}
                       <products-dense-images-circles
                         inline
@@ -536,7 +536,7 @@
                             )
                         "
                       ></products-dense-images-circles>
-                    </v-subheader>
+                    </v-list-subheader>
 
                     <s-smart-select
                       :value="transportation?.type"
@@ -750,13 +750,13 @@
                             ].includes(transportation?.eta)
                           "
                         >
-                          <v-subheader>
+                          <v-list-subheader>
                             {{ $t("basket_page.days_input") }}
-                          </v-subheader>
+                          </v-list-subheader>
 
                           <v-select
                             v-model="delivery_info.days"
-                            append-icon="fas fa-calendar-week"
+                            append-icon="fa:fas fa-calendar-week"
                             class="mx-2 mt-3"
                             :items="dayItems"
                             outlined
@@ -801,12 +801,12 @@
                             ].includes(transportation?.eta)
                           "
                         >
-                          <v-subheader>
+                          <v-list-subheader>
                             {{ $t("basket_page.time_input") }}
-                          </v-subheader>
+                          </v-list-subheader>
 
                           <v-select
-                            append-icon="fas fa-clock"
+                            append-icon="fa:fas fa-clock"
                             v-model="delivery_info.time_spans"
                             class="mx-2 mt-3"
                             :items="timeItems"
@@ -847,7 +847,7 @@
 
                         <!-- ━━━━━━━━━━━━━━━━━━ PTA > Custom delivery > Date ━━━━━━━━━━━━━━━━━━ -->
                         <template v-if="need_ask_shipping_date">
-                          <v-subheader> Receive date </v-subheader>
+                          <v-list-subheader> Receive date </v-list-subheader>
 
                           <s-date-input
                             return-utc
@@ -919,8 +919,8 @@
                   <div
                     style="min-height: 78px"
                     v-intersect="
-                      (entries) => {
-                        intersect_location_btn = entries[0].isIntersecting;
+                      (isIntersecting, entries, observer) => {
+                        intersect_location_btn = isIntersecting;
                       }
                     "
                   >
@@ -1072,7 +1072,7 @@
 
                 <div
                   v-if="bill?.user_messages?.length"
-                  class="py-2 border-between-vertical mt-5 display-1"
+                  class="py-2 border-between-vertical mt-5 text-h4"
                 >
                   <div
                     v-for="(msg, i) in bill.user_messages"
@@ -1090,8 +1090,8 @@
                   style="min-height: 78px"
                   class="d-flex"
                   v-intersect="
-                    (entries) => {
-                      intersect_payment_btn = entries[0].isIntersecting;
+                    (isIntersecting, entries, observer) => {
+                      intersect_payment_btn = isIntersecting;
                     }
                   "
                 >
@@ -1119,7 +1119,7 @@
                       dark
                       @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
-                      <v-icon class="me-2"> fas fa-shopping-bag </v-icon>
+                      <v-icon class="me-2"> fa:fas fa-shopping-bag </v-icon>
                       {{ $t("basket_page.final_confirm_action") }}
 
                       <price-view
@@ -1226,7 +1226,7 @@
         v-else
         style="min-height: 60vh; padding-top: 15vh"
         class="blur-animate"
-        :class="{ blured: busy_shop }"
+        :class="{ blurred: busy_shop }"
       >
         <img
           src="@components/assets/icons/baskets.svg"
@@ -1239,7 +1239,7 @@
       </div>
 
       <div v-if="busy_shop" class="busy-overlay">
-        <div class="display-1 font-weight-thin">
+        <div class="text-h4 font-weight-thin">
           <v-icon class="me-2" large>hourglass_empty</v-icon>
 
           {{ $t("global.commons.waiting") }}...
@@ -1301,7 +1301,7 @@ import VariantItemMini from "@components/product/variant/VariantItemMini.vue";
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
-import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
 import BillingPeriod from "@core/enums/subscription/BillingPeriod";
@@ -2195,7 +2195,7 @@ export default {
             // ▀▀▀▀▀▀▀▀▀ 🥶 Guest ▀▀▀▀▀▀▀▀▀
             if (!this.USER()) {
               // Save array of guest codes in local storage:
-              LocalStorages.AddCurrentGuestCodeToHistory(
+              StorefrontLocalStorages.AddCurrentGuestCodeToHistory(
                 this.type,
                 data.basket_id,
                 data.code

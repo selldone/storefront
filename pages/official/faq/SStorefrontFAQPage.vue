@@ -34,9 +34,9 @@
 
     <v-container class="faq-container">
       <s-widget-header :title="$t('global.faq.title')"></s-widget-header>
-      <v-subheader>
+      <v-list-subheader>
         {{ $t("global.faq.message") }}
-      </v-subheader>
+      </v-list-subheader>
 
       <v-btn
         v-if="USER()"
@@ -57,7 +57,7 @@
         hide-on-leave
         tag="div"
         class="border-between-vertical blur-animate"
-        :class="{ blured: busy_fetch }"
+        :class="{ blurred: busy_fetch }"
       >
         <div v-for="faq in faqs" :key="faq.id" class="faq">
           <p class="question" v-html="faq.question"></p>
@@ -111,7 +111,7 @@
     <v-bottom-sheet v-model="dialog_faq" inset max-width="800">
       <v-sheet class="p-2">
         <p class="dialog-title">
-          <v-icon class="me-1"> fas fa-question </v-icon>
+          <v-icon class="me-1"> fa:fas fa-question </v-icon>
           {{ $t("global.faq.add_new") }}
         </p>
         <div class="p-2">

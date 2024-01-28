@@ -22,7 +22,7 @@
 .add-marginal-side-menu-open {
   margin-left: var(--products-filter-width) !important;
   @media (max-width: 960px) {
-    /* $vuetify.breakpoint.smAndDown */
+    /* $vuetify.display.smAndDown */
     margin-left: 0 !important;
     transform: translateX(var(--products-filter-width));
   }
@@ -33,7 +33,7 @@
     margin-left: 0px !important;
     margin-right: var(--products-filter-width) !important;
     @media (max-width: 960px) {
-      /* $vuetify.breakpoint.smAndDown */
+      /* $vuetify.display.smAndDown */
       margin-right: 0 !important;
       transform: translateX(- var(--products-filter-width));
     }

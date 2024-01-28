@@ -13,7 +13,7 @@
  */
 
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, {createStore} from "vuex";
 import type { ActionContext } from "vuex";
 import { Currency } from "@core/enums/payment/Currency";
 import type { ICurrency } from "@core/enums/payment/Currency";
@@ -67,7 +67,7 @@ interface State {
   initial_location: XapiShop.ILocation | null;
 }
 
-export default new Vuex.Store<State>({
+export default createStore<State>({
   state: {
     user: null,
     debug: false,

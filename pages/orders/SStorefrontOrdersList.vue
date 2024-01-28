@@ -15,13 +15,13 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
     <s-progress-loading v-if="busy_fetch"></s-progress-loading>
-    <v-data-table
+    <v-data-table-server
       v-model="selected"
       :headers="headers"
       :items="orders"
       item-key="id"
       hide-default-footer
-      :server-items-length="totalItems"
+      :items-length="totalItems"
       :options.sync="options"
       :page.sync="page"
       :items-per-page="itemsPerPage"
@@ -30,9 +30,11 @@
       :item-class="
         (item) => 'row-hover ' + (KEEP === item.id ? 'drop-down-delayed' : '')
       "
-      @click:row="(item) => handleSelected(item)"
       class="bg-transparent dense-padding"
       style="min-height: 60vh"
+
+      @click:row="(_, r) => handleSelected(r.item)"
+      hover
     >
       <template v-slot:loading>
         <s-loading css-mode light></s-loading>
@@ -147,10 +149,10 @@
         </div>
       </template>
 
-      <template v-slot:footer>
+      <template v-slot:bottom>
         <v-pagination v-model="page" circle :length="pageCount" />
       </template>
-    </v-data-table>
+    </v-data-table-server>
 
     <!-- ----------------------------------- Receiver Info Details Menu ----------------------------------- -->
     <v-menu
@@ -191,7 +193,7 @@ import SOrderStatusView from "@components/order/order-status/SOrderStatusView.vu
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import ReceiverInfoWidget from "@components/storefront/order/order-reciver-info/ReceiverInfoWidget.vue";
-import { LocalStorages } from "@core/helper/local-storage/LocalStorages";
+import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
@@ -261,32 +263,32 @@ export default {
       if (this.isPos) {
         return [
           {
-            text: this.$t("history_orders.table.code"),
+            title: this.$t("history_orders.table.code"),
             align: "start",
             sortable: false,
             value: "id",
           },
           {
-            text: this.$t("history_orders.table.items"),
+            title: this.$t("history_orders.table.items"),
             align: "start",
             sortable: false,
             value: "items",
           },
 
           {
-            text: this.$t("history_orders.table.price"),
+            title: this.$t("history_orders.table.price"),
             align: "center",
             value: "price",
             sortable: true,
           },
           {
-            text: this.$t("history_orders.table.status"),
+            title: this.$t("history_orders.table.status"),
             align: "center",
             value: "status",
           },
 
           {
-            text: this.$t("history_orders.table.reserved"),
+            title: this.$t("history_orders.table.reserved"),
             align: "start",
             value: "reserved_at",
           },
@@ -294,45 +296,45 @@ export default {
       }
       return [
         {
-          text: this.$t("history_orders.table.code"),
+          title: this.$t("history_orders.table.code"),
           align: "start",
           sortable: false,
           value: "id",
         },
 
         {
-          text: this.$t("history_orders.table.items"),
+          title: this.$t("history_orders.table.items"),
           align: "start",
           sortable: false,
           value: "items",
         },
 
         {
-          text: this.$t("history_orders.table.price"),
+          title: this.$t("history_orders.table.price"),
           align: "center",
           value: "price",
           sortable: true,
         },
         {
-          text: this.$t("history_orders.table.status"),
+          title: this.$t("history_orders.table.status"),
           align: "center",
           value: "status",
         },
 
         {
-          text: this.$t("history_orders.table.delivery_state"),
+          title: this.$t("history_orders.table.delivery_state"),
           align: "center",
           value: "delivery_state",
         },
         {
-          text: "",
+          title: "",
           align: "center",
           value: "basket_item_returns",
           sortable: false,
         },
 
         {
-          text: this.$t("history_orders.table.reserved"),
+          title: this.$t("history_orders.table.reserved"),
           align: "start",
           value: "reserved_at",
         },
@@ -446,7 +448,7 @@ export default {
               sortDesc: sortDesc,
 
               codes: !this.USER()
-                ? LocalStorages.GetShopHistoryGuestCodes(
+                ? StorefrontLocalStorages.GetShopHistoryGuestCodes(
                     this.type.code
                   ) /*🥶 Guest*/
                 : undefined,

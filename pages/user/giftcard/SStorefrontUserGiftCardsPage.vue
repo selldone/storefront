@@ -33,7 +33,7 @@
         :sort-by="sortBy"
         :sort-desc="sortDesc"
         hide-default-footer
-        :server-items-length="totalItems"
+        :items-length="totalItems"
         :options.sync="options"
         :page.sync="page"
         :items-per-page="itemsPerPage"
@@ -73,16 +73,16 @@
 
         <template v-slot:no-data>
           <div class="text-center p-4">
-            <h2 class="font-weight-thin display-1">
+            <h2 class="font-weight-thin text-h4">
               {{ $t("user_gift_cards.add_card_dialog.title") }}...
             </h2>
-            <v-subheader>{{
+            <v-list-subheader>{{
               $t("user_gift_cards.add_card_dialog.message")
-            }}</v-subheader>
+            }}</v-list-subheader>
           </div>
         </template>
 
-        <template v-slot:footer>
+        <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
             <v-pagination v-model="page" circle :length="pageCount" />
           </div>

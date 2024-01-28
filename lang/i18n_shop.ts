@@ -12,13 +12,11 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import Vue from "vue";
-import VueI18n from "vue-i18n";
+import VueI18n, {createI18n} from "vue-i18n";
 
 // @ts-ignore
 import en from "./en";
 
-Vue.use(VueI18n);
 
 const messages = {
   en: en,
@@ -27,7 +25,7 @@ const messages = {
 /**
  * Configuration for VueI18n instance.
  */
-export const i18n = new VueI18n({
+export const i18n = createI18n({
   locale: "en", // default locale
   fallbackLocale: "en", // fallback locale
   messages, // locale message object
@@ -35,7 +33,7 @@ export const i18n = new VueI18n({
 });
 
 // Attach $t to the window object
-window.$t = (key: VueI18n.Path, values?: VueI18n.Values) => i18n.t(key, values);
+window.$t = (key: VueI18n.Path, values?: VueI18n.Values) => i18n.global.t(key, values);
 
 // List of pre-loaded languages.
 const loadedLanguages: string[] = ["en" /*,'fa','de','sv'*/];

@@ -45,7 +45,7 @@
         style="transition: all 400ms ease"
         :class="{
           'add-marginal-side-menu-open':
-            show_filter_menu && $vuetify.breakpoint.smAndUp,
+            show_filter_menu && $vuetify.display.smAndUp,
         }"
       >
         <slot name="header"> </slot>

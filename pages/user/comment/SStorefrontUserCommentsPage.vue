@@ -26,7 +26,7 @@
         :sort-by="sortBy"
         :sort-desc="sortDesc"
         hide-default-footer
-        :server-items-length="totalItems"
+        :items-length="totalItems"
         :options.sync="options"
         :page.sync="page"
         :items-per-page="itemsPerPage"
@@ -98,7 +98,7 @@
           </v-row>
         </template>
 
-        <template v-slot:footer>
+        <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
             <v-pagination v-model="page" circle :length="pageCount" />
           </div>

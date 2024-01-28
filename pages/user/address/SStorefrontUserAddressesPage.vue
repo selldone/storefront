@@ -22,7 +22,7 @@
         icon="fmd_good"
       ></s-widget-header>
 
-      <v-subheader> </v-subheader>
+      <v-list-subheader> </v-list-subheader>
 
       <s-progress-loading v-if="busy"></s-progress-loading>
       <div class="widget-buttons">
@@ -47,7 +47,7 @@
         :key="address.id"
       >
         <h2>{{ address.title }}</h2>
-        <v-subheader> </v-subheader>
+        <v-list-subheader> </v-list-subheader>
 
         <s-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.receiver") }}</template>
@@ -91,7 +91,7 @@
         </s-value-dashed>
 
         <div class="position-relative">
-          <div class="position-relative map-circle m-auto">
+          <div class="position-relative map-circle ma-auto">
             <img
               class="map-image"
               :src="`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${address.location.lng},${address.location.lat},13.96,0,0/200x200?access_token=pk.eyJ1IjoicGFqdWhhYW4iLCJhIjoiY2sxaHNtbnU3MDFjcjNta2V0OTZ0d2ExYiJ9.YKRh0EP7NnhbmuSil7AvSw`"
@@ -158,7 +158,7 @@
             :color="SaminColorLight"
             class="text-right mx-2"
             :label="$t('addresses_page.add_dialog.address_name_input')"
-            prepend-inner-icon="fas fa-tag"
+            prepend-inner-icon="fa:fas fa-tag"
           >
             <template v-slot:prepend-inner>
               <v-fade-transition leave-absolute>

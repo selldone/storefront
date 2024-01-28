@@ -16,7 +16,7 @@
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
-import Vue from "vue";
+import Vue, {createApp} from "vue";
 import App from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
@@ -40,7 +40,7 @@ import { CapiCommunity } from "@sdk-community/CapiCommunity"; // Register the se
 window.$language = Language[i18n.locale] ? Language[i18n.locale] : Language.en;
 
 //━━━  Multi languages support ━━━
-window.$i18n_global = i18n; // Important! used by styler!
+window.$i18n_global = i18n.global; // Important! used by styler!
 //━━━  Globally keep store ━━━
 window.$global_store = store; // Important! used in page builder!
 //━━━  Globally keep route ━━━
@@ -53,12 +53,22 @@ window.AppInterface = new ShopApplicationInterface();
 // ━━━ Override language packs ━━━
 window.OverrideShopLanguagePacks = {};
 
+
+
+//█████████████████████████████████████████████████████████████
+//――――――――――――― Initialize Vue App ―――――――――――――
+//█████████████████████████████████████████████████████████████
+const app = createApp(App);
+
+
 //█████████████████████████████████████████████████████████████
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
+import {createComponents} from "@components/components";
+const components=createComponents({});
+app.use(components)
 
-// ━━━ Components ━━━
-require("@components/components.ts");
+
 
 // ━━━ Page Builder ━━━
 require("@app-page-builder/page-builder");
@@ -107,17 +117,26 @@ window.SetToken = function (
 //█████████████████████████████████████████████████████████████
 
 // ━━━ Global Mixin ━━━
-Vue.mixin(StorefrontMixin); // Mixin with global helper methods.
-Vue.use(VueCookies); // Use Vue Cookies.
+app.mixin(StorefrontMixin); // Mixin with global helper methods.
+app.use(VueCookies); // Use Vue Cookies.
 
 // ━━━ Native App Interface ━━━
 require("@components/plugins/native/NativeAppInterface");
 
 // ━━━ Vue Instance ━━━
+
+app.use(i18n);
+app.use(router);
+app.use(store);
+app.use(vuetify);
+
+// Mount the application
+const storefrontVueApp =app.mount('#app');
+/*
 const storefrontVueApp = new Vue({
   i18n,
   router,
   store,
   render: (h) => h(App),
   vuetify,
-}).$mount("#app");
+}).$mount("#app");*/

@@ -106,7 +106,7 @@
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-pwa-update-snackbar
-      :style="$vuetify.breakpoint.smAndDown ? 'margin-top:-42px' : ''"
+      :style="$vuetify.display.smAndDown ? 'margin-top:-42px' : ''"
     ></s-pwa-update-snackbar>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -154,6 +154,7 @@ import { EventName } from "@core/events/EventBus";
 import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
 import SMapDialog from "@components/map/map-dialog/SMapDialog.vue";
 import SStorefrontWebappDebugView from "@components/debug/SStorefrontWebappDebugView.vue";
+import ScrollHelper from "@core/utils/scroll/ScrollHelper";
 
 export default {
   name: "StorefrontApp",
@@ -266,17 +267,26 @@ export default {
       if (_new.query["no-scroll"]) return; // Do not scroll if no-scroll query exist!
 
       this.$nextTick(function () {
+
+        /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
+        const smooth=_old?.name === _new?.name ||
+            (_old?.name === window.$storefront.routes.SHOP_PAGE &&
+                _new?.name ===
+                window.$storefront.routes.SHOP_CATEGORY_PAGE);
+
+        ScrollHelper.scrollToTop(0,smooth?'smooth':'instant')
+        /*
         this.$vuetify.goTo(0, {
           duration:
             _old?.name === _new?.name ||
             (_old?.name === window.$storefront.routes.SHOP_PAGE &&
               _new?.name ===
-                window.$storefront.routes.SHOP_CATEGORY_PAGE) /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
+                window.$storefront.routes.SHOP_CATEGORY_PAGE)
               ? 800
               : 0, // Can be 800ms,...
           offset: 0,
           easing: "easeInOutQuad",
-        });
+        });*/
       });
     },
 

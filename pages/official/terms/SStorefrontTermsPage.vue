@@ -15,7 +15,7 @@
 <template>
   <div>
     <v-container>
-      <h1 class="text-start display-3 font-weight-black text-capitalize">
+      <h1 class="text-start text-h2 font-weight-black text-capitalize">
         {{ $t("official_pages.terms") }}
       </h1>
       <s-progress-loading v-if="busy"></s-progress-loading>

@@ -14,7 +14,7 @@
 
 <template>
   <div class="map-con text-start">
-    <div v-if="!$vuetify.breakpoint.xsOnly" class="map-items thin-scroll">
+    <div v-if="!$vuetify.display.xsOnly" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Vendors List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
       <s-storefront-product-vendors-list
@@ -26,7 +26,7 @@
         @vendor-hover:leave="(p) => vendorHover(p, false)"
       ></s-storefront-product-vendors-list>
     </div>
-    <div class="map-viewer" :class="{ '-full': $vuetify.breakpoint.xsOnly }">
+    <div class="map-viewer" :class="{ '-full': $vuetify.display.xsOnly }">
       <!-- Pre loading -->
       <s-loading
         css-mode
@@ -68,7 +68,7 @@
     </div>
 
     <div
-      v-if="$vuetify.breakpoint.xsOnly"
+      v-if="$vuetify.display.xsOnly"
       class="bottom-sheet overflow-auto"
       ref="bsheet"
     >
@@ -320,7 +320,7 @@ export default {
         this.map_box.addControl(this.locateControl);
 
         // Add zoom and rotation controls to the map.
-        if (this.$vuetify.breakpoint.mdAndUp) {
+        if (this.$vuetify.display.mdAndUp) {
           this.map_box.addControl(new Mapbox.NavigationControl());
 
           this.map_box.addControl(new Mapbox.FullscreenControl());

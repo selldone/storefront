@@ -275,7 +275,7 @@
               exact
             >
               <v-list-item-avatar
-                class="display-1 op-0-2 not-selectable font-weight-black"
+                class="text-h4 op-0-2 not-selectable font-weight-black"
               >
                 {{ index + 1 }}
               </v-list-item-avatar>
@@ -410,9 +410,9 @@
           </v-col>
 
           <v-col
-            v-for="j in $vuetify.breakpoint.smAndDown
+            v-for="j in $vuetify.display.smAndDown
               ? 2
-              : $vuetify.breakpoint.md
+              : $vuetify.display.md
               ? 3
               : 4"
             :key="'j' + j"
@@ -444,7 +444,7 @@
             :sort-by="sortBy"
             :sort-desc="sortDesc"
             hide-default-footer
-            :server-items-length="totalItems"
+            :items-length="totalItems"
             :options.sync="options"
             :page.sync="page"
             :items-per-page="itemsPerPage"
@@ -478,8 +478,8 @@
                 >
                   <v-list-item-avatar
                     rounded
-                    :width="$vuetify.breakpoint.smAndDown ? 100 : 200"
-                    :height="$vuetify.breakpoint.smAndDown ? 100 : 137"
+                    :width="$vuetify.display.smAndDown ? 100 : 200"
+                    :height="$vuetify.display.smAndDown ? 100 : 137"
                   >
                     <img
                       :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
@@ -516,7 +516,7 @@
               </v-list>
             </template>
 
-            <template v-slot:footer>
+            <template v-slot:bottom>
               <div class="text-center pt-2 mt-3">
                 <v-pagination
                   :value="page"
@@ -546,6 +546,7 @@
 import SShopBlogCard from "@components/storefront/blog/SShopBlogCard.vue";
 import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
 import _ from "lodash-es";
+import ScrollHelper from "@core/utils/scroll/ScrollHelper";
 
 export default {
   name: "SStorefrontBlogsPage",
@@ -684,11 +685,11 @@ export default {
     // ......................... Interest .........................
 
     chunk_size() {
-      return this.$vuetify.breakpoint.lgAndUp
+      return this.$vuetify.display.lgAndUp
         ? 4
-        : this.$vuetify.breakpoint.mdAndUp
+        : this.$vuetify.display.mdAndUp
         ? 3
-        : this.$vuetify.breakpoint.smAndUp
+        : this.$vuetify.display.smAndUp
         ? 2
         : 1;
     },
@@ -806,11 +807,9 @@ export default {
         .finally(() => {
           this.busy = false;
           if (scroll)
-            this.$vuetify.goTo("#first", {
-              duration: 800,
-              offset: 200,
-              easing: "easeInOutQuad",
-            });
+            ScrollHelper.scrollToElement("#first",200,'smooth')
+
+
         });
 
       this.category_old = this.current_category;

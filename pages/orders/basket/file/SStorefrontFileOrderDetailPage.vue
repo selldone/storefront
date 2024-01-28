@@ -131,9 +131,9 @@
 
           <v-card-text>
             <div class="widget-box mb-5">
-              <v-subheader
+              <v-list-subheader
                 ><v-icon class="me-1" small>warning_amber</v-icon> After
-                downloading files, check those with your antivirus.</v-subheader
+                downloading files, check those with your antivirus.</v-list-subheader
               >
 
               <s-shop-product-files-list
