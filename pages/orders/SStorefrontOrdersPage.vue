@@ -102,15 +102,15 @@ export default {
 
     page_name(type) {
       let page_name = null;
-      if (type === ProductType.PHYSICAL) {
+      if (type.code === ProductType.PHYSICAL.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
-      } else if (type === ProductType.VIRTUAL) {
+      } else if (type.code === ProductType.VIRTUAL.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_VIRTUAL;
-      } else if (type === ProductType.FILE) {
+      } else if (type.code === ProductType.FILE.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_FILE;
-      } else if (type === ProductType.SERVICE) {
+      } else if (type.code === ProductType.SERVICE.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_SERVICE;
-      } else if (type === ProductType.SUBSCRIPTION) {
+      } else if (type.code === ProductType.SUBSCRIPTION.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION;
       } else if (type === "POS") {
         page_name = window.$storefront.routes.HISTORY_ORDERS_POS;

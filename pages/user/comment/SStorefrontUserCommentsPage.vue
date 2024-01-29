@@ -23,14 +23,13 @@
       <v-data-iterator
         :items="comments"
         :search="search"
-        :sort-by="sortBy"
+        :sort-by.sync="sortBy"
         :sort-desc="sortDesc"
         hide-default-footer
         :items-length="totalItems"
         :options.sync="options"
         :page.sync="page"
         :items-per-page="itemsPerPage"
-        @page-count="pageCount = $event"
         class="bg-transparent dense-padding"
         no-data-text=""
       >
@@ -38,8 +37,8 @@
           <s-data-iterator-toolbar
             :sort-keys="keys"
             :search.sync="search"
-            :sort-by.sync="sortBy"
-            :sort-desc.sync="sortDesc"
+            :sort-by.sync="sortBy.key"
+            :sort-desc.sync="sortBy.order"
             :items-per-page.sync="itemsPerPage"
           ></s-data-iterator-toolbar>
         </template>
@@ -121,18 +120,20 @@ export default {
     search: "",
     filter: {},
     sortDesc: true,
-    sortBy: null,
+    sortBy: [{ key: null, order: "desc" }],
 
     busy_fetch: false,
     // Pagination:
     page: 1,
-    pageCount: 0,
     itemsPerPage: 8,
     totalItems: 0,
-    options: { sortDesc: [true] },
+    options: {},
   }),
 
   computed: {
+    pageCount() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
     keys() {
       return [
         { label: this.$t("global.sort.product"), value: "article_id" },
@@ -181,7 +182,6 @@ export default {
           this.comments = data.comments;
 
           this.totalItems = data.total;
-          this.pageCount = Math.ceil(this.totalItems / this.itemsPerPage); //set by event not work!!!
         })
 
         .catch(() => {})
@@ -211,6 +211,7 @@ export default {
   .-ti {
     min-height: 42px;
   }
+
   &:hover {
     color: #333;
   }

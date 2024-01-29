@@ -24,8 +24,8 @@
       :items-length="totalItems"
       :options.sync="options"
       :page.sync="page"
+      :sort-by="[{ key: null, order: 'desc' }]"
       :items-per-page="itemsPerPage"
-      @page-count="pageCount = $event"
       :header-props="{ sortByText: $t('global.commons.sort_by') }"
       :item-class="
         (item) => 'row-hover ' + (KEEP === item.id ? 'drop-down-delayed' : '')
@@ -174,7 +174,7 @@
         >
         </receiver-info-widget>
         <small v-else>
-          <i class="fa-solid fa-map-location me-1"></i>Not set yet!</small
+          <i class="fa:fas fa-map-location me-1"></i>Not set yet!</small
         >
       </v-sheet>
     </v-menu>
@@ -233,10 +233,9 @@ export default {
 
       // Pagination:
       page: 1,
-      pageCount: 0,
       itemsPerPage: 10,
       totalItems: 0,
-      options: { sortDesc: [true] },
+      options: {  },
 
       // KEEP in return param:
       KEEP: null,
@@ -244,6 +243,9 @@ export default {
   },
 
   computed: {
+    pageCount() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
     hasReceiverInfo() {
       return (
         (this.type &&
@@ -342,16 +344,16 @@ export default {
     },
 
     order_detail_page() {
-      if (this.type === ProductType.PHYSICAL) {
+      if (this.type.code === ProductType.PHYSICAL.code) {
         return "MyPhysicalOrderInfoPage";
-      } else if (this.type === ProductType.VIRTUAL) {
+      } else if (this.type.code === ProductType.VIRTUAL.code) {
         return "MyVirtualOrderInfoPage";
-      } else if (this.type === ProductType.FILE) {
+      } else if (this.type.code === ProductType.FILE.code) {
         return "MyFileOrderInfoPage";
-      } else if (this.type === ProductType.SERVICE) {
+      } else if (this.type.code === ProductType.SERVICE.code) {
         return "MyServiceOrderInfoPage";
       }
-      else if (this.type === ProductType.SUBSCRIPTION) {
+      else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return "MySubscriptionOrderInfoPage";
       }
       else if (this.isPos) {
@@ -363,15 +365,15 @@ export default {
       return null;
     },
     orders_states() {
-      if (this.type === ProductType.PHYSICAL) {
+      if (this.type.code === ProductType.PHYSICAL.code) {
         return PhysicalOrderStates;
-      } else if (this.type === ProductType.VIRTUAL) {
+      } else if (this.type.code === ProductType.VIRTUAL.code) {
         return VirtualOrderStates;
-      } else if (this.type === ProductType.FILE) {
+      } else if (this.type.code === ProductType.FILE.code) {
         return FileOrderStates;
-      } else if (this.type === ProductType.SERVICE) {
+      } else if (this.type.code === ProductType.SERVICE.code) {
         return ServiceOrderStates;
-      } else if (this.type === ProductType.SUBSCRIPTION) {
+      } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return SubscriptionOrderStates;
       }
 

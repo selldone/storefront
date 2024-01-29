@@ -31,7 +31,6 @@
         :options.sync="options"
         :page.sync="page"
         :items-per-page="itemsPerPage"
-        @page-count="pageCount = $event"
         class="bg-transparent dense-padding"
         no-data-text=""
       >
@@ -41,8 +40,8 @@
           <s-data-iterator-toolbar
             :sort-keys="keys"
             :search.sync="search"
-            :sort-by.sync="sortBy"
-            :sort-desc.sync="sortDesc"
+            :sort-by.sync="sortBy.key"
+            :sort-desc.sync="sortBy.order"
             :items-per-page.sync="itemsPerPage"
           ></s-data-iterator-toolbar>
         </template>
@@ -88,6 +87,7 @@
 import SShopProductCard from "@components/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
+
 export default {
   name: "SStorefrontUserFavoritesPage",
   components: { SDataIteratorToolbar, SShopProductCard },
@@ -99,17 +99,20 @@ export default {
     search: "",
     filter: {},
     sortDesc: true,
-    sortBy: null,
+    sortBy: [{ key: null, order: "desc" }],
 
     busy_fetch: false,
     // Pagination:
     page: 1,
-    pageCount: 0,
     itemsPerPage: 8,
     totalItems: 0,
-    options: { sortDesc: [true] },
+    options: {},
   }),
   computed: {
+    pageCount() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
+
     keys() {
       return [
         { label: this.$t("global.sort.product_type"), value: "type" },
@@ -151,7 +154,6 @@ export default {
         this.products = products;
 
         this.totalItems = total;
-        this.pageCount = Math.ceil(this.totalItems / this.itemsPerPage); //set by event not work!!!
       };
 
       window.$storefront.products

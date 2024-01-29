@@ -441,14 +441,13 @@
           <v-data-iterator
             :items="articles"
             :search="search"
-            :sort-by="sortBy"
-            :sort-desc="sortDesc"
+            :sort-by.sync="sortBy"
             hide-default-footer
             :items-length="totalItems"
             :options.sync="options"
             :page.sync="page"
+
             :items-per-page="itemsPerPage"
-            @page-count="pageCount = $event"
             :no-data-text="$t('global.commons.no_data')"
           >
             <template v-slot:header> </template>
@@ -588,14 +587,13 @@ export default {
     search: "",
     filter: {},
     sortDesc: true,
-    sortBy: null,
+    sortBy: [{ key: null, order: 'desc' }],
 
     // Pagination:
     page: 1,
-    pageCount: 0,
     itemsPerPage: 12,
     totalItems: 0,
-    options: { sortDesc: [true] },
+    options: { },
 
     //---------------------------
     first_start: true,
@@ -616,7 +614,9 @@ export default {
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
   computed: {
-
+    pageCount() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
     // ......................... Headline .........................
 
     latest_article() {
@@ -798,7 +798,6 @@ export default {
           if (data.interest) this.interest = data.interest;
 
           this.totalItems = data.total;
-          this.pageCount = Math.ceil(this.totalItems / this.itemsPerPage); //set by event not work!!!
         })
         .catch((error) => {
           this.showLaravelError(error);

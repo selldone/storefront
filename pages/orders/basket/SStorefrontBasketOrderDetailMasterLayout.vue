@@ -111,30 +111,30 @@ export default {
     },
     history_list_page_name() {
       let page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
-      if (this.type === ProductType.PHYSICAL) {
+      if (this.type.code === ProductType.PHYSICAL.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_PHYSICAL;
-      } else if (this.type === ProductType.VIRTUAL) {
+      } else if (this.type.code === ProductType.VIRTUAL.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_VIRTUAL;
-      } else if (this.type === ProductType.FILE) {
+      } else if (this.type.code === ProductType.FILE.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_FILE;
-      } else if (this.type === ProductType.SERVICE) {
+      } else if (this.type.code === ProductType.SERVICE.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_SERVICE;
-      } else if (this.type === ProductType.SUBSCRIPTION) {
+      } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         page_name = window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION;
       }
       return page_name;
     },
 
     orders_states() {
-      if (this.type === ProductType.PHYSICAL) {
+      if (this.type.code === ProductType.PHYSICAL.code) {
         return PhysicalOrderStates;
-      } else if (this.type === ProductType.VIRTUAL) {
+      } else if (this.type.code === ProductType.VIRTUAL.code) {
         return VirtualOrderStates;
-      } else if (this.type === ProductType.FILE) {
+      } else if (this.type.code === ProductType.FILE.code) {
         return FileOrderStates;
-      } else if (this.type === ProductType.SERVICE) {
+      } else if (this.type.code === ProductType.SERVICE.code) {
         return ServiceOrderStates;
-      }else if (this.type === ProductType.SUBSCRIPTION) {
+      }else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return SubscriptionOrderStates;
       }
       return null;

@@ -100,10 +100,10 @@
           </v-list-subheader></template
         >
         <div class="text-success">
-          <check
+          <s-check
             :value="USER().personal_information_verified"
             class="me-1"
-          ></check>
+          ></s-check>
           <span v-if="USER().personal_information_verified">
             {{ $t("user_profile.success_kyc") }}</span
           >
