@@ -30,7 +30,7 @@
         :options.sync="options"
         :page.sync="page"
         :items-per-page="itemsPerPage"
-        class="bg-transparent dense-padding"
+        class="bg-transparent "      density="compact"
         no-data-text=""
       >
         <template v-slot:header>

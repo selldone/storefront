@@ -313,7 +313,7 @@
           class="dialog-shadow"
         >
           <div>
-            <vue-qrcode
+            <s-qrcode
               v-if="qrcode_value"
               :value="qrcode_value"
               :options="{

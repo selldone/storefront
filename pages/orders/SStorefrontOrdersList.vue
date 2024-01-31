@@ -27,14 +27,21 @@
       :sort-by="[{ key: null, order: 'desc' }]"
       :items-per-page="itemsPerPage"
       :header-props="{ sortByText: $t('global.commons.sort_by') }"
-      :item-class="
-        (item) => 'row-hover ' + (KEEP === item.id ? 'drop-down-delayed' : '')
-      "
-      class="bg-transparent dense-padding"
+
+      class="bg-transparent "
       style="min-height: 60vh"
 
       @click:row="(_, r) => handleSelected(r.item)"
-      hover
+
+
+      density="compact"
+      :row-props="
+      (_data) => {
+        return { class: 'row-hover ' + (KEEP === _data.item.id ? 'drop-down-delayed' : '') };
+      }
+    "
+
+
     >
       <template v-slot:loading>
         <s-loading css-mode light></s-loading>

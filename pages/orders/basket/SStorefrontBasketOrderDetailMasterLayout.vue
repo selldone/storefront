@@ -22,6 +22,10 @@
       extension-height="64px"
       style="overflow-x: auto"
     >
+      <template v-slot:extension>
+        <div style="height: 64px"></div>
+      </template>
+
       <!-- ⦿ Back -->
 
       <s-circle-button

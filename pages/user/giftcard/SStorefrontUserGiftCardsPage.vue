@@ -38,7 +38,7 @@
         :page.sync="page"
 
         :items-per-page="itemsPerPage"
-        class="bg-transparent dense-padding"
+        class="bg-transparent "      density="compact"
       >
         <template v-slot:loading>
           <s-loading css-mode light></s-loading>
