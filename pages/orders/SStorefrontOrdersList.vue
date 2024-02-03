@@ -398,7 +398,7 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchOrders(page, sortBy[0], sortDesc[0]);
+        this.fetchOrders(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
       },
       deep: true,
     },

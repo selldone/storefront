@@ -156,7 +156,7 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchCards(page, sortBy ? sortBy[0] : null, sortDesc[0]);
+        this.fetchCards(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
       },
       deep: true,
     },
@@ -164,7 +164,7 @@ export default {
     search: _.throttle(function () {
       //  console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
-      this.fetchCards(1, sortBy ? sortBy[0] : null, sortDesc[0]);
+      this.fetchCards(1, sortBy[0]?.key, sortBy[0]?.order==='desc');
     }, window.SERACH_THROTTLE),
   },
 

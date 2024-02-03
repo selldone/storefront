@@ -130,7 +130,7 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchData(page, sortBy ? sortBy[0] : null, sortDesc[0]);
+        this.fetchData(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
       },
       deep: true,
     },
@@ -138,7 +138,7 @@ export default {
     search: _.throttle(function () {
       //   console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
-      this.fetchData(1, sortBy ? sortBy[0] : null, sortDesc[0]);
+      this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order==='desc');
     }, window.SERACH_THROTTLE),
   },
 
