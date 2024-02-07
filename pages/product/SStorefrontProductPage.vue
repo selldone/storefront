@@ -122,7 +122,7 @@
       >
         <div class="s--product-section-spec my-16 px-1 px-sm-3">
           <div class="product-widget">
-            <product-spec-view :spec="spec_array" />
+            <b-product-spec-table :spec="spec_array" />
           </div>
         </div>
       </div>
@@ -346,7 +346,7 @@ import SArticleView from "@components/article/SArticleView.vue";
 import SShopProductMainCard from "@components/product/info/SShopProductMainCard.vue";
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
-import ProductSpecView from "@components/storefront/product/spec/ProductSpecView.vue";
+import BProductSpecTable from "@components/product/spec/table/BProductSpecTable.vue";
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import ProductInfoLoadingView from "@components/product/loading/ProductInfoLoadingView.vue";
 import { SpecHelper } from "@core/helper/product/SpecHelper";
@@ -398,7 +398,7 @@ export default {
     SShopProductProsConsTable,
 
     ProductInfoLoadingView,
-    ProductSpecView,
+    BProductSpecTable,
     SBreadcrumbImage,
     SShopProductMainCard,
     SArticleView,
