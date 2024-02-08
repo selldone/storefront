@@ -105,7 +105,7 @@
             <i class="fas fa-exclamation" />
           </p>
           <div v-else class="m-0 pt-2">
-            <status-stepper
+            <s-order-delivery-status-stepper
               :states="orders_states"
               :state="item.delivery_state"
               class="my-1"
@@ -173,13 +173,13 @@
       offset-y
     >
       <v-sheet class="p-3">
-        <receiver-info-widget
+        <s-order-receiver-info-card
           class="text-start"
           v-if="activator_item && activator_item.receiver_info"
           :userId="activator_item.user_id"
           :receiver-info="activator_item.receiver_info"
         >
-        </receiver-info-widget>
+        </s-order-receiver-info-card>
         <small v-else>
           <i class="fa:fas fa-map-location me-1"></i>Not set yet!</small
         >
@@ -190,7 +190,7 @@
 
 <script>
 import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
-import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 import ReturnRequestButtonBadge from "@components/storefront/order/order-return/ReturnRequestButtonBadge.vue";
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
@@ -199,18 +199,18 @@ import ProductsDenseImagesCircles from "@components/product/products-dense-image
 import SOrderStatusView from "@components/order/order-status/SOrderStatusView.vue";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
-import ReceiverInfoWidget from "@components/storefront/order/order-reciver-info/ReceiverInfoWidget.vue";
+import SOrderReceiverInfoCard from "@components/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
 
 export default {
   name: "SStorefrontOrdersList",
   components: {
-    ReceiverInfoWidget,
+    SOrderReceiverInfoCard,
     SOrderStatusView,
     ProductsDenseImagesCircles,
     ReturnRequestButtonBadge,
-    StatusStepper,
+    SOrderDeliveryStatusStepper,
   },
   props: {
     type: {

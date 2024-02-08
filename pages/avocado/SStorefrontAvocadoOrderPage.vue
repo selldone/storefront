@@ -52,7 +52,7 @@
           <!-- ................ Progress ................ -->
 
           <div v-if="isPayed" class="pt-3 d-flex flex-column">
-            <status-stepper
+            <s-order-delivery-status-stepper
               :states="deliveryStates"
               :state="avocado.delivery_state"
               style="min-width: 250px; width: 20%"
@@ -259,7 +259,7 @@ import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delive
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import Stamp from "@components/ui/stamp/Stamp.vue";
-import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 import { AvocadoItemStatus } from "@core/enums/avocado/AvocadoItemStatus";
@@ -268,7 +268,7 @@ export default {
   name: "SStorefrontAvocadoOrderPage",
   components: {
     SShopAvocadoCustomerOrderItems,
-    StatusStepper,
+    SOrderDeliveryStatusStepper,
     Stamp,
     SShopCustomerReceiverInfoWidget,
   },

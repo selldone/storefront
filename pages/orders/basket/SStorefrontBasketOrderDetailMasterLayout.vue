@@ -40,7 +40,7 @@
 
       <v-spacer></v-spacer>
 
-      <status-stepper
+      <s-order-delivery-status-stepper
         v-if="orders_states"
         :states="orders_states"
         :state="basket.delivery_state"
@@ -78,7 +78,7 @@
 import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { ProductType } from "@core/enums/product/ProductType";
-import StatusStepper from "@components/storefront/order/order-status/StatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
@@ -88,7 +88,7 @@ import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderState
 
 export default {
   name: "SStorefrontBasketOrderDetailMasterLayout",
-  components: { StatusStepper },
+  components: { SOrderDeliveryStatusStepper },
 
   props: {},
 

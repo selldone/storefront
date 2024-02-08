@@ -171,13 +171,13 @@
             </div>
             <v-row class="align-items-center">
               <div>
-                <payment-card
+                <s-payment-card
                   v-if="payment.card"
                   :method="payment.method"
                   :card="payment.card"
                   :currency="payment.currency"
                   horizontal
-                ></payment-card>
+                ></s-payment-card>
                 <span v-else-if="payment.cod">{{
                   $t("process_center.payment_widget.cod")
                 }}</span>
@@ -221,7 +221,7 @@
 import SOfflineBasketItemsList from "@components/pos/basket-items-list/SOfflineBasketItemsList.vue";
 import SPosBillView from "@components/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import PaymentCard from "@components/payment/widgets/PaymentCard.vue";
+import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
 import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
 import SCountryWorldMap from "@components/map/countries-svg/SCountryWorldMap.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
@@ -230,7 +230,7 @@ export default {
   components: {
     SCountryWorldMap,
     SPaymentBillingDetails,
-    PaymentCard,
+    SPaymentCard,
     SPosBillView,
     SOfflineBasketItemsList,
   },
