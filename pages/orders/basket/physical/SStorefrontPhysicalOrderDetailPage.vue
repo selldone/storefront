@@ -113,7 +113,7 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-basket-return-items-list
+      <s-order-basket-return
         v-if="basket"
         class="mt-4"
         :basket="basket"
@@ -136,7 +136,7 @@
           {{ $t("global.commons.chat") }}
         </v-card-title>
         <v-card-text>
-          <order-chat-widget :shop="shop" :basket="basket"></order-chat-widget>
+          <s-order-chat-box :shop="shop" :basket="basket"></s-order-chat-box>
         </v-card-text>
         <v-card-actions>
           <div class="widget-buttons">
@@ -154,11 +154,11 @@
 <script>
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
-import SBasketReturnItemsList from "@components/order/return-orders/SBasketReturnItemsList.vue";
+import SOrderBasketReturn from "@components/order/basket/return/SOrderBasketReturn.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 
-import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
+import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 
@@ -166,10 +166,10 @@ export default {
   name: "SStorefrontPhysicalOrderDetailPage",
   components: {
     SShopShareOrderButton,
-    OrderChatWidget,
+    SOrderChatBox,
     SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
-    SBasketReturnItemsList,
+    SOrderBasketReturn,
     SOrderDeliveryState,
     SShopBasketItemsList,
   },

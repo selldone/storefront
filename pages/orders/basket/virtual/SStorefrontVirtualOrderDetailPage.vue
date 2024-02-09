@@ -140,7 +140,7 @@
           {{ $t("global.commons.chat") }}
         </v-card-title>
         <v-card-text>
-          <order-chat-widget :shop="shop" :basket="basket"></order-chat-widget>
+          <s-order-chat-box :shop="shop" :basket="basket"></s-order-chat-box>
         </v-card-text>
         <v-card-actions>
           <div class="widget-buttons">
@@ -161,14 +161,14 @@ import SShopCustomerOrderPaymentWidget from "@components/storefront/order/paymen
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import OrderChatWidget from "@components/storefront/order/chat/OrderChatWidget.vue";
+import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 export default {
   name: "SStorefrontVirtualOrderDetailPage",
   components: {
     SShopShareOrderButton,
-    OrderChatWidget,
+    SOrderChatBox,
     SShopCustomerDeliveryInfoWidget,
     SOrderDeliveryState,
     SShopBasketItemsList,
