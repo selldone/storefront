@@ -32,7 +32,7 @@
       <s-circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
-        :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO, params: { STATE: RETURN } }"
+        :to="buildReturnRoute(window.$storefront.routes.HISTORY_ORDERS_AVOCADO)"
       />
 
       <v-spacer></v-spacer>
@@ -70,9 +70,12 @@
 <script>
 import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import {RouteMixin} from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontAvocadoOrderDetailMasterLayout",
+  mixins: [RouteMixin],
+
   components: {},
 
   props: {},
@@ -83,7 +86,6 @@ export default {
 
       busy: false,
 
-      RETURN: this.$route.params.RETURN,
     };
   },
 

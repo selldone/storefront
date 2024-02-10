@@ -31,10 +31,8 @@
       <s-circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
-        :to="
-          $route.query.return_id
-            ? { name: window.$storefront.routes.USER_RETURN_REQUESTS, params: { STATE: RETURN } }
-            : { name: history_list_page_name, params: { STATE: RETURN } }
+        :to="buildReturnRoute($route.query.return_id?window.$storefront.routes.USER_RETURN_REQUESTS:history_list_page_name)
+
         "
       />
 
@@ -85,9 +83,12 @@ import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
+import {RouteMixin} from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontBasketOrderDetailMasterLayout",
+  mixins: [RouteMixin],
+
   components: { SOrderDeliveryStatusStepper },
 
   props: {},
@@ -98,7 +99,6 @@ export default {
 
       busy: false,
 
-      RETURN: this.$route.params.RETURN,
     };
   },
 

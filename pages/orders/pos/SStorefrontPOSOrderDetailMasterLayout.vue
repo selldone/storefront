@@ -26,22 +26,17 @@
         <div style="height: 64px"></div>
       </template>
 
-
       <!-- ⦿ Back -->
 
       <s-circle-button
         :icon="$t('icons.arrow_back')"
         :tooltip="$t('global.actions.back')"
         :to="
-          $route.query.return_id
-            ? {
-                name: window.$storefront.routes.USER_RETURN_REQUESTS,
-                params: { STATE: RETURN },
-              }
-            : {
-                name: window.$storefront.routes.HISTORY_ORDERS_POS,
-                params: { STATE: RETURN },
-              }
+          buildReturnRoute(
+            $route.query.return_id
+              ? window.$storefront.routes.USER_RETURN_REQUESTS
+              : window.$storefront.routes.HISTORY_ORDERS_POS,
+          )
         "
       />
 
@@ -55,9 +50,7 @@
         class="text-uppercase small mt-3 d-flex flex-column align-center"
       >
         <img
-          :src="
-            require('@core/assets/order-types/basket-pos.svg')
-          "
+          :src="require('@core/assets/order-types/basket-pos.svg')"
           width="28"
           height="28"
           class="mx-1 mb-1"
@@ -82,11 +75,14 @@
 </template>
 
 <script>
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import {RouteMixin} from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontPOSOrderDetailMasterLayout",
+  mixins: [RouteMixin],
+
   components: {},
 
   props: {},
@@ -96,8 +92,6 @@ export default {
       basket: null,
 
       busy: false,
-
-      RETURN: this.$route.params.RETURN,
     };
   },
 

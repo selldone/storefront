@@ -27,21 +27,19 @@
       :sort-by="[{ key: null, order: 'desc' }]"
       :items-per-page="itemsPerPage"
       :header-props="{ sortByText: $t('global.commons.sort_by') }"
-
-      class="bg-transparent "
+      class="bg-transparent"
       style="min-height: 60vh"
-
       @click:row="(_, r) => handleSelected(r.item)"
-
-
       density="compact"
       :row-props="
-      (_data) => {
-        return { class: 'row-hover ' + (KEEP === _data.item.id ? 'drop-down-delayed' : '') };
-      }
-    "
-
-
+        (_data) => {
+          return {
+            class:
+              'row-hover ' +
+              (HIGHLIGHT_ID === _data.item.id ? 'drop-down-delayed' : ''),
+          };
+        }
+      "
     >
       <template v-slot:loading>
         <s-loading css-mode light></s-loading>
@@ -53,8 +51,8 @@
             isAvocado
               ? require('@core/assets/order-types/basket-avocado.svg')
               : isPos
-              ? require('@core/assets/order-types/basket-pos.svg')
-              : type.basket
+                ? require('@core/assets/order-types/basket-pos.svg')
+                : type.basket
           "
           height="42"
           class="my-2 me-2"
@@ -64,9 +62,23 @@
             item.id
           }}</b
         >
-        <v-chip v-if="item.subscription_id" color="#111" dark label class="ms-1" small title="This order is auto-created by your subscription plan.">
-          <img width="16" height="16" class="ms-n2 me-1" :src="ProductType.SUBSCRIPTION.image">
-       {{$t('global.commons.auto')}}</v-chip>
+        <v-chip
+          v-if="item.subscription_id"
+          color="#111"
+          dark
+          label
+          class="ms-1"
+          small
+          title="This order is auto-created by your subscription plan."
+        >
+          <img
+            width="16"
+            height="16"
+            class="ms-n2 me-1"
+            :src="ProductType.SUBSCRIPTION.image"
+          />
+          {{ $t("global.commons.auto") }}
+        </v-chip>
       </template>
 
       <template v-slot:item.items="{ item }">
@@ -110,7 +122,7 @@
               :state="item.delivery_state"
               class="my-1"
               @mouseEnterToCustomer="(n) => setActivator(n, item)"
-              :is-subscribed="item.status==='Payed'"
+              :is-subscribed="item.status === 'Payed'"
               :has-subscription="isSubscription"
             />
 
@@ -201,10 +213,13 @@ import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import SOrderReceiverInfoCard from "@components/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
-import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
+import { SubscriptionOrderStates } from "@core/enums/basket/SubscriptionOrderStates";
+import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontOrdersList",
+  mixins: [RouteMixin],
+
   components: {
     SOrderReceiverInfoCard,
     SOrderStatusView,
@@ -242,10 +257,7 @@ export default {
       page: 1,
       itemsPerPage: 10,
       totalItems: 0,
-      options: {  },
-
-      // KEEP in return param:
-      KEEP: null,
+      options: {},
     };
   },
 
@@ -359,11 +371,9 @@ export default {
         return "MyFileOrderInfoPage";
       } else if (this.type.code === ProductType.SERVICE.code) {
         return "MyServiceOrderInfoPage";
-      }
-      else if (this.type.code === ProductType.SUBSCRIPTION.code) {
+      } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return "MySubscriptionOrderInfoPage";
-      }
-      else if (this.isPos) {
+      } else if (this.isPos) {
         return "MyPOSOrderInfoPage";
       } else if (this.isAvocado) {
         return "AvocadoOrderDetailPage";
@@ -382,9 +392,7 @@ export default {
         return ServiceOrderStates;
       } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return SubscriptionOrderStates;
-      }
-
-      else if (this.isPos) {
+      } else if (this.isPos) {
         return null;
       } else if (this.isAvocado) {
         return AvocadoOrderStates;
@@ -398,23 +406,12 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchOrders(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
+        this.fetchOrders(page, sortBy[0]?.key, sortBy[0]?.order === "desc");
       },
       deep: true,
     },
   },
-  created() {
-    // ............ Handle return state: ............
-    if (this.$route.params.STATE) {
-      const STATE = this.$route.params.STATE;
-      this.options = STATE.options;
-      this.page = this.options.page;
-
-      this.KEEP = STATE.KEEP; // Keep last selected item property!
-    }
-
-    //..............................................
-  },
+  created() {},
 
   methods: {
     setActivator(node, item) {
@@ -425,20 +422,15 @@ export default {
     },
 
     handleSelected(selected) {
+      this.cacheRouteState(selected.id);
+
       this.$router.push({
         name: this.order_detail_page,
         params: {
           shop_name: this.shop_name,
           basket_id: selected.id,
-          RETURN: this.buildReturn(selected.id),
         },
       });
-    },
-    buildReturn(item_id) {
-      return {
-        options: this.options,
-        KEEP: item_id,
-      };
     },
 
     fetchOrders(page, sortBy, sortDesc = true) {
@@ -447,7 +439,7 @@ export default {
         .get(
           window.XAPI.GET_MY_ORDERS_HISTORY_PHYSICAL(
             this.shop_name,
-            this.isAvocado ? "AVO" : this.isPos ? "POS" : this.type.code
+            this.isAvocado ? "AVO" : this.isPos ? "POS" : this.type.code,
           ),
           {
             params: {
@@ -458,11 +450,11 @@ export default {
 
               codes: !this.USER()
                 ? StorefrontLocalStorages.GetShopHistoryGuestCodes(
-                    this.type.code
+                    this.type.code,
                   ) /*🥶 Guest*/
                 : undefined,
             },
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -486,7 +478,7 @@ export default {
           out.push(
             item.image
               ? item.image
-              : require("@components/assets/icons/circle-blue.svg")
+              : require("@components/assets/icons/circle-blue.svg"),
           );
         });
       } else {

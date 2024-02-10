@@ -743,7 +743,7 @@ export default {
     this.first_start = false;
   },
   mounted() {},
-  destroyed() {},
+
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
