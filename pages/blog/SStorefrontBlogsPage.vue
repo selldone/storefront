@@ -34,9 +34,10 @@
         :to="to_home"
         class="flipInX"
         exact
-        ><v-icon class="me-1">{{ $t("icons.arrow_back") }}</v-icon>
-        {{ $t("global.actions.back") }}</v-btn
       >
+        <v-icon class="me-1">{{ $t("icons.arrow_back") }}</v-icon>
+        {{ $t("global.actions.back") }}
+      </v-btn>
 
       <v-spacer></v-spacer>
 
@@ -114,13 +115,15 @@
                 class="fadeInUp"
                 :style="{ 'animation-delay': i * 100 + 'ms' }"
               >
-                <v-list-item-avatar rounded size="100">
-                  <img
-                    :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
-                    :alt="article.title"
-                    style="object-fit: cover"
-                  />
-                </v-list-item-avatar>
+                <template v-slot:prepend>
+                  <v-avatar rounded size="100">
+                    <img
+                      :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
+                      :alt="article.title"
+                      style="object-fit: cover"
+                    />
+                  </v-avatar>
+                </template>
                 <v-list-item-content>
                   <v-list-item-subtitle>
                     <s-blog-user-category-view
@@ -137,9 +140,11 @@
                       {{ article.title }}
                     </h2>
                   </v-list-item-title>
-                  <v-list-item-subtitle class="my-0">{{
-                    getLocalTimeString(article.updated_at, true, false, true)
-                  }}</v-list-item-subtitle>
+                  <v-list-item-subtitle class="my-0"
+                    >{{
+                      getLocalTimeString(article.updated_at, true, false, true)
+                    }}
+                  </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
@@ -158,9 +163,9 @@
 
             <v-expand-transition>
               <div v-if="categoryObj" class="text-center position-relative">
-                <v-btn icon :to="to_home" class="absolute-top-end" exact
-                  ><v-icon>close</v-icon></v-btn
-                >
+                <v-btn icon :to="to_home" class="absolute-top-end" exact>
+                  <v-icon>close</v-icon>
+                </v-btn>
                 <v-avatar :size="64" class="zoomIn" rounded>
                   <img :src="getShopImagePath(categoryObj.icon)" />
                 </v-avatar>
@@ -175,9 +180,9 @@
             <!-- Current Author Page View -->
             <v-expand-transition>
               <div v-if="authorObj" class="text-center position-relative">
-                <v-btn icon :to="to_home" class="absolute-top-end" exact
-                  ><v-icon>close</v-icon></v-btn
-                >
+                <v-btn icon :to="to_home" class="absolute-top-end" exact>
+                  <v-icon>close</v-icon>
+                </v-btn>
                 <v-avatar :size="64" class="zoomIn">
                   <img :src="getUserAvatar(authorObj.id)" />
                 </v-avatar>
@@ -203,13 +208,15 @@
                 class="flipInX"
                 :style="{ 'animation-delay': 500 + i * 100 + 'ms' }"
               >
-                <v-list-item-avatar rounded>
-                  <img
-                    v-if="category.icon"
-                    :src="getShopImagePath(category.icon)"
-                    :alt="category.category"
-                  />
-                </v-list-item-avatar>
+                <template v-slot:prepend>
+                  <v-avatar rounded>
+                    <img
+                      v-if="category.icon"
+                      :src="getShopImagePath(category.icon)"
+                      :alt="category.category"
+                    />
+                  </v-avatar>
+                </template>
 
                 <v-list-item-content>
                   <v-list-item-title
@@ -222,9 +229,9 @@
                       {{ $t("global.commons.articles") }}</small
                     >
                   </v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    category.description
-                  }}</v-list-item-subtitle>
+                  <v-list-item-subtitle
+                    >{{ category.description }}
+                  </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
@@ -235,16 +242,18 @@
                 small
                 icon
                 class="fadeIn delay_2s"
-                ><v-icon small>north</v-icon></v-btn
               >
+                <v-icon small>north</v-icon>
+              </v-btn>
               <v-btn
                 @click="category_page++"
                 :disabled="category_page === category_pages"
                 small
                 icon
                 class="fadeIn delay_2s"
-                ><v-icon small>south</v-icon></v-btn
               >
+                <v-icon small>south</v-icon>
+              </v-btn>
             </div>
           </v-col>
 
@@ -274,11 +283,13 @@
               }"
               exact
             >
-              <v-list-item-avatar
-                class="text-h4 op-0-2 not-selectable font-weight-black"
-              >
-                {{ index + 1 }}
-              </v-list-item-avatar>
+              <template v-slot:prepend>
+                <v-avatar
+                  class="text-h4 op-0-2 not-selectable font-weight-black"
+                >
+                  {{ index + 1 }}
+                </v-avatar>
+              </template>
 
               <v-list-item-content>
                 <s-blog-user-category-view
@@ -294,9 +305,11 @@
                 >
                   {{ article.title }}
                 </v-list-item-title>
-                <v-list-item-subtitle>{{
-                  getLocalTimeString(article.updated_at, true, false, true)
-                }}</v-list-item-subtitle>
+                <v-list-item-subtitle
+                  >{{
+                    getLocalTimeString(article.updated_at, true, false, true)
+                  }}
+                </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-col>
@@ -413,8 +426,8 @@
             v-for="j in $vuetify.display.smAndDown
               ? 2
               : $vuetify.display.md
-              ? 3
-              : 4"
+                ? 3
+                : 4"
             :key="'j' + j"
             cols="12"
             sm="6"
@@ -446,11 +459,10 @@
             :items-length="totalItems"
             :options.sync="options"
             :page.sync="page"
-
             :items-per-page="itemsPerPage"
             :no-data-text="$t('global.commons.no_data')"
           >
-            <template v-slot:header> </template>
+            <template v-slot:header></template>
 
             <template v-slot:default="props">
               <v-list>
@@ -475,17 +487,19 @@
                       : null
                   "
                 >
-                  <v-list-item-avatar
-                    rounded
-                    :width="$vuetify.display.smAndDown ? 100 : 200"
-                    :height="$vuetify.display.smAndDown ? 100 : 137"
-                  >
-                    <img
-                      :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
-                      :alt="article.title"
-                      style="object-fit: cover"
-                    />
-                  </v-list-item-avatar>
+                  <template v-slot:prepend>
+                    <v-avatar
+                      rounded
+                      :width="$vuetify.display.smAndDown ? 100 : 200"
+                      :height="$vuetify.display.smAndDown ? 100 : 137"
+                    >
+                      <img
+                        :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
+                        :alt="article.title"
+                        style="object-fit: cover"
+                      />
+                    </v-avatar>
+                  </template>
                   <v-list-item-content>
                     <v-list-item-subtitle>
                       <s-blog-user-category-view
@@ -507,9 +521,16 @@
                       {{ article.description }}
                     </v-list-item-subtitle>
 
-                    <v-list-item-subtitle class="mt-2">{{
-                      getLocalTimeString(article.updated_at, true, false, true)
-                    }}</v-list-item-subtitle>
+                    <v-list-item-subtitle class="mt-2"
+                      >{{
+                        getLocalTimeString(
+                          article.updated_at,
+                          true,
+                          false,
+                          true,
+                        )
+                      }}
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -587,13 +608,13 @@ export default {
     search: "",
     filter: {},
     sortDesc: true,
-    sortBy: [{ key: null, order: 'desc' }],
+    sortBy: [{ key: null, order: "desc" }],
 
     // Pagination:
     page: 1,
     itemsPerPage: 12,
     totalItems: 0,
-    options: { },
+    options: {},
 
     //---------------------------
     first_start: true,
@@ -668,7 +689,7 @@ export default {
 
     categoryObj() {
       return this.categories.find(
-        (it) => "" + it.id === "" + this.current_category
+        (it) => "" + it.id === "" + this.current_category,
       );
     },
     // ......................... Author page mode .........................
@@ -688,10 +709,10 @@ export default {
       return this.$vuetify.display.lgAndUp
         ? 4
         : this.$vuetify.display.mdAndUp
-        ? 3
-        : this.$vuetify.display.smAndUp
-        ? 2
-        : 1;
+          ? 3
+          : this.$vuetify.display.smAndUp
+            ? 2
+            : 1;
     },
 
     loops() {
@@ -701,7 +722,7 @@ export default {
       const out = [];
       for (let i = 0; i < this.loops; i++) {
         out.push(
-          this.interest.slice(i * this.chunk_size, (i + 1) * this.chunk_size)
+          this.interest.slice(i * this.chunk_size, (i + 1) * this.chunk_size),
         );
       }
       return out;
@@ -720,7 +741,7 @@ export default {
 
       this.fetchBlogs(
         this.page,
-        query.scroll === true || query.scroll === "true"
+        query.scroll === true || query.scroll === "true",
       );
     },
 
@@ -743,7 +764,6 @@ export default {
     this.first_start = false;
   },
   mounted() {},
-
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -805,10 +825,7 @@ export default {
 
         .finally(() => {
           this.busy = false;
-          if (scroll)
-            ScrollHelper.scrollToElement("#first",200,'smooth')
-
-
+          if (scroll) ScrollHelper.scrollToElement("#first", 200, "smooth");
         });
 
       this.category_old = this.current_category;
