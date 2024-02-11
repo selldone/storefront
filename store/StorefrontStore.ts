@@ -12,22 +12,20 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import Vue from "vue";
+import type {ActionContext} from "vuex";
 import Vuex, {createStore} from "vuex";
-import type { ActionContext } from "vuex";
-import { Currency } from "@core/enums/payment/Currency";
-import type { ICurrency } from "@core/enums/payment/Currency";
-import { ProductType } from "@core/enums/product/ProductType";
-import { OverrideCustomVariantsName } from "@core/enums/product/ProductVariants";
-import { XapiShop } from "@sdk-storefront/shop/XapiShop";
-import type { ProductCompare } from "@core/models/shop/product/product-compare.model";
-import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
-import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
-import { Club } from "@core/models/shop/club/club.model";
-import { Shop } from "@core/models/shop/shop.model";
-import type { Basket } from "@core/models/shop/order/basket/basket.model";
+import type {ICurrency} from "@core/enums/payment/Currency";
+import {Currency} from "@core/enums/payment/Currency";
+import {ProductType} from "@core/enums/product/ProductType";
+import {OverrideCustomVariantsName} from "@core/enums/product/ProductVariants";
+import {XapiShop} from "@sdk-storefront/shop/XapiShop";
+import type {ProductCompare} from "@core/models/shop/product/product-compare.model";
+import type {Coupon} from "@core/models/shop/incentives/coupon/coupon.model";
+import type {Offer} from "@core/models/shop/incentives/offer/offer.model";
+import {Club} from "@core/models/shop/club/club.model";
+import {Shop} from "@core/models/shop/shop.model";
+import type {Basket} from "@core/models/shop/order/basket/basket.model";
 
-Vue.use(Vuex);
 
 interface State {
   user: any | null;
@@ -313,8 +311,8 @@ export default createStore<State>({
     },
     //━━━━━━━External Accounts ━━━━━━━
     /*  getExchangeRates(state) {
-      return state.exchangeRates;
-    },*/
+          return state.exchangeRates;
+        },*/
 
     //━━━━━━━ 📦 Gifts ━━━━━━━
     getGifts(state) {

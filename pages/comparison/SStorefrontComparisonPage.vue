@@ -15,8 +15,8 @@
 <template>
   <div class="px-1 mb-16">
     <div
-      style="min-height: 800px; background-color: white; border-radius: 18px"
       class="py-16"
+      style="min-height: 800px; background-color: white; border-radius: 18px"
     >
       <product-comparison-list v-if="!busy" :products="productsList" />
     </div>
@@ -25,6 +25,7 @@
 
 <script>
 import ProductComparisonList from "@components/storefront/comparison/list/ProductComparisonList.vue";
+
 export default {
   name: "SStorefrontComparisonPage",
   components: { ProductComparisonList },

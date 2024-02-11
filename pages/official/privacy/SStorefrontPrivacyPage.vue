@@ -23,11 +23,11 @@
       <div class="text-start px-lg-5 px-md-4 px-3 master-article-container">
         <s-article-editor
           v-if="profile"
-          class="p-lg-5 p-md-4 p-3 article"
-          :only-view="true"
-          :edit="false"
           :body="profile.body"
+          :edit="false"
           :enableTitle="false"
+          :only-view="true"
+          class="p-lg-5 p-md-4 p-3 article"
         />
       </div>
 
@@ -42,6 +42,7 @@
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
 import SStorefrontCookiePreferences from "@components/storefront/cookie/SStorefrontCookiePreferences.vue";
+
 export default {
   name: "SStorefrontPrivacyPage",
   components: { SStorefrontCookiePreferences, SArticleEditor },

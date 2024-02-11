@@ -33,6 +33,7 @@
 
 <script>
 import SBackofficeReturnRequestsList from "@components/order/return-request/SBackofficeReturnRequestsList.vue";
+
 export default {
   name: "SStorefrontUserReturnRequests",
   components: { SBackofficeReturnRequestsList },
@@ -60,4 +61,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

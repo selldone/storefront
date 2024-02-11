@@ -24,74 +24,74 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <link href="<%= BASE_URL %>favicon.ico" rel="icon">
     <title>Selldone</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
 
     <!-- 🦋 Dev Kit -->
     <!-- It's the local dev server. -->
 
     <!-- 🌌 Business OS -->
-    <meta name="Classification" content="Shop">
-    <meta name="copyright" content="Selldone">
+    <meta content="Shop" name="Classification">
+    <meta content="Selldone" name="copyright">
 
     <!-- 🏬 Shop Name -->
-    <meta name="shop-name" content="<%= process.env.VUE_APP_SAMPLE_SHOP_NAME %>">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_SHOP_NAME %>" name="shop-name">
 
     <!-- 🎗 Prefix address of app Ex./@pajuhaan  -->
-    <meta name="shop-prefix-address" content="">
+    <meta content="" name="shop-prefix-address">
 
     <!-- 📰 Shop custom page -->
-    <meta name="custom-home" content="<%= process.env.VUE_APP_SAMPLE_SHOP_CUSTOM_HOME %>">
-
+    <meta content="<%= process.env.VUE_APP_SAMPLE_SHOP_CUSTOM_HOME %>" name="custom-home">
 
 
     <!-- ―――――――――――――――― Start ❯ Business OS Configuration ―――――――――――――――― -->
 
     <!-- 🪁 Service Origin -->
-    <meta name="service-url" content="https://selldone.com">
+    <meta content="https://selldone.com" name="service-url">
 
 
     <!-- 🎯 APIs -->
-    <meta name="selldone-gapi" content="https://gapi.selldone.com">
-    <meta name="selldone-xapi" content="https://xapi.selldone.com">
-    <meta name="selldone-iframe" content="https://iframe.selldone.com">
-    <meta name="selldone-capi" content="https://capi.selldone.com">
+    <meta content="https://gapi.selldone.com" name="selldone-gapi">
+    <meta content="https://xapi.selldone.com" name="selldone-xapi">
+    <meta content="https://iframe.selldone.com" name="selldone-iframe">
+    <meta content="https://capi.selldone.com" name="selldone-capi">
 
     <!-- 🌍 CDNs -->
-    <meta name="selldone-cdn-images" content="https://selldone.com/cdn-shop-images-1">
-    <meta name="selldone-cdn-jsons" content="https://selldone.com/cdn-shop-jsons-1">
-    <meta name="selldone-cdn-videos" content="https://selldone.com/cdn-videos">
-    <meta name="selldone-cdn-temp-files" content="https://selldone.com/cdn-shop-temp-files">
-    <meta name="selldone-cdn-ar" content="https://selldone.com/cdn-ar">
-    <meta name="selldone-cdn-id" content="https://selldone.com/cdn-id">
-    <meta name="storage-redirect" content="true">
-    <meta name="storage-redirect-host" content="https://cdn.selldone.com">
-    <meta name="storage-redirect-thumbnails" content="true">
+    <meta content="https://selldone.com/cdn-shop-images-1" name="selldone-cdn-images">
+    <meta content="https://selldone.com/cdn-shop-jsons-1" name="selldone-cdn-jsons">
+    <meta content="https://selldone.com/cdn-videos" name="selldone-cdn-videos">
+    <meta content="https://selldone.com/cdn-shop-temp-files" name="selldone-cdn-temp-files">
+    <meta content="https://selldone.com/cdn-ar" name="selldone-cdn-ar">
+    <meta content="https://selldone.com/cdn-id" name="selldone-cdn-id">
+    <meta content="true" name="storage-redirect">
+    <meta content="https://cdn.selldone.com" name="storage-redirect-host">
+    <meta content="true" name="storage-redirect-thumbnails">
 
     <!-- 🧩 Defaults -->
-    <meta name="local-service-country" content="">
+    <meta content="" name="local-service-country">
     <!-- Default Currency : 🇬 🇧 🇵 -->
-    <meta name="default-currency" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>" name="default-currency">
     <!-- Default Country : 🇬🇧 -->
-    <meta name="default-country" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_COUNTRY %>">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_COUNTRY %>" name="default-country">
     <!-- Default Language : 🇪 🇳 -->
-    <meta name="initial-language" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_LANGUAGE %>">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_LANGUAGE %>" name="initial-language">
 
     <!-- 🎨 Theme -->
-    <meta name="color--theme-light" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>">
-    <meta name="color--theme-dark" content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_DARK %>">
-    <meta name="color--theme-deep-dark" content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_DEEP_DARK %>">
-    <meta name="color--theme-info" content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_INFO %>">
-
+    <meta content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>" name="color--theme-light">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_DARK %>" name="color--theme-dark">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_DEEP_DARK %>" name="color--theme-deep-dark">
+    <meta content="<%= process.env.VUE_APP_SAMPLE_THEME_COLOR_INFO %>" name="color--theme-info">
 
 
 </head>
 <body>
 <noscript>
-    <strong>We're sorry but Selldone doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    <strong>We're sorry but Selldone doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong>
 </noscript>
 <div id="app"></div>
 <!-- built files will be auto injected -->

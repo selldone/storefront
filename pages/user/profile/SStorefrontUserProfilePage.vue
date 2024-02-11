@@ -13,14 +13,14 @@
   -->
 
 <template>
-  <v-container fluid >
+  <v-container fluid>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Image ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5 d-flex align-center flex-column">
       <v-avatar
+        class="my-2 mx-auto avatar-gradient -thin"
         color="#fff"
         size="96"
-        class="my-2 mx-auto avatar-gradient -thin"
       >
         <v-img :src="getUserAvatar(USER().id)" />
       </v-avatar>
@@ -30,22 +30,22 @@
       </h2>
       <p class="subtitle-2">
         {{ USER().email }}
-        <v-icon v-if="USER().email_verified" color="success" small class="ms-1">
+        <v-icon v-if="USER().email_verified" class="ms-1" color="success" small>
           check_circle
         </v-icon>
       </p>
 
       <v-btn
+        :loading="busy_logout"
+        class="mb-3"
         text
         @click="
           busy_logout = true;
           Logout(() => (busy_logout = false));
         "
-        :loading="busy_logout"
-        class="mb-3"
       >
-        <v-icon small class="me-1">logout</v-icon
-        >{{ $t("global.actions.logout") }}
+        <v-icon class="me-1" small>logout </v-icon>
+        {{ $t("global.actions.logout") }}
       </v-btn>
     </div>
 
@@ -53,21 +53,21 @@
 
     <div class="widget-box mb-5">
       <h2>
-        <v-icon class="me-1">mail_outline</v-icon
-        >{{ $t("user_profile.subscription") }}
+        <v-icon class="me-1">mail_outline </v-icon>
+        {{ $t("user_profile.subscription") }}
       </h2>
-      <v-list-subheader> </v-list-subheader>
+      <v-list-subheader></v-list-subheader>
 
       <div class="widget-buttons">
         <v-btn
           :color="!isSubscribed ? 'primary' : 'success'"
-          depressed
-          @click="toggleSubscribe"
           :loading="busy_subscribe"
-          x-large
           :text="isSubscribed"
+          depressed
+          x-large
+          @click="toggleSubscribe"
         >
-          <v-icon v-if="isSubscribed" small class="me-1">check</v-icon>
+          <v-icon v-if="isSubscribed" class="me-1" small>check</v-icon>
           {{
             isSubscribed
               ? $t("global.commons.subscribed")
@@ -81,15 +81,16 @@
 
     <div class="widget-box mb-5">
       <h2>
-        <v-icon class="me-1">fingerprint</v-icon>{{ $t("user_profile.title") }}
+        <v-icon class="me-1">fingerprint</v-icon>
+        {{ $t("user_profile.title") }}
       </h2>
 
       <s-value-dashed>
         <template v-slot:label>
           <v-list-subheader>
             {{ $t("user_profile.tel") }}
-          </v-list-subheader></template
-        >
+          </v-list-subheader>
+        </template>
         <b>{{ USER().phone }}</b>
       </s-value-dashed>
 
@@ -97,8 +98,8 @@
         <template v-slot:label>
           <v-list-subheader>
             {{ $t("user_profile.identity") }}
-          </v-list-subheader></template
-        >
+          </v-list-subheader>
+        </template>
         <div class="text-success">
           <s-check
             :value="USER().personal_information_verified"
@@ -111,8 +112,8 @@
       </s-value-dashed>
 
       <div class="widget-buttons">
-        <v-btn color="primary" text large :href="kyc_url" target="_blank">
-          <v-icon small class="me-1">edit</v-icon>
+        <v-btn :href="kyc_url" color="primary" large target="_blank" text>
+          <v-icon class="me-1" small>edit</v-icon>
           {{ $t("user_profile.edit_personal_info") }}
         </v-btn>
       </div>
@@ -126,10 +127,10 @@
         <div class="text-center">
           <img
             :src="getCustomerClubLevel(getClub().level).icon"
-            width="48"
-            height="48"
-            class="mx-auto d-block"
             :title="$t('user_profile.club')"
+            class="mx-auto d-block"
+            height="48"
+            width="48"
           />
           <p class="font-weight-bold">
             {{ $t(getCustomerClubLevel(getClub().level).name) }}
@@ -176,8 +177,8 @@
       </p>
 
       <div class="widget-buttons">
-        <v-btn color="#D32F2F" class="m-2" text @click="LeaveShop" large>
-          <v-icon small class="me-1">block</v-icon>
+        <v-btn class="m-2" color="#D32F2F" large text @click="LeaveShop">
+          <v-icon class="me-1" small>block</v-icon>
           {{ $t("user_profile.leave_shop_action") }}
         </v-btn>
       </div>
@@ -225,7 +226,7 @@ export default {
               if (!data.error) {
                 this.showSuccessAlert(
                   null,
-                  this.$t("user_profile.notifications.leave_success")
+                  this.$t("user_profile.notifications.leave_success"),
                 );
                 this.LogoutProcess();
               } else {
@@ -235,7 +236,7 @@ export default {
             .catch((error) => {
               this.showLaravelError(error);
             });
-        }
+        },
       );
     },
 
@@ -254,7 +255,7 @@ export default {
               null,
               subscribe
                 ? "Subscribe successfully."
-                : "Unsubscribe successfully."
+                : "Unsubscribe successfully.",
             );
           } else {
             this.showErrorAlert(null, data.error_msg);
@@ -274,7 +275,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .widget {
   min-height: 150px;
 }

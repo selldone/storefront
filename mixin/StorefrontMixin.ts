@@ -12,34 +12,30 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { ProductType } from "@core/enums/product/ProductType";
-import { i18n, loadLanguageAsyncShop } from "./../lang/i18n_shop";
-import { type ILanguage, Language } from "@core/enums/language/Language";
+import {ProductType} from "@core/enums/product/ProductType";
+import {i18n, loadLanguageAsyncShop} from "./../lang/i18n_shop";
+import {type ILanguage, Language} from "@core/enums/language/Language";
 import merge from "lodash-es/merge";
-import {
-  NativeInterfaceShop,
-  NativeInterfaceUser,
-} from "@components/plugins/native/NativeAppInterface";
-import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
-import CoreMixin from "@components/mixin/CoreMixin";
-import type { Basket } from "@core/models/shop/order/basket/basket.model";
-import { Club } from "@core/models/shop/club/club.model";
-import { XapiShop } from "@sdk-storefront/shop/XapiShop";
-import { Product } from "@core/models/shop/product/product.model";
-import type { ProductVariant } from "@core/models/shop/product/product_variant.model";
-import type { BasketItem } from "@core/models/shop/order/basket/basket_item.model";
-import type { SubscriptionPrice } from "@core/models/shop/product/subscription_price.model";
-import { Currency } from "@core/enums/payment/Currency";
-import { Avocado } from "@core/models/shop/order/avocado/avocado.order";
-import type { Hyper } from "@core/models/shop/order/hyper/hyper.order";
-import type { ProductCompare } from "@core/models/shop/product/product-compare.model";
-import { SetupService } from "@core/server/SetupService";
-import type { Coupon } from "@core/models/shop/incentives/coupon/coupon.model";
-import type { Offer } from "@core/models/shop/incentives/offer/offer.model";
-import type { RouteRecord } from "vue-router/types/router";
-import { Shop } from "@core/models/shop/shop.model";
+import {NativeInterfaceShop, NativeInterfaceUser,} from "@components/plugins/native/NativeAppInterface";
+import {StorefrontLocalStorages} from "@core/helper/local-storage/StorefrontLocalStorages";
+import type {Basket} from "@core/models/shop/order/basket/basket.model";
+import {Club} from "@core/models/shop/club/club.model";
+import {XapiShop} from "@sdk-storefront/shop/XapiShop";
+import {Product} from "@core/models/shop/product/product.model";
+import type {ProductVariant} from "@core/models/shop/product/product_variant.model";
+import type {BasketItem} from "@core/models/shop/order/basket/basket_item.model";
+import type {SubscriptionPrice} from "@core/models/shop/product/subscription_price.model";
+import {Currency} from "@core/enums/payment/Currency";
+import {Avocado} from "@core/models/shop/order/avocado/avocado.order";
+import type {Hyper} from "@core/models/shop/order/hyper/hyper.order";
+import type {ProductCompare} from "@core/models/shop/product/product-compare.model";
+import {SetupService} from "@core/server/SetupService";
+import type {Coupon} from "@core/models/shop/incentives/coupon/coupon.model";
+import type {Offer} from "@core/models/shop/incentives/offer/offer.model";
+import type {RouteRecord} from "vue-router/types/router";
+import {Shop} from "@core/models/shop/shop.model";
 
-const StorefrontMixin = CoreMixin.extend({
+const StorefrontMixin = {
   data() {
     return {
       // Data properties
@@ -70,7 +66,7 @@ const StorefrontMixin = CoreMixin.extend({
         if (!basket) continue;
 
         const basket_item = basket.items.find(
-          (item: BasketItem) => item.product_id === product_id
+          (item: BasketItem) => item.product_id === product_id,
         );
 
         if (basket_item && basket_item.product) return basket_item.product.type;
@@ -107,7 +103,7 @@ const StorefrontMixin = CoreMixin.extend({
 
     async setCurrentLanguage(
       _local: string | ILanguage,
-      save_on_local: boolean = false
+      save_on_local: boolean = false,
     ) {
       let local: string;
       if (typeof _local === "object") {
@@ -202,12 +198,12 @@ const StorefrontMixin = CoreMixin.extend({
           },
           (error) => {
             console.log(
-              "=============== REMOVE ACCESS TOKEN ================="
+              "=============== REMOVE ACCESS TOKEN =================",
             );
             window.$cookies.remove(
               "access_token",
               window.$storefront.prefix_url,
-              null
+              null,
             );
 
             this.showLaravelError(error);
@@ -220,7 +216,7 @@ const StorefrontMixin = CoreMixin.extend({
             this.EventBus.$emit("get-me:error", error);
 
             this.$store.commit("setBusyUser", false);
-          }
+          },
         );
       } else {
         this.$store.commit("setBusyUser", false); // Set busy fetch user to false! (initial state is true)
@@ -241,7 +237,7 @@ const StorefrontMixin = CoreMixin.extend({
     LoginShop(
       callback: (state: string) => void | null,
       social = null,
-      popup = false
+      popup = false,
     ) {
       // 1) Save current url.
       sessionStorage.setItem("after-login-path", this.$route.path);
@@ -273,7 +269,7 @@ const StorefrontMixin = CoreMixin.extend({
         const win = window.open(
           login_url,
           "Selldone Login",
-          "width=640, height=750"
+          "width=640, height=750",
         );
 
         const pollTimer = window.setInterval(function () {
@@ -370,7 +366,7 @@ const StorefrontMixin = CoreMixin.extend({
       window.$cookies.remove(
         "access_token",
         window.$storefront.prefix_url,
-        null
+        null,
       );
       // 🞧 Header: Authorization
       delete window.axios.defaults.headers.common["Authorization"];
@@ -390,7 +386,7 @@ const StorefrontMixin = CoreMixin.extend({
 
       if (
         this.$route.matched.some(
-          (record: RouteRecord) => record.meta.requiresAuth
+          (record: RouteRecord) => record.meta.requiresAuth,
         )
       )
         this.$router.push({ name: window.$storefront.routes.SHOP_PAGE });
@@ -405,13 +401,13 @@ const StorefrontMixin = CoreMixin.extend({
           if (show_success)
             this.showSuccessAlert(
               "Update exchange rates",
-              "Exchange rates were updated."
+              "Exchange rates were updated.",
             );
           if (callback) callback();
         },
         (error) => {
           this.showLaravelError(error);
-        }
+        },
       );
     },
 
@@ -464,7 +460,7 @@ const StorefrontMixin = CoreMixin.extend({
             if (baskets)
               baskets
                 .uniqueByKey(
-                  "type"
+                  "type",
                 ) /*Prevent to show last basket! Always reopen baskets has lower ID!*/
                 .forEach((basket) => {
                   this.setBasket(basket);
@@ -492,7 +488,7 @@ const StorefrontMixin = CoreMixin.extend({
               ) {
                 console.log(
                   "🌐 Valid language on the local.",
-                  saved_local.code
+                  saved_local.code,
                 );
 
                 this.setCurrentLanguage(saved_local);
@@ -523,18 +519,20 @@ const StorefrontMixin = CoreMixin.extend({
               window.$storefront.currency = Currency[shop.currencies![0]];
               console.log(
                 "Set currency automatically",
-                window.$storefront.currency
+                window.$storefront.currency,
               );
             }
 
             // Popup: We save seen_pops in localstorage (Client) and send in the header request
             if (seen_pops) {
               localStorage.setItem(
-                StorefrontLocalStorages.GetSeenPopups(this.$localstorage_base_path()),
-                JSON.stringify(seen_pops)
+                StorefrontLocalStorages.GetSeenPopups(
+                  this.$localstorage_base_path(),
+                ),
+                JSON.stringify(seen_pops),
               );
             }
-          }
+          },
         )
         .catch((error) => {
           this.showLaravelError(error);
@@ -716,7 +714,7 @@ const StorefrontMixin = CoreMixin.extend({
       callbackSuccess: (basket: Basket) => void,
       preferences: BasketItem.IPreferences | null = null,
       vendor_product: VendorProduct | null = null, // 🟣 Marketplace 🟣
-      subscription_price: SubscriptionPrice | null = null // 🎗️ Subscription
+      subscription_price: SubscriptionPrice | null = null, // 🎗️ Subscription
     ) {
       const product_id = product.id;
       const variant_id = variant ? variant.id : null;
@@ -758,7 +756,7 @@ const StorefrontMixin = CoreMixin.extend({
       product_id: number,
       variant_id: number | null,
       callbackError: (message: string) => void,
-      callbackSuccess: (basket: Basket) => void
+      callbackSuccess: (basket: Basket) => void,
     ) {
       // ▀▀▀▀▀▀▀▀▀ 🥵 User & 🥶 Guest ▀▀▀▀▀▀▀▀▀
       window.$storefront.basket
@@ -800,7 +798,7 @@ const StorefrontMixin = CoreMixin.extend({
       prize_selected_variant_id: number | null = null,
       gateway: string | null = null,
       acceptCOD: boolean = false, // Based on delivery methods support COD!
-      callback: (() => void) | null = null // Not used yet!
+      callback: (() => void) | null = null, // Not used yet!
     ) {
       this.EventBus.$emit("payment-form-basket", {
         code: code,
@@ -820,7 +818,7 @@ const StorefrontMixin = CoreMixin.extend({
       order: Basket | null,
       bill: Basket.IBill,
       gateway_codes: String,
-      callback: (() => void) | null = null // Not used yet!
+      callback: (() => void) | null = null, // Not used yet!
     ) {
       this.EventBus.$emit("payment-form-subscription", {
         currency: currency,
@@ -843,14 +841,14 @@ const StorefrontMixin = CoreMixin.extend({
       gateway: string,
       transaction_id: number,
       order_id: number,
-      force_reset_payment: boolean = false
+      force_reset_payment: boolean = false,
     ) {
       console.log(
         "====== TRY TO PAY ======",
         gateway,
         transaction_id,
         order_id,
-        force_reset_payment ? "🆕 Reset payment" : "🆔 Retrieve payment"
+        force_reset_payment ? "🆕 Reset payment" : "🆔 Retrieve payment",
       );
 
       this.EventBus.$emit("try-to-pay", {
@@ -871,7 +869,7 @@ const StorefrontMixin = CoreMixin.extend({
       code: string /*🥶 Guest*/,
       order: Basket | null,
       bill: Basket.IBill,
-      callback: () => void
+      callback: () => void,
     ) {
       this.EventBus.$emit("payment-form-bill", {
         code: code,
@@ -910,7 +908,7 @@ const StorefrontMixin = CoreMixin.extend({
     addToProductComparison(
       product: Product,
       variant: ProductVariant | null,
-      need_update: boolean = false /*In product list fast add to comparison! need full data by fetch!*/
+      need_update: boolean = false /*In product list fast add to comparison! need full data by fetch!*/,
     ) {
       let list = this.$store.getters.getProductsComparison;
 
@@ -931,7 +929,7 @@ const StorefrontMixin = CoreMixin.extend({
     },
     removeFromProductComparison(
       product: Product,
-      variant: ProductVariant | null
+      variant: ProductVariant | null,
     ) {
       const list = this.$store.getters.getProductsComparison;
       if (!list) return;
@@ -961,18 +959,18 @@ const StorefrontMixin = CoreMixin.extend({
       return CUSTOM_HOME === Shop.Home.SHOP // CUSTOM_HOME -> shop
         ? null
         : CUSTOM_HOME === Shop.Home.BLOG
-        ? window.$storefront.routes.BLOGS_PAGE
-        : CUSTOM_HOME === Shop.Home.AVOCADO
-        ? window.$storefront.routes.AVOCADO_PAGE
-        : CUSTOM_HOME === Shop.Home.HYPER
-        ? window.$storefront.routes.HYPER_PAGE
-        : CUSTOM_HOME === Shop.Home.COMMUNITY
-        ? window.$community.routes.COMMUNITY_HOME_PAGE
-        : CUSTOM_HOME === Shop.Home.MAP
-        ? window.$storefront.routes.MAP_PRODUCTS_PAGE
-        : CUSTOM_HOME
-        ? window.$storefront.routes.CUSTOM_HOME_PAGE // CUSTOM_HOME -> Page ID
-        : null;
+          ? window.$storefront.routes.BLOGS_PAGE
+          : CUSTOM_HOME === Shop.Home.AVOCADO
+            ? window.$storefront.routes.AVOCADO_PAGE
+            : CUSTOM_HOME === Shop.Home.HYPER
+              ? window.$storefront.routes.HYPER_PAGE
+              : CUSTOM_HOME === Shop.Home.COMMUNITY
+                ? window.$community.routes.COMMUNITY_HOME_PAGE
+                : CUSTOM_HOME === Shop.Home.MAP
+                  ? window.$storefront.routes.MAP_PRODUCTS_PAGE
+                  : CUSTOM_HOME
+                    ? window.$storefront.routes.CUSTOM_HOME_PAGE // CUSTOM_HOME -> Page ID
+                    : null;
     },
 
     //――――――――――――――――――――――――― Coupon ―――――――――――――――――――――――――
@@ -1099,6 +1097,6 @@ const StorefrontMixin = CoreMixin.extend({
       // PushNotification.AskForPermission();
     },
   },
-});
+};
 
 export default StorefrontMixin;

@@ -18,16 +18,16 @@
       '--color-bg-1': theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
       '--color-bg-2': ShadeColor(
         theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
-        -30
+        -30,
       ),
     }"
   >
     <v-card
-      class="s--shop-card mb-16 s--shadow-no-padding -hide1720"
       :flat="isMobile"
+      class="s--shop-card mb-16 s--shadow-no-padding -hide1720"
       style="min-height: 80vh"
     >
-      <v-toolbar flat color="transparent">
+      <v-toolbar color="transparent" flat>
         <v-btn icon @click.stop="$router.go(-1)">
           <v-icon>{{ $t("icons.arrow_back") }}</v-icon>
         </v-btn>
@@ -39,30 +39,30 @@
         <v-spacer />
       </v-toolbar>
 
-      <div class="text-center pt-2" v-if="filtered_types.length > 1">
+      <div v-if="filtered_types.length > 1" class="text-center pt-2">
         <s-circle-button
           v-for="item in filtered_types"
           :key="item.code"
-          :src="item.image"
-          @click="type = item.code"
-          :tooltip="$t(item.name)"
+          :badge-number="getCount(item.code)"
           :disabled="!item.enable"
           :outline="type === item.code"
+          :src="item.image"
+          :tooltip="$t(item.name)"
           has-badge
-          :badge-number="getCount(item.code)"
           persist-badge
+          @click="type = item.code"
         />
       </div>
 
       <v-container
         v-if="basket && basket.items && basket.items.length"
+        :class="{ blurred: busy_shop }"
         class="mt-4 blur-animate"
         style="max-width: 100%; overflow: hidden"
-        :class="{ blurred: busy_shop }"
       >
         <v-row dense>
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-          <v-col lg="8" md="7" sm="6" cols="12" class="px-md-0 px-lg-3">
+          <v-col class="px-md-0 px-lg-3" cols="12" lg="8" md="7" sm="6">
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
@@ -71,8 +71,8 @@
               <v-spacer></v-spacer>
               <!-- Share order - Secure link generator -->
               <s-shop-share-order-button
-                :shop="shop"
                 :basket="basket"
+                :shop="shop"
                 class="mt-3 text-end"
               ></s-shop-share-order-button>
             </div>
@@ -81,12 +81,12 @@
 
             <s-storefront-coupons-list
               v-if="!isSubscription"
-              force-show
-              selectable
               v-model="basket.coupon"
-              @input="selectCoupon"
               :basket="basket"
+              force-show
               return-object
+              selectable
+              @input="selectCoupon"
               @loading="(val) => (refreshing_price = val)"
             ></s-storefront-coupons-list>
 
@@ -94,12 +94,12 @@
 
             <s-storefront-lottery-prizes-list
               v-if="!isSubscription"
-              force-show
-              selectable
               v-model="basket.lottery"
-              @input="selectLottery"
               :basket="basket"
+              force-show
               return-object
+              selectable
+              @input="selectLottery"
               @loading="(val) => (refreshing_price = val)"
             >
             </s-storefront-lottery-prizes-list>
@@ -107,21 +107,21 @@
 
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Receipt ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
           <v-col
+            :class="{ dark: !light_checkout }"
+            class="receipt"
+            cols="12"
             lg="4"
             md="5"
             sm="6"
-            cols="12"
-            class="receipt"
-            :class="{ dark: !light_checkout }"
           >
             <v-sheet
-              color="transparent"
-              :dark="!light_checkout"
-              class="receipt-bg m-0"
               :class="{
                 success: canPayAndComplete,
                 error: hasErrorInReceiverInfo,
               }"
+              :dark="!light_checkout"
+              class="receipt-bg m-0"
+              color="transparent"
             >
               <div class="receipt-container m-lg-2 m-md-1 position-relative">
                 <s-progress-loading v-if="busy_save"></s-progress-loading>
@@ -193,9 +193,9 @@
                           <v-icon class="mx-1 align-baseline" small>add</v-icon>
 
                           <v-icon
-                            small
-                            color="#2ab27b"
                             class="align-baseline vertical-align-baseline me-1"
+                            color="#2ab27b"
+                            small
                             >fa:fas fa-gift</v-icon
                           >
                           <price-view
@@ -216,7 +216,7 @@
                     <!-- SERVICE: Dont show price for service -->
                     <s-value-dashed>
                       <template v-slot:label>
-                        <v-icon small class="me-1">whatshot</v-icon>
+                        <v-icon class="me-1" small>whatshot</v-icon>
                         {{ $t("basket_page.cross_selling_discount") }}
                       </template>
                       <p class="text-success">
@@ -235,17 +235,17 @@
                   >
                     <s-storefront-discount-code-input
                       v-model="basket.discount_code"
-                      @input="selectDiscountCode"
                       :basket="basket"
                       :currency="basket.currency"
+                      @input="selectDiscountCode"
                       @loading="(val) => (refreshing_price = val)"
                     />
                     <v-spacer />
 
                     <price-view
                       v-if="discount_code_amount > 0 /*&& !isService*/"
-                      class="text-success font-weight-medium"
                       :amount="-discount_code_amount"
+                      class="text-success font-weight-medium"
                       medium
                     ></price-view>
                     <!-- SERVICE: Dont show price for service -->
@@ -269,9 +269,9 @@
                     <div class="text-center mt-2">
                       <v-img
                         :src="getCustomerClubLevel(getClub().level).icon"
-                        width="48"
-                        height="48"
                         class="mx-auto mb-1"
+                        height="48"
+                        width="48"
                       ></v-img>
                       <p>{{ $t("basket_page.customer_club") }}</p>
                       <p class="small m-0" v-text="getClub().description"></p>
@@ -289,8 +289,8 @@
                           }}
                         </template>
                         <price-view
-                          class="text-success"
                           :amount="-customer_club_discount"
+                          class="text-success"
                           medium
                         ></price-view>
                       </s-value-dashed>
@@ -303,10 +303,10 @@
                     <div v-if="coupon">
                       <div class="text-center mt-2">
                         <img
+                          class="mx-auto mb-1"
+                          height="48"
                           src="@components/assets/icons/coupon.svg"
                           width="48"
-                          height="48"
-                          class="mx-auto mb-1"
                         />
                         <p>{{ coupon.title }}</p>
                         <p class="small m-0" v-text="coupon.description"></p>
@@ -321,8 +321,8 @@
                             }}
                           </template>
                           <price-view
-                            class="text-success"
                             :amount="-coupon_discount"
+                            class="text-success"
                             medium
                           ></price-view>
                         </s-value-dashed>
@@ -336,10 +336,10 @@
                     <div v-if="prize">
                       <div class="text-center mt-2">
                         <img
+                          class="mx-auto mb-1"
+                          height="48"
                           src="@components/assets/icons/lottery-win.svg"
                           width="48"
-                          height="48"
-                          class="mx-auto mb-1"
                         />
                         <p>{{ prize.title }}</p>
                         <p class="small m-0" v-text="prize.description"></p>
@@ -355,15 +355,15 @@
                           </template>
                           <price-view
                             v-if="prize.discount || prize.amount"
-                            class="text-success"
                             :amount="-prize_discount"
+                            class="text-success"
                             medium
                           ></price-view>
                           <div v-else-if="prize.product">
                             <v-avatar
                               class="me-1 hover-scale-small pointer-pointer"
-                              @click="goToProduct(prize.product.id)"
                               size="20"
+                              @click="goToProduct(prize.product.id)"
                             >
                               <img
                                 :src="getShopImagePath(prize.product.icon)"
@@ -385,32 +385,32 @@
                         <v-menu offset-y>
                           <template v-slot:activator="{ on, attrs }">
                             <div
-                              v-on="on"
-                              v-bind="attrs"
                               class="position-relative"
+                              v-bind="attrs"
+                              v-on="on"
                             >
                               <variant-item-mini
-                                class="m-2"
                                 :product-variant="lottery_win_selected_variant"
-                                selected
+                                class="m-2"
                                 force-enable
+                                selected
                               />
                               <v-icon class="absolute-top-end" dark>
-                                arrow_drop_down</v-icon
-                              >
+                                arrow_drop_down
+                              </v-icon>
                             </div>
                           </template>
-                          <v-sheet color="#fff" class="py-2">
+                          <v-sheet class="py-2" color="#fff">
                             <variant-item-mini
                               v-for="(
                                 product_variant, index
                               ) in prize_available_variants"
                               :key="index"
-                              class="m-2"
                               :product-variant="product_variant"
                               :selected="
                                 product_variant === lottery_win_selected_variant
                               "
+                              class="m-2"
                               @select="
                                 lottery_win_selected_variant = product_variant
                               "
@@ -498,16 +498,16 @@
                   <!-- ════════════════════════ Connect Shipping Options ════════════════════════ -->
 
                   <s-shop-connect-shipping-options
-                    :shop="shop"
                     :basket="basket"
                     :dark="!light_checkout"
+                    :shop="shop"
+                    class="mb-6"
                     @change="
                       (connect_shippings) => {
                         delivery_info.connect_shippings = connect_shippings;
                         setBasketConfig();
                       }
                     "
-                    class="mb-6"
                   ></s-shop-connect-shipping-options>
 
                   <!-- ════════════════════════ Shipping options ════════════════════════ -->
@@ -521,8 +521,6 @@
                     <v-list-subheader class="my-2">
                       {{ $t("global.commons.shipping") }}
                       <products-dense-images-circles
-                        inline
-                        raw-images-path
                         :ids="
                           items
                             .filter((i) => !i.connect_id)
@@ -531,46 +529,48 @@
                                 i.variant?.image
                                   ? i.variant.image
                                   : i.product.icon,
-                                128
-                              )
+                                128,
+                              ),
                             )
                         "
+                        inline
+                        raw-images-path
                       ></products-dense-images-circles>
                     </v-list-subheader>
 
                     <s-smart-select
-                      :value="transportation?.type"
-                      :dark="!light_checkout"
-                      :items="transportation_exclude_pickup"
-                      item-description="message"
-                      :item-text="
-                        (item) =>
-                          item.title
-                            ? item.title
-                            : $t(getShopTransportationObject(item.type).name)
-                      "
-                      force-show-all
                       :background-color="
                         !light_checkout ? SaminColorDark : '#fafafa'
                       "
-                      item-value="type"
-                      @input="
-                        (_type) => {
-                          transportation = transportation_exclude_pickup.find(
-                            (x) => x.type === _type
-                          );
-                          $nextTick(() => {
-                            setBasketConfig();
-                          });
-                        }
-                      "
+                      :dark="!light_checkout"
                       :item-image="
                         (item) =>
                           item.logo
                             ? getShopImagePath(item.logo)
                             : getShopTransportationObject(item.type).icon
                       "
+                      :item-text="
+                        (item) =>
+                          item.title
+                            ? item.title
+                            : $t(getShopTransportationObject(item.type).name)
+                      "
+                      :items="transportation_exclude_pickup"
+                      :value="transportation?.type"
+                      force-show-all
+                      item-description="message"
+                      item-value="type"
                       rounded
+                      @input="
+                        (_type) => {
+                          transportation = transportation_exclude_pickup.find(
+                            (x) => x.type === _type,
+                          );
+                          $nextTick(() => {
+                            setBasketConfig();
+                          });
+                        }
+                      "
                     >
                       <template v-slot:description="{ item }">
                         <span v-if="item.code" class="me-2"
@@ -608,42 +608,43 @@
                         {{ $t("basket_page.receive_time") }}
 
                         <v-btn
+                          class="ms-1"
                           icon
                           small
-                          class="ms-1"
-                          @click="show_package_info = !show_package_info"
                           title="Show package and distance info."
-                          ><v-icon small>info</v-icon></v-btn
+                          @click="show_package_info = !show_package_info"
                         >
+                          <v-icon small>info</v-icon>
+                        </v-btn>
                       </template>
 
                       <span>
                         <v-btn
-                          class="select-time-button mx-1 animated-all-normal tnt"
-                          rounded
                           :color="
                             customDeliveryTimes ? SaminColorDark : 'amber'
                           "
                           :dark="customDeliveryTimes"
                           :light="!customDeliveryTimes"
+                          class="select-time-button mx-1 animated-all-normal tnt"
                           depressed
+                          height="48"
+                          large
+                          rounded
                           @click.stop="
                             customDeliveryTimes = !customDeliveryTimes
                           "
-                          large
-                          height="48"
                         >
                           <img
                             v-if="transportation"
-                            width="24px"
-                            class="me-1 circle-white p-1"
                             :src="
                               transportation.logo
                                 ? getShopImagePath(transportation.logo)
                                 : getShopTransportationObject(
-                                    transportation.type
+                                    transportation.type,
                                   ).icon
                             "
+                            class="me-1 circle-white p-1"
+                            width="24px"
                           />
                           <div>
                             <div>
@@ -656,12 +657,12 @@
 
                             <div
                               v-if="max_lead_time > 0"
-                              class="text-capitalize small mt-1"
                               :style="{
                                 color: customDeliveryTimes
                                   ? '#8BC34A'
                                   : '#b22a2a ',
                               }"
+                              class="text-capitalize small mt-1"
                             >
                               {{
                                 $t("global.commons.from_lead_time", {
@@ -683,16 +684,16 @@
                         >
                           <span
                             v-if="bill.weight > 0"
-                            class="small"
                             :class="{ 'text-success': bill.weight > 0 }"
+                            class="small"
                             ><i class="fas fa-weight-hanging me-1" />
                             {{ bill.weight }} {{ mass_unit }}
                           </span>
 
                           <span
                             v-if="bill.volume && bill.volume.width > 0"
-                            class="small"
                             :class="{ 'text-success': bill.volume.width > 0 }"
+                            class="small"
                           >
                             <i class="fas fa-ruler-combined me-1" />
                             {{ bill.volume.width }}
@@ -707,8 +708,8 @@
 
                           <span
                             v-if="bill.distance > 0"
-                            class="small"
                             :class="{ 'text-success': bill.distance > 0 }"
+                            class="small"
                             ><i class="fas fa-location-arrow me-1" />
                             {{ Math.round(bill.distance) }}
                             {{ $t("global.distance.km") }}
@@ -756,34 +757,34 @@
 
                           <v-select
                             v-model="delivery_info.days"
-                            append-icon="fa:fas fa-calendar-week"
-                            class="mx-2 mt-3"
-                            :items="dayItems"
-                            outlined
-                            chips
                             :hint="$t('basket_page.days_input_label')"
-                            multiple
-                            :no-data-text="$t('basket_page.days_input_no_data')"
                             :item-text="
                               (item) => {
                                 return $t(item.name);
                               }
                             "
-                            item-value="value"
+                            :items="dayItems"
+                            :no-data-text="$t('basket_page.days_input_no_data')"
+                            append-icon="fa:fas fa-calendar-week"
+                            chips
+                            class="mx-2 mt-3"
                             deletable-chips
+                            item-value="value"
+                            multiple
+                            outlined
                             small-chips
                             @change="setBasketConfig"
                           >
                             <template v-slot:selection="{ item }">
                               <v-chip
                                 close
+                                color="#0061e0"
+                                dark
+                                small
                                 @click:close="
                                   remove(delivery_info.days, item.value)
                                 "
                                 @click.stop
-                                small
-                                color="#0061e0"
-                                dark
                               >
                                 <span>{{ $t(item.name) }}</span>
                               </v-chip>
@@ -806,32 +807,32 @@
                           </v-list-subheader>
 
                           <v-select
-                            append-icon="fa:fas fa-clock"
                             v-model="delivery_info.time_spans"
-                            class="mx-2 mt-3"
-                            :items="timeItems"
-                            outlined
-                            chips
                             :hint="$t('basket_page.time_input_label')"
-                            multiple
+                            :item-text="(it) => $t(it.name)"
+                            :items="timeItems"
                             :no-data-text="
                               $t('basket_page.time_input_label_no_data')
                             "
-                            :item-text="(it) => $t(it.name)"
-                            item-value="value"
+                            append-icon="fa:fas fa-clock"
+                            chips
+                            class="mx-2 mt-3"
                             deletable-chips
+                            item-value="value"
+                            multiple
+                            outlined
                             @change="setBasketConfig"
                           >
                             <template v-slot:selection="{ item }">
                               <v-chip
                                 close
+                                color="#0061e0"
+                                dark
+                                small
                                 @click:close="
                                   remove(delivery_info.time_spans, item.value)
                                 "
                                 @click.stop
-                                small
-                                color="#0061e0"
-                                dark
                               >
                                 <img
                                   :src="item.icon"
@@ -847,32 +848,32 @@
 
                         <!-- ━━━━━━━━━━━━━━━━━━ PTA > Custom delivery > Date ━━━━━━━━━━━━━━━━━━ -->
                         <template v-if="need_ask_shipping_date">
-                          <v-list-subheader> Receive date </v-list-subheader>
+                          <v-list-subheader> Receive date</v-list-subheader>
 
                           <s-date-input
-                            return-utc
                             v-model="delivery_info.date"
-                            @change="setBasketConfig"
+                            :date-only="
+                              [ETA.date.code].includes(transportation?.eta)
+                            "
                             :min="
                               new Date().addHours(
                                 transportation.etd +
-                                  (max_lead_time > 0 ? max_lead_time : 0)
+                                  (max_lead_time > 0 ? max_lead_time : 0),
                               )
                             "
                             class="mx-2 mt-3"
                             outlined
-                            :date-only="
-                              [ETA.date.code].includes(transportation?.eta)
-                            "
                             placeholder="Select a date to receive order..."
+                            return-utc
+                            @change="setBasketConfig"
                           >
                             <template v-slot:prepend-inner>
                               <v-icon v-if="delivery_info.date" color="green"
-                                >check_circle</v-icon
-                              >
-                              <v-icon v-else color="red" class="blink-me-linear"
-                                >warning</v-icon
-                              >
+                                >check_circle
+                              </v-icon>
+                              <v-icon v-else class="blink-me-linear" color="red"
+                                >warning
+                              </v-icon>
                             </template>
                           </s-date-input>
                         </template>
@@ -884,9 +885,9 @@
                   <!-- ════════════════════════ Drop Shipping delivery ════════════════════════ -->
                   <div v-if="extra_shipping_counts" class="my-4">
                     <p class="text-center font-weight-bold">
-                      <v-icon x-small class="blink-me me-1" color="green"
-                        >lens</v-icon
-                      >
+                      <v-icon class="blink-me me-1" color="green" x-small
+                        >lens
+                      </v-icon>
                       {{
                         $t("basket_page.extra_shipping_count", {
                           count: has_custom_delivery
@@ -910,34 +911,34 @@
                 >
                   {{ error_message_payment }}
                   <v-icon class="mx-1 blink-me" dark small
-                    >arrow_downward</v-icon
-                  >
+                    >arrow_downward
+                  </v-icon>
                 </p>
 
                 <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Receiver Address ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
                 <div v-if="has_delivery">
                   <div
-                    style="min-height: 78px"
                     v-intersect="
                       (isIntersecting, entries, observer) => {
                         intersect_location_btn = isIntersecting;
                       }
                     "
+                    style="min-height: 78px"
                   >
                     <div v-if="!is_valid_location" class="widget-buttons">
                       <v-btn
-                        class="select-address-button"
                         :class="{
                           's--shop-basket-buy-button slideInUp':
                             !intersect_location_btn,
                           'is-mobile': isMobile,
                           '-up': bottom_nav_show,
                         }"
+                        class="select-address-button"
                         color="#4d90fe"
                         dark
                         @click.stop="showMap()"
                       >
-                        <v-icon class="me-2"> near_me </v-icon>
+                        <v-icon class="me-2"> near_me</v-icon>
                         {{
                           isService
                             ? $t("global.receiver_info.service_address")
@@ -955,6 +956,8 @@
 
                     <s-shop-customer-receiver-info-widget
                       v-else
+                      :dark="!light_checkout"
+                      :noMap="no_map"
                       :receiver-info="receiver_info"
                       @show:detail="
                         () => {
@@ -966,9 +969,7 @@
                         startup_mode_map_dialog = 'default';
                         showMap();
                       "
-                      :dark="!light_checkout"
                       @update:country="setBasketConfig"
-                      :noMap="no_map"
                     ></s-shop-customer-receiver-info-widget>
                   </div>
                 </div>
@@ -976,21 +977,21 @@
                 <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Pickup Address ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
                 <div v-if="has_pickup">
                   <div class="font-weight-bold mt-5 mb-3">
-                    <template v-if="is_pickup_selected"
-                      ><v-icon color="success" class="me-1 zoomIn" small
-                        >check_circle</v-icon
-                      >
-                      Pickup selected.</template
-                    >
+                    <template v-if="is_pickup_selected">
+                      <v-icon class="me-1 zoomIn" color="success" small
+                        >check_circle
+                      </v-icon>
+                      Pickup selected.
+                    </template>
                     <template v-else
                       >Or Pickup
-                      <v-icon class="ms-1" small>expand_more</v-icon></template
-                    >
+                      <v-icon class="ms-1" small>expand_more</v-icon>
+                    </template>
                   </div>
 
                   <v-list
-                    three-line
                     class="border-between-vertical bg-transparent"
+                    three-line
                   >
                     <v-list-item
                       v-for="(pickup, i) in pickups"
@@ -1005,13 +1006,13 @@
                             receiver_info.address === pickup.address
                           "
                           color="info"
-                          >circle</v-icon
-                        >
+                          >circle
+                        </v-icon>
                         <v-icon
                           v-else
                           :color="light_checkout ? '#333' : '#fafafa'"
-                          >radio_button_unchecked</v-icon
-                        >
+                          >radio_button_unchecked
+                        </v-icon>
                       </v-list-item-action>
 
                       <v-list-item-content>
@@ -1032,7 +1033,7 @@
                           }}
                         </v-list-item-subtitle>
                         <v-list-item-subtitle>
-                          <v-icon x-small class="me-1"> phone</v-icon>
+                          <v-icon class="me-1" x-small> phone</v-icon>
                           {{
                             pickup.phone
                               ? pickup.phone
@@ -1053,8 +1054,8 @@
                   class="bg-danger-match text-white text-center font-weight-medium mt-3 px-2 mx-n3 py-2"
                 >
                   <v-icon class="me-1 blink-me" dark small
-                    >error_outline</v-icon
-                  >
+                    >error_outline
+                  </v-icon>
                   {{ $t("basket_page.select_location_error") }}
                 </p>
 
@@ -1062,8 +1063,8 @@
                 <div v-if="canPayAndComplete" class="mt-5">
                   <s-shop-billing-address-form
                     v-model="billing"
-                    :receiver-info="receiver_info"
                     :dark="!light_checkout"
+                    :receiver-info="receiver_info"
                     @change="setBasketConfig"
                   ></s-shop-billing-address-form>
                 </div>
@@ -1079,7 +1080,7 @@
                     :key="i"
                     class="py-2"
                   >
-                    <v-icon color="amber" large class="me-1">warning</v-icon>
+                    <v-icon class="me-1" color="amber" large>warning</v-icon>
                     <span v-html="msg"></span>
                   </div>
                 </div>
@@ -1087,13 +1088,13 @@
                 <!-- ********************************** Payment ********************************** -->
 
                 <div
-                  style="min-height: 78px"
-                  class="d-flex"
                   v-intersect="
                     (isIntersecting, entries, observer) => {
                       intersect_payment_btn = isIntersecting;
                     }
                   "
+                  class="d-flex"
+                  style="min-height: 78px"
                 >
                   <div class="widget-buttons">
                     <!-- Payment button (COD) -->
@@ -1105,7 +1106,6 @@
                         deliverySupportCOD &&
                         !isService
                       "
-                      class="select-address-button"
                       :class="{
                         's--shop-basket-buy-button slideInUp':
                           !intersect_payment_btn,
@@ -1114,12 +1114,13 @@
                         disabled:
                           !can_pay /*System tell us that user can not pay! (on bill calculation step in server)*/,
                       }"
-                      rounded
+                      class="select-address-button"
                       color="#16a085"
                       dark
+                      rounded
                       @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
-                      <v-icon class="me-2"> fa:fas fa-shopping-bag </v-icon>
+                      <v-icon class="me-2"> fa:fas fa-shopping-bag</v-icon>
                       {{ $t("basket_page.final_confirm_action") }}
 
                       <price-view
@@ -1150,14 +1151,14 @@
                             !can_pay /*System tell us that user can not pay! (on bill calculation step in server)*/,
                         }"
                         class="select-address-button"
-                        rounded
                         color="#16a085"
                         dark
+                        rounded
                         @click.stop="
                           goToPaymentBasket(null, deliverySupportCOD)
                         "
                       >
-                        <v-icon class="me-2"> payment </v-icon>
+                        <v-icon class="me-2"> payment</v-icon>
                         {{ $t("basket_page.pay_and_complete_action") }}
 
                         <price-view
@@ -1181,14 +1182,14 @@
                         disabled:
                           !can_pay /*System tell us that user can not pay! (on bill calculation step in server)*/,
                       }"
+                      :loading="busy_submit"
                       class="select-address-button"
-                      rounded
                       color="#16a085"
                       dark
+                      rounded
                       @click.stop="submitServiceOrder()"
-                      :loading="busy_submit"
                     >
-                      <v-icon class="me-2"> check_circle </v-icon>
+                      <v-icon class="me-2"> check_circle</v-icon>
                       {{ $t("basket_page.pre_confirm_service") }}
 
                       <price-view
@@ -1212,8 +1213,8 @@
                 >
                   <s-stripe-split-payment-info
                     :basket="basket"
-                    :dark="!light_checkout"
                     :country-code="receiver_info?.country"
+                    :dark="!light_checkout"
                   ></s-stripe-split-payment-info>
                 </template>
               </div>
@@ -1224,14 +1225,14 @@
 
       <div
         v-else
-        style="min-height: 60vh; padding-top: 15vh"
-        class="blur-animate"
         :class="{ blurred: busy_shop }"
+        class="blur-animate"
+        style="min-height: 60vh; padding-top: 15vh"
       >
         <img
-          src="@components/assets/icons/baskets.svg"
-          height="120"
           class="m-5 img-grayscale"
+          height="120"
+          src="@components/assets/icons/baskets.svg"
         />
         <h1 class="text-uppercase text-muted">
           {{ $t("basket_page.basket_empty") }}
@@ -1252,36 +1253,36 @@
     <v-dialog
       v-if="has_delivery"
       v-model="map_dialog"
+      :content-class="no_map ? 'bg-gray' : 'bg-map'"
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
-      :content-class="no_map ? 'bg-gray' : 'bg-map'"
     >
       <!-- Shop Configuration ➡ Map enabled / disabled -->
       <s-map-view
         v-if="dialog_pre"
         v-model="receiver_info"
-        :color="SaminColorDark"
-        :center.sync="center"
-        :hide="!map_dialog"
-        :zoom="17"
-        style="width: 100%; height: 100%"
-        :startup-mode="startup_mode_map_dialog"
-        has-top-bar
-        can-select-address
-        has-bottom-bar
-        has-address-book
-        :title="$t('global.receiver_info.map.title')"
-        :confirm-text="$t('global.receiver_info.map.confirm')"
         :address-type="$t('global.receiver_info.map.address_type')"
-        :receptor-type="$t('global.receiver_info.map.receptor_type')"
-        @close="map_dialog = false"
-        @clickSetLocation="onClickSetLocation"
-        :delay-load="1000"
-        :noMap="no_map"
         :availableCountries="
           shop.countries?.length ? shop.countries : undefined
         "
+        :center.sync="center"
+        :color="SaminColorDark"
+        :confirm-text="$t('global.receiver_info.map.confirm')"
+        :delay-load="1000"
+        :hide="!map_dialog"
+        :noMap="no_map"
+        :receptor-type="$t('global.receiver_info.map.receptor_type')"
+        :startup-mode="startup_mode_map_dialog"
+        :title="$t('global.receiver_info.map.title')"
+        :zoom="17"
+        can-select-address
+        has-address-book
+        has-bottom-bar
+        has-top-bar
+        style="width: 100%; height: 100%"
+        @clickSetLocation="onClickSetLocation"
+        @close="map_dialog = false"
       />
     </v-dialog>
   </div>
@@ -1293,7 +1294,7 @@ import { WeekDays } from "@core/enums/logistic/WeekDays";
 import { TimeSpans } from "@core/enums/logistic/TimeSpans";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
 import SStorefrontDiscountCodeInput from "@components/storefront/discount-code/input/SStorefrontDiscountCodeInput.vue";
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import SStorefrontCouponsList from "@components/storefront/coupon/list/SStorefrontCouponsList.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 import SStorefrontLotteryPrizesList from "@components/storefront/lottery/prizes-list/SStorefrontLotteryPrizesList.vue";
@@ -1523,7 +1524,7 @@ export default {
         this.transportation &&
         this.transportation.cod &&
         [ProductType.PHYSICAL.code, ProductType.SERVICE.code].includes(
-          this.type
+          this.type,
         )
       ); // Only for physical and service!
     },
@@ -1706,7 +1707,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.find(
-          (t) => t.type === ShopTransportations.Pickup.code
+          (t) => t.type === ShopTransportations.Pickup.code,
         )
       );
     },
@@ -1714,7 +1715,7 @@ export default {
       return (
         this.transport_types &&
         this.transport_types.filter(
-          (t) => t.type !== ShopTransportations.Pickup.code
+          (t) => t.type !== ShopTransportations.Pickup.code,
         )
       );
     },
@@ -2001,7 +2002,7 @@ export default {
             receiver_info: this.receiver_info,
             delivery_info: this.delivery_info,
             billing: this.billing,
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -2047,7 +2048,7 @@ export default {
       // Return if delivery type selected and valid (exist in acceptable transportations)
       if (this.basket.delivery_info.type) {
         const found = this.transport_types.find(
-          (it) => it.type === this.basket.delivery_info.type
+          (it) => it.type === this.basket.delivery_info.type,
         );
         if (found) {
           this.transportation = found;
@@ -2070,7 +2071,7 @@ export default {
       //  this.transportation = this.transport_types[0];
       // Do not auto select pickup!
       const eligible_transportations = this.transport_types.filter(
-        (x) => x.type !== "Pickup"
+        (x) => x.type !== "Pickup",
       );
 
       if (eligible_transportations.length) {
@@ -2079,7 +2080,7 @@ export default {
         console.log(
           "%cautoSelectTransportationType: SELECT :::" +
             this.transportation.type,
-          "background: #0097A7; color: #fff"
+          "background: #0097A7; color: #fff",
         );
       }
     },
@@ -2138,7 +2139,7 @@ export default {
           (data) => {
             if (!this._isDestroyed)
               this.goToOrderInfo(this.type, data.target_id);
-          }
+          },
         );
         return;
       }
@@ -2164,13 +2165,13 @@ export default {
         /*Used for in site payment flow & free orders!*/
         (data) => {
           if (!this._isDestroyed) this.goToOrderInfo(this.type, data.target_id);
-        }
+        },
       );
 
       GtagEcommerce.MeasuringCheckoutSteps(
         this.basket,
         2,
-        gateway ? gateway : deliverySupportCOD ? "COD" : ""
+        gateway ? gateway : deliverySupportCOD ? "COD" : "",
       );
     },
     //―――――――――――――――――――――― Final Step > Submit service order (No payment here) (Service) ――――――――――――――――――――
@@ -2188,7 +2189,7 @@ export default {
               : null,
 
             code: this.basket.code /*🥶 Guest*/,
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -2198,14 +2199,14 @@ export default {
               StorefrontLocalStorages.AddCurrentGuestCodeToHistory(
                 this.type,
                 data.basket_id,
-                data.code
+                data.code,
               );
             }
 
             this.fetchBasketAndShop();
             this.showSuccessAlert(
               "Order submitted",
-              "Your order has been submitted successfully. We will send bill to you."
+              "Your order has been submitted successfully. We will send bill to you.",
             );
             this.$router.push({
               name: "MyServiceOrderInfoPage",
@@ -2239,7 +2240,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .receipt {
   position: relative;
   padding: 12px !important;
@@ -2259,10 +2260,12 @@ export default {
           color: rgba(255, 255, 255, 0.9);
         }
       }
+
       .total-price-after-discount {
         .label {
           color: #ffffff;
         }
+
         .value {
           color: #ffffff;
         }
@@ -2309,12 +2312,14 @@ export default {
       font-weight: 400;
       color: #2ab27b;
     }
+
     .spacer-line-dotted {
       display: block;
       border-bottom: 2px dotted rgba(255, 255, 255, 0.18);
       width: 60%;
       margin: 0 auto;
     }
+
     .spacer-line {
       display: block;
       border-bottom: thick double #eee;
@@ -2361,6 +2366,7 @@ export default {
 
   .data-row {
     padding: 6px 0;
+
     p {
       margin: 0;
     }
@@ -2410,9 +2416,11 @@ export default {
   transition: all 0.35s linear;
   background: #2ab27b;
   min-height: 48px;
+
   p {
     padding: 10px;
   }
+
   &.is-mobile {
     p {
       font-size: 0.9rem;

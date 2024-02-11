@@ -12,7 +12,6 @@ _Ready to build project!_
 * **Project Type:** Full Project
 * **Framework:** Vue
 
-
 ## Manifesto: Celebrating Business Uniqueness
 
 In a world teeming with commerce, every business stands distinct. Each has its own story, ethos, and vision that sets it
@@ -53,14 +52,11 @@ Selldone is a **fully independent web application** that operates seamlessly on 
 designed to be **fully customizable** and is **open source**, offering a more robust and flexible solution for
 e-commerce needs.
 
-
 ## How to start
 
 _Guide to Getting Started with Storefront Project (Vue Framework) for Selldone_
 
-
 [![Watch the video](_docs/images/cover-code-youtube.jpg)](https://youtu.be/UBwjxznQz0U)
-
 
 Create a fully customized storefront for Selldone using the Storefront Project built on the Vue framework. Follow these
 simple steps to get started:
@@ -132,7 +128,6 @@ the `.env` file with the following variables:
 By following these steps, you'll be well on your way to developing a unique and fully customized storefront for Selldone
 using the Vue framework. Happy coding!
 
-
 Sample .env file to load data from Selldone:
 
 ```dotenv
@@ -164,11 +159,13 @@ VUE_DEV_SERVER_HTTPS=TRUE
 ## Deploy
 
 Install `Selldone-CLI` globally:
+
 ```shell
 npm install -g selldone-cli
 ```
 
 Run `Selldone-CLI` to deploy:
+
 ```shell
 selldone
 ```
@@ -179,7 +176,9 @@ CLI: https://www.npmjs.com/package/selldone-cli
 ![img.png](_docs/images/shell-selldone-command.png)
 
 ## Developer Panel
-Access the developer panel to manage your layouts here: [**Selldone Developer Layouts**](https://selldone.com/developer/layouts).
+
+Access the developer panel to manage your layouts here: [**Selldone Developer Layouts
+**](https://selldone.com/developer/layouts).
 
 ## Monetization 🤑
 

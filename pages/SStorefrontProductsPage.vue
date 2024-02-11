@@ -37,18 +37,18 @@
 <template>
   <div>
     <v-card
-      class="s--shop-card s--shadow-no-padding -hide1720 pb-16"
       :flat="isMobile"
+      class="s--shop-card s--shadow-no-padding -hide1720 pb-16"
     >
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Top Shop Menu ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <div
-        style="transition: all 400ms ease"
         :class="{
           'add-marginal-side-menu-open':
             show_filter_menu && $vuetify.display.smAndUp,
         }"
+        style="transition: all 400ms ease"
       >
-        <slot name="header"> </slot>
+        <slot name="header"></slot>
       </div>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Show Vendor Info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -60,14 +60,14 @@
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <s-storefront-products-listing
         :shop="getShop()"
-        has-sort
-        has-filter
+        :vendor-id="vendor_id"
         has-breadcrumb
+        has-filter
+        has-sort
+        load-more
         route-mode
         update-route
         @update:title="setPageTitle"
-        load-more
-        :vendor-id="vendor_id"
       ></s-storefront-products-listing>
     </v-card>
   </div>
@@ -131,7 +131,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 /*
 ━━━━━━━━━━━━━━━━━━━━ 🎺 Variables ━━━━━━━━━━━━━━━━━━━━
  */

@@ -7,17 +7,14 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "noEmitOnError": false,
-
     // Required in Vue projects
     "jsx": "preserve",
     "jsxImportSource": "vue",
-
     // `"noImplicitThis": true` is part of `strict`
     // Added again here in case some users decide to disable `strict`.
     // This enables stricter inference for data properties on `this`.
     "noImplicitThis": false,
     "strict": true,
-
     // <https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#verbatimmodulesyntax>
     // Any imports or exports without a type modifier are left around. This is important for `<script setup>`.
     // Anything that uses the type modifier is dropped entirely.
@@ -27,8 +24,6 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-
-
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -37,18 +32,30 @@
       "webpack-env"
     ],
     "paths": {
-
-      "@core/*": ["core/*"],
-      "@components/*": ["src/Components/*"],
-
-
-      "@sdk-storefront/*": ["SDKs/storefront/*"],
-      "@sdk-community/*": ["SDKs/community/*"],
-      "@sdk-vendor/*": ["SDKs/vendor/*"],
-
-      "@app-page-builder/*": ["src/Applications/PageBuilder/*"],
-      "@app-vendor/*": ["src/Applications/Vendor/*"],
-      "@app-storefront/*": ["*"]
+      "@core/*": [
+        "core/*"
+      ],
+      "@components/*": [
+        "src/Components/*"
+      ],
+      "@sdk-storefront/*": [
+        "SDKs/storefront/*"
+      ],
+      "@sdk-community/*": [
+        "SDKs/community/*"
+      ],
+      "@sdk-vendor/*": [
+        "SDKs/vendor/*"
+      ],
+      "@app-page-builder/*": [
+        "src/Applications/PageBuilder/*"
+      ],
+      "@app-vendor/*": [
+        "src/Applications/Vendor/*"
+      ],
+      "@app-storefront/*": [
+        "*"
+      ]
     },
     "lib": [
       "esnext",
@@ -56,9 +63,7 @@
       "dom.iterable",
       "scripthost"
     ],
-
     "downlevelIteration": true
-
   },
   "include": [
     "./**/*.vue",
@@ -68,9 +73,6 @@
   "exclude": [
     "node_modules",
     "docs",
-    "dist",
-
-
-  ],
-
+    "dist"
+  ]
 }

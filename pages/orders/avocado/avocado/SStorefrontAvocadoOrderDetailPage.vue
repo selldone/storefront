@@ -14,7 +14,7 @@
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <v-toolbar-title class="body-title">
         <router-link
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
@@ -22,12 +22,12 @@
         >
           <img
             :src="require('@components/assets/icons/avocado.svg')"
-            width="20"
-            height="20"
             class="me-1"
+            height="20"
+            width="20"
           />
-          {{ $t("global.commons.orders_list") }}</router-link
-        >
+          {{ $t("global.commons.orders_list") }}
+        </router-link>
         <span class="mx-1 text-muted">/</span>
         <b> {{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
@@ -42,8 +42,8 @@
         <s-shop-avocado-customer-order-items
           :avocado="basket"
           :items="basket.items"
-          view-only
           class="max-width-field-large mx-auto w-100"
+          view-only
         ></s-shop-avocado-customer-order-items>
       </s-widget>
 
@@ -95,4 +95,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

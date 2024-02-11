@@ -14,14 +14,14 @@
 
 <template>
   <v-card
-    class="s--shop-card s--shadow-no-padding -hide1720 mb-16"
     :flat="isMobile"
+    class="s--shop-card s--shadow-no-padding -hide1720 mb-16"
   >
     <v-toolbar
-      extended
       color="#fff"
-      flat
+      extended
       extension-height="20px"
+      flat
       style="overflow-x: auto"
     >
       <!-- ⦿ Back -->
@@ -29,66 +29,74 @@
       <!-- ⦿ Orders History -->
 
       <s-circle-button
-        icon="history"
-        :tooltip="$t('user_page.menu.orders')"
-        :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }"
         :auto-disabled-route-name="window.$storefront.routes.ORDERS_PAGE"
+        :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }"
+        :tooltip="$t('user_page.menu.orders')"
+        icon="history"
       />
 
       <!-- ⦿ Address -->
 
       <s-circle-button
         v-if="USER()"
-        icon="near_me"
-        :tooltip="$t('user_page.menu.addresses')"
+        :auto-disabled-route-name="
+          window.$storefront.routes.USER_ADDRESSES_PAGE
+        "
         :to="{ name: window.$storefront.routes.USER_ADDRESSES_PAGE }"
-        :auto-disabled-route-name="window.$storefront.routes.USER_ADDRESSES_PAGE"
+        :tooltip="$t('user_page.menu.addresses')"
+        icon="near_me"
       />
       <!-- ⦿ Return request -->
 
       <s-circle-button
         v-if="USER()"
-        icon="keyboard_return"
-        :tooltip="$t('user_page.menu.return_requests')"
+        :auto-disabled-route-name="
+          window.$storefront.routes.USER_RETURN_REQUESTS
+        "
         :to="{ name: window.$storefront.routes.USER_RETURN_REQUESTS }"
-        :auto-disabled-route-name="window.$storefront.routes.USER_RETURN_REQUESTS"
+        :tooltip="$t('user_page.menu.return_requests')"
+        icon="keyboard_return"
       />
       <!-- ⦿ Favorites -->
 
       <s-circle-button
         v-if="USER()"
-        icon="star"
-        :tooltip="$t('user_page.menu.favorites')"
+        :auto-disabled-route-name="
+          window.$storefront.routes.USER_FAVORITES_PAGE
+        "
         :to="{ name: window.$storefront.routes.USER_FAVORITES_PAGE }"
-        :auto-disabled-route-name="window.$storefront.routes.USER_FAVORITES_PAGE"
+        :tooltip="$t('user_page.menu.favorites')"
+        icon="star"
       />
       <!-- ⦿ Comments -->
 
       <s-circle-button
         v-if="USER()"
-        icon="comment"
-        :tooltip="$t('user_page.menu.comments')"
-        :to="{ name: window.$storefront.routes.USER_COMMENTS_PAGE }"
         :auto-disabled-route-name="window.$storefront.routes.USER_COMMENTS_PAGE"
+        :to="{ name: window.$storefront.routes.USER_COMMENTS_PAGE }"
+        :tooltip="$t('user_page.menu.comments')"
+        icon="comment"
       />
 
       <!-- ⦿ Gift cards -->
 
       <s-circle-button
         v-if="USER()"
-        icon="card_giftcard"
-        :tooltip="$t('user_page.menu.gift_card')"
+        :auto-disabled-route-name="
+          window.$storefront.routes.USER_GIFTCARDS_PAGE
+        "
         :to="{ name: window.$storefront.routes.USER_GIFTCARDS_PAGE }"
-        :auto-disabled-route-name=" window.$storefront.routes.USER_GIFTCARDS_PAGE"
+        :tooltip="$t('user_page.menu.gift_card')"
+        icon="card_giftcard"
       />
 
       <!-- ⦿ Profile -->
 
       <s-circle-button
-        icon="person"
-        :tooltip="$t('user_page.menu.profile')"
-        :to="{ name: window.$storefront.routes.USER_PROFILE_PAGE }"
         :auto-disabled-route-name="window.$storefront.routes.USER_PROFILE_PAGE"
+        :to="{ name: window.$storefront.routes.USER_PROFILE_PAGE }"
+        :tooltip="$t('user_page.menu.profile')"
+        icon="person"
       />
 
       <v-spacer />
@@ -96,9 +104,9 @@
 
     <!-- ======================= Container ======================= -->
     <router-view
+      :shop="shop"
       class="mx-0 mx-sm-3 overflow-hidden"
       style="min-height: 60vh"
-      :shop="shop"
     />
   </v-card>
 </template>
@@ -124,4 +132,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

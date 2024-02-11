@@ -16,56 +16,56 @@
   <div class="px-2">
     <v-container class="c-avocado">
       <img
+        class="me-1 zoomIn delay_500"
+        height="32"
         src="@components/assets/icons/avocado.svg"
         width="32"
-        height="32"
-        class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Back to buyer form (If login) ................ -->
 
       <v-btn
         v-if="USER()"
-        class="absolute-top-start slideInDown"
-        text
         :to="{ name: 'AvocadoPage' }"
+        class="absolute-top-start slideInDown"
         exact
+        text
       >
         <v-icon class="me-1">{{ $t("icons.chevron_back") }}</v-icon>
         {{ $t("global.actions.back") }}
       </v-btn>
 
       <v-row
-        justify="center"
         align="center"
-        style="min-height: 65vh"
         class="flex-column"
+        justify="center"
+        style="min-height: 65vh"
       >
         <s-loading v-if="busy" css-mode light></s-loading>
 
-        <v-col v-if="shop && avocado" cols="12" class="flex-grow-1">
+        <v-col v-if="shop && avocado" class="flex-grow-1" cols="12">
           <!-- ................ Progress ................ -->
 
           <div v-if="isPayed" class="pt-3 d-flex flex-column">
             <s-order-delivery-status-stepper
-              :states="deliveryStates"
               :state="avocado.delivery_state"
-              style="min-width: 250px; width: 20%"
+              :states="deliveryStates"
               class="mx-auto fadeInUp"
+              style="min-width: 250px; width: 20%"
             />
             <v-progress-linear
               v-if="avocado.progress"
               :value="avocado.progress"
               class="mt-4 max-width-field mx-auto d-block fadeInUp delay_200"
-              height="8"
               color="#9eb644"
-              striped
+              height="8"
               rounded
+              striped
             ></v-progress-linear>
           </div>
 
@@ -133,12 +133,12 @@
             </div>
 
             <div v-if="isPayed" class="subtitle-2">
-              <v-icon color="success" class="me-1">check_circle</v-icon>
+              <v-icon class="me-1" color="success">check_circle</v-icon>
               {{ $t("global.status.paid") }}
               {{ getLocalTimeString(avocado.pay_at) }}
             </div>
             <div v-else-if="isCanceled" class="subtitle-2">
-              <v-icon color="red" class="me-1">cancel</v-icon>
+              <v-icon class="me-1" color="red">cancel</v-icon>
               {{ $t("global.status.canceled") }}
               {{ getLocalTimeString(avocado.reject_at) }}
             </div>
@@ -147,16 +147,16 @@
 
             <div class="py-3">
               <price-view
-                large
                 :amount="sum"
                 :currency="avocado.currency"
+                large
                 not-show-zero
               >
               </price-view>
-              <stamp v-if="isPayed" is-approved class="float-end">
+              <stamp v-if="isPayed" class="float-end" is-approved>
                 {{ $t("global.status.paid") }}
               </stamp>
-              <stamp v-if="isCanceled" is-declined class="float-end">
+              <stamp v-if="isCanceled" class="float-end" is-declined>
                 {{ $t("global.status.canceled") }}
               </stamp>
             </div>
@@ -165,15 +165,15 @@
               <div v-if="need_address">
                 <div class="widget-buttons">
                   <v-btn
-                    color="#03A9F4"
+                    :loading="busy_save"
                     class="-delivery-btn"
+                    color="#03A9F4"
                     dark
                     rounded
                     x-large
                     @click="showMapSelect"
-                    :loading="busy_save"
                   >
-                    <v-icon small class="me-1 blink-me">lens</v-icon>
+                    <v-icon class="me-1 blink-me" small>lens</v-icon>
                     {{ $t("global.commons.select_address") }}
                   </v-btn>
                 </div>
@@ -204,23 +204,23 @@
             <div v-if="isReserved && !need_address" class="pt-4">
               <div class="widget-buttons">
                 <v-btn
-                  color="#90a60f"
+                  :class="{ disabled: !can_pay }"
                   class="-pay-btn"
+                  color="#90a60f"
                   dark
                   rounded
                   x-large
                   @click="goToPaymentAvocado"
-                  :class="{ disabled: !can_pay }"
                 >
-                  <v-icon v-if="pricing_completed" small class="me-1 blink-me"
-                    >lens</v-icon
-                  >
+                  <v-icon v-if="pricing_completed" class="me-1 blink-me" small
+                    >lens
+                  </v-icon>
 
                   {{ $t("avocado.pay_online") }}
                 </v-btn>
               </div>
               <p v-if="!pricing_completed" class="my-5 subtitle-2">
-                <v-icon color="blue" class="blink-me" size="10">lens</v-icon>
+                <v-icon class="blink-me" color="blue" size="10">lens</v-icon>
 
                 {{ $t("avocado.pricing_not_completed_message") }}
               </p>
@@ -235,9 +235,9 @@
         Powered by
         <a href="/public" target="_blank">
           <img
+            height="10"
             src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
-            height="10"
           />
           Selldone</a
         >
@@ -246,9 +246,9 @@
 
       <v-progress-linear
         v-if="busy_save"
-        indeterminate
         class="loader-to-bar"
         color="success"
+        indeterminate
       ></v-progress-linear>
     </v-container>
   </div>
@@ -257,7 +257,7 @@
 <script>
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import Stamp from "@components/ui/stamp/Stamp.vue";
 import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
@@ -323,7 +323,7 @@ export default {
       const has_pending = this.items.some(
         (it) =>
           it.status === AvocadoItemStatus.PENDING.code ||
-          (!it.price && it.status === AvocadoItemStatus.ACCEPTED.code)
+          (!it.price && it.status === AvocadoItemStatus.ACCEPTED.code),
       ); // Pending or not have price!
 
       return !has_pending;
@@ -387,11 +387,10 @@ export default {
         this.startup_mode_map_dialog,
         this.map_location,
         this.onClickSetLocation,
-        false
+        false,
       );
     },
     onClickSetLocation(info) {
-
       if (!info.phone && this.USER()) info.phone = this.USER().phone; // Auto fill phone!
 
       this.avocado.receiver_info = info;

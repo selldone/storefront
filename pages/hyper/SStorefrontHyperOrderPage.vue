@@ -16,39 +16,39 @@
   <div class="px-2">
     <v-container class="c-avocado">
       <img
+        class="me-1 zoomIn delay_500"
+        height="32"
         src="@components/assets/icons/hyper.svg"
         width="32"
-        height="32"
-        class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Back to buyer form (If login) ................ -->
 
       <v-btn
         v-if="USER()"
-        class="absolute-top-start slideInDown"
-        text
         :to="{ name: window.$storefront.routes.HYPER_PAGE }"
+        class="absolute-top-start slideInDown"
         exact
+        text
       >
         <v-icon class="ms-1">{{ $t("icons.chevron_back") }}</v-icon>
         {{ $t("global.actions.back") }}
       </v-btn>
 
       <v-row
-        justify="center"
         align="center"
-        style="min-height: 65vh"
         class="flex-column"
+        justify="center"
+        style="min-height: 65vh"
       >
         <s-loading v-if="busy" css-mode light></s-loading>
 
-        <v-col v-if="shop && hyper" cols="12" class="flex-grow-1">
+        <v-col v-if="shop && hyper" class="flex-grow-1" cols="12">
           <!-- ................ Show Hyper Details ................ -->
           <div class="text-start max-width-field mx-auto my-16 fadeIn">
             <h1>{{ getBasketOrderCode(hyper) }}</h1>
@@ -92,12 +92,12 @@
             </div>
 
             <div v-if="isPayed" class="subtitle-2">
-              <v-icon color="success" class="me-1">check_circle</v-icon>
+              <v-icon class="me-1" color="success">check_circle</v-icon>
               {{ $t("global.status.paid") }}
               {{ getLocalTimeString(hyper.pay_at) }}
             </div>
             <div v-else-if="isCanceled" class="subtitle-2">
-              <v-icon color="red" class="me-1">cancel</v-icon>
+              <v-icon class="me-1" color="red">cancel</v-icon>
               {{ $t("global.status.canceled") }}
               {{ getLocalTimeString(hyper.reject_at) }}
             </div>
@@ -106,16 +106,16 @@
 
             <div class="py-3">
               <price-view
-                large
                 :amount="sum"
                 :currency="hyper.currency"
+                large
                 not-show-zero
               >
               </price-view>
-              <stamp v-if="isPayed" is-approved class="float-end">
+              <stamp v-if="isPayed" class="float-end" is-approved>
                 {{ $t("global.status.paid") }}
               </stamp>
-              <stamp v-if="isCanceled" is-declined class="float-end">
+              <stamp v-if="isCanceled" class="float-end" is-declined>
                 {{ $t("global.status.canceled") }}
               </stamp>
             </div>
@@ -126,10 +126,10 @@
       <!------------ Pending Payments ------------>
       <div v-if="hyper && isReserved">
         <s-shop-row-customer-pending-payment
-          class="d-flex align-center justify-space-around px-2 py-4 my-3 rounded"
           v-for="(transaction_pending, index) in transactions_pending"
           :key="'pp' + index"
           :transaction="transaction_pending"
+          class="d-flex align-center justify-space-around px-2 py-4 my-3 rounded"
         >
         </s-shop-row-customer-pending-payment>
       </div>
@@ -139,9 +139,9 @@
         Powered by
         <a href="/public" target="_blank">
           <img
+            height="10"
             src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
-            height="10"
           />
           Selldone</a
         >
@@ -150,9 +150,9 @@
 
       <v-progress-linear
         v-if="busy_save"
-        indeterminate
         class="loader-to-bar"
         color="success"
+        indeterminate
       ></v-progress-linear>
     </v-container>
   </div>
@@ -230,8 +230,8 @@ export default {
         .get(
           window.XAPI.GET_CUSTOMER_INFO_FOR_HYPER(
             this.shop_name,
-            this.$route.params.basket_id
-          )
+            this.$route.params.basket_id,
+          ),
         )
         .then(({ data }) => {
           if (!data.error) {

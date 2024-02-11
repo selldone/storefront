@@ -18,42 +18,42 @@
       <div style="min-height: 65vh">
         <v-progress-linear
           v-if="busy && !basket"
-          indeterminate
           class="loader-to-bar"
           color="success"
+          indeterminate
         ></v-progress-linear>
         <div v-else class="py-3 max-width-field-large mx-auto">
           <div>
             <img
+              class="me-1 zoomIn delay_500"
+              height="32"
               src="./assets/pos-basket.png"
               width="32"
-              height="32"
-              class="me-1 zoomIn delay_500"
             />
             <img
               class="flipInX delay_300"
-              src="@components/assets/selldone-logo/selldone-text-draw.png"
               height="48"
+              src="@components/assets/selldone-logo/selldone-text-draw.png"
             />
           </div>
 
           <div class="d-flex mt-16 align-items-center" dir="ltr">
             <h1 v-if="basket" class="text-left flex-grow-1">
-
-              {{getBasketOrderCode(basket) }}
+              {{ getBasketOrderCode(basket) }}
             </h1>
 
             <v-btn
               v-if="USER()"
-              text
+              :loading="busy"
+              class="m-1 flex-grow-0"
               color="blue"
               depressed
-              :loading="busy"
+              text
               @click="fetchBuyerPosOrderInfo()"
-              class="m-1 flex-grow-0"
-              ><v-icon>refresh</v-icon>
-              {{ $t("global.actions.refresh") }}</v-btn
             >
+              <v-icon>refresh</v-icon>
+              {{ $t("global.actions.refresh") }}
+            </v-btn>
           </div>
 
           <s-offline-basket-items-list
@@ -67,8 +67,10 @@
           <!------------ Bill View ------------>
 
           <v-card-actions v-if="show_bill" class="px-4">
-            <span class="text-uppercase">{{ $t("global.commons.total") }}:</span
-            ><v-spacer></v-spacer>
+            <span class="text-uppercase"
+              >{{ $t("global.commons.total") }}:</span
+            >
+            <v-spacer></v-spacer>
             <price-view
               :amount="bill.sum - bill.pay_by_giftcards"
               :currency="bill.currency"
@@ -82,7 +84,6 @@
             <v-card-text
               v-for="(transaction_pending, index) in transactions_pending"
               :key="index"
-              class="text-start"
               :class="{
                 '': transaction_pending.status === 'RequireAction',
                 'bg-info text-white':
@@ -90,12 +91,13 @@
                 'bg-danger text-white':
                   transaction_pending.status === 'Canceled',
               }"
+              class="text-start"
             >
               <div>
                 <img
-                  height="24"
-                  class="mx-2"
                   :src="getShopImagePath(transaction_pending.logo)"
+                  class="mx-2"
+                  height="24"
                 />
                 {{ transaction_pending.name }}
                 <b class="ms-2 small"
@@ -128,25 +130,25 @@
 
               <div>
                 <v-btn
-                  x-large
-                  color="success"
                   v-if="
                     transaction_pending.status === 'RequireAction' &&
                     !transaction_pending.expired &&
                     !transaction_pending.cod &&
                     !transaction_pending.cash
                   "
+                  class="mx-2 my-4"
+                  color="success"
                   depressed
+                  x-large
                   @click="
                     TryToPayOrder(
                       transaction_pending.gateway_code,
                       transaction_pending.id,
-                      null
+                      null,
                     )
                   "
-                  class="mx-2 my-4"
-                  >{{ $t("global.actions.pay_now") }}</v-btn
-                >
+                  >{{ $t("global.actions.pay_now") }}
+                </v-btn>
               </div>
             </v-card-text>
           </template>
@@ -156,26 +158,26 @@
           <v-card-text v-else-if="payment" class="px-4 text-start">
             <div>
               <img
-                height="24"
-                class="mx-2"
                 :src="getShopImagePath(gateway.icon)"
+                class="mx-2"
+                height="24"
               />
               {{ gateway.name }}
             </div>
             <div class="py-2">
               <price-view
-                large
                 :amount="payment.amount"
                 :currency="payment.currency"
+                large
               ></price-view>
             </div>
             <v-row class="align-items-center">
               <div>
                 <s-payment-card
                   v-if="payment.card"
-                  :method="payment.method"
                   :card="payment.card"
                   :currency="payment.currency"
+                  :method="payment.method"
                   horizontal
                 ></s-payment-card>
                 <span v-else-if="payment.cod">{{
@@ -185,15 +187,15 @@
                 {{ getLocalTimeString(payment.payment_at) }}
                 <s-payment-billing-details
                   v-if="payment.billing_details"
-                  class="min-width-200"
                   :billing-detail="payment.billing_details"
+                  class="min-width-200"
                 ></s-payment-billing-details>
               </div>
 
               <s-country-world-map
-                class="min-width-200 flex-grow-1 m-1"
                 v-if="payment.card && payment.card.country"
                 :country="payment.card.country"
+                class="min-width-200 flex-grow-1 m-1"
               ></s-country-world-map>
             </v-row>
           </v-card-text>
@@ -205,9 +207,9 @@
         Powered by
         <a href="/" target="_blank">
           <img
+            height="10"
             src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
-            height="10"
           />
           Selldone</a
         >
@@ -225,6 +227,7 @@ import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
 import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
 import SCountryWorldMap from "@components/map/countries-svg/SCountryWorldMap.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
+
 export default {
   name: "SStorefrontPOSPage",
   components: {
@@ -295,7 +298,7 @@ export default {
       // 1. Save signature (Available when user not login and redirected by Selldone to shop)
       localStorage.setItem(
         "POS-LAST-SCAN-SIGNATURE",
-        this.$route.query.signature
+        this.$route.query.signature,
       );
     }
   },
@@ -310,14 +313,14 @@ export default {
         .get(
           window.XAPI.GET_ORDER_POS_BASKET_INFO(
             this.shop_name,
-            this.$route.params.basket_id
+            this.$route.params.basket_id,
           ),
           {
             params: {
               signature: signature,
               // 2. Call API assign POS basket to user:
             },
-          }
+          },
         )
         .then(({ data }) => {
           if (!data.error) {
@@ -345,10 +348,11 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .c-pos {
   background: #fff;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.01),
+  box-shadow:
+    inset 0 -3em 3em rgba(0, 0, 0, 0.01),
     0 5px 50px 4px rgba(166, 166, 166, 0.37) !important;
   border-radius: 16px !important;
   transition: all 0.7s ease-in;
@@ -361,11 +365,14 @@ export default {
     font-weight: 500;
     text-align: right;
     direction: ltr;
+
     a {
       color: #1976d2;
+
       &:hover {
         color: #03a9f4;
       }
+
       img {
         margin-bottom: 2px;
       }

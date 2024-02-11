@@ -13,39 +13,45 @@
   -->
 
 <template>
-  <v-card class="s--shop-card s--shadow-with-padding" style="margin-bottom: 20vh">
+  <v-card
+    class="s--shop-card s--shadow-with-padding"
+    style="margin-bottom: 20vh"
+  >
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Shop Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
     <slot name="header"></slot>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <s-circle-button
         :icon="$t('icons.arrow_back')"
-        :tooltip="$t('global.actions.back')"
         :to="{ name: 'Blogs' }"
+        :tooltip="$t('global.actions.back')"
       />
     </v-toolbar>
 
     <s-article-view
-      :shop="getShop()"
-      class="blog-container p-3"
       :article-type="article_type.code"
+      :shop="getShop()"
+      :shop-id="getShop().id"
       :target-id="$route.params.blog_id"
+      auto-page-title
+      class="blog-container p-3"
       show-comments
       show-user-feedback-buttons
-      auto-page-title
-      :shop-id="getShop().id"
     >
       <template v-slot:tags="{ article }">
         <v-btn
           v-for="tag in article.tags"
           :key="tag"
-          color="blue"
+          :to="{
+            name: window.$storefront.routes.BLOGS_PAGE,
+            query: { tags: tag },
+          }"
           class="m-1"
+          color="blue"
+          link
           rounded
           text
-          link
-          :to="{ name: window.$storefront.routes.BLOGS_PAGE, query: { tags: tag } }"
         >
           {{ tag }}
         </v-btn>
@@ -60,12 +66,10 @@
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import SArticleView from "@components/article/SArticleView.vue";
 
-
 export default {
   name: "SStorefrontBlogPage",
 
   components: {
-
     SArticleView,
   },
 

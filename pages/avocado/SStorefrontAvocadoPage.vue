@@ -17,28 +17,28 @@
     <v-container class="c-avocado">
       <v-progress-linear
         v-if="busy_fetch || busy"
-        indeterminate
         class="loader-to-bar"
         color="success"
+        indeterminate
       ></v-progress-linear>
 
       <img
+        class="me-1 zoomIn delay_500"
+        height="32"
         src="@components/assets/icons/avocado.svg"
         width="32"
-        height="32"
-        class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Not enabled info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <div
         v-if="!is_enable"
-        style="min-height: 65vh"
         class="text-h4 font-weight-thin"
+        style="min-height: 65vh"
       >
         {{ $t("avocado.not_enable") }}
       </div>
@@ -47,9 +47,9 @@
 
       <v-btn
         v-if="add_mode"
-        @click="add_mode = false"
         class="absolute-top-start slideInDown"
         text
+        @click="add_mode = false"
       >
         <v-icon class="me-1">{{ $t("icons.chevron_back") }}</v-icon>
         {{ $t("global.actions.back") }}
@@ -69,9 +69,9 @@
             v-if="pages > 1"
             v-model="page"
             :length="pages"
-            @input="fetchOrders()"
-            circle
             :total-visible="6"
+            circle
+            @input="fetchOrders()"
           ></v-pagination>
         </div>
 
@@ -80,17 +80,17 @@
         <div class="widget-buttons">
           <v-btn
             v-if="open_avocado && shop_avocado.enable"
+            :loading="busy"
             class="mx-auto zoomIn"
-            style="max-width: 420px"
-            min-height="72"
             color="success"
             dark
-            @click="add_mode = true"
-            width="100%"
-            tile
-            x-large
             depressed
-            :loading="busy"
+            min-height="72"
+            style="max-width: 420px"
+            tile
+            width="100%"
+            x-large
+            @click="add_mode = true"
           >
             <v-icon class="me-1">shopping_bag</v-icon>
             {{ $t("avocado.add_new_order") }}
@@ -100,10 +100,10 @@
 
           <v-btn
             v-if="!USER()"
-            @click="NeedLogin()"
-            x-large
             color="primary"
             dark
+            x-large
+            @click="NeedLogin()"
           >
             <v-icon class="me-1" small>shopping_bag</v-icon>
             {{ $t("avocado.add_new_order") }}
@@ -115,10 +115,10 @@
 
       <s-storefront-avocado-customer-order-form
         v-if="add_mode && open_avocado"
+        :avocado="open_avocado"
+        :shop="shop"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
-        :shop="shop"
-        :avocado="open_avocado"
         @add="
           (order) => {
             AddOrUpdateItemByID(orders, order, 'id', false);
@@ -134,9 +134,9 @@
         Powered by
         <a href="/" target="_blank">
           <img
+            height="10"
             src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
-            height="10"
           />
           Selldone</a
         >

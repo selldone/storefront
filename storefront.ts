@@ -16,21 +16,22 @@
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
-import Vue, {createApp} from "vue";
+import {createApp} from "vue";
 import App from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
-import { i18n } from "./lang/i18n_shop";
-import { Language } from "@core/enums/language/Language";
-import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
-import { StorefrontSDK } from "@sdk-storefront/StorefrontSDK";
+import {i18n} from "./lang/i18n_shop";
+import {Language} from "@core/enums/language/Language";
+import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationInterface";
+import {StorefrontSDK} from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
-
-// ━━━ Service Worker ━━━
-import "@core/utils/service-worker/registerServiceWorker";
-import { CapiCommunity } from "@sdk-community/CapiCommunity"; // Register the service worker.
+import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the service worker.
+//█████████████████████████████████████████████████████████████
+//―――――――――――― Selldone® Components ――――――――――――
+//█████████████████████████████████████████████████████████████
+import {createComponents} from "@components/components";
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -53,22 +54,13 @@ window.AppInterface = new ShopApplicationInterface();
 // ━━━ Override language packs ━━━
 window.OverrideShopLanguagePacks = {};
 
-
-
 //█████████████████████████████████████████████████████████████
 //――――――――――――― Initialize Vue App ―――――――――――――
 //█████████████████████████████████████████████████████████████
 const app = createApp(App);
 
-
-//█████████████████████████████████████████████████████████████
-//―――――――――――― Selldone® Components ――――――――――――
-//█████████████████████████████████████████████████████████████
-import {createComponents} from "@components/components";
-const components=createComponents({});
-app.use(components)
-
-
+const components = createComponents({});
+app.use(components);
 
 // ━━━ Page Builder ━━━
 require("@app-page-builder/page-builder");
@@ -93,23 +85,23 @@ CapiCommunity.Setup(); // Setup community.
  * @param expire_date - The expiration date for the token cookie.
  */
 window.SetToken = function (
-  token: string,
-  expire_date: Date | null = null
+    token: string,
+    expire_date: Date | null = null,
 ): void {
-  window.$cookies.set(
-    "access_token",
-    token,
-    expire_date ? expire_date.toUTCString() : "",
-    window.$storefront.prefix_url,
-    null,
-    false
-  );
-  window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    window.$cookies.set(
+        "access_token",
+        token,
+        expire_date ? expire_date.toUTCString() : "",
+        window.$storefront.prefix_url,
+        null,
+        false,
+    );
+    window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
-  (storefrontVueApp as InstanceType<typeof StorefrontMixin>).UpdateUserInfo();
-  (
-    storefrontVueApp as InstanceType<typeof StorefrontMixin>
-  ).fetchBasketAndShop();
+    (storefrontVueApp as InstanceType<typeof StorefrontMixin>).UpdateUserInfo();
+    (
+        storefrontVueApp as InstanceType<typeof StorefrontMixin>
+    ).fetchBasketAndShop();
 };
 
 //█████████████████████████████████████████████████████████████
@@ -131,7 +123,7 @@ app.use(store);
 app.use(vuetify);
 
 // Mount the application
-const storefrontVueApp =app.mount('#app');
+const storefrontVueApp = app.mount("#app");
 /*
 const storefrontVueApp = new Vue({
   i18n,

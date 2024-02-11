@@ -19,15 +19,12 @@
     <div style="order: 0">
       <div class="s--product-section-info">
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Shop Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-        <slot name="header" :center="true"></slot>
+        <slot :center="true" name="header"></slot>
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-        <v-toolbar flat color="transparent">
+        <v-toolbar color="transparent" flat>
           <v-btn
             v-if="product"
-            class="hide-on-small-600"
-            icon
-            exact
             :to="
               product.category
                 ? {
@@ -36,6 +33,9 @@
                   }
                 : { name: 'ShopPage' }
             "
+            class="hide-on-small-600"
+            exact
+            icon
           >
             <v-icon>{{ $t("icons.arrow_back") }}</v-icon>
           </v-btn>
@@ -52,17 +52,17 @@
 
           <v-btn
             v-if="$vuetify.display.mdAndUp && admin_url"
-            dark
             :href="admin_url"
-            target="_blank"
             class="tnt fadeIn"
+            dark
+            target="_blank"
             title="Open product admin panel"
           >
             <img
+              class="me-1"
+              height="16"
               src="@components/assets/selldone-logo/logo-mini-white.svg"
               width="16"
-              height="16"
-              class="me-1"
             />
             Product Admin
             <v-icon class="mx-1" small>open_in_new</v-icon>
@@ -71,21 +71,21 @@
           <!-- ⬬⬬⬬⬬ QR CODE ⬬⬬⬬⬬ -->
 
           <v-btn
+            caption="Barcode"
+            class="me-0 sub-caption -hover flex-grow-0"
             icon
             tile
             @click="show_qr = true"
-            class="me-0 sub-caption -hover flex-grow-0"
-            caption="Barcode"
             ><img src="@components/assets/icons/qr-code.svg" width="32"
           /></v-btn>
         </v-toolbar>
 
         <s-shop-product-main-card
           v-if="product"
+          ref="product_info"
           :product="product"
           can-buy
           show-cover
-          ref="product_info"
         />
         <product-info-loading-view v-else />
 
@@ -97,9 +97,9 @@
       <!-- ████████████████████ Cross Sells ████████████████████ -->
       <div :style="{ order: getOrder('cross') }">
         <s-shop-product-cross-sell-list
-          :shop="shop"
-          :product="product"
           :current-variant="current_variant"
+          :product="product"
+          :shop="shop"
           class="s--product-section-spec my-16"
         ></s-shop-product-cross-sell-list>
       </div>
@@ -108,9 +108,9 @@
       <!-- ▁▁▁▁▁▁ 🞇 Offer 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('offer') }">
         <s-shop-product-offers
-          :shop="shop"
-          :product="product"
           :current-variant="current_variant"
+          :product="product"
+          :shop="shop"
           class="s--product-section-spec my-16"
         ></s-shop-product-offers>
       </div>
@@ -134,16 +134,16 @@
         :style="{ order: getOrder('includes') }"
         class="my-16"
       >
-        <s-shop-product-includes :product="product"> </s-shop-product-includes>
+        <s-shop-product-includes :product="product"></s-shop-product-includes>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Article ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
 
       <!-- ▁▁▁▁▁▁ 🞇 Pros & Cons 🞇 ▁▁▁▁▁▁ -->
       <div v-if="has_pros_cons" :style="{ order: getOrder('pros') }">
-        <v-container fluid class="s--product-section-header my-16">
+        <v-container class="s--product-section-header my-16" fluid>
           <v-row align="center">
-            <v-col cols="12" md="6" class="text-start">
+            <v-col class="text-start" cols="12" md="6">
               <v-list-subheader
                 >●
                 {{
@@ -153,8 +153,8 @@
                 }}
               </v-list-subheader>
               <h2
-                class="text-h3 line-height-normal font-weight-black"
                 :style="{ color: page_article_title_color }"
+                class="text-h3 line-height-normal font-weight-black"
               >
                 {{ article.title }}
               </h2>
@@ -162,8 +162,8 @@
 
             <v-col cols="12" md="6">
               <s-shop-product-pros-cons-table
-                :shop="shop"
                 :product="product"
+                :shop="shop"
               ></s-shop-product-pros-cons-table>
             </v-col>
           </v-row>
@@ -172,20 +172,22 @@
 
       <div v-if="has_article" :style="{ order: getOrder('review') }">
         <s-article-view
-          :shop="getShop()"
-          :initial-article-pack="product.article_pack"
           :article-type="article_type.code"
-          :target-id="product.article_pack ? product.id : 'new'"
-          :product-id="product.id"
+          :hide-title="!!has_pros_cons"
+          :initial-article-pack="product.article_pack"
           :need-create-new="product.should_add_article && !product.article_pack"
           :owner="product.user_id === USER_ID()"
-          :tags="`${slugify(
-            product.category ? product.category.title : null
-          )},${slugify(product.title)},${slugify(product.title_en)}`"
+          :product-id="product.id"
+          :shop="getShop()"
           :shop-id="shop.id"
           :show-author-info="false"
-          :show-user-feedback-buttons="false"
           :show-share-buttons="false"
+          :show-user-feedback-buttons="false"
+          :tags="`${slugify(
+            product.category ? product.category.title : null,
+          )},${slugify(product.title)},${slugify(product.title_en)}`"
+          :target-id="product.article_pack ? product.id : 'new'"
+          class="s--product-section-article my-16"
           no-return-back-on-delete
           @delete="
             () => {
@@ -196,16 +198,14 @@
               });
             }
           "
-          :hide-title="!!has_pros_cons"
-          class="s--product-section-article my-16"
         />
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Files List ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('files') }">
         <s-shop-product-files
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-files>
       </div>
@@ -213,8 +213,8 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > 🦄 Membership Contents ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('contents') }">
         <s-shop-product-subscription-membership
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-subscription-membership>
       </div>
@@ -222,8 +222,8 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Shipping ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('shipping') }">
         <s-shop-product-shipping
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-shipping>
       </div>
@@ -232,8 +232,8 @@
 
       <div :style="{ order: getOrder('warranty') }">
         <s-shop-product-warranty
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-warranty>
       </div>
@@ -241,8 +241,8 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Guide ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('guide') }">
         <s-shop-product-guide
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-guide>
       </div>
@@ -251,8 +251,8 @@
 
       <div v-if="page" :style="{ order: getOrder('page') }">
         <SPageRender
-          :data="page.content"
           :augment="augment"
+          :data="page.content"
           :style="page.background"
         />
       </div>
@@ -261,24 +261,24 @@
 
       <div :style="{ order: getOrder('comments') }">
         <s-shop-product-comments
-          :shop="shop"
           :product="product"
+          :shop="shop"
           class="s--product-section-header"
         ></s-shop-product-comments>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related products ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div :style="{ order: getOrder('related-products') }">
-        <s-shop-related-products :shop="shop" :product="product">
+        <s-shop-related-products :product="product" :shop="shop">
         </s-shop-related-products>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related categories ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div v-if="categories" :style="{ order: getOrder('related-categories') }">
         <s-shop-related-categories
-          :shop="shop"
-          :product="product"
           :categories="categories"
+          :product="product"
+          :shop="shop"
         >
         </s-shop-related-categories>
       </div>
@@ -287,9 +287,9 @@
       <div :style="{ order: getOrder('badges') }">
         <s-fade-scroll>
           <s-shop-product-section-box-badges
-            :shop="shop"
-            :product="product"
             :large="$vuetify.display.mdAndUp"
+            :product="product"
+            :shop="shop"
             class="py-16"
           ></s-shop-product-section-box-badges>
         </s-fade-scroll>
@@ -297,10 +297,10 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Dialog > QR Code ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <v-dialog
-        :dark="!light_qr"
         v-model="show_qr"
-        max-width="530"
+        :dark="!light_qr"
         content-class="no-shadow-dialog"
+        max-width="530"
       >
         <v-card
           :style="`border-radius: ${qr_size / 5}px ${qr_size / 2}px ${
@@ -315,17 +315,17 @@
           <div>
             <s-qrcode
               v-if="qrcode_value"
-              :value="qrcode_value"
               :options="{
                 width: qr_size,
                 color: { dark: light_qr ? '#222' : '#fff', light: '#FFFFFF00' },
               }"
+              :value="qrcode_value"
             />
             <v-btn
-              icon
-              @click="show_qr = false"
-              style="position: absolute; top: 10%; left: 10%"
               class="hover-scale-small"
+              icon
+              style="position: absolute; top: 10%; left: 10%"
+              @click="show_qr = false"
             >
               <v-icon color="#989898">close</v-icon>
             </v-btn>
@@ -351,7 +351,7 @@ import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import ProductInfoLoadingView from "@components/product/loading/ProductInfoLoadingView.vue";
 import { SpecHelper } from "@core/helper/product/SpecHelper";
 
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { ProductType } from "@core/enums/product/ProductType";
 import { SetupService } from "@core/server/SetupService";
 
@@ -440,7 +440,7 @@ export default {
     },
     transportations_free_shipping() {
       return this.transportations?.filter(
-        (t) => t.free_shipping && t.type !== ShopTransportations.Pickup.code
+        (t) => t.free_shipping && t.type !== ShopTransportations.Pickup.code,
       );
     },
     images() {
@@ -451,7 +451,7 @@ export default {
     },
     transportation_with_min_free_shipping_limit() {
       return this.transportations_free_shipping?.minByKey(
-        "free_shipping_limit"
+        "free_shipping_limit",
       );
     },
 
@@ -460,7 +460,7 @@ export default {
         this.is_physical &&
         this.transportations?.find(
           (t) =>
-            t.type === ShopTransportations.Pickup.code && t.pickups?.length > 0
+            t.type === ShopTransportations.Pickup.code && t.pickups?.length > 0,
         )
       );
     },
@@ -500,7 +500,7 @@ export default {
 
     page_article_title_color() {
       const variant_colors = ColorHelper.ExtractColors(
-        this.current_variant?.color
+        this.current_variant?.color,
       );
       if (variant_colors?.length) return ShadeColor(variant_colors[0], -30);
       return this.theme?.color_dark;
@@ -637,7 +637,7 @@ export default {
           tabs.sort(
             (a, b) =>
               this.theme.order.indexOf(a.code) -
-              this.theme.order.indexOf(b.code)
+              this.theme.order.indexOf(b.code),
           );
         }
       } catch (e) {
@@ -652,7 +652,7 @@ export default {
         this.product.category,
         this.shop_name,
         this.product,
-        "shopping_bag"
+        "shopping_bag",
       );
     },
 
@@ -730,14 +730,14 @@ export default {
         else
           this.spec_array = SpecHelper.CONVERT_SPEC_JSON_TO_ARRAY(
             this.product.spec,
-            this.product.spec_order
+            this.product.spec_order,
           );
 
         GtagEcommerce.MeasuringViewsOfProductDetails(
           this.shop,
           product,
           this.GetUserSelectedCurrency().code,
-          "product-page"
+          "product-page",
         );
 
         this.setPageTitle(product.title); // Set Page Title!
@@ -778,7 +778,7 @@ export default {
         this.$route.query.variant_id
       ) {
         variant = this.product.product_variants.find(
-          (v) => v.id === parseInt(this.$route.query.variant_id)
+          (v) => v.id === parseInt(this.$route.query.variant_id),
         );
       }
 
@@ -793,4 +793,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

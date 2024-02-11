@@ -26,7 +26,9 @@ const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 const DEV_HOST = process.env.VUE_DEV_SERVER_HOST || "localhost";
 const DEV_PORT = process.env.VUE_DEV_SERVER_PORT || 8080;
-const IS_HTTPS = !!process.env.VUE_DEV_SERVER_HTTPS && process.env.VUE_DEV_SERVER_HTTPS!== "FALSE"
+const IS_HTTPS =
+  !!process.env.VUE_DEV_SERVER_HTTPS &&
+  process.env.VUE_DEV_SERVER_HTTPS !== "FALSE";
 
 printDevServerConfig();
 
@@ -63,10 +65,10 @@ module.exports = {
   },
 
   /* pluginOptions: {
-     webpackBundleAnalyzer: {
-       openAnalyzer: false
-     }
-   },*/
+       webpackBundleAnalyzer: {
+         openAnalyzer: false
+       }
+     },*/
 
   pwa: {
     name: manifest.name,
@@ -96,7 +98,11 @@ module.exports = {
     },
   },
 
-  publicPath: IS_PRODUCTION ? fixPath(`${manifest.deploy_server}/${manifest.deploy_path}/${manifest.package}/${manifest.version}`) : `https://${DEV_HOST}:${DEV_PORT}/`,
+  publicPath: IS_PRODUCTION
+    ? fixPath(
+        `${manifest.deploy_server}/${manifest.deploy_path}/${manifest.package}/${manifest.version}`,
+      )
+    : `https://${DEV_HOST}:${DEV_PORT}/`,
   outputDir: "dist/", // If start  with /create in the root directory of hard!
   assetsDir: "",
   productionSourceMap: !IS_PRODUCTION,
@@ -132,34 +138,30 @@ module.exports = {
 
     output: {
       filename: (chunkData) => {
-
-        if(IS_PRODUCTION){
+        if (IS_PRODUCTION) {
           // layouts/version : will be the prefix for all files on the cloud
 
           return ["shop"].includes(chunkData.chunk.name)
-              ?  "app/[name].js"
-              : "app/[name].[fullhash].js";
-
-
-        }else{
+            ? "app/[name].js"
+            : "app/[name].[fullhash].js";
+        } else {
           return ["shop"].includes(chunkData.chunk.name)
-              ? "layouts/" + VERSION_DIR + "/app/[name].js"
-              : "layouts/" + VERSION_DIR + "/app/[name].[fullhash].js";
-
+            ? "layouts/" + VERSION_DIR + "/app/[name].js"
+            : "layouts/" + VERSION_DIR + "/app/[name].[fullhash].js";
         }
-
-
       },
-      chunkFilename:IS_PRODUCTION ? "app/[name].[fullhash].js":  ("layouts/" + VERSION_DIR + "/app/[name].[fullhash].js"),
+      chunkFilename: IS_PRODUCTION
+        ? "app/[name].[fullhash].js"
+        : "layouts/" + VERSION_DIR + "/app/[name].[fullhash].js",
     },
     resolve: {
       extensions: [".js", ".vue"],
       alias: {
         "jquery-ui/widget": "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
         "jquery-fileupload":
-            "blueimp-file-upload/js/vendor/jquery.fileupload.js",
+          "blueimp-file-upload/js/vendor/jquery.fileupload.js",
         "jquery-ui/ui/widget":
-            "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
+          "blueimp-file-upload/js/vendor/jquery.ui.widget.js",
 
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
         "@core": path.resolve(__dirname, "core/"),
@@ -170,8 +172,8 @@ module.exports = {
         "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
 
         "@app-page-builder": path.resolve(
-            __dirname,
-            "src/Applications/PageBuilder/"
+          __dirname,
+          "src/Applications/PageBuilder/",
         ),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
@@ -185,16 +187,14 @@ module.exports = {
   },
 
   chainWebpack: (config) => {
-
     // Only modify webpack config in production mode
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
       // Remove fork-ts-checker-webpack-plugin
-      config.plugins.delete('fork-ts-checker');
+      config.plugins.delete("fork-ts-checker");
 
       // Alternatively, modify ts-loader or babel-loader here if you use them for TypeScript files
       // This depends on your specific setup and may require custom adjustments
     }
-
 
     // Disable automatic prefetching
     config.plugins.delete("prefetch");
@@ -202,12 +202,16 @@ module.exports = {
     if (config.plugins.has("extract-css")) {
       const extractCSSPlugin = config.plugin("extract-css");
       extractCSSPlugin &&
-      extractCSSPlugin.tap(() => [
-        {
-          filename:IS_PRODUCTION?"app/[name].css":  ("layouts/" + VERSION_DIR + "/app/[name].css"),
-          chunkFilename:IS_PRODUCTION?"app/[name].[fullhash].css":( "layouts/" + VERSION_DIR + "/app/[name].[fullhash].css"),
-        },
-      ]);
+        extractCSSPlugin.tap(() => [
+          {
+            filename: IS_PRODUCTION
+              ? "app/[name].css"
+              : "layouts/" + VERSION_DIR + "/app/[name].css",
+            chunkFilename: IS_PRODUCTION
+              ? "app/[name].[fullhash].css"
+              : "layouts/" + VERSION_DIR + "/app/[name].[fullhash].css",
+          },
+        ]);
     }
 
     // Prevent the inclusion of the default splitChunks configuration
@@ -218,17 +222,29 @@ module.exports = {
 };
 
 function fixPath(str) {
-  return str.replace(/\/{2,}/g, '/');
+  return str.replace(/\/{2,}/g, "/");
 }
 
 function printDevServerConfig() {
   console.log("");
-  console.log("███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗");
-  console.log("██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝");
-  console.log("███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  ");
-  console.log("╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  ");
-  console.log("███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗");
-  console.log("╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝");
+  console.log(
+    "███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗",
+  );
+  console.log(
+    "██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝",
+  );
+  console.log(
+    "███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  ",
+  );
+  console.log(
+    "╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  ",
+  );
+  console.log(
+    "███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗",
+  );
+  console.log(
+    "╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝",
+  );
   console.log("");
 
   console.log("▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆");
@@ -238,7 +254,7 @@ function printDevServerConfig() {
   console.log("");
 
   const tableRow = (key, value) =>
-      `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
+    `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
 
   console.log("┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓");
   console.log("┃    Configuration     ┃       Value          ┃");

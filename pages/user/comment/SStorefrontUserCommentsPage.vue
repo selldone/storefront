@@ -22,37 +22,38 @@
 
       <v-data-iterator
         :items="comments"
+        :items-length="totalItems"
+        :items-per-page="itemsPerPage"
+        :options.sync="options"
+        :page.sync="page"
         :search="search"
         :sort-by.sync="sortBy"
         :sort-desc="sortDesc"
+        class="bg-transparent"
+        density="compact"
         hide-default-footer
-        :items-length="totalItems"
-        :options.sync="options"
-        :page.sync="page"
-        :items-per-page="itemsPerPage"
-        class="bg-transparent "      density="compact"
         no-data-text=""
       >
         <template v-slot:header>
           <s-data-iterator-toolbar
-            :sort-keys="keys"
+            :items-per-page.sync="itemsPerPage"
             :search.sync="search"
             :sort-by.sync="sortBy.key"
             :sort-desc.sync="sortBy.order"
-            :items-per-page.sync="itemsPerPage"
+            :sort-keys="keys"
           ></s-data-iterator-toolbar>
         </template>
 
         <template v-slot:default="">
-          <v-row no-gutters class="m-2">
+          <v-row class="m-2" no-gutters>
             <v-col
               v-for="comment in comments"
               :key="comment.id"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
               class="p-2"
+              cols="12"
+              lg="3"
+              md="4"
+              sm="6"
             >
               <router-link
                 :to="{
@@ -62,9 +63,9 @@
               >
                 <div class="comment-card widget-hover">
                   <v-img
-                    height="136"
                     :src="getShopImagePath(comment.product.icon)"
                     class="rounded-18px border"
+                    height="136"
                   >
                   </v-img>
 
@@ -99,7 +100,7 @@
 
         <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
-            <v-pagination v-model="page" circle :length="pageCount" />
+            <v-pagination v-model="page" :length="pageCount" circle />
           </div>
         </template>
       </v-data-iterator>
@@ -149,14 +150,14 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchData(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
+        this.fetchData(page, sortBy[0]?.key, sortBy[0]?.order === "desc");
       },
       deep: true,
     },
 
     search: _.throttle(function () {
       const { sortBy, sortDesc } = this.options;
-      this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order==='desc');
+      this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order === "desc");
     }, window.SERACH_THROTTLE),
   },
 
@@ -193,7 +194,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .comment-card {
   height: 100%;
   border-radius: 18px;

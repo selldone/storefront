@@ -14,15 +14,15 @@
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <v-toolbar-title class="body-title">
         <router-link
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_SUBSCRIPTION }"
           class="text-uppercase"
         >
-          <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{ $t("global.commons.orders_list") }}</router-link
-        >
+          <img :src="orderType.image" class="me-1" height="20" width="20" />
+          {{ $t("global.commons.orders_list") }}
+        </router-link>
         <span class="mx-1 text-muted">/</span>
         <b> {{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
@@ -57,14 +57,14 @@
         </template>
 
         <div class="widget-buttons">
-          <v-btn x-large color="primary" @click="dialog_chat = true">
-            <v-icon class="me-1">chat</v-icon
-            >{{
+          <v-btn color="primary" x-large @click="dialog_chat = true">
+            <v-icon class="me-1">chat </v-icon>
+            {{
               last_chat
                 ? $t("global.actions.continue_chat")
                 : $t("global.actions.add_message")
-            }}</v-btn
-          >
+            }}
+          </v-btn>
         </div>
       </div>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Payment ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -91,7 +91,7 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Return Requests ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-order-basket-return v-if="basket" class="mt-4" :basket="basket" />
+      <s-order-basket-return v-if="basket" :basket="basket" class="mt-4" />
     </v-container>
 
     <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->
@@ -103,21 +103,21 @@
     >
       <v-card>
         <v-card-title>
-          <v-avatar size="24" class="m-2">
+          <v-avatar class="m-2" size="24">
             <v-img :src="getShopImagePath(shop.icon, IMAGE_SIZE_SMALL)" />
           </v-avatar>
 
           {{ $t("global.commons.chat") }}
         </v-card-title>
         <v-card-text>
-          <s-order-chat-box :shop="shop" :basket="basket"></s-order-chat-box>
+          <s-order-chat-box :basket="basket" :shop="shop"></s-order-chat-box>
         </v-card-text>
         <v-card-actions>
           <div class="widget-buttons">
-            <v-btn text @click="dialog_chat = false" x-large>
+            <v-btn text x-large @click="dialog_chat = false">
               <v-icon class="me-1">close</v-icon>
-              {{ $t("global.actions.close") }}</v-btn
-            >
+              {{ $t("global.actions.close") }}
+            </v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -175,4 +175,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

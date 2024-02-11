@@ -14,7 +14,7 @@
 
 <template>
   <div>
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <v-toolbar-title class="body-title">
         <router-link
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_POS }"
@@ -22,12 +22,12 @@
         >
           <img
             :src="require('@components/assets/icons/pos-order-type.svg')"
-            width="20"
-            height="20"
             class="me-1"
+            height="20"
+            width="20"
           />
-          {{ $t("global.commons.orders_list") }}</router-link
-        >
+          {{ $t("global.commons.orders_list") }}
+        </router-link>
         <span class="mx-1 text-muted">/</span>
         <b>{{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
@@ -78,4 +78,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

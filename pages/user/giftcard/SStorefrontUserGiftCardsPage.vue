@@ -16,11 +16,11 @@
   <v-container fluid>
     <div class="widget-box -x-large min-height-50vh">
       <s-widget-header
-        :title="$t('user_gift_cards.title')"
-        icon="card_giftcard"
         :add-caption="$t('user_gift_cards.add_card_dialog.title')"
-        @click:add="showAddCardDialog"
+        :title="$t('user_gift_cards.title')"
         add-icon="card_giftcard"
+        icon="card_giftcard"
+        @click:add="showAddCardDialog"
       >
       </s-widget-header>
 
@@ -29,16 +29,16 @@
 
       <v-data-iterator
         :items="giftcards"
+        :items-length="totalItems"
+        :items-per-page="itemsPerPage"
+        :options.sync="options"
+        :page.sync="page"
         :search="search"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
+        class="bg-transparent"
+        density="compact"
         hide-default-footer
-        :items-length="totalItems"
-        :options.sync="options"
-        :page.sync="page"
-
-        :items-per-page="itemsPerPage"
-        class="bg-transparent "      density="compact"
       >
         <template v-slot:loading>
           <s-loading css-mode light></s-loading>
@@ -46,25 +46,25 @@
 
         <template v-slot:header>
           <s-data-iterator-toolbar
-            :sort-keys="keys"
+            :base-items-count="8"
+            :items-per-page.sync="itemsPerPage"
             :search.sync="search"
             :sort-by.sync="sortBy.key"
             :sort-desc.sync="sortBy.order"
-            :items-per-page.sync="itemsPerPage"
-            :base-items-count="8"
+            :sort-keys="keys"
           ></s-data-iterator-toolbar>
         </template>
 
         <template v-slot:default="">
-          <v-fade-transition group tag="v-row" class="mx-0" hide-on-leave>
+          <v-fade-transition class="mx-0" group hide-on-leave tag="v-row">
             <v-col
               v-for="gift_card in giftcards"
               :key="gift_card.id"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
               class="p-2"
+              cols="12"
+              lg="3"
+              md="4"
+              sm="6"
             >
               <s-storefront-giftcard-view :gift-card="gift_card" />
             </v-col>
@@ -76,15 +76,15 @@
             <h2 class="font-weight-thin text-h4">
               {{ $t("user_gift_cards.add_card_dialog.title") }}...
             </h2>
-            <v-list-subheader>{{
-              $t("user_gift_cards.add_card_dialog.message")
-            }}</v-list-subheader>
+            <v-list-subheader
+              >{{ $t("user_gift_cards.add_card_dialog.message") }}
+            </v-list-subheader>
           </div>
         </template>
 
         <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
-            <v-pagination v-model="page" circle :length="pageCount" />
+            <v-pagination v-model="page" :length="pageCount" circle />
           </div>
         </template>
       </v-data-iterator>
@@ -126,14 +126,14 @@ export default {
     search: "",
     filter: {},
     sortDesc: true,
-    sortBy: [{ key: null, order: 'desc' }],
+    sortBy: [{ key: null, order: "desc" }],
 
     busy_fetch: false,
     // Pagination:
     page: 1,
     itemsPerPage: 7,
     totalItems: 0,
-    options: {  },
+    options: {},
   }),
   computed: {
     pageCount() {
@@ -156,7 +156,7 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchCards(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
+        this.fetchCards(page, sortBy[0]?.key, sortBy[0]?.order === "desc");
       },
       deep: true,
     },
@@ -164,7 +164,7 @@ export default {
     search: _.throttle(function () {
       //  console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
-      this.fetchCards(1, sortBy[0]?.key, sortBy[0]?.order==='desc');
+      this.fetchCards(1, sortBy[0]?.key, sortBy[0]?.order === "desc");
     }, window.SERACH_THROTTLE),
   },
 
@@ -206,4 +206,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

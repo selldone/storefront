@@ -13,7 +13,7 @@
   -->
 
 <template>
-  <s-storefront-orders-list type="AVO" is-avocado> </s-storefront-orders-list>
+  <s-storefront-orders-list is-avocado type="AVO"></s-storefront-orders-list>
 </template>
 
 <script>
@@ -38,4 +38,4 @@ export default {
   methods: {},
 };
 </script>
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

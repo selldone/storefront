@@ -16,15 +16,16 @@
   <div class="insta-card">
     <s-instagram-view
       v-if="instagram"
-      :shop="shop"
       :instagram="instagram"
+      :shop="shop"
     ></s-instagram-view>
-    <v-container v-else> Not exist! </v-container>
+    <v-container v-else> Not exist!</v-container>
   </div>
 </template>
 
 <script>
 import SInstagramView from "@components/storefront/instagram/SInstagramView.vue";
+
 export default {
   name: "SStorefrontInstagramPage",
   components: { SInstagramView },
@@ -41,7 +42,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .insta-card {
   background-color: #fafafa;
   border-top: 1px solid #dee2e6;

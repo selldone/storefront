@@ -13,13 +13,16 @@
   -->
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-  <v-card class="s--shop-card mb-16 s--shadow-no-padding -hide1720 pb-4" :style="{'--background':SaminColorDarkDeep}">
+  <v-card
+    :style="{ '--background': SaminColorDarkDeep }"
+    class="s--shop-card mb-16 s--shadow-no-padding -hide1720 pb-4"
+  >
     <v-toolbar
       :color="SaminColorDarkDeep"
       dark
       extended
-      flat
       extension-height="64px"
+      flat
       style="overflow-x: auto"
     >
       <template v-slot:extension>
@@ -30,37 +33,44 @@
 
       <s-circle-button
         :icon="$t('icons.arrow_back')"
-        :tooltip="$t('global.actions.back')"
-        :to="buildReturnRoute($route.query.return_id?window.$storefront.routes.USER_RETURN_REQUESTS:history_list_page_name)
-
+        :to="
+          buildReturnRoute(
+            $route.query.return_id
+              ? window.$storefront.routes.USER_RETURN_REQUESTS
+              : history_list_page_name,
+          )
         "
+        :tooltip="$t('global.actions.back')"
       />
 
       <v-spacer></v-spacer>
 
       <s-order-delivery-status-stepper
         v-if="orders_states"
-        :states="orders_states"
-        :state="basket.delivery_state"
-        style="min-width: 250px; width: 20%"
-        dark
         :has-subscription="isSubscription"
-        :is-subscribed="isSubscription && basket.status==='Payed'"
+        :is-subscribed="isSubscription && basket.status === 'Payed'"
+        :state="basket.delivery_state"
+        :states="orders_states"
+        dark
+        style="min-width: 250px; width: 20%"
       />
       <s-loading v-else css-mode></s-loading>
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-title v-if="type" class="text-uppercase small mt-3 d-flex flex-column align-center">
-        <img :src="type.basket" width="28" height="28" class="mx-1 mb-1" />
+      <v-toolbar-title
+        v-if="type"
+        class="text-uppercase small mt-3 d-flex flex-column align-center"
+      >
+        <img :src="type.basket" class="mx-1 mb-1" height="28" width="28" />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
     </v-toolbar>
 
     <v-card
       class="s--card-window-content mx-0 mx-sm-3"
-      style="min-height: 80vh"
       flat
+      style="min-height: 80vh"
     >
       <!-- ======================= Container ======================= -->
       <router-view
@@ -73,7 +83,7 @@
 </template>
 
 <script>
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { ProductType } from "@core/enums/product/ProductType";
 import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
@@ -82,8 +92,8 @@ import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
-import {SubscriptionOrderStates} from "@core/enums/basket/SubscriptionOrderStates";
-import {RouteMixin} from "@components/mixin/RouteMixin";
+import { SubscriptionOrderStates } from "@core/enums/basket/SubscriptionOrderStates";
+import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontBasketOrderDetailMasterLayout",
@@ -98,7 +108,6 @@ export default {
       basket: null,
 
       busy: false,
-
     };
   },
 
@@ -110,7 +119,7 @@ export default {
     type() {
       if (!this.basket) return null;
       return Object.values(ProductType).find(
-        (item) => item.code === this.basket.type
+        (item) => item.code === this.basket.type,
       );
     },
     history_list_page_name() {
@@ -138,20 +147,18 @@ export default {
         return FileOrderStates;
       } else if (this.type.code === ProductType.SERVICE.code) {
         return ServiceOrderStates;
-      }else if (this.type.code === ProductType.SUBSCRIPTION.code) {
+      } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
         return SubscriptionOrderStates;
       }
       return null;
     },
-
-
   },
 
   watch: {
     type(type) {
       if (type)
         this.setPageTitle(
-          `Order ${type.basket_code}-` + this.$route.params.basket_id
+          `Order ${type.basket_code}-` + this.$route.params.basket_id,
         ); // Set Page Title!
     },
     "$route.params.basket_id"() {
@@ -184,7 +191,7 @@ export default {
           params: {
             code: !this.USER()
               ? StorefrontLocalStorages.GetShopHistoryGuestCodeOfOrder(
-                  this.$route.params.basket_id
+                  this.$route.params.basket_id,
                 ) /*🥶 Guest*/
               : undefined,
           },
@@ -194,7 +201,7 @@ export default {
             this.basket = data.basket;
 
             if (this.basket.status === BasketStatus.Payed.code)
-              GtagEcommerce.MeasuringPurchasesBasket( this.basket);
+              GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             this.showErrorAlert(null, data.error_msg);
           }
@@ -210,4 +217,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

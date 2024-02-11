@@ -17,20 +17,13 @@
     <s-progress-loading v-if="busy_fetch"></s-progress-loading>
     <v-data-table-server
       v-model="selected"
+      :header-props="{ sortByText: $t('global.commons.sort_by') }"
       :headers="headers"
       :items="orders"
-      item-key="id"
-      hide-default-footer
       :items-length="totalItems"
+      :items-per-page="itemsPerPage"
       :options.sync="options"
       :page.sync="page"
-      :sort-by="[{ key: null, order: 'desc' }]"
-      :items-per-page="itemsPerPage"
-      :header-props="{ sortByText: $t('global.commons.sort_by') }"
-      class="bg-transparent"
-      style="min-height: 60vh"
-      @click:row="(_, r) => handleSelected(r.item)"
-      density="compact"
       :row-props="
         (_data) => {
           return {
@@ -40,6 +33,13 @@
           };
         }
       "
+      :sort-by="[{ key: null, order: 'desc' }]"
+      class="bg-transparent"
+      density="compact"
+      hide-default-footer
+      item-key="id"
+      style="min-height: 60vh"
+      @click:row="(_, r) => handleSelected(r.item)"
     >
       <template v-slot:loading>
         <s-loading css-mode light></s-loading>
@@ -54,8 +54,8 @@
                 ? require('@core/assets/order-types/basket-pos.svg')
                 : type.basket
           "
-          height="42"
           class="my-2 me-2"
+          height="42"
         />
         <b
           >{{ isAvocado ? "AVO" : isPos ? "POS" : type.basket_code }}-{{
@@ -64,18 +64,18 @@
         >
         <v-chip
           v-if="item.subscription_id"
+          class="ms-1"
           color="#111"
           dark
           label
-          class="ms-1"
           small
           title="This order is auto-created by your subscription plan."
         >
           <img
-            width="16"
-            height="16"
-            class="ms-n2 me-1"
             :src="ProductType.SUBSCRIPTION.image"
+            class="ms-n2 me-1"
+            height="16"
+            width="16"
           />
           {{ $t("global.commons.auto") }}
         </v-chip>
@@ -84,10 +84,10 @@
       <template v-slot:item.items="{ item }">
         <div class="min-width-200">
           <products-dense-images-circles
-            style="vertical-align: super; display: inline"
             :ids="getProductsIDs(item)"
-            big-scale
             :raw-images-path="isAvocado"
+            big-scale
+            style="vertical-align: super; display: inline"
           ></products-dense-images-circles>
         </div>
       </template>
@@ -96,7 +96,7 @@
         <span
           v-if="isService && item.status === 'Reserved' && !item.price"
           class="text-muted"
-          ><v-icon class="me-1 blink-me" x-small color="blue">lens</v-icon>
+          ><v-icon class="me-1 blink-me" color="blue" x-small>lens</v-icon>
           {{ $t("global.commons.waiting_review") }}</span
         >
         <price-view
@@ -118,12 +118,12 @@
           </p>
           <div v-else class="m-0 pt-2">
             <s-order-delivery-status-stepper
-              :states="orders_states"
+              :has-subscription="isSubscription"
+              :is-subscribed="item.status === 'Payed'"
               :state="item.delivery_state"
+              :states="orders_states"
               class="my-1"
               @mouseEnterToCustomer="(n) => setActivator(n, item)"
-              :is-subscribed="item.status === 'Payed'"
-              :has-subscription="isSubscription"
             />
 
             <div
@@ -137,8 +137,8 @@
                 <div class="ps-1">
                   <flag
                     :iso="item.receiver_info.country"
-                    class="me-1"
                     :squared="false"
+                    class="me-1"
                   ></flag>
                   <span>{{ getShortAddress(item.receiver_info) }}</span>
                 </div>
@@ -169,27 +169,27 @@
       </template>
 
       <template v-slot:bottom>
-        <v-pagination v-model="page" circle :length="pageCount" />
+        <v-pagination v-model="page" :length="pageCount" circle />
       </template>
     </v-data-table-server>
 
     <!-- ----------------------------------- Receiver Info Details Menu ----------------------------------- -->
     <v-menu
       v-if="hasReceiverInfo"
-      top
       :activator="activator"
-      open-on-hover
-      rounded="xl"
       :open-delay="200"
       max-width="360"
       offset-y
+      open-on-hover
+      rounded="xl"
+      top
     >
       <v-sheet class="p-3">
         <s-order-receiver-info-card
-          class="text-start"
           v-if="activator_item && activator_item.receiver_info"
-          :userId="activator_item.user_id"
           :receiver-info="activator_item.receiver_info"
+          :userId="activator_item.user_id"
+          class="text-start"
         >
         </s-order-receiver-info-card>
         <small v-else>
@@ -501,7 +501,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .data-table {
   cursor: pointer;
   font-size: 1.071rem;

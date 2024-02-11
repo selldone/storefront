@@ -2,7 +2,8 @@
 
 ### Overview
 
-The `selldone-app-loaded` event is dispatched to notify listeners that the Selldone application has finished loading. This can be useful to trigger other processes or hide loading interfaces once the application is ready.
+The `selldone-app-loaded` event is dispatched to notify listeners that the Selldone application has finished loading.
+This can be useful to trigger other processes or hide loading interfaces once the application is ready.
 
 ### Emitting the Event
 
@@ -15,7 +16,8 @@ document.dispatchEvent(event); // Dispatch the event.
 
 ### Listening for the Event
 
-To perform actions once the `selldone-app-loaded` event has been dispatched, you can attach an event listener to the document:
+To perform actions once the `selldone-app-loaded` event has been dispatched, you can attach an event listener to the
+document:
 
 ```javascript
 document.addEventListener("selldone-app-loaded", function (event) {
@@ -25,7 +27,8 @@ document.addEventListener("selldone-app-loaded", function (event) {
 
 ### Example: Hiding a Loading View
 
-If you have an element (e.g., a loading spinner or screen) that you want to hide once the Selldone app has loaded, you can use the following script:
+If you have an element (e.g., a loading spinner or screen) that you want to hide once the Selldone app has loaded, you
+can use the following script:
 
 ```javascript
 <script>
@@ -44,5 +47,9 @@ If you have an element (e.g., a loading spinner or screen) that you want to hide
 ```
 
 In the above script:
-- The first event listener hides the element with the id `first_loading_view` when the `selldone-app-loaded` event is dispatched.
-- The `onreadystatechange` event also hides the same element, but it does so when the entire page (including all resources) has completely loaded. This provides a fallback to ensure the loading view is hidden even if the `selldone-app-loaded` event doesn't fire for any reason.
+
+- The first event listener hides the element with the id `first_loading_view` when the `selldone-app-loaded` event is
+  dispatched.
+- The `onreadystatechange` event also hides the same element, but it does so when the entire page (including all
+  resources) has completely loaded. This provides a fallback to ensure the loading view is hidden even if
+  the `selldone-app-loaded` event doesn't fire for any reason.

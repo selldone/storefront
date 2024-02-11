@@ -21,6 +21,7 @@
 
 <script>
 import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
+
 export default {
   name: "SStorefrontInfoPage",
   components: { SStorefrontPrimaryFooter },

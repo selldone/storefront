@@ -18,21 +18,20 @@
       :color="SaminColorDarkDeep"
       dark
       extended
-      flat
       extension-height="64px"
+      flat
       style="overflow-x: auto"
     >
       <template v-slot:extension>
         <div style="height: 64px"></div>
       </template>
 
-
       <!-- ⦿ Back -->
 
       <s-circle-button
         :icon="$t('icons.arrow_back')"
-        :tooltip="$t('global.actions.back')"
         :to="buildReturnRoute(window.$storefront.routes.HISTORY_ORDERS_AVOCADO)"
+        :tooltip="$t('global.actions.back')"
       />
 
       <v-spacer></v-spacer>
@@ -45,12 +44,10 @@
         class="text-uppercase small mt-3 d-flex flex-column align-center"
       >
         <img
-          :src="
-            require('@core/assets/order-types/basket-avocado.svg')
-          "
-          width="28"
-          height="28"
+          :src="require('@core/assets/order-types/basket-avocado.svg')"
           class="mx-1 mb-1"
+          height="28"
+          width="28"
         />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
@@ -58,8 +55,8 @@
 
     <v-card
       class="s--card-window-content mx-0 mx-sm-3"
-      style="min-height: 80vh"
       flat
+      style="min-height: 80vh"
     >
       <!-- ======================= Container ======================= -->
       <router-view v-if="basket" :basket="basket" />
@@ -68,9 +65,9 @@
 </template>
 
 <script>
-import {GtagEcommerce} from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import {RouteMixin} from "@components/mixin/RouteMixin";
+import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontAvocadoOrderDetailMasterLayout",
@@ -85,7 +82,6 @@ export default {
       basket: null,
 
       busy: false,
-
     };
   },
 
@@ -109,7 +105,7 @@ export default {
             this.basket = data.basket;
 
             if (this.basket.status === BasketStatus.Payed.code)
-              GtagEcommerce.MeasuringPurchasesBasket( this.basket);
+              GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             this.showErrorAlert(null, data.error_msg);
           }
@@ -125,4 +121,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

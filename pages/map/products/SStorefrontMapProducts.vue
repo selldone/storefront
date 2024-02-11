@@ -19,26 +19,26 @@
 
       <s-storefront-products-listing
         v-if="bounds"
-        :shop="getShop()"
-        has-sort
-        has-filter
-        has-breadcrumb
-        route-mode
-        load-more
-        free-mode
         :location-bounds="bounds"
+        :shop="getShop()"
+        free-mode
+        has-breadcrumb
+        has-filter
+        has-sort
+        load-more
+        route-mode
         @fetch-products="onfetchProducts"
         @product-hover:enter="(p) => productHover(p, true)"
         @product-hover:leave="(p) => productHover(p, false)"
       ></s-storefront-products-listing>
     </div>
-    <div class="map-viewer" :class="{ '-full': $vuetify.display.xsOnly }">
+    <div :class="{ '-full': $vuetify.display.xsOnly }" class="map-viewer">
       <!-- Pre loading -->
       <s-loading
-        css-mode
-        light
         v-if="!map_box"
         class="center-absolute"
+        css-mode
+        light
       ></s-loading>
       <!-- MAP -->
       <div :id="`map_box${map_id}`" class="-map"></div>
@@ -47,18 +47,18 @@
       <div class="map-search-box">
         <s-address-input
           v-model="address"
-          @select:address="(it) => onSelectAddress(it)"
           :center="center"
-          bottom
-          rounded
-          solo
-          hide-details
           :rows="1"
+          bottom
+          hide-details
           prepend-icon="near_me"
           prepend-icon-color="#222"
+          rounded
+          solo
+          @select:address="(it) => onSelectAddress(it)"
         ></s-address-input>
 
-        <div style="text-shadow: 1px 1px 3px #fff" class="pt-1 pen usn">
+        <div class="pt-1 pen usn" style="text-shadow: 1px 1px 3px #fff">
           <flag v-if="country" :iso="country" :squared="false" />
           <span v-if="state" class="mx-1">
             <v-icon>{{ $t("icons.chevron_next") }}</v-icon>
@@ -75,15 +75,15 @@
 
     <div
       v-if="$vuetify.display.xsOnly"
-      class="bottom-sheet overflow-auto"
       ref="bsheet"
+      class="bottom-sheet overflow-auto"
     >
       <v-card class="-card">
         <div
           class="pa-3 pp"
           @click="
             scrollBottomSheet(
-              $refs.bsheet.scrollTop > 300 ? 0 : window.innerHeight * 0.8
+              $refs.bsheet.scrollTop > 300 ? 0 : window.innerHeight * 0.8,
             )
           "
         >
@@ -97,19 +97,19 @@
             "
           ></div>
         </div>
-        <v-card-text style="padding-bottom: 20vh" class="px-0">
+        <v-card-text class="px-0" style="padding-bottom: 20vh">
           <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
           <s-storefront-products-listing
             v-if="bounds"
-            :shop="getShop()"
-            has-sort
-            has-filter
-            has-breadcrumb
-            route-mode
-            load-more
-            free-mode
             :location-bounds="bounds"
+            :shop="getShop()"
+            free-mode
+            has-breadcrumb
+            has-filter
+            has-sort
+            load-more
+            route-mode
             @fetch-products="onfetchProducts"
             @product-hover:enter="(p) => productHover(p, true)"
             @product-hover:leave="(p) => productHover(p, false)"
@@ -122,40 +122,39 @@
 
     <v-bottom-sheet
       v-model="share_sheet"
+      content-class="rounded-t-xl overflow-hidden"
+      dark
       inset
       max-width="860"
-      width="98%"
-      dark
       scrollable
-      content-class="rounded-t-xl overflow-hidden"
+      width="98%"
     >
-      <v-card color="#111" class="text-start position-relative" tile>
-        <v-btn @click="share_sheet = false" class="absolute-top-end" icon
-          ><v-icon>close</v-icon></v-btn
-        >
+      <v-card class="text-start position-relative" color="#111" tile>
+        <v-btn class="absolute-top-end" icon @click="share_sheet = false">
+          <v-icon>close</v-icon>
+        </v-btn>
 
         <v-card-title class="font-weight-bold">
-          <v-icon class="me-1">share</v-icon> {{ share_title }}
+          <v-icon class="me-1">share</v-icon>
+          {{ share_title }}
         </v-card-title>
 
         <v-card-text>
           <v-carousel
             v-if="share_products && share_products.length"
+            class="py-12"
             cycle
             height="500"
             hide-delimiter-background
             show-arrows-on-hover
-            class="py-12"
           >
             <v-carousel-item
               v-for="product in share_products"
               :key="product.id"
             >
-              <v-sheet height="100%" class="py-5" color="transparent">
+              <v-sheet class="py-5" color="transparent" height="100%">
                 <s-shop-product-card
                   :product="product"
-                  class="max-w-400 mx-auto d-block"
-                  rounded
                   :to="{
                     name: window.$storefront.routes.PRODUCT_PAGE,
                     params: {
@@ -163,6 +162,8 @@
                       product_id: product.id,
                     },
                   }"
+                  class="max-w-400 mx-auto d-block"
+                  rounded
                   target="_blank"
                 ></s-shop-product-card>
               </v-sheet>
@@ -171,12 +172,12 @@
 
           <s-value-copy-box
             :value="share_url"
-            small-width-mode
             background-color="#111"
-            color="#1976D2"
             class="my-7"
+            color="#1976D2"
+            small-width-mode
           ></s-value-copy-box>
-          <div style="min-height: 72px" class="d-sm-none d-block"></div>
+          <div class="d-sm-none d-block" style="min-height: 72px"></div>
         </v-card-text>
       </v-card>
     </v-bottom-sheet>
@@ -248,7 +249,7 @@ export default {
         JSON.stringify({
           center: center,
           zoom: this.zoom,
-        })
+        }),
       ); // Keep last location on the map
     },
   },
@@ -382,7 +383,7 @@ export default {
         {
           scrollTop: val,
         },
-        1000
+        1000,
       );
     },
     // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Fetch Products ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
@@ -415,8 +416,8 @@ export default {
         map_tags.push(
           Object.assign(
             { price: product.price, currency: product.currency, count: 1 },
-            product.map
-          )
+            product.map,
+          ),
         );
       });
 
@@ -429,7 +430,7 @@ export default {
         el.className = "loc-pin";
         el.append(
           `${map_tag.price} ${map_tag.currency}` +
-            (map_tag.count > 1 ? ` (${map_tag.count})` : "")
+            (map_tag.count > 1 ? ` (${map_tag.count})` : ""),
         );
 
         const marker = new Mapbox.Marker({
@@ -464,8 +465,8 @@ export default {
         const image = this.getShopImagePath(product.icon, 128);
         marker.setPopup(
           new Mapbox.Popup({ offset: 32, maxWidth: 120 }).setHTML(
-            `<div class="text-center"><img class="mb-1 rounded-16px" style="object-fit: cover" src='${image}' width="84" height="84"><div class="small font-weight-bold max-w-120 single-line">${product.title}</div></div>`
-          )
+            `<div class="text-center"><img class="mb-1 rounded-16px" style="object-fit: cover" src='${image}' width="84" height="84"><div class="small font-weight-bold max-w-120 single-line">${product.title}</div></div>`,
+          ),
         ); // add popup
         marker.togglePopup();
         //console.log("marker > add popup");
@@ -503,10 +504,10 @@ export default {
     // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Share map tag ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
     showShare(map_tag) {
       this.share_title = `${this.shop.title} | ${this.$t(
-        "global.commons.map"
+        "global.commons.map",
       )}`;
       this.share_products = this.products?.filter(
-        (p) => p.map_id === map_tag.id
+        (p) => p.map_id === map_tag.id,
       );
       this.share_url =
         this.getShopMainUrl(this.shop) +
@@ -517,7 +518,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .map-con {
   height: calc(100vh - 64px);
   display: flex;
@@ -531,6 +532,7 @@ export default {
     overflow: auto;
     position: relative;
   }
+
   .map-viewer {
     position: relative;
     flex-grow: 0.4;
@@ -542,6 +544,7 @@ export default {
     &.-full {
       min-width: 100%;
       flex-grow: 1;
+
       .-map {
         margin: 12px 0 0 0;
         border-radius: 0;

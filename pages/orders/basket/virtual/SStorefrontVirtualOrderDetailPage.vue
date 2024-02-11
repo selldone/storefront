@@ -14,15 +14,15 @@
 
 <template>
   <div>
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <v-toolbar-title class="body-title">
         <router-link
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_VIRTUAL }"
           class="text-uppercase"
         >
-          <img :src="orderType.image" width="20" height="20" class="me-1" />
-          {{ $t("global.commons.orders_list") }}</router-link
-        >
+          <img :src="orderType.image" class="me-1" height="20" width="20" />
+          {{ $t("global.commons.orders_list") }}
+        </router-link>
 
         <!-- 🎗️ Created by a subscription basket -->
         <span
@@ -30,7 +30,7 @@
           title="This order created by a subscription."
         >
           <span class="mx-1 text-muted">/</span>
-          <img :src="ProductType.SUBSCRIPTION.image" width="20" height="20" />
+          <img :src="ProductType.SUBSCRIPTION.image" height="20" width="20" />
           <router-link
             :to="{
               name: 'MySubscriptionOrderInfoPage',
@@ -48,8 +48,8 @@
       <v-spacer></v-spacer>
       <!-- Share order - Secure link generator -->
       <s-shop-share-order-button
-        :shop="shop"
         :basket="basket"
+        :shop="shop"
       ></s-shop-share-order-button>
     </v-toolbar>
     <v-container class="px-0">
@@ -82,14 +82,14 @@
         </template>
 
         <div class="widget-buttons">
-          <v-btn x-large color="primary" @click="dialog_chat = true">
+          <v-btn color="primary" x-large @click="dialog_chat = true">
             <v-icon class="me-1">chat</v-icon>
             {{
               last_chat
                 ? $t("global.actions.continue_chat")
                 : $t("global.actions.add_message")
-            }}</v-btn
-          >
+            }}
+          </v-btn>
         </div>
       </div>
 
@@ -133,21 +133,21 @@
     >
       <v-card>
         <v-card-title>
-          <v-avatar size="24" class="m-2">
+          <v-avatar class="m-2" size="24">
             <v-img :src="getShopImagePath(shop.icon, IMAGE_SIZE_SMALL)" />
           </v-avatar>
 
           {{ $t("global.commons.chat") }}
         </v-card-title>
         <v-card-text>
-          <s-order-chat-box :shop="shop" :basket="basket"></s-order-chat-box>
+          <s-order-chat-box :basket="basket" :shop="shop"></s-order-chat-box>
         </v-card-text>
         <v-card-actions>
           <div class="widget-buttons">
-            <v-btn text @click="dialog_chat = false" x-large>
+            <v-btn text x-large @click="dialog_chat = false">
               <v-icon class="me-1">close</v-icon>
-              {{ $t("global.actions.close") }}</v-btn
-            >
+              {{ $t("global.actions.close") }}
+            </v-btn>
           </div>
         </v-card-actions>
       </v-card>
@@ -164,6 +164,7 @@ import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delive
 import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
+
 export default {
   name: "SStorefrontVirtualOrderDetailPage",
   components: {
@@ -206,4 +207,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

@@ -18,11 +18,11 @@
     <slot name="header"></slot>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <v-toolbar flat color="transparent">
+    <v-toolbar color="transparent" flat>
       <s-circle-button
         :icon="$t('icons.arrow_back')"
-        :tooltip="$t('global.actions.back')"
         :to="{ name: 'ShopPage' }"
+        :tooltip="$t('global.actions.back')"
       />
 
       <!-- ⬬⬬⬬⬬ Breadcrumbs ⬬⬬⬬⬬ -->
@@ -32,7 +32,7 @@
     </v-toolbar>
 
     <!-- ======================= Container ======================= -->
-    <router-view class="mt-3" :shop="shop" />
+    <router-view :shop="shop" class="mt-3" />
   </v-card>
 </template>
 
@@ -40,6 +40,7 @@
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 
 import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
+
 export default {
   name: "SStorefrontProfilePage",
   components: { SBreadcrumbImage },
@@ -60,17 +61,17 @@ export default {
       return name === window.$storefront.routes.SHOP_PROFILE_PAGE_ABOUT_US
         ? this.$t("official_pages.about_us")
         : name === window.$storefront.routes.SHOP_PROFILE_PAGE_TERMS
-        ? this.$t("official_pages.terms")
-        : name === window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY
-        ? this.$t("official_pages.privacy")
-        : name === window.$storefront.routes.SHOP_CONTACT_US
-        ? this.$t("official_pages.contact_us")
-        : "";
+          ? this.$t("official_pages.terms")
+          : name === window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY
+            ? this.$t("official_pages.privacy")
+            : name === window.$storefront.routes.SHOP_CONTACT_US
+              ? this.$t("official_pages.contact_us")
+              : "";
     },
     hierarchy_items() {
       return HierarchyHelper.GeneratePageHierarchy(
         this.$t("global.store"),
-        this.page_name
+        this.page_name,
       );
     },
   },
@@ -82,4 +83,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

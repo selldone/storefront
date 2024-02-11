@@ -18,14 +18,14 @@
     <slot name="header"></slot>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <v-app-bar flat extended extension-height="12px" color="#fff">
+    <v-app-bar color="#fff" extended extension-height="12px" flat>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
       <v-toolbar-title>
         {{ $t("global.faq.faq") }}
-        <v-icon v-if="current_tag" class="mx-2" small>{{
-          $t("icons.angle_next")
-        }}</v-icon>
+        <v-icon v-if="current_tag" class="mx-2" small
+          >{{ $t("icons.angle_next") }}
+        </v-icon>
         {{ current_tag }}
       </v-toolbar-title>
 
@@ -40,35 +40,35 @@
 
       <v-btn
         v-if="USER()"
-        depressed
         color="#8BC34A"
-        rounded
         dark
+        depressed
+        rounded
         @click="dialog_faq = true"
         @click.stop
       >
         {{ $t("global.faq.add_question_action") }}
       </v-btn>
 
-      <s-loading css-mode light v-if="!faqs.length && busy_fetch"></s-loading>
+      <s-loading v-if="!faqs.length && busy_fetch" css-mode light></s-loading>
 
       <v-fade-transition
+        :class="{ blurred: busy_fetch }"
+        class="border-between-vertical blur-animate"
         group
         hide-on-leave
         tag="div"
-        class="border-between-vertical blur-animate"
-        :class="{ blurred: busy_fetch }"
       >
         <div v-for="faq in faqs" :key="faq.id" class="faq">
           <p class="question" v-html="faq.question"></p>
           <p class="answer" v-html="faq.answer"></p>
           <div class="text-end">
             <v-btn
-              text
-              color="blue"
               v-if="faq.link"
               :href="faq.link"
+              color="blue"
               target="_blank"
+              text
             >
               {{ $t("global.faq.read_more") }}
             </v-btn>
@@ -78,8 +78,8 @@
 
       <v-pagination
         v-model="page"
-        circle
         :length="pageCount"
+        circle
         @input="fetchFAQData()"
       />
     </v-container>
@@ -87,19 +87,21 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list dense tile>
         <v-list-item :to="{ name: 'ShopFAQ' }" exact>
-          <v-list-item-icon><v-icon>home</v-icon></v-list-item-icon>
-          <v-list-item-title>{{
-            $t("global.faq.main_page")
-          }}</v-list-item-title>
+          <v-list-item-icon>
+            <v-icon>home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title
+            >{{ $t("global.faq.main_page") }}
+          </v-list-item-title>
         </v-list-item>
 
         <v-list-item-group>
           <v-list-item
             v-for="tag in tags"
             :key="tag"
-            ripple
             :to="{ name: 'ShopFAQ', params: { tag: tag } }"
             exact
+            ripple
           >
             <v-list-item-title>{{ tag }}</v-list-item-title>
           </v-list-item>
@@ -111,7 +113,7 @@
     <v-bottom-sheet v-model="dialog_faq" inset max-width="800">
       <v-sheet class="p-2">
         <p class="dialog-title">
-          <v-icon class="me-1"> fa:fas fa-question </v-icon>
+          <v-icon class="me-1"> fa:fas fa-question</v-icon>
           {{ $t("global.faq.add_new") }}
         </p>
         <div class="p-2">
@@ -125,12 +127,12 @@
 
           <v-btn
             :class="{ disabled: !question }"
-            depressed
+            :loading="busy"
             color="success"
             dark
-            @click="sendFAQ"
-            :loading="busy"
+            depressed
             large
+            @click="sendFAQ"
           >
             {{ $t("global.actions.confirm") }}
           </v-btn>
@@ -240,7 +242,7 @@ export default {
             this.question = null;
             this.showSuccessAlert(
               null,
-              this.$t("global.faq.notifications.success_add")
+              this.$t("global.faq.notifications.success_add"),
             );
             this.dialog_faq = false;
           }
@@ -256,7 +258,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .faq-container {
   text-align: start;
   max-width: 1100px;
@@ -264,11 +266,13 @@ export default {
   .faq {
     margin: 8px 0;
     padding: 14px 8px;
+
     .question {
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 6px;
     }
+
     .answer {
       font-size: 1rem;
       font-weight: 400;

@@ -67,7 +67,6 @@ tags are essential for defining shop characteristics, API endpoints, CDN links, 
     - These tags define the color scheme for various theme modes (light, dark, deep dark, info).
     - Example: `<meta name="color--theme-light" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>">`
 
-
 The meta tags in the Selldone Storefront's `index.html` are essential for configuring the storefront's functionality and
 appearance. They ensure that the storefront aligns with the specific requirements of the Selldone hosting environment
 and provides a seamless user experience.

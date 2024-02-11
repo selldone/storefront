@@ -30,10 +30,10 @@
         v-if="
           current_author || current_author_id || current_category || current_tag
         "
-        text
         :to="to_home"
         class="flipInX"
         exact
+        text
       >
         <v-icon class="me-1">{{ $t("icons.arrow_back") }}</v-icon>
         {{ $t("global.actions.back") }}
@@ -43,14 +43,14 @@
 
       <v-text-field
         v-model="search"
+        :placeholder="$t('global.commons.search')"
         append-icon="search"
-        single-line
-        solo
+        class="max-width-field-mini"
+        clearable
         flat
         hide-details
-        clearable
-        class="max-width-field-mini"
-        :placeholder="$t('global.commons.search')"
+        single-line
+        solo
       >
       </v-text-field>
     </v-toolbar>
@@ -58,11 +58,11 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Headlines ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <v-expand-transition>
-      <v-container v-show="!in_search_mode" v-if="loaded_data" fluid>
+      <v-container v-if="loaded_data" v-show="!in_search_mode" fluid>
         <v-row>
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Headlines > Last article ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-          <v-col cols="12" sm="5" md="4">
+          <v-col cols="12" md="4" sm="5">
             <router-link
               v-if="latest_article"
               :to="{
@@ -76,17 +76,17 @@
               exact
             >
               <img
-                :src="getShopImagePath(latest_article.image)"
                 :alt="latest_article.title"
-                width="100%"
-                height="auto"
+                :src="getShopImagePath(latest_article.image)"
                 class="rounded fadeIn"
+                height="auto"
+                width="100%"
               />
               <s-blog-user-category-view
                 v-if="latest_article.parent"
-                :user="latest_article.user"
                 :categories="categories"
                 :category-name="latest_article.parent.category_id"
+                :user="latest_article.user"
                 class="mt-4"
               ></s-blog-user-category-view>
 
@@ -101,25 +101,25 @@
 
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Headlines > Last 4 articles ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-          <v-col cols="12" sm="7" md="4" class="px-0 px-sm-1 px-md-2 px-lg-3">
+          <v-col class="px-0 px-sm-1 px-md-2 px-lg-3" cols="12" md="4" sm="7">
             <v-list>
               <v-list-item
                 v-for="(article, i) in latest4_articles"
                 :key="article.id"
+                :style="{ 'animation-delay': i * 100 + 'ms' }"
                 :to="{
                   name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
                   params: { blog_id: article.parent_id, slug: article.slug },
                 }"
+                class="fadeInUp"
                 exact
                 style="min-height: 136px"
-                class="fadeInUp"
-                :style="{ 'animation-delay': i * 100 + 'ms' }"
               >
                 <template v-slot:prepend>
                   <v-avatar rounded size="100">
                     <img
-                      :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                       :alt="article.title"
+                      :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                       style="object-fit: cover"
                     />
                   </v-avatar>
@@ -127,9 +127,9 @@
                 <v-list-item-content>
                   <v-list-item-subtitle>
                     <s-blog-user-category-view
-                      :user="article.user"
                       :categories="categories"
                       :category-name="article.parent.category_id"
+                      :user="article.user"
                     ></s-blog-user-category-view>
                   </v-list-item-subtitle>
                   <v-list-item-title>
@@ -153,7 +153,7 @@
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Headlines > Categories ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
           <!-- Stared Categories -->
-          <v-col cols="12" sm="12" md="4" class="d-flex flex-column">
+          <v-col class="d-flex flex-column" cols="12" md="4" sm="12">
             <p class="font-weight-bold">
               <v-icon class="me-1" small>photo_filter</v-icon>
               {{ $t("blogs.topics") }}
@@ -163,7 +163,7 @@
 
             <v-expand-transition>
               <div v-if="categoryObj" class="text-center position-relative">
-                <v-btn icon :to="to_home" class="absolute-top-end" exact>
+                <v-btn :to="to_home" class="absolute-top-end" exact icon>
                   <v-icon>close</v-icon>
                 </v-btn>
                 <v-avatar :size="64" class="zoomIn" rounded>
@@ -180,7 +180,7 @@
             <!-- Current Author Page View -->
             <v-expand-transition>
               <div v-if="authorObj" class="text-center position-relative">
-                <v-btn icon :to="to_home" class="absolute-top-end" exact>
+                <v-btn :to="to_home" class="absolute-top-end" exact icon>
                   <v-icon>close</v-icon>
                 </v-btn>
                 <v-avatar :size="64" class="zoomIn">
@@ -196,6 +196,7 @@
               <v-list-item
                 v-for="(category, i) in stared_categories"
                 :key="category.category"
+                :style="{ 'animation-delay': 500 + i * 100 + 'ms' }"
                 :to="{
                   name: window.$storefront.routes.BLOGS_PAGE,
                   query: {
@@ -204,16 +205,15 @@
                     scroll: false,
                   },
                 }"
-                exact
                 class="flipInX"
-                :style="{ 'animation-delay': 500 + i * 100 + 'ms' }"
+                exact
               >
                 <template v-slot:prepend>
                   <v-avatar rounded>
                     <img
                       v-if="category.icon"
-                      :src="getShopImagePath(category.icon)"
                       :alt="category.category"
+                      :src="getShopImagePath(category.icon)"
                     />
                   </v-avatar>
                 </template>
@@ -237,20 +237,20 @@
             </v-list>
             <div v-if="category_pages > 1">
               <v-btn
-                @click="category_page--"
                 :disabled="category_page === 1"
-                small
-                icon
                 class="fadeIn delay_2s"
+                icon
+                small
+                @click="category_page--"
               >
                 <v-icon small>north</v-icon>
               </v-btn>
               <v-btn
-                @click="category_page++"
                 :disabled="category_page === category_pages"
-                small
-                icon
                 class="fadeIn delay_2s"
+                icon
+                small
+                @click="category_page++"
               >
                 <v-icon small>south</v-icon>
               </v-btn>
@@ -270,11 +270,11 @@
           <v-col
             v-for="(article, index) in popular"
             :key="article.id"
-            cols="12"
-            sm="6"
-            md="4"
-            class="p-0 p-sm-1 p-md-2 p-lg-3 slideInUp"
             :style="{ 'animation-delay': index * 100 + 'ms' }"
+            class="p-0 p-sm-1 p-md-2 p-lg-3 slideInUp"
+            cols="12"
+            md="4"
+            sm="6"
           >
             <v-list-item
               :to="{
@@ -293,11 +293,11 @@
 
               <v-list-item-content>
                 <s-blog-user-category-view
-                  :user="article.user"
                   :categories="categories"
                   :category-name="
                     article.parent ? article.parent.category_id : null
                   "
+                  :user="article.user"
                 ></s-blog-user-category-view>
                 <v-list-item-title
                   class="font-weight-bold list-item-bold line-height-normal my-1"
@@ -326,27 +326,27 @@
 
           <v-col
             v-if="show_interested_blogs"
-            cols="12"
             class="fadeInUp delay_1s"
+            cols="12"
           >
             <v-carousel
-              light
-              hide-delimiter-background
-              show-arrows-on-hover
-              cycle
               :interval="8000 * chunk_size"
+              cycle
               height="600px"
+              hide-delimiter-background
+              light
+              show-arrows-on-hover
             >
               <v-carousel-item v-for="(chunk, i) in chunks" :key="i">
                 <v-container fluid style="padding-top: 32px">
-                  <v-row class="fill-height" align="stretch" justify="center">
+                  <v-row align="stretch" class="fill-height" justify="center">
                     <v-col
                       v-for="article in chunk"
                       :key="article.id"
                       cols="12"
-                      sm="6"
-                      md="4"
                       lg="3"
+                      md="4"
+                      sm="6"
                     >
                       <s-shop-blog-card
                         :article="article"
@@ -363,10 +363,10 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Skeleton Loader ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <v-container v-show="!in_search_mode" v-else fluid class="mt-16">
+      <v-container v-else v-show="!in_search_mode" class="mt-16" fluid>
         <v-row>
           <!-- Last article -->
-          <v-col cols="12" sm="6" md="4">
+          <v-col cols="12" md="4" sm="6">
             <v-skeleton-loader
               class="mx-auto"
               type="card, text@3"
@@ -375,7 +375,7 @@
 
           <!-- Last 4 articles -->
 
-          <v-col cols="12" sm="6" md="4">
+          <v-col cols="12" md="4" sm="6">
             <v-skeleton-loader
               v-for="i in 4"
               :key="i"
@@ -383,7 +383,7 @@
             ></v-skeleton-loader>
           </v-col>
           <!-- Stared Categories -->
-          <v-col cols="12" sm="12" md="4">
+          <v-col cols="12" md="4" sm="12">
             <p class="font-weight-bold">
               <v-icon class="me-1" small>photo_filter</v-icon>
               {{ $t("blogs.topics") }}
@@ -406,11 +406,11 @@
             </p>
           </v-col>
 
-          <v-col v-for="index in 9" :key="index" cols="12" sm="6" md="4">
+          <v-col v-for="index in 9" :key="index" cols="12" md="4" sm="6">
             <v-skeleton-loader
+              height="100"
               type="image"
               width="100%"
-              height="100"
             ></v-skeleton-loader>
           </v-col>
 
@@ -430,9 +430,9 @@
                 : 4"
             :key="'j' + j"
             cols="12"
-            sm="6"
-            md="4"
             lg="3"
+            md="4"
+            sm="6"
           >
             <v-skeleton-loader class="mx-auto" type="card"></v-skeleton-loader>
           </v-col>
@@ -449,18 +449,18 @@
         {{ $t("blogs.title") }}
       </p>
 
-      <v-row id="first" justify="center" align="start">
-        <v-col cols="12" lg="8" xl="9" :order="1" :order-md="2" class="p-0">
+      <v-row id="first" align="start" justify="center">
+        <v-col :order="1" :order-md="2" class="p-0" cols="12" lg="8" xl="9">
           <v-data-iterator
             :items="articles"
+            :items-length="totalItems"
+            :items-per-page="itemsPerPage"
+            :no-data-text="$t('global.commons.no_data')"
+            :options.sync="options"
+            :page.sync="page"
             :search="search"
             :sort-by.sync="sortBy"
             hide-default-footer
-            :items-length="totalItems"
-            :options.sync="options"
-            :page.sync="page"
-            :items-per-page="itemsPerPage"
-            :no-data-text="$t('global.commons.no_data')"
           >
             <template v-slot:header></template>
 
@@ -469,33 +469,33 @@
                 <v-list-item
                   v-for="article in props.items"
                   :key="article.id"
-                  :to="{
-                    name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
-                    params: { blog_id: article.parent_id, slug: article.slug },
-                  }"
-                  exact
-                  style="min-height: 136px"
-                  class="article-card-extra"
-                  :class="{
-                    'is-draft': !article.published && !article.schedule_at,
-                    'is-private': article.published && article.private,
-                    'is-schedule-at': !article.published && article.schedule_at,
-                  }"
                   :caption="
                     article.schedule_at
                       ? getFromNowString(article.schedule_at)
                       : null
                   "
+                  :class="{
+                    'is-draft': !article.published && !article.schedule_at,
+                    'is-private': article.published && article.private,
+                    'is-schedule-at': !article.published && article.schedule_at,
+                  }"
+                  :to="{
+                    name: window.$storefront.routes.SHOP_BLOG_PAGE_SLUG,
+                    params: { blog_id: article.parent_id, slug: article.slug },
+                  }"
+                  class="article-card-extra"
+                  exact
+                  style="min-height: 136px"
                 >
                   <template v-slot:prepend>
                     <v-avatar
-                      rounded
-                      :width="$vuetify.display.smAndDown ? 100 : 200"
                       :height="$vuetify.display.smAndDown ? 100 : 137"
+                      :width="$vuetify.display.smAndDown ? 100 : 200"
+                      rounded
                     >
                       <img
-                        :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                         :alt="article.title"
+                        :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                         style="object-fit: cover"
                       />
                     </v-avatar>
@@ -504,9 +504,9 @@
                     <v-list-item-subtitle>
                       <s-blog-user-category-view
                         v-if="article.parent"
-                        :user="article.user"
                         :categories="categories"
                         :category-name="article.parent.category_id"
+                        :user="article.user"
                       ></s-blog-user-category-view>
                     </v-list-item-subtitle>
                     <v-list-item-title>
@@ -539,9 +539,9 @@
             <template v-slot:bottom>
               <div class="text-center pt-2 mt-3">
                 <v-pagination
+                  :length="pageCount"
                   :value="page"
                   circle
-                  :length="pageCount"
                   @input="
                     (val) => {
                       page = val;

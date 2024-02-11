@@ -23,42 +23,44 @@
 
       <v-data-iterator
         :items="products"
+        :items-length="totalItems"
+        :items-per-page="itemsPerPage"
+        :options.sync="options"
+        :page.sync="page"
         :search="search"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
+        class="bg-transparent"
+        density="compact"
         hide-default-footer
-        :items-length="totalItems"
-        :options.sync="options"
-        :page.sync="page"
-        :items-per-page="itemsPerPage"
-        class="bg-transparent "      density="compact"
         no-data-text=""
       >
         <template v-slot:no-results></template>
 
         <template v-slot:header>
           <s-data-iterator-toolbar
-            :sort-keys="keys"
+            :items-per-page.sync="itemsPerPage"
             :search.sync="search"
             :sort-by.sync="sortBy.key"
             :sort-desc.sync="sortBy.order"
-            :items-per-page.sync="itemsPerPage"
+            :sort-keys="keys"
           ></s-data-iterator-toolbar>
         </template>
 
         <template v-slot:default>
-          <v-row no-gutters class="m-2">
+          <v-row class="m-2" no-gutters>
             <v-col
               v-for="product in products"
               :key="product.id"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
               class="p-2"
+              cols="12"
+              lg="3"
+              md="4"
+              sm="6"
             >
               <s-shop-product-card
                 :product="product"
+                :quick-buy="false"
                 :to="{
                   name: window.$storefront.routes.PRODUCT_PAGE,
                   params: {
@@ -66,7 +68,6 @@
                     product_id: product.id,
                   },
                 }"
-                :quick-buy="false"
                 rounded
               />
             </v-col>
@@ -75,7 +76,7 @@
 
         <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
-            <v-pagination v-model="page" circle :length="pageCount" />
+            <v-pagination v-model="page" :length="pageCount" circle />
           </div>
         </template>
       </v-data-iterator>
@@ -130,7 +131,7 @@ export default {
     options: {
       handler() {
         const { sortBy, sortDesc, page } = this.options;
-        this.fetchData(page, sortBy[0]?.key, sortBy[0]?.order==='desc');
+        this.fetchData(page, sortBy[0]?.key, sortBy[0]?.order === "desc");
       },
       deep: true,
     },
@@ -138,7 +139,7 @@ export default {
     search: _.throttle(function () {
       //   console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
-      this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order==='desc');
+      this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order === "desc");
     }, window.SERACH_THROTTLE),
   },
 
@@ -184,4 +185,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

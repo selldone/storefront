@@ -12,18 +12,41 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import store from "../store/StorefrontStore";
 import SStorefrontLayout from "../layouts/SStorefrontLayout.vue";
 
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
-
 import SStorefrontProductsPage from "../pages/SStorefrontProductsPage.vue";
 
 import SStorefrontProductPage from "../pages/product/SStorefrontProductPage.vue";
 
 //――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
 import SStorefrontBasketPage from "../pages/basket/SStorefrontBasketPage.vue";
+//――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
+import SStorefrontLoginRedirect from "../pages/login/SStorefrontLoginRedirect.vue";
+import SStorefrontComparisonPage from "../pages/comparison/SStorefrontComparisonPage.vue";
+import SStorefrontUserPagesLayout from "../pages/user/SStorefrontUserPagesLayout.vue";
+import SStorefrontUserProfilePage from "../pages/user/profile/SStorefrontUserProfilePage.vue";
+import SStorefrontUserAddressesPage from "@app-storefront/pages/user/address/SStorefrontUserAddressesPage.vue";
+import SStorefrontUserFavoritesPage from "../pages/user/favorites/SStorefrontUserFavoritesPage.vue";
+import SStorefrontUserCommentsPage from "../pages/user/comment/SStorefrontUserCommentsPage.vue";
+import SStorefrontUserGiftCardsPage from "../pages/user/giftcard/SStorefrontUserGiftCardsPage.vue";
+import SStorefrontAboutUsPage from "@app-storefront/pages/official/about-us/SStorefrontAboutUsPage.vue";
+import SStorefrontTermsPage from "../pages/official/terms/SStorefrontTermsPage.vue";
+import SStorefrontPrivacyPage from "../pages/official/privacy/SStorefrontPrivacyPage.vue";
+import SStorefrontProfilePage from "../pages/official/SStorefrontProfilePage.vue";
+import SStorefrontBlogPage from "../pages/blog/SStorefrontBlogPage.vue";
+import SStorefrontBlogsPage from "../pages/blog/SStorefrontBlogsPage.vue";
+import SStorefrontFAQPage from "@app-storefront/pages/official/faq/SStorefrontFAQPage.vue";
+import SStorefrontContactUsPage from "@app-storefront/pages/official/contact-us/SStorefrontContactUsPage.vue";
+
+import SStorefrontInfoPage from "@app-storefront/pages/official/info/SStorefrontInfoPage.vue";
+import {ShopOptionsHelper} from "@core/helper/shop/ShopOptionsHelper";
+import {SetupService} from "@core/server/SetupService";
+import {Shop} from "@core/models/shop/shop.model";
+import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
+import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
@@ -151,36 +174,9 @@ const SStorefrontPOSPage = () =>
 
 const SHOP_PREFIX_ADDRESS = SetupService.GetMetaValue(
   "shop-prefix-address",
-  ""
+  "",
 );
 const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
-
-//――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
-import SStorefrontLoginRedirect from "../pages/login/SStorefrontLoginRedirect.vue";
-import SStorefrontComparisonPage from "../pages/comparison/SStorefrontComparisonPage.vue";
-import SStorefrontUserPagesLayout from "../pages/user/SStorefrontUserPagesLayout.vue";
-import SStorefrontUserProfilePage from "../pages/user/profile/SStorefrontUserProfilePage.vue";
-import SStorefrontUserAddressesPage from "@app-storefront/pages/user/address/SStorefrontUserAddressesPage.vue";
-import SStorefrontUserFavoritesPage from "../pages/user/favorites/SStorefrontUserFavoritesPage.vue";
-import SStorefrontUserCommentsPage from "../pages/user/comment/SStorefrontUserCommentsPage.vue";
-import SStorefrontUserGiftCardsPage from "../pages/user/giftcard/SStorefrontUserGiftCardsPage.vue";
-import SStorefrontAboutUsPage from "@app-storefront/pages/official/about-us/SStorefrontAboutUsPage.vue";
-import SStorefrontTermsPage from "../pages/official/terms/SStorefrontTermsPage.vue";
-import SStorefrontPrivacyPage from "../pages/official/privacy/SStorefrontPrivacyPage.vue";
-import SStorefrontProfilePage from "../pages/official/SStorefrontProfilePage.vue";
-import SStorefrontBlogPage from "../pages/blog/SStorefrontBlogPage.vue";
-import SStorefrontBlogsPage from "../pages/blog/SStorefrontBlogsPage.vue";
-import SStorefrontFAQPage from "@app-storefront/pages/official/faq/SStorefrontFAQPage.vue";
-import SStorefrontContactUsPage from "@app-storefront/pages/official/contact-us/SStorefrontContactUsPage.vue";
-
-import SStorefrontInfoPage from "@app-storefront/pages/official/info/SStorefrontInfoPage.vue";
-import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
-import { SetupService } from "@core/server/SetupService";
-import { Shop } from "@core/models/shop/shop.model";
-import type { Route } from "vue-router/types/router.d.ts";
-import type { RouteConfigSingleView } from "vue-router/types/router.d.ts";
-import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
-import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -525,7 +521,7 @@ const routes: IVueRoute[] = [
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User gift cards ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "gift-cards",
-            name:  StorefrontRoutesName.USER_GIFTCARDS_PAGE,
+            name: StorefrontRoutesName.USER_GIFTCARDS_PAGE,
             component: SStorefrontUserGiftCardsPage,
           },
         ],
@@ -878,14 +874,14 @@ const routes: IVueRoute[] = [
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Category (Topics list)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
-            path: ":category_id-:category_slug",
+            path: ":category_id-:category_slug?",
             name: CommunityRoutesName.COMMUNITY_CATEGORY_PAGE,
             component: CommunityCategoryPage,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Topic  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
-            path: ":category_id-:category_slug/:topic_id-:topic_slug",
+            path: ":category_id-:category_slug?/:topic_id-:topic_slug?",
             name: CommunityRoutesName.COMMUNITY_TOPIC_PAGE,
             component: CommunityTopicPage,
           },
@@ -902,7 +898,7 @@ const routes: IVueRoute[] = [
 const router = createRouter({
   history: createWebHistory(SHOP_PREFIX_ADDRESS /*process.env.BASE_URL*/),
 
-  routes: routes,
+  routes: routes as RouteRecordRaw[],
 });
 
 let FIRST_LOAD = true; // Detect first load of app to solve multi-language page title problem! (Because of async load)
@@ -910,6 +906,7 @@ let FIRST_LOAD = true; // Detect first load of app to solve multi-language page 
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 function ToPageName(str: string | any) {
   if (!str || !(typeof str === "string" || str instanceof String)) return str;
   return capitalizeFirstLetter(str.replace(/-/g, " "));
@@ -961,7 +958,10 @@ export default router;
 //―――――――――――――――― 🦫 Types ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 
-interface IVueRoute extends RouteConfigSingleView {
+interface IVueRoute {
+  path: string; // The path of the route. Should be always unique.
+  name?: string; // The name of the route. Should be always unique.
+  component: any; // The component to render when the route is matched.
   meta?: IRouteMeta; // Metadata associated with the route.
   children?: IVueRoute[]; // Nested child routes.
 }

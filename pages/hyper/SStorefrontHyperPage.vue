@@ -17,28 +17,28 @@
     <v-container class="c-avocado">
       <v-progress-linear
         v-if="busy_fetch || busy"
-        indeterminate
         class="loader-to-bar"
         color="#C2185B"
+        indeterminate
       ></v-progress-linear>
 
       <img
+        class="me-1 zoomIn delay_500"
+        height="32"
         src="@components/assets/icons/hyper.svg"
         width="32"
-        height="32"
-        class="me-1 zoomIn delay_500"
       />
       <img
         class="flipInX delay_300"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
         height="48"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Not enabled info ................ -->
       <div
         v-if="!is_enable"
-        style="min-height: 65vh"
         class="text-h4 font-weight-thin"
+        style="min-height: 65vh"
       >
         {{ $t("hyper.not_enable") }}
       </div>
@@ -47,9 +47,9 @@
 
       <v-btn
         v-if="add_mode"
-        @click="add_mode = false"
         class="absolute-top-start slideInDown"
         text
+        @click="add_mode = false"
       >
         <v-icon class="ms-1">{{ $t("icons.chevron_back") }}</v-icon>
         {{ $t("global.actions.back") }}
@@ -69,9 +69,9 @@
             v-if="pages > 1"
             v-model="page"
             :length="pages"
-            @input="fetchOrders()"
-            circle
             :total-visible="6"
+            circle
+            @input="fetchOrders()"
           ></v-pagination>
         </div>
 
@@ -79,17 +79,17 @@
 
         <v-btn
           v-if="open_hyper && is_enable"
+          :loading="busy"
           class="mx-auto zoomIn p-2"
-          style="max-width: 420px"
-          min-height="72"
           color="success"
           dark
-          @click="add_mode = true"
-          width="100%"
-          height="auto"
-          x-large
           depressed
-          :loading="busy"
+          height="auto"
+          min-height="72"
+          style="max-width: 420px"
+          width="100%"
+          x-large
+          @click="add_mode = true"
         >
           <div>
             <v-icon class="me-1">shopping_bag</v-icon>
@@ -112,10 +112,10 @@
 
       <s-storefront-hyper-add-order-form
         v-if="add_mode && open_hyper"
+        :hyper.sync="open_hyper"
+        :shop="shop"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
-        :shop="shop"
-        :hyper.sync="open_hyper"
         @add="
           (order) => {
             AddOrUpdateItemByID(orders, order, 'id', false);
@@ -131,9 +131,9 @@
         Powered by
         <a href="/" target="_blank">
           <img
+            height="10"
             src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
-            height="10"
           />
           Selldone</a
         >

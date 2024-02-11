@@ -23,11 +23,11 @@
       <div class="text-start px-lg-5 px-md-4 px-3 master-article-container">
         <s-article-editor
           v-if="profile"
-          class="p-lg-5 p-md-4 p-3 article"
-          :only-view="true"
-          :edit="false"
           :body="profile.body"
+          :edit="false"
           :enable-title="false"
+          :only-view="true"
+          class="p-lg-5 p-md-4 p-3 article"
         />
       </div>
     </v-container>
@@ -36,6 +36,7 @@
 
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
+
 export default {
   name: "SStorefrontTermsPage",
   components: { SArticleEditor },

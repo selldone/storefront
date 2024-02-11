@@ -19,14 +19,13 @@
 @import "variables";
 
 
-
 /*
 ━━━━━━━━━━━━━━━━━━━━ 🪅 Classes ━━━━━━━━━━━━━━━━━━━━
  */
 
 .s--product {
   min-height: 100vh;
-  display: flex;      // We set as flex to be able set order of section dynamically!
+  display: flex; // We set as flex to be able set order of section dynamically!
   flex-direction: column;
   align-items: stretch;
 
@@ -36,16 +35,16 @@
 
 
   // ━━━━━━━━━━━━━━━━━━━━ Typo ━━━━━━━━━━━━━━━━━━━━
-h2{
-  font-size: 2.25em;
-  @media screen and (max-width: 720px) {
-    font-size: 1.6em;
+  h2 {
+    font-size: 2.25em;
+    @media screen and (max-width: 720px) {
+      font-size: 1.6em;
+    }
   }
-}
 
 
   // ━━━━━━━━━━━━━━━━━━━━ Top Menu ━━━━━━━━━━━━━━━━━━━━
-  .s--storefront-top-menu{
+  .s--storefront-top-menu {
     margin-bottom: var(--menu-margin-bottom);
     padding: 8px 0;
     height: auto;
@@ -54,7 +53,7 @@ h2{
 
   // ━━━━━━━━━━━━━━━━━━━━ Section > Info (First) ━━━━━━━━━━━━━━━━━━━━
 
-  .s--product-section-info{
+  .s--product-section-info {
 
     position: relative;
     max-width: var(--max-width);
@@ -77,21 +76,20 @@ h2{
     box-shadow: rgba(26, 26, 26, 0.1) 0px 18px 50px 0px;
 
     // Product info will have shadow and margin from left/right sides greater than this size
-    max-width: min(90vw,  var(--max-width));
+    max-width: min(90vw, var(--max-width));
 
     @media screen and (max-width: 680px) {
-      box-shadow:none;
-      max-width:none;
-      --border-radius:0;
+      box-shadow: none;
+      max-width: none;
+      --border-radius: 0;
       margin-top: 4px;
     }
 
 
-
-
   }
+
   // ━━━━━━━━━━━━━━━━━━━━ Section > Header Section ━━━━━━━━━━━━━━━━━━━━
-  .s--product-section-header{
+  .s--product-section-header {
     max-width: var(--max-width) !important;
     margin-left: auto;
     margin-right: auto;
@@ -99,7 +97,7 @@ h2{
 
   // ━━━━━━━━━━━━━━━━━━━━ Section > Comments ━━━━━━━━━━━━━━━━━━━━
 
-  .s--product-section-comments{
+  .s--product-section-comments {
     max-width: 860px;
     margin-left: auto;
     margin-right: auto;
@@ -107,33 +105,35 @@ h2{
 
   // ━━━━━━━━━━━━━━━━━━━━ Section > Spec ━━━━━━━━━━━━━━━━━━━━
 
-  .s--product-section-spec{
-    max-width: var(--max-width) ;
+  .s--product-section-spec {
+    max-width: var(--max-width);
     margin-left: auto;
     margin-right: auto;
   }
+
   // ━━━━━━━━━━━━━━━━━━━━ Section > Article ━━━━━━━━━━━━━━━━━━━━
 
-  .s--product-section-article{
-    max-width: var(--max-width) ;
+  .s--product-section-article {
+    max-width: var(--max-width);
     margin-left: auto;
     margin-right: auto;
   }
+
   // ━━━━━━━━━━━━━━━━━━━━ General Use ━━━━━━━━━━━━━━━━━━━━
 
-.product-widget{
-  text-align: start;
-  background: #e5e5e5;
-  border-radius: 12px;
-  padding: 16px;
-}
+  .product-widget {
+    text-align: start;
+    background: #e5e5e5;
+    border-radius: 12px;
+    padding: 16px;
+  }
 
   // ━━━━━━━━━━━━━━━━━━━━ Article view ━━━━━━━━━━━━━━━━━━━━
-  .medium-insert-images-safe{
-    --article-img-border-radius:1em;
+  .medium-insert-images-safe {
+    --article-img-border-radius: 1em;
 
-    figure{
-      img{
+    figure {
+      img {
         border-radius: var(--article-img-border-radius);
       }
     }

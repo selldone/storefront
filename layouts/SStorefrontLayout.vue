@@ -57,8 +57,8 @@
         !header_mode ||
         header_mode === 'normal' /*Show primary header in top of page!*/
       "
-      :shop="shop"
       :search-mode="search_mode"
+      :shop="shop"
     ></s-storefront-primary-header>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -67,22 +67,22 @@
       <s-storefront-search-box
         v-if="show_search_box && !isMobile"
         ref="search_box"
-        class="s--storefront-layout-search-style me-2"
         :class="{
           'is-mobile': isMobile,
           'full-width': search_mode && isMobile,
           'has-banner-offset': shop_main_banner,
         }"
-        :title="$t('layout_shop.search_title', { shop_name: shop.title })"
-        :shop-name="shop.name"
-        @onSearch="onSearch"
-        @onClear="onClear"
-        color="transparent"
         :dark="false"
-        solo
-        flat
         :expandInput.sync="search_mode"
         :negative-qr-margin="false"
+        :shop-name="shop.name"
+        :title="$t('layout_shop.search_title', { shop_name: shop.title })"
+        class="s--storefront-layout-search-style me-2"
+        color="transparent"
+        flat
+        solo
+        @onClear="onClear"
+        @onSearch="onSearch"
       />
     </v-slide-y-reverse-transition>
 
@@ -94,8 +94,9 @@
         'margin-top':
           top_margin_content /*The 's-storefront-primary-header' comes with a default height of 128px, and the use of negative margin contributes to creating an overlay effect on the storefront's main view. */,
       }"
-      fluid
+      class="d-block"
       fill-height
+      fluid
       style="
         z-index: 0;
         width: 100%;
@@ -103,17 +104,17 @@
         margin-right: auto;
         min-height: 60vh;
         transition: none;
-      " class="d-block"
+      "
     >
       <!-- The 'router-view' will display the content of children components as defined in the Router. -->
       <router-view
         v-if="shop"
-        :style="{ 'padding-bottom': bottom_padding_container }"
-        :shop="shop"
         :class="{
           's--shop-card s--shadow-no-padding -hide1720 mb-16 bg-white position-relative':
             is_view_card_mode,
         }"
+        :shop="shop"
+        :style="{ 'padding-bottom': bottom_padding_container }"
         @update:menu-transparent="
           (val) => (transparent_header = val) /*Update on custome pages*/
         "
@@ -132,28 +133,28 @@
               header_mode ===
               'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
             "
-            overlay
             :overlay-dark="!!dark_header"
-            :shop="shop"
             :search-mode="search_mode"
+            :shop="shop"
+            overlay
           ></s-storefront-primary-header>
 
           <!-- The storefront menu customized and set up by the merchant. -->
           <s-storefront-top-menu
             v-if="top_menu && !header_disabled"
-            :shop="shop"
-            flat
-            :tabs="top_menu.menu"
-            :transparent="transparent_header"
-            :force-dark="dark_header"
             :center="center"
+            :force-dark="dark_header"
             :fullscreen="is_fullscreen"
+            :shop="shop"
             :style="{
               marginTop:
                 header_mode === 'hidden'
                   ? '64px'
                   : 0 /*Cover -64px of main view of shop*/,
             }"
+            :tabs="top_menu.menu"
+            :transparent="transparent_header"
+            flat
           ></s-storefront-top-menu>
         </template>
       </router-view>
@@ -163,9 +164,9 @@
     <!-- Primary footer of the storefront. -->
     <s-storefront-primary-footer
       v-if="!isMobile && !is_standalone && !isNative && shop && has_footer"
-      class="m-0"
-      :shop="shop"
       :dark="!is_light_footer"
+      :shop="shop"
+      class="m-0"
     />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Basket Indicator ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -185,8 +186,8 @@
     <!-- Storefront chat box. -->
     <s-storefront-chat-popup
       v-if="show_support_chat && has_support"
-      :shop="shop"
       :bottom="isMobile ? 96 : 12"
+      :shop="shop"
       class="zoomIn"
     ></s-storefront-chat-popup>
   </div>
@@ -412,7 +413,7 @@ export default {
       ShopApplicationInterface.TriggerEvent(
         ShopEventsName.ChangePage,
         to,
-        from
+        from,
       );
 
       // transparent top menu: (reset in page change!)
@@ -532,7 +533,7 @@ a {
 </style>
 
 <!-- ━━━━━━━━━━━━━━━━━━━ 🦜 Style ● Local ━━━━━━━━━━━━━━━━━━━-->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 /*
 ━━━━━━━━━━━━━━━━━━━━ 🎺 Variables ━━━━━━━━━━━━━━━━━━━━
  */
@@ -576,6 +577,7 @@ a {
       left: 0;
       transform: unset;
     }
+
     &.full-width {
       width: 100%;
     }

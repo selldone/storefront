@@ -25,11 +25,11 @@
       >
         <s-article-editor
           v-if="profile"
-          class="p-lg-5 p-md-4 p-3 article"
-          :only-view="true"
-          :edit="false"
           :body="profile.body"
+          :edit="false"
           :enable-title="false"
+          :only-view="true"
+          class="p-lg-5 p-md-4 p-3 article"
         />
       </div>
     </v-container>
@@ -38,7 +38,7 @@
       <div v-if="submitted">
         <div class="py-16 px-5">
           <h2 class="font-weight-medium mb-5">
-            <v-icon large color="green" class="me-2">check_circle</v-icon>
+            <v-icon class="me-2" color="green" large>check_circle</v-icon>
             {{ $t("contact_us_form.submitted_title") }}
           </h2>
           <p class="text-muted max-widget-width mx-auto">
@@ -70,25 +70,25 @@
           <v-text-field
             v-model="name"
             :label="$t('contact_us_form.name')"
-            class="max-width-field"
             :placeholder="$t('global.placeholders.name')"
+            class="max-width-field"
           />
 
           <v-text-field
             v-model="email"
             :label="$t('contact_us_form.email')"
-            prepend-inner-icon="email"
-            class="max-width-field english-field"
             :placeholder="$t('global.placeholders.email')"
             :rules="[GlobalRules.required(), GlobalRules.email()]"
+            class="max-width-field english-field"
+            prepend-inner-icon="email"
           />
 
           <v-text-field
             v-model="phone"
             :label="$t('contact_us_form.phone')"
+            :placeholder="$t('global.placeholders.phone')"
             class="max-width-field english-field"
             prepend-inner-icon="phone"
-            :placeholder="$t('global.placeholders.phone')"
           />
         </div>
 
@@ -101,11 +101,11 @@
 
         <div class="widget-buttons">
           <v-btn
-            color="primary"
-            x-large
-            dark
             :class="{ disabled: !canSend }"
             :loading="busy_send"
+            color="primary"
+            dark
+            x-large
             @click="sendForm"
           >
             {{ $t("global.actions.send") }}
@@ -120,6 +120,7 @@
 
 <script>
 import SArticleEditor from "@components/article/SArticleEditor.vue";
+
 export default {
   name: "SStorefrontContactUsPage",
   components: { SArticleEditor },
@@ -207,7 +208,7 @@ export default {
 
             this.showSuccessAlert(
               null,
-              this.$t("contact_us_form.notifications.success")
+              this.$t("contact_us_form.notifications.success"),
             );
           } else {
             this.showErrorAlert(null, data.error_msg);

@@ -39,7 +39,6 @@
 <template>
   <v-app
     v-if="shop"
-    class="s--shop"
     :class="[
       {
         'is-mobile': isMobile,
@@ -47,7 +46,6 @@
       },
       `lang-${$i18n.locale}`,
     ]"
-    @keyup.ctrl="SwitchLanguage"
     :style="[
       {
         /* Global theme variable of the storefront */
@@ -61,6 +59,8 @@
       },
       page_bg,
     ]"
+    class="s--shop"
+    @keyup.ctrl="SwitchLanguage"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-campaign-banner :shop="shop" />
@@ -78,9 +78,9 @@
     <s-storefront-social-buttons
       v-if="shop"
       :shop="shop"
+      active-only
       class="social-stick"
       vertical
-      active-only
     ></s-storefront-social-buttons>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -96,7 +96,9 @@
     <s-notifications-and-alerts />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-application-login :shop="shop"></s-storefront-application-login>
+    <s-storefront-application-login
+      :shop="shop"
+    ></s-storefront-application-login>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-map-dialog></s-map-dialog>
@@ -110,7 +112,9 @@
     ></s-pwa-update-snackbar>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-bottom-navigation v-if="isMobile"></s-storefront-bottom-navigation>
+    <s-storefront-bottom-navigation
+      v-if="isMobile"
+    ></s-storefront-bottom-navigation>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-popup
@@ -123,7 +127,10 @@
     <s-fullscreen-view-animator></s-fullscreen-view-animator>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-retrieve-share-order v-if="shop" :shop="shop"></s-storefront-retrieve-share-order>
+    <s-storefront-retrieve-share-order
+      v-if="shop"
+      :shop="shop"
+    ></s-storefront-retrieve-share-order>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-webapp-debug-view></s-storefront-webapp-debug-view>
@@ -246,7 +253,7 @@ export default {
 
     page_bg() {
       const meta_bg = this.$route.matched.find(
-        (record) => record.meta.page_background
+        (record) => record.meta.page_background,
       );
       // console.log("page_background", meta_bg);
       if (meta_bg) {
@@ -263,18 +270,16 @@ export default {
    */
   watch: {
     $route(_new, _old) {
-
       if (_new.query["no-scroll"]) return; // Do not scroll if no-scroll query exist!
 
       this.$nextTick(function () {
-
         /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
-        const smooth=_old?.name === _new?.name ||
-            (_old?.name === window.$storefront.routes.SHOP_PAGE &&
-                _new?.name ===
-                window.$storefront.routes.SHOP_CATEGORY_PAGE);
+        const smooth =
+          _old?.name === _new?.name ||
+          (_old?.name === window.$storefront.routes.SHOP_PAGE &&
+            _new?.name === window.$storefront.routes.SHOP_CATEGORY_PAGE);
 
-        ScrollHelper.scrollToTop(0,smooth?'smooth':'instant')
+        ScrollHelper.scrollToTop(0, smooth ? "smooth" : "instant");
         /*
         this.$vuetify.goTo(0, {
           duration:
@@ -343,7 +348,7 @@ export default {
 
     //――――――――――――――――――――――――― Save Entry Channel ―――――――――――――――――――――――――
     const route_channel = this.$route.matched.find(
-      (record) => record.meta.channel
+      (record) => record.meta.channel,
     );
     if (route_channel) {
       console.log("⚡ Load sales channel mode:", route_channel.meta.channel);
@@ -369,7 +374,7 @@ export default {
             payload.notification.body,
             icon,
             color,
-            img
+            img,
           );
         }
       }
@@ -383,7 +388,7 @@ export default {
         window.$storefront.user
           .setFcmToken(token)
           .then(({}) => {})
-             .catch( (error) =>{
+          .catch((error) => {
             console.error(error);
           });
       }, 5000);

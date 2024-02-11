@@ -18,8 +18,8 @@
       :color="SaminColorDarkDeep"
       dark
       extended
-      flat
       extension-height="64px"
+      flat
       style="overflow-x: auto"
     >
       <template v-slot:extension>
@@ -30,7 +30,6 @@
 
       <s-circle-button
         :icon="$t('icons.arrow_back')"
-        :tooltip="$t('global.actions.back')"
         :to="
           buildReturnRoute(
             $route.query.return_id
@@ -38,6 +37,7 @@
               : window.$storefront.routes.HISTORY_ORDERS_POS,
           )
         "
+        :tooltip="$t('global.actions.back')"
       />
 
       <v-spacer></v-spacer>
@@ -51,9 +51,9 @@
       >
         <img
           :src="require('@core/assets/order-types/basket-pos.svg')"
-          width="28"
-          height="28"
           class="mx-1 mb-1"
+          height="28"
+          width="28"
         />
         {{ $t("global.commons.order_detail") }}
       </v-toolbar-title>
@@ -61,8 +61,8 @@
 
     <v-card
       class="s--card-window-content mx-0 mx-sm-3"
-      style="min-height: 80vh"
       flat
+      style="min-height: 80vh"
     >
       <!-- ======================= Container ======================= -->
       <router-view
@@ -77,7 +77,7 @@
 <script>
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import {RouteMixin} from "@components/mixin/RouteMixin";
+import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontPOSOrderDetailMasterLayout",
@@ -141,4 +141,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

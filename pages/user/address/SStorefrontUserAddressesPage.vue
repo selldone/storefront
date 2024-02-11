@@ -22,14 +22,14 @@
         icon="fmd_good"
       ></s-widget-header>
 
-      <v-list-subheader> </v-list-subheader>
+      <v-list-subheader></v-list-subheader>
 
       <s-progress-loading v-if="busy"></s-progress-loading>
       <div class="widget-buttons">
         <v-btn
-          x-large
-          depressed
           color="success"
+          depressed
+          x-large
           @click="dialog_add_to_address_book = true"
         >
           <v-icon class="me-1">add_location</v-icon>
@@ -42,12 +42,12 @@
 
     <v-fade-transition group hide-on-leave>
       <div
-        class="widget-box mb-5 address-card"
         v-for="address in addresses"
         :key="address.id"
+        class="widget-box mb-5 address-card"
       >
         <h2>{{ address.title }}</h2>
-        <v-list-subheader> </v-list-subheader>
+        <v-list-subheader></v-list-subheader>
 
         <s-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.receiver") }}</template>
@@ -60,16 +60,16 @@
         </s-value-dashed>
 
         <s-value-dashed>
-          <template v-slot:label>{{
-            $t("addresses_page.building_no")
-          }}</template>
+          <template v-slot:label
+            >{{ $t("addresses_page.building_no") }}
+          </template>
           <b> {{ address.no }}</b>
         </s-value-dashed>
 
         <s-value-dashed>
-          <template v-slot:label>{{
-            $t("addresses_page.building_unit")
-          }}</template>
+          <template v-slot:label
+            >{{ $t("addresses_page.building_unit") }}
+          </template>
           <b> {{ address.unit }}</b>
         </s-value-dashed>
 
@@ -84,25 +84,25 @@
         </s-value-dashed>
 
         <s-value-dashed>
-          <template v-slot:label>{{
-            $t("addresses_page.description")
-          }}</template>
+          <template v-slot:label
+            >{{ $t("addresses_page.description") }}
+          </template>
           <b> {{ address.message }}</b>
         </s-value-dashed>
 
         <div class="position-relative">
           <div class="position-relative map-circle ma-auto">
             <img
-              class="map-image"
               :src="`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${address.location.lng},${address.location.lat},13.96,0,0/200x200?access_token=pk.eyJ1IjoicGFqdWhhYW4iLCJhIjoiY2sxaHNtbnU3MDFjcjNta2V0OTZ0d2ExYiJ9.YKRh0EP7NnhbmuSil7AvSw`"
+              class="map-image"
             />
             <s-map-location-marker class="map-pointer"></s-map-location-marker>
           </div>
         </div>
 
         <div class="widget-buttons">
-          <v-btn large text color="primary" @click="editAddress(address)">
-            <v-icon small class="me-1">edit</v-icon>
+          <v-btn color="primary" large text @click="editAddress(address)">
+            <v-icon class="me-1" small>edit</v-icon>
             {{ $t("global.actions.edit") }}
           </v-btn>
         </div>
@@ -113,36 +113,35 @@
 
     <v-dialog
       v-model="map_dialog"
+      content-class="bg-map"
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
-      content-class="bg-map"
     >
       <s-map-view
         v-if="dialog_pre"
         ref="map_view_dialog"
         v-model="map_location"
-        :color="SaminColorDark"
-        :center="center"
-        :zoom="17"
-        style="width: 100%; height: 100%"
-        :startup-mode="startup_mode_map_dialog"
-        has-top-bar
-        can-select-address
-        has-bottom-bar
-        has-address-book
-        :title="$t('addresses_page.map.title')"
-        :confirm-text="$t('addresses_page.map.confirm')"
         :address-type="$t('addresses_page.map.address_type')"
-        :receptor-type="$t('addresses_page.map.receptor_type')"
+        :center="center"
+        :color="SaminColorDark"
+        :confirm-text="$t('addresses_page.map.confirm')"
         :new-address-title="new_address_title"
+        :receptor-type="$t('addresses_page.map.receptor_type')"
         :selected-address-id="selected_address_from_list_id"
         :selected-address-title="selected_address_from_list_title"
-        @close="map_dialog = false"
+        :startup-mode="startup_mode_map_dialog"
+        :title="$t('addresses_page.map.title')"
+        :zoom="17"
+        can-select-address
+        has-address-book
+        has-bottom-bar
+        has-top-bar
+        style="width: 100%; height: 100%"
         @clickSetLocation="onClickSetLocation"
+        @close="map_dialog = false"
       />
     </v-dialog>
-
 
     <v-dialog v-model="dialog_add_to_address_book" max-width="500px">
       <v-card>
@@ -156,8 +155,8 @@
           <v-text-field
             v-model="new_address_title"
             :color="SaminColorLight"
-            class="text-right mx-2"
             :label="$t('addresses_page.add_dialog.address_name_input')"
+            class="text-right mx-2"
             prepend-inner-icon="fa:fas fa-tag"
           >
             <template v-slot:prepend-inner>
@@ -180,10 +179,10 @@
               {{ $t("global.actions.cancel") }}
             </v-btn>
             <v-btn
+              :class="{ disabled: !new_address_title }"
               color="primary"
               depressed
               x-large
-              :class="{ disabled: !new_address_title }"
               @click="addNewLocation()"
             >
               {{ $t("global.actions.accept") }}
@@ -199,10 +198,9 @@
 import SMapLocationMarker from "@components/map/market/SMapLocationMarker.vue";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
 
-
 export default {
   name: "SStorefrontUserAddressesPage",
-  components: {  SValueDashed, SMapLocationMarker },
+  components: { SValueDashed, SMapLocationMarker },
   data() {
     return {
       addresses: [],
@@ -304,7 +302,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .address-card {
   &:hover {
     .map-image {

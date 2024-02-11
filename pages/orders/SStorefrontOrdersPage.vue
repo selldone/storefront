@@ -16,47 +16,47 @@
   <v-container fluid>
     <div class="widget-box -x-large">
       <v-toolbar
-        flat
         color="transparent"
-        style="overflow-x: auto"
         extended
         extension-height="18px"
+        flat
+        style="overflow-x: auto"
       >
         <s-circle-button
           v-for="type in types"
           :key="type.code"
-          :src="type.image"
-          :tooltip="$t(type.name)"
+          :badge-number="getBadgeCount(type.code)"
           :disabled="!type.enable"
           :outline="$route.name === page_name(type)"
+          :src="type.image"
+          :tooltip="$t(type.name)"
           has-badge
-          :badge-number="getBadgeCount(type.code)"
-          @click="goToHistoryPage(type)"
           persist-badge
           tile
+          @click="goToHistoryPage(type)"
         />
 
         <s-circle-button
           v-if="USER()"
           key="pos"
           :src="require('@components/assets/icons/pos-order-type.svg')"
-          :tooltip="$t('global.commons.pos')"
-          has-badge
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_POS }"
+          :tooltip="$t('global.commons.pos')"
           exact
+          has-badge
           tile
         />
 
         <s-circle-button
           v-if="USER()"
           key="avo"
-          :src="require('@components/assets/icons/avocado.svg')"
-          :tooltip="$t('global.commons.avocado')"
-          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
-          has-badge
           :badge-number="getBadgeCount('AVO')"
-          persist-badge
+          :src="require('@components/assets/icons/avocado.svg')"
+          :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
+          :tooltip="$t('global.commons.avocado')"
           exact
+          has-badge
+          persist-badge
           tile
         />
         <div style="min-width: 46px; height: 100%"></div>
@@ -72,6 +72,7 @@
 
 <script>
 import { ProductType } from "@core/enums/product/ProductType";
+
 export default {
   name: "SStorefrontOrdersPage",
   components: {},
@@ -127,4 +128,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

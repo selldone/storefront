@@ -12,9 +12,9 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { XapiShop } from "@sdk-storefront/shop/XapiShop";
-import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
-import { Store } from "vuex";
+import {XapiShop} from "@sdk-storefront/shop/XapiShop";
+import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationInterface";
+import {Store} from "vuex";
 
 declare global {
   interface Window {
@@ -25,7 +25,7 @@ declare global {
         expiration: string,
         path: string,
         domain?: string | null,
-        secure?: boolean
+        secure?: boolean,
       ) => void;
       get: (key: string) => string | undefined;
       remove: (keyName: string, path: string, domain?: string | null) => void;
