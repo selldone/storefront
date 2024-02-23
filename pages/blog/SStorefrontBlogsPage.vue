@@ -351,6 +351,7 @@
                       <s-shop-blog-card
                         :article="article"
                         :categories="categories"
+                        rounded="xl"
                       ></s-shop-blog-card>
                     </v-col>
                   </v-row>
