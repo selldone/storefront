@@ -32,6 +32,7 @@ import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the serv
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
 import {createComponents} from "@components/components";
+import {SetupPageBuilder} from "@app-page-builder/PageBuilder";
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -62,8 +63,7 @@ const app = createApp(App);
 const components = createComponents({});
 app.use(components);
 
-// ━━━ Page Builder ━━━
-require("@app-page-builder/page-builder");
+
 
 //█████████████████████████████████████████████████████████████
 //――――――――――― Selldone® Storefront SDK ―――――――――――
@@ -132,3 +132,9 @@ const storefrontVueApp = new Vue({
   render: (h) => h(App),
   vuetify,
 }).$mount("#app");*/
+
+
+//――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
+SetupPageBuilder(app, {
+    mode:"view"
+});
