@@ -124,6 +124,9 @@
         @update:header-mode="
           (val) => (header_mode = val) /*Update on custome pages*/
         "
+        @update:header-color="
+          (val) => (header_color = val) /*Update on header color*/
+        "
       >
         <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
         <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
@@ -136,6 +139,7 @@
             :overlay-dark="!!dark_header"
             :search-mode="search_mode"
             :shop="shop"
+            :color="header_color"
             overlay
           ></s-storefront-primary-header>
 
@@ -265,6 +269,10 @@ export default {
      * @property {string|null} header_mode - Defines the current mode of the header. Can be 'null', 'normal', 'overlay', or 'hidden'.
      */
     header_mode: null,
+
+
+    header_color:null,
+
   }),
 
   /**
@@ -426,6 +434,7 @@ export default {
         this.transparent_header = null;
         this.dark_header = null; // Default value is null!
         this.header_mode = null;
+        this.header_color=null;
       }
     },
 

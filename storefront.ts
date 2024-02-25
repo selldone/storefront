@@ -32,7 +32,7 @@ import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the serv
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
 import {createComponents} from "@components/components";
-import {SetupPageBuilder} from "@app-page-builder/PageBuilder";
+import {SetupPageBuilder} from "@app-page-builder/page-builder";
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
