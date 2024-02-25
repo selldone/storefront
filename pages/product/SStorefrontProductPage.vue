@@ -250,9 +250,9 @@
       <!-- █████████████████████ Internal Page █████████████████████ -->
 
       <div v-if="page" :style="{ order: getOrder('page') }">
-        <SPageRender
+        <LPageViewer
           :augment="augment"
-          :data="page.content"
+          :initialPageData="page.content"
           :style="page.background"
         />
       </div>
@@ -373,6 +373,7 @@ import SShopProductSubscriptionMembership from "@components/product/subscription
 import SShopProductOffers from "@components/product/offers/SShopProductOffers.vue";
 import SShopProductCrossSellList from "@components/product/cross-sells/SShopProductCrossSellList.vue";
 import ProductSection from "@core/enums/product/ProductSection";
+import LPageViewer from "@app-page-builder/page/viewer/LPageViewer.vue";
 
 export default {
   name: "SStorefrontProductPage",
@@ -382,6 +383,7 @@ export default {
     },
   },
   components: {
+    LPageViewer,
     SShopProductCrossSellList,
     SShopProductOffers,
     SShopProductSubscriptionMembership,
