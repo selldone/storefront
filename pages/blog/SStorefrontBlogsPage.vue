@@ -541,9 +541,9 @@
               <div class="text-center pt-2 mt-3">
                 <v-pagination
                   :length="pageCount"
-                  :value="page"
+                  :model-value="page"
                   circle
-                  @input="
+                  @update:model-value="
                     (val) => {
                       page = val;
                       $router.replace({

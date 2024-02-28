@@ -20,7 +20,6 @@ import {createApp} from "vue";
 import App from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
-import vuetify from "@components/plugins/vuetify/vuetify";
 import VueCookies from "vue-cookies";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@core/enums/language/Language";
@@ -28,11 +27,14 @@ import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationI
 import {StorefrontSDK} from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the service worker.
+import {VuetifyInstance} from "@components/plugins/vuetify/vuetify";
 //█████████████████████████████████████████████████████████████
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
 import {createComponents} from "@components/components";
 import {SetupPageBuilder} from "@app-page-builder/page-builder";
+
+const vuetify = VuetifyInstance(i18n);
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -63,8 +65,6 @@ const app = createApp(App);
 const components = createComponents({});
 app.use(components);
 
-
-
 //█████████████████████████████████████████████████████████████
 //――――――――――― Selldone® Storefront SDK ―――――――――――
 //█████████████████████████████████████████████████████████████
@@ -85,23 +85,23 @@ CapiCommunity.Setup(); // Setup community.
  * @param expire_date - The expiration date for the token cookie.
  */
 window.SetToken = function (
-    token: string,
-    expire_date: Date | null = null,
+  token: string,
+  expire_date: Date | null = null,
 ): void {
-    window.$cookies.set(
-        "access_token",
-        token,
-        expire_date ? expire_date.toUTCString() : "",
-        window.$storefront.prefix_url,
-        null,
-        false,
-    );
-    window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  window.$cookies.set(
+    "access_token",
+    token,
+    expire_date ? expire_date.toUTCString() : "",
+    window.$storefront.prefix_url,
+    null,
+    false,
+  );
+  window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
-    (storefrontVueApp as InstanceType<typeof StorefrontMixin>).UpdateUserInfo();
-    (
-        storefrontVueApp as InstanceType<typeof StorefrontMixin>
-    ).fetchBasketAndShop();
+  (storefrontVueApp as InstanceType<typeof StorefrontMixin>).UpdateUserInfo();
+  (
+    storefrontVueApp as InstanceType<typeof StorefrontMixin>
+  ).fetchBasketAndShop();
 };
 
 //█████████████████████████████████████████████████████████████
@@ -133,8 +133,7 @@ const storefrontVueApp = new Vue({
   vuetify,
 }).$mount("#app");*/
 
-
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
 SetupPageBuilder(app, {
-    mode:"view"
+  mode: "view",
 });

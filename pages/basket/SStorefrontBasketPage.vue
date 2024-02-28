@@ -86,7 +86,7 @@
               force-show
               return-object
               selectable
-              @input="selectCoupon"
+              @update:model-value="selectCoupon"
               @loading="(val) => (refreshing_price = val)"
             ></s-storefront-coupons-list>
 
@@ -99,7 +99,7 @@
               force-show
               return-object
               selectable
-              @input="selectLottery"
+              @update:model-value="selectLottery"
               @loading="(val) => (refreshing_price = val)"
             >
             </s-storefront-lottery-prizes-list>
@@ -237,7 +237,7 @@
                       v-model="basket.discount_code"
                       :basket="basket"
                       :currency="basket.currency"
-                      @input="selectDiscountCode"
+                      @update:model-value="selectDiscountCode"
                       @loading="(val) => (refreshing_price = val)"
                     />
                     <v-spacer />
@@ -556,12 +556,12 @@
                             : $t(getShopTransportationObject(item.type).name)
                       "
                       :items="transportation_exclude_pickup"
-                      :value="transportation?.type"
+                      :model-value="transportation?.type"
                       force-show-all
                       item-description="message"
                       item-value="type"
                       rounded
-                      @input="
+                      @update:model-value="
                         (_type) => {
                           transportation = transportation_exclude_pickup.find(
                             (x) => x.type === _type,

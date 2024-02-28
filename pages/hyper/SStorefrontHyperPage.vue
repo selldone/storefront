@@ -71,7 +71,7 @@
             :length="pages"
             :total-visible="6"
             circle
-            @input="fetchOrders()"
+            @update:model-value="fetchOrders()"
           ></v-pagination>
         </div>
 

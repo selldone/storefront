@@ -133,7 +133,12 @@ const StorefrontMixin = {
         //――――  Set global language object ―――
         window.$language = this.getCurrentLanguage();
 
-        this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
+       // this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
+
+        /**
+         * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}
+         */
+
       });
 
       try {

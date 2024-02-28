@@ -344,7 +344,12 @@ export default {
     )
       this.setCurrentLanguage(SetupService.GetInitialLanguage());
 
-    this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
+    //this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
+
+    /**
+     * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}
+     */
+
 
     //――――――――――――――――――――――――― Save Entry Channel ―――――――――――――――――――――――――
     const route_channel = this.$route.matched.find(

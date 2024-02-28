@@ -80,7 +80,7 @@
         v-model="page"
         :length="pageCount"
         circle
-        @input="fetchFAQData()"
+        @update:model-value="fetchFAQData()"
       />
     </v-container>
 

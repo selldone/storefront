@@ -50,7 +50,7 @@ export function loadLanguageAsyncShop(
   setI18nLanguage: (value: string) => void,
 ): Promise<any> {
   // If the requested language is already the current language or If the requested language is already the current language or has been loaded
-  if (i18n.locale === lang || loadedLanguages.includes(lang)) {
+  if (i18n.global.locale === lang || loadedLanguages.includes(lang)) {
     setI18nLanguage(lang);
     return Promise.resolve();
   }
@@ -60,7 +60,7 @@ export function loadLanguageAsyncShop(
     /* webpackChunkName: "locals/shop/lang-[request]" */ `./${lang}`
   ).then((messages) => {
     console.log("✔ language pack loaded successfully.");
-    i18n.setLocaleMessage(lang, messages.default);
+    i18n.global.setLocaleMessage(lang, messages.default);
     loadedLanguages.push(lang);
     return setI18nLanguage(lang);
   });
