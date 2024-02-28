@@ -580,7 +580,7 @@
                           >● {{ $t("global.commons.sod") }}
                         </span>
 
-                        <div v-if="item.free_shipping" class="me-2 green--text">
+                        <div v-if="item.free_shipping" class="me-2 text-green">
                           ● {{ $t("global.commons.free_shipping") }}
                           {{ item.free_shipping_limit ? `for + ` : "" }}
                           <price-view

@@ -72,7 +72,7 @@
                   slug: latest_article.slug,
                 },
               }"
-              class="black--text"
+              class="text-black"
               exact
             >
               <img
