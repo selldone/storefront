@@ -86,16 +86,14 @@
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list dense tile>
-        <v-list-item :to="{ name: 'ShopFAQ' }" exact>
-          <v-list-item-icon>
-            <v-icon>home</v-icon>
-          </v-list-item-icon>
+        <v-list-item :to="{ name: 'ShopFAQ' }" exact prepend-icon="home">
+
           <v-list-item-title
             >{{ $t("global.faq.main_page") }}
           </v-list-item-title>
         </v-list-item>
 
-        <v-list-item-group>
+        <v-list-group>
           <v-list-item
             v-for="tag in tags"
             :key="tag"
@@ -105,7 +103,7 @@
           >
             <v-list-item-title>{{ tag }}</v-list-item-title>
           </v-list-item>
-        </v-list-item-group>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
