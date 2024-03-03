@@ -56,7 +56,7 @@
             </v-btn>
           </div>
 
-          <s-offline-basket-items-list
+          <b-pos-cart-items
             v-if="basket"
             :basket="basket"
             view-only
@@ -220,7 +220,7 @@
 </template>
 
 <script>
-import SOfflineBasketItemsList from "@components/pos/basket-items-list/SOfflineBasketItemsList.vue";
+import BPosCartItems from "@components/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@components/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
@@ -235,7 +235,7 @@ export default {
     SPaymentBillingDetails,
     SPaymentCard,
     SPosBillView,
-    SOfflineBasketItemsList,
+    BPosCartItems,
   },
 
   data: () => ({

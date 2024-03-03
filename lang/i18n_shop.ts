@@ -12,7 +12,7 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import VueI18n, {createI18n} from "vue-i18n";
+import {createI18n} from "vue-i18n";
 
 // @ts-ignore
 import en from "./en";
@@ -25,18 +25,21 @@ const messages = {
  * Configuration for VueI18n instance.
  */
 export const i18n = createI18n({
-  locale: "en", // default locale
-  fallbackLocale: "en", // fallback locale
-  messages, // locale message object
-  silentTranslationWarn: true, // suppress warning if translation for a key is not found
+  legacy: false, // Specifies that Vue I18n should run in Composition API mode
+  locale: "en", // Default locale
+  fallbackLocale: "en", // Locale to use if a translation is not available in the current locale
+  messages, // Locale messages
+  silentTranslationWarn: true, // Suppress warnings when falling back to either fallbackLocale or root
+  returnNull: true, // Configuration to allow null values as valid translations
 });
 
-// Attach $t to the window object
-window.$t = (key: VueI18n.Path, values?: VueI18n.Values) =>
-  i18n.global.t(key, values);
+// Extend the window object with a global translation function for convenience
+window.$t = i18n.global.t;
 
-// List of pre-loaded languages.
-const loadedLanguages: string[] = ["en" /*,'fa','de','sv'*/];
+// ---------------- Async Language Loading ----------------
+
+// Preloaded default language(s)
+const loadedLanguages = ["en"];
 
 /**
  * Load new locale messages asynchronously and set the locale.
@@ -50,7 +53,7 @@ export function loadLanguageAsyncShop(
   setI18nLanguage: (value: string) => void,
 ): Promise<any> {
   // If the requested language is already the current language or If the requested language is already the current language or has been loaded
-  if (i18n.global.locale === lang || loadedLanguages.includes(lang)) {
+  if (i18n.global.locale.value === lang || loadedLanguages.includes(lang)) {
     setI18nLanguage(lang);
     return Promise.resolve();
   }

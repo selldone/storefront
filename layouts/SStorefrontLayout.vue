@@ -70,7 +70,6 @@
         :class="{
           'is-mobile': isMobile,
           'full-width': search_mode && isMobile,
-          'has-banner-offset': shop_main_banner,
         }"
         :dark="false"
         :expandInput.sync="search_mode"
@@ -79,8 +78,9 @@
         :title="$t('layout_shop.search_title', { shop_name: shop.title })"
         class="s--storefront-layout-search-style me-2"
         color="transparent"
+
+        variant="solo"
         flat
-        solo
         @onClear="onClear"
         @onSearch="onSearch"
       />
@@ -569,6 +569,9 @@ a {
     border-radius: 12px 12px 0 0;
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: 420px;
+
 
     @media only screen and (min-width: 1720px) {
       box-shadow: 0 -12px 8px 0px rgba(0, 0, 0, 0.03);
@@ -591,9 +594,6 @@ a {
       width: 100%;
     }
 
-    &.has-banner-offset {
-      margin-top: calc(var(--s--top-banner-heigh) + 4px);
-    }
   }
 }
 </style>

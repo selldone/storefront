@@ -101,63 +101,76 @@ const StorefrontMixin = {
       return i18n;
     },
 
+    /**
+     * Asynchronously sets the current application language.
+     * @param _locale - The new language to set, can be a language code string or an ILanguage object.
+     * @param save_on_local - If true, saves the language preference locally for future sessions.
+     */
+
     async setCurrentLanguage(
-      _local: string | ILanguage,
+      _locale: string | ILanguage,
       save_on_local: boolean = false,
     ) {
-      let local: string;
-      if (typeof _local === "object") {
-        local = _local.code;
+      let locale: string;
+
+      // Determine if _locale is an ILanguage object and extract the code, otherwise use it directly.
+      if (
+        typeof _locale === "object" && _locale !== null
+      ) {
+        locale = _locale.code;
       } else {
-        local = _local;
+        locale = _locale;
       }
 
-      console.log("🌐 Set Language: ", local);
+      console.log("🌐 Set Language: ", locale);
 
-      if (!local || !Language[local]) local = "en";
-      // Temporary set window global language object: (Used by language selector set its default)
-      window.$language = this.getLanguageObject(local);
+      // Validate and fall back to English if the provided locale is not supported.
+      if (!locale || !Language[locale]) locale = "en";
+
+      // Set a global language object for temporary use, e.g., by a language selector component.
+      window.$language = Language[locale];
 
       // 🞧 Header: Language
+      // Set the X-Localization header for all axios requests to the current language.
       window.axios.defaults.headers.common["X-Localization"] =
-        window.$language.local;
+        window.$language.locale;
 
-      await loadLanguageAsyncShop(local, () => {
-        console.log("🌐 SwitchLanguage | ✅ Load async package: ", local);
-        this.$i18n.locale = local;
+      // Load the language pack asynchronously.
+      await loadLanguageAsyncShop(locale, () => {
+        console.log("🌐 SwitchLanguage | ✅ Load async package: ", locale);
+        this.$i18n.locale = locale;
 
+        // Save the language setting locally if requested.
         if (save_on_local) {
-          window.$storefront.database.language.setLanguage(local);
+          window.$storefront.database.language.setLanguage(locale);
         }
 
-        //――――  Set global language object ―――
+        // Update the global language object with the current language settings.
         window.$language = this.getCurrentLanguage();
-
-       // this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
 
         /**
          * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}
          */
-
       });
 
+      // Attempt to apply any language pack overrides.
       try {
-        let rez = window.OverrideShopLanguagePacks[local];
+        let rez = window.OverrideShopLanguagePacks[locale];
         if (!rez) {
-          window.OverrideShopLanguagePacks[local] = {}; // Prevent duplicate loading!
+          // Initialize the language pack override to prevent duplicate loading.
+          window.OverrideShopLanguagePacks[locale] = {}; // Prevent duplicate loading!
 
-          // load language override pack
-          rez = await window.$storefront.shop.language.fetchLanguagePack(local);
-
-          window.OverrideShopLanguagePacks[local] = rez;
+          // Load the language override pack.
+          rez = await window.$storefront.shop.language.fetchLanguagePack(locale);
+          window.OverrideShopLanguagePacks[locale] = rez;
         }
 
         if (rez) {
           const { global, shop } = rez;
           console.log("🌐 Language | 🟠 Set custom language packs.");
 
-          // get current messages
-          const currentMessages = this.$i18n.getLocaleMessage(local);
+          // Retrieve the current i18n messages and merge them with the overrides.
+          const currentMessages = i18n.global.getLocaleMessage(locale);
 
           // merge with override
           const mergedMessages = merge({}, currentMessages, {
@@ -165,7 +178,8 @@ const StorefrontMixin = {
             ...shop,
           });
 
-          this.$i18n.setLocaleMessage(local, mergedMessages);
+          // Update the locale messages with the merged messages.
+          i18n.global.setLocaleMessage(locale, mergedMessages);
         }
       } catch (e) {
         console.error(e);
