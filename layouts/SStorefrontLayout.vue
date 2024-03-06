@@ -78,7 +78,6 @@
         :title="$t('layout_shop.search_title', { shop_name: shop.title })"
         class="s--storefront-layout-search-style me-2"
         color="transparent"
-
         variant="solo"
         flat
         @onClear="onClear"
@@ -270,9 +269,7 @@ export default {
      */
     header_mode: null,
 
-
-    header_color:null,
-
+    header_color: null,
   }),
 
   /**
@@ -434,7 +431,7 @@ export default {
         this.transparent_header = null;
         this.dark_header = null; // Default value is null!
         this.header_mode = null;
-        this.header_color=null;
+        this.header_color = null;
       }
     },
 
@@ -572,7 +569,6 @@ a {
     width: 100%;
     max-width: 420px;
 
-
     @media only screen and (min-width: 1720px) {
       box-shadow: 0 -12px 8px 0px rgba(0, 0, 0, 0.03);
     }
@@ -593,7 +589,6 @@ a {
     &.full-width {
       width: 100%;
     }
-
   }
 }
 </style>
