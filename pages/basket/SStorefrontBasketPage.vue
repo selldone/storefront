@@ -421,7 +421,6 @@
                     </div>
                   </v-expand-transition>
 
-                  <template>
                     <!-- SERVICE: Dont show price for service -->
 
                     <!-- ========== Spacer ========== -->
@@ -484,7 +483,6 @@
                         >
                       </p>
                     </div>
-                  </template>
 
                   <div v-if="has_delivery" class="spacer-line my-3" />
                 </div>
