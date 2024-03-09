@@ -17,7 +17,7 @@
     <div v-if="!$vuetify.display.xsOnly" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-      <s-storefront-products-listing
+      <s-products-listing
         v-if="bounds"
         :location-bounds="bounds"
         :shop="getShop()"
@@ -30,7 +30,7 @@
         @fetch-products="onfetchProducts"
         @product-hover:enter="(p) => productHover(p, true)"
         @product-hover:leave="(p) => productHover(p, false)"
-      ></s-storefront-products-listing>
+      ></s-products-listing>
     </div>
     <div :class="{ '-full': $vuetify.display.xsOnly }" class="map-viewer">
       <!-- Pre loading -->
@@ -100,7 +100,7 @@
         <v-card-text class="px-0" style="padding-bottom: 20vh">
           <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Mobile ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
-          <s-storefront-products-listing
+          <s-products-listing
             v-if="bounds"
             :location-bounds="bounds"
             :shop="getShop()"
@@ -113,7 +113,7 @@
             @fetch-products="onfetchProducts"
             @product-hover:enter="(p) => productHover(p, true)"
             @product-hover:leave="(p) => productHover(p, false)"
-          ></s-storefront-products-listing>
+          ></s-products-listing>
         </v-card-text>
       </v-card>
     </div>
@@ -187,7 +187,7 @@
 <script>
 import Mapbox from "@components/map/plugins/MapBox";
 import { SetupService } from "@core/server/SetupService";
-import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
+import SProductsListing from "@components/storefront/products/listing/SProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
 import SShopProductCard from "@components/product/card/SShopProductCard.vue";
@@ -199,7 +199,7 @@ export default {
     SShopProductCard,
     SValueCopyBox,
     SAddressInput,
-    SStorefrontProductsListing,
+    SProductsListing,
   },
 
   data() {

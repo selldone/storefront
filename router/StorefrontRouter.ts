@@ -19,7 +19,7 @@ import SStorefrontLayout from "../layouts/SStorefrontLayout.vue";
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
 import SStorefrontProductsPage from "../pages/SStorefrontProductsPage.vue";
 
-import SStorefrontProductPage from "../pages/product/SStorefrontProductPage.vue";
+import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
 
 //――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
 import SStorefrontBasketPage from "../pages/basket/SStorefrontBasketPage.vue";
@@ -388,7 +388,7 @@ const routes: IVueRoute[] = [
       {
         path: "product/:product_id",
         name: StorefrontRoutesName.PRODUCT_PAGE,
-        component: SStorefrontProductPage,
+        component: StorefrontPageProduct,
         meta: {
           search: true, // SHow search bar
           fullscreen: true,

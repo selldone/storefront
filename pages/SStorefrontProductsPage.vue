@@ -58,7 +58,7 @@
       ></s-shop-vendor-header>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-      <s-storefront-products-listing
+      <s-products-listing
         :shop="getShop()"
         :vendor-id="vendor_id"
         has-breadcrumb
@@ -68,20 +68,20 @@
         route-mode
         update-route
         @update:title="setPageTitle"
-      ></s-storefront-products-listing>
+      ></s-products-listing>
     </v-card>
   </div>
 </template>
 
 <script>
-import SStorefrontProductsListing from "@components/storefront/products-listing/SStorefrontProductsListing.vue";
+import SProductsListing from "@components/storefront/products/listing/SProductsListing.vue";
 import SShopVendorHeader from "@components/storefront/vendor/SShopVendorHeader.vue";
 
 export default {
   name: "SStorefrontProductsPage",
   components: {
     SShopVendorHeader,
-    SStorefrontProductsListing,
+    SProductsListing,
   },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

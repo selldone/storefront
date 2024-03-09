@@ -71,23 +71,27 @@
           <!-- ⬬⬬⬬⬬ QR CODE ⬬⬬⬬⬬ -->
 
           <v-btn
-            caption="Barcode"
-            class="me-0 sub-caption -hover flex-grow-0"
-            icon
+            class="me-5 flex-grow-0"
+            icon variant="text"
             tile
             @click="show_qr = true"
             ><img src="@components/assets/icons/qr-code.svg" width="32"
-          /></v-btn>
+          />
+          <v-tooltip location="bottom" activator="parent">
+            Barcode
+          </v-tooltip>
+          </v-btn>
+
         </v-toolbar>
 
-        <s-shop-product-main-card
+        <s-product-overview
           v-if="product"
           ref="product_info"
           :product="product"
           can-buy
           show-cover
         />
-        <product-info-loading-view v-else />
+        <s-product-overview-loading v-else />
 
         <s-progress-loading v-if="busy"></s-progress-loading>
       </div>
@@ -96,23 +100,23 @@
     <template v-if="product">
       <!-- ████████████████████ Cross Sells ████████████████████ -->
       <div :style="{ order: getOrder('cross') }">
-        <s-shop-product-cross-sell-list
+        <s-product-cross-sells
           :current-variant="current_variant"
           :product="product"
           :shop="shop"
           class="s--product-section-spec my-16"
-        ></s-shop-product-cross-sell-list>
+        ></s-product-cross-sells>
       </div>
 
       <!-- ████████████████████ Offer ████████████████████ -->
       <!-- ▁▁▁▁▁▁ 🞇 Offer 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('offer') }">
-        <s-shop-product-offers
+        <s-product-offers
           :current-variant="current_variant"
           :product="product"
           :shop="shop"
           class="s--product-section-spec my-16"
-        ></s-shop-product-offers>
+        ></s-product-offers>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Spec ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
@@ -203,48 +207,48 @@
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Files List ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('files') }">
-        <s-shop-product-files
+        <s-product-files-list
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-files>
+        ></s-product-files-list>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > 🦄 Membership Contents ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('contents') }">
-        <s-shop-product-subscription-membership
+        <s-product-subscription-membership
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-subscription-membership>
+        ></s-product-subscription-membership>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Shipping ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('shipping') }">
-        <s-shop-product-shipping
+        <s-product-shipping
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-shipping>
+        ></s-product-shipping>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Warranty ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
 
       <div :style="{ order: getOrder('warranty') }">
-        <s-shop-product-warranty
+        <s-product-warranty
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-warranty>
+        ></s-product-warranty>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Guide ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('guide') }">
-        <s-shop-product-guide
+        <s-product-guide
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-guide>
+        ></s-product-guide>
       </div>
 
       <!-- █████████████████████ Internal Page █████████████████████ -->
@@ -260,38 +264,38 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Comment ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
 
       <div :style="{ order: getOrder('comments') }">
-        <s-shop-product-comments
+        <s-product-comments
           :product="product"
           :shop="shop"
           class="s--product-section-header"
-        ></s-shop-product-comments>
+        ></s-product-comments>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related products ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div :style="{ order: getOrder('related-products') }">
-        <s-shop-related-products :product="product" :shop="shop">
-        </s-shop-related-products>
+        <s-product-related-products :product="product" :shop="shop">
+        </s-product-related-products>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related categories ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div v-if="categories" :style="{ order: getOrder('related-categories') }">
-        <s-shop-related-categories
+        <s-product-related-categories
           :categories="categories"
           :product="product"
           :shop="shop"
         >
-        </s-shop-related-categories>
+        </s-product-related-categories>
       </div>
 
       <!-- ▁▁▁▁▁▁ 🞇 Badges 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('badges') }">
         <s-fade-scroll>
-          <s-shop-product-section-box-badges
+          <s-product-section-badges
             :large="$vuetify.display.mdAndUp"
             :product="product"
             :shop="shop"
             class="py-16"
-          ></s-shop-product-section-box-badges>
+          ></s-product-section-badges>
         </s-fade-scroll>
       </div>
 
@@ -343,12 +347,12 @@
 <script>
 import SArticleView from "@components/article/SArticleView.vue";
 
-import SShopProductMainCard from "@components/product/info/SShopProductMainCard.vue";
+import SProductOverview from "@components/product/overview/SProductOverview.vue";
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
 import BProductSpecTable from "@components/product/spec/table/BProductSpecTable.vue";
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
-import ProductInfoLoadingView from "@components/product/loading/ProductInfoLoadingView.vue";
+import SProductOverviewLoading from "@components/product/overview/loading/SProductOverviewLoading.vue";
 import { SpecHelper } from "@core/helper/product/SpecHelper";
 
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
@@ -360,23 +364,23 @@ import SFadeScroll from "@components/ui/fade-scroll/SFadeScroll.vue";
 import SShopProductIncludes from "@components/product/includes/SShopProductIncludes.vue";
 import { ColorHelper } from "@core/helper/color/ColorHelper";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
-import SShopRelatedProducts from "@components/product/related-products/SShopRelatedProducts.vue";
-import SShopRelatedCategories from "@components/product/related-categories/SShopRelatedCategories.vue";
-import SShopProductSectionBoxBadges from "@components/product/sections/SShopProductSectionBoxBadges.vue";
+import SProductRelatedProducts from "@components/product/related-products/SProductRelatedProducts.vue";
+import SProductRelatedCategories from "@components/product/related-categories/SProductRelatedCategories.vue";
+import SProductSectionBadges from "@components/product/section/badges/SProductSectionBadges.vue";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
-import SShopProductShipping from "@components/product/shipping/SShopProductShipping.vue";
-import SShopProductWarranty from "@components/product/warranty/SShopProductWarranty.vue";
-import SShopProductGuide from "@components/product/guide/SShopProductGuide.vue";
-import SShopProductFiles from "@components/product/files/SShopProductFiles.vue";
-import SShopProductComments from "@components/product/comments/SShopProductComments.vue";
-import SShopProductSubscriptionMembership from "@components/product/subscription/SShopProductSubscriptionMembership.vue";
-import SShopProductOffers from "@components/product/offers/SShopProductOffers.vue";
-import SShopProductCrossSellList from "@components/product/cross-sells/SShopProductCrossSellList.vue";
+import SProductShipping from "@components/product/shipping/SProductShipping.vue";
+import SProductWarranty from "@components/product/warranty/SProductWarranty.vue";
+import SProductGuide from "@components/product/guide/SProductGuide.vue";
+import SProductFilesList from "@components/product/file/list/SProductFilesList.vue";
+import SProductComments from "@components/product/comments/SProductComments.vue";
+import SProductSubscriptionMembership from "@components/product/subscription/membership/SProductSubscriptionMembership.vue";
+import SProductOffers from "@components/product/offers/SProductOffers.vue";
+import SProductCrossSells from "@components/product/cross-sells/SProductCrossSells.vue";
 import ProductSection from "@core/enums/product/ProductSection";
 import LPageViewer from "@app-page-builder/page/viewer/LPageViewer.vue";
 
 export default {
-  name: "SStorefrontProductPage",
+  name: "StorefrontPageProduct",
   props: {
     shop: {
       require: true,
@@ -384,25 +388,25 @@ export default {
   },
   components: {
     LPageViewer,
-    SShopProductCrossSellList,
-    SShopProductOffers,
-    SShopProductSubscriptionMembership,
-    SShopProductComments,
-    SShopProductFiles,
-    SShopProductGuide,
-    SShopProductWarranty,
-    SShopProductShipping,
-    SShopProductSectionBoxBadges,
-    SShopRelatedCategories,
-    SShopRelatedProducts,
+    SProductCrossSells,
+    SProductOffers,
+    SProductSubscriptionMembership,
+    SProductComments,
+    SProductFilesList,
+    SProductGuide,
+    SProductWarranty,
+    SProductShipping,
+    SProductSectionBadges,
+    SProductRelatedCategories,
+    SProductRelatedProducts,
     SShopProductIncludes,
     SFadeScroll,
     SShopProductProsConsTable,
 
-    ProductInfoLoadingView,
+    SProductOverviewLoading,
     BProductSpecTable,
     SBreadcrumbImage,
-    SShopProductMainCard,
+    SProductOverview,
     SArticleView,
   },
 
