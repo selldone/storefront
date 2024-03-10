@@ -12,9 +12,9 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import {XapiShop} from "@sdk-storefront/shop/XapiShop";
-import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationInterface";
-import {Store} from "vuex";
+import { XapiShop } from "@sdk-storefront/shop/XapiShop";
+import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
+import { Store } from "vuex";
 
 declare global {
   interface Window {

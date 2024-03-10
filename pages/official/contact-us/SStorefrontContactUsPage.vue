@@ -38,7 +38,9 @@
       <div v-if="submitted">
         <div class="py-16 px-5">
           <h2 class="font-weight-medium mb-5">
-            <v-icon class="me-2" color="green" large>check_circle</v-icon>
+            <v-icon class="me-2" color="green" size="large"
+              >check_circle</v-icon
+            >
             {{ $t("contact_us_form.submitted_title") }}
           </h2>
           <p class="text-muted max-widget-width mx-auto">
@@ -105,7 +107,7 @@
             :loading="busy_send"
             color="primary"
             dark
-            x-large
+            size="x-large"
             @click="sendForm"
           >
             {{ $t("global.actions.send") }}

@@ -34,7 +34,7 @@
         :to="{ name: window.$storefront.routes.HYPER_PAGE }"
         class="absolute-top-start slideInDown"
         exact
-        text
+        variant="text"
       >
         <v-icon class="ms-1">{{ $t("icons.chevron_back") }}</v-icon>
         {{ $t("global.actions.back") }}
@@ -60,7 +60,7 @@
               {{ getBasketOrderCode(hyper) }}
             </small>
 
-            <p class="mb-0 mt-4 subtitle-2">
+            <p class="mb-0 mt-4 text-subtitle-2">
               {{ $t("global.commons.cart_list") }}
             </p>
             <s-shop-hyper-items-list :hyper="hyper" :items="items" class="my-3">
@@ -91,12 +91,12 @@
               </price-view>
             </div>
 
-            <div v-if="isPayed" class="subtitle-2">
+            <div v-if="isPayed" class="text-subtitle-2">
               <v-icon class="me-1" color="success">check_circle</v-icon>
               {{ $t("global.status.paid") }}
               {{ getLocalTimeString(hyper.pay_at) }}
             </div>
-            <div v-else-if="isCanceled" class="subtitle-2">
+            <div v-else-if="isCanceled" class="text-subtitle-2">
               <v-icon class="me-1" color="red">cancel</v-icon>
               {{ $t("global.status.canceled") }}
               {{ getLocalTimeString(hyper.reject_at) }}

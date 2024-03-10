@@ -37,6 +37,7 @@
 
 -->
 <template>
+  <div id="banners-placeholder"></div>
   <v-app
     v-if="shop"
     :class="[
@@ -63,7 +64,9 @@
     @keyup.ctrl="SwitchLanguage"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-campaign-banner :shop="shop" />
+    <Teleport to="#banners-placeholder">
+      <s-storefront-campaign-banner :shop="shop" />
+    </Teleport>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
@@ -350,7 +353,6 @@ export default {
      * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}
      */
 
-
     //――――――――――――――――――――――――― Save Entry Channel ―――――――――――――――――――――――――
     const route_channel = this.$route.matched.find(
       (record) => record.meta.channel,
@@ -444,7 +446,7 @@ export default {
     }, 5 * 60000); // every 5 minutes
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     this.EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
     this.EventBus.$off(EventName.FIREBASE_GET_TOKEN);
 

@@ -28,8 +28,8 @@
       <div class="widget-buttons">
         <v-btn
           color="success"
-          depressed
-          x-large
+          variant="flat"
+          size="x-large"
           @click="dialog_add_to_address_book = true"
         >
           <v-icon class="me-1">add_location</v-icon>
@@ -101,8 +101,13 @@
         </div>
 
         <div class="widget-buttons">
-          <v-btn color="primary" large text @click="editAddress(address)">
-            <v-icon class="me-1" small>edit</v-icon>
+          <v-btn
+            color="primary"
+            size="large"
+            variant="text"
+            @click="editAddress(address)"
+          >
+            <v-icon class="me-1" size="small">edit</v-icon>
             {{ $t("global.actions.edit") }}
           </v-btn>
         </div>
@@ -115,7 +120,7 @@
       v-model="map_dialog"
       content-class="bg-map"
       fullscreen
-      hide-overlay
+      :scrim="false"
       transition="dialog-bottom-transition"
     >
       <s-map-view
@@ -172,8 +177,8 @@
           <div class="widget-buttons">
             <v-btn
               color="default"
-              text
-              x-large
+              variant="text"
+              size="x-large"
               @click="dialog_add_to_address_book = false"
             >
               {{ $t("global.actions.cancel") }}
@@ -181,8 +186,8 @@
             <v-btn
               :class="{ disabled: !new_address_title }"
               color="primary"
-              depressed
-              x-large
+              variant="flat"
+              size="x-large"
               @click="addNewLocation()"
             >
               {{ $t("global.actions.accept") }}

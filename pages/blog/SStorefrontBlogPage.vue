@@ -51,7 +51,7 @@
           color="blue"
           link
           rounded
-          text
+          variant="text"
         >
           {{ tag }}
         </v-btn>

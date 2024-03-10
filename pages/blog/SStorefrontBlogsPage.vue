@@ -33,7 +33,7 @@
         :to="to_home"
         class="flipInX"
         exact
-        text
+        variant="text"
       >
         <v-icon class="me-1">{{ $t("icons.arrow_back") }}</v-icon>
         {{ $t("global.actions.back") }}
@@ -50,7 +50,7 @@
         flat
         hide-details
         single-line
-        solo
+        variant="solo"
       >
       </v-text-field>
     </v-toolbar>
@@ -124,28 +124,27 @@
                     />
                   </v-avatar>
                 </template>
-                <v-list-item-content>
-                  <v-list-item-subtitle>
-                    <s-blog-user-category-view
-                      :categories="categories"
-                      :category-name="article.parent.category_id"
-                      :user="article.user"
-                    ></s-blog-user-category-view>
-                  </v-list-item-subtitle>
-                  <v-list-item-title>
-                    <h2
-                      class="my-1 font-weight-black line-height-normal font-size-16px"
-                      style="white-space: normal; min-height: 50px"
-                    >
-                      {{ article.title }}
-                    </h2>
-                  </v-list-item-title>
-                  <v-list-item-subtitle class="my-0"
-                    >{{
-                      getLocalTimeString(article.updated_at, true, false, true)
-                    }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
+
+                <v-list-item-subtitle>
+                  <s-blog-user-category-view
+                    :categories="categories"
+                    :category-name="article.parent.category_id"
+                    :user="article.user"
+                  ></s-blog-user-category-view>
+                </v-list-item-subtitle>
+                <v-list-item-title>
+                  <h2
+                    class="my-1 font-weight-black line-height-normal font-size-16px"
+                    style="white-space: normal; min-height: 50px"
+                  >
+                    {{ article.title }}
+                  </h2>
+                </v-list-item-title>
+                <v-list-item-subtitle class="my-0"
+                  >{{
+                    getLocalTimeString(article.updated_at, true, false, true)
+                  }}
+                </v-list-item-subtitle>
               </v-list-item>
             </v-list>
           </v-col>
@@ -155,7 +154,7 @@
           <!-- Stared Categories -->
           <v-col class="d-flex flex-column" cols="12" md="4" sm="12">
             <p class="font-weight-bold">
-              <v-icon class="me-1" small>photo_filter</v-icon>
+              <v-icon class="me-1" size="small">photo_filter</v-icon>
               {{ $t("blogs.topics") }}
             </p>
 
@@ -218,21 +217,19 @@
                   </v-avatar>
                 </template>
 
-                <v-list-item-content>
-                  <v-list-item-title
-                    class="font-weight-bold list-item-bold line-height-normal"
-                    style="white-space: normal"
+                <v-list-item-title
+                  class="font-weight-bold list-item-bold line-height-normal"
+                  style="white-space: normal"
+                >
+                  {{ category.category }}
+                  <small class="float-end">
+                    {{ category.articles }}
+                    {{ $t("global.commons.articles") }}</small
                   >
-                    {{ category.category }}
-                    <small class="float-end">
-                      {{ category.articles }}
-                      {{ $t("global.commons.articles") }}</small
-                    >
-                  </v-list-item-title>
-                  <v-list-item-subtitle
-                    >{{ category.description }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
+                </v-list-item-title>
+                <v-list-item-subtitle
+                  >{{ category.description }}
+                </v-list-item-subtitle>
               </v-list-item>
             </v-list>
             <div v-if="category_pages > 1">
@@ -240,19 +237,19 @@
                 :disabled="category_page === 1"
                 class="fadeIn delay_2s"
                 icon
-                small
+                size="small"
                 @click="category_page--"
               >
-                <v-icon small>north</v-icon>
+                <v-icon size="small">north</v-icon>
               </v-btn>
               <v-btn
                 :disabled="category_page === category_pages"
                 class="fadeIn delay_2s"
                 icon
-                small
+                size="small"
                 @click="category_page++"
               >
-                <v-icon small>south</v-icon>
+                <v-icon size="small">south</v-icon>
               </v-btn>
             </div>
           </v-col>
@@ -262,7 +259,7 @@
           <v-col cols="12">
             <hr />
             <p class="font-weight-bold">
-              <v-icon class="me-1" small>trending_up</v-icon>
+              <v-icon class="me-1" size="small">trending_up</v-icon>
               {{ $t("blogs.popular") }}
             </p>
           </v-col>
@@ -291,26 +288,22 @@
                 </v-avatar>
               </template>
 
-              <v-list-item-content>
-                <s-blog-user-category-view
-                  :categories="categories"
-                  :category-name="
-                    article.parent ? article.parent.category_id : null
-                  "
-                  :user="article.user"
-                ></s-blog-user-category-view>
-                <v-list-item-title
-                  class="font-weight-bold list-item-bold line-height-normal my-1"
-                  style="white-space: normal; min-height: 40px"
-                >
-                  {{ article.title }}
-                </v-list-item-title>
-                <v-list-item-subtitle
-                  >{{
-                    getLocalTimeString(article.updated_at, true, false, true)
-                  }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
+              <s-blog-user-category-view
+                :categories="categories"
+                :category-name="
+                  article.parent ? article.parent.category_id : null
+                "
+                :user="article.user"
+              ></s-blog-user-category-view>
+              <v-list-item-title
+                class="font-weight-bold list-item-bold line-height-normal my-1"
+                style="white-space: normal; min-height: 40px"
+              >
+                {{ article.title }}
+              </v-list-item-title>
+              <v-list-item-subtitle
+                >{{ getLocalTimeString(article.updated_at, true, false, true) }}
+              </v-list-item-subtitle>
             </v-list-item>
           </v-col>
 
@@ -319,7 +312,7 @@
           <v-col v-if="show_interested_blogs" cols="12">
             <hr />
             <p class="font-weight-bold fadeIn delay_500">
-              <v-icon class="me-1" small>assistant</v-icon>
+              <v-icon class="me-1" size="small">assistant</v-icon>
               {{ $t("blogs.suggestions") }}
             </p>
           </v-col>
@@ -335,7 +328,7 @@
               height="600px"
               hide-delimiter-background
               light
-              show-arrows-on-hover
+              show-arrows="hover"
             >
               <v-carousel-item v-for="(chunk, i) in chunks" :key="i">
                 <v-container fluid style="padding-top: 32px">
@@ -386,7 +379,7 @@
           <!-- Stared Categories -->
           <v-col cols="12" md="4" sm="12">
             <p class="font-weight-bold">
-              <v-icon class="me-1" small>photo_filter</v-icon>
+              <v-icon class="me-1" size="small">photo_filter</v-icon>
               {{ $t("blogs.topics") }}
             </p>
 
@@ -402,7 +395,7 @@
           <v-col cols="12">
             <hr />
             <p class="font-weight-bold">
-              <v-icon class="me-1" small>trending_up</v-icon>
+              <v-icon class="me-1" size="small">trending_up</v-icon>
               {{ $t("blogs.popular") }}
             </p>
           </v-col>
@@ -418,7 +411,7 @@
           <v-col cols="12">
             <hr />
             <p class="font-weight-bold">
-              <v-icon class="me-1" small>school</v-icon>
+              <v-icon class="me-1" size="small">school</v-icon>
               {{ $t("blogs.title") }}
             </p>
           </v-col>
@@ -446,21 +439,21 @@
     <v-container v-if="articles.length > 0" fluid>
       <hr class="my-16" />
       <p class="font-weight-bold fadeIn delay_500">
-        <v-icon class="me-1" small>school</v-icon>
+        <v-icon class="me-1" size="small">school</v-icon>
         {{ $t("blogs.title") }}
       </p>
 
       <v-row id="first" align="start" justify="center">
         <v-col :order="1" :order-md="2" class="p-0" cols="12" lg="8" xl="9">
           <v-data-iterator
+            v-model:options="options"
+            v-model:page="page"
+            v-model:sort-by="sortBy"
             :items="articles"
             :items-length="totalItems"
             :items-per-page="itemsPerPage"
             :no-data-text="$t('global.commons.no_data')"
-            :options.sync="options"
-            :page.sync="page"
             :search="search"
-            :sort-by.sync="sortBy"
             hide-default-footer
           >
             <template v-slot:header></template>
@@ -501,38 +494,32 @@
                       />
                     </v-avatar>
                   </template>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <s-blog-user-category-view
-                        v-if="article.parent"
-                        :categories="categories"
-                        :category-name="article.parent.category_id"
-                        :user="article.user"
-                      ></s-blog-user-category-view>
-                    </v-list-item-subtitle>
-                    <v-list-item-title>
-                      <h2
-                        class="my-1 font-weight-black line-height-normal font-size-16px"
-                        style="white-space: normal"
-                      >
-                        {{ article.title }}
-                      </h2>
-                    </v-list-item-title>
-                    <v-list-item-subtitle class="normal-text hide-on-small-900">
-                      {{ article.description }}
-                    </v-list-item-subtitle>
 
-                    <v-list-item-subtitle class="mt-2"
-                      >{{
-                        getLocalTimeString(
-                          article.updated_at,
-                          true,
-                          false,
-                          true,
-                        )
-                      }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
+                  <v-list-item-subtitle>
+                    <s-blog-user-category-view
+                      v-if="article.parent"
+                      :categories="categories"
+                      :category-name="article.parent.category_id"
+                      :user="article.user"
+                    ></s-blog-user-category-view>
+                  </v-list-item-subtitle>
+                  <v-list-item-title>
+                    <h2
+                      class="my-1 font-weight-black line-height-normal font-size-16px"
+                      style="white-space: normal"
+                    >
+                      {{ article.title }}
+                    </h2>
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="normal-text hide-on-small-900">
+                    {{ article.description }}
+                  </v-list-item-subtitle>
+
+                  <v-list-item-subtitle class="mt-2"
+                    >{{
+                      getLocalTimeString(article.updated_at, true, false, true)
+                    }}
+                  </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
             </template>
@@ -542,7 +529,7 @@
                 <v-pagination
                   :length="pageCount"
                   :model-value="page"
-                  circle
+                  rounded
                   @update:model-value="
                     (val) => {
                       page = val;

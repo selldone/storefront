@@ -14,7 +14,7 @@
 
 <template>
   <div class="map-con text-start">
-    <div v-if="!$vuetify.display.xsOnly" class="map-items thin-scroll">
+    <div v-if="!$vuetify.display.xs" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
 
       <s-products-listing
@@ -32,7 +32,7 @@
         @product-hover:leave="(p) => productHover(p, false)"
       ></s-products-listing>
     </div>
-    <div :class="{ '-full': $vuetify.display.xsOnly }" class="map-viewer">
+    <div :class="{ '-full': $vuetify.display.xs }" class="map-viewer">
       <!-- Pre loading -->
       <s-loading
         v-if="!map_box"
@@ -74,7 +74,7 @@
     </div>
 
     <div
-      v-if="$vuetify.display.xsOnly"
+      v-if="$vuetify.display.xs"
       ref="bsheet"
       class="bottom-sheet overflow-auto"
     >
@@ -129,7 +129,7 @@
       scrollable
       width="98%"
     >
-      <v-card class="text-start position-relative" color="#111" tile>
+      <v-card class="text-start position-relative" color="#111" rounded="0">
         <v-btn class="absolute-top-end" icon @click="share_sheet = false">
           <v-icon>close</v-icon>
         </v-btn>
@@ -146,7 +146,7 @@
             cycle
             height="500"
             hide-delimiter-background
-            show-arrows-on-hover
+            show-arrows="hover"
           >
             <v-carousel-item
               v-for="product in share_products"

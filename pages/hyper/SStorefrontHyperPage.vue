@@ -48,7 +48,7 @@
       <v-btn
         v-if="add_mode"
         class="absolute-top-start slideInDown"
-        text
+        variant="text"
         @click="add_mode = false"
       >
         <v-icon class="ms-1">{{ $t("icons.chevron_back") }}</v-icon>
@@ -70,7 +70,7 @@
             v-model="page"
             :length="pages"
             :total-visible="6"
-            circle
+            rounded
             @update:model-value="fetchOrders()"
           ></v-pagination>
         </div>
@@ -83,12 +83,12 @@
           class="mx-auto zoomIn p-2"
           color="success"
           dark
-          depressed
+          variant="flat"
           height="auto"
           min-height="72"
           style="max-width: 420px"
           width="100%"
-          x-large
+          size="x-large"
           @click="add_mode = true"
         >
           <div>
@@ -112,7 +112,7 @@
 
       <s-storefront-hyper-add-order-form
         v-if="add_mode && open_hyper"
-        :hyper.sync="open_hyper"
+        v-model:hyper="open_hyper"
         :shop="shop"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"

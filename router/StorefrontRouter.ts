@@ -14,7 +14,7 @@
 
 import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import store from "../store/StorefrontStore";
-import SStorefrontLayout from "../layouts/SStorefrontLayout.vue";
+import StorefrontLayout from "../layouts/StorefrontLayout.vue";
 
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
 import SStorefrontProductsPage from "../pages/SStorefrontProductsPage.vue";
@@ -22,11 +22,11 @@ import SStorefrontProductsPage from "../pages/SStorefrontProductsPage.vue";
 import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
 
 //――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
-import SStorefrontBasketPage from "../pages/basket/SStorefrontBasketPage.vue";
+import StorefrontPageBasketCart from "@app-storefront/pages/basket/cart/StorefrontPageBasketCart.vue";
 //――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
 import SStorefrontLoginRedirect from "../pages/login/SStorefrontLoginRedirect.vue";
 import SStorefrontComparisonPage from "../pages/comparison/SStorefrontComparisonPage.vue";
-import SStorefrontUserPagesLayout from "../pages/user/SStorefrontUserPagesLayout.vue";
+import StorefrontLayoutCustomer from "../layouts/customer/StorefrontLayoutCustomer.vue";
 import SStorefrontUserProfilePage from "../pages/user/profile/SStorefrontUserProfilePage.vue";
 import SStorefrontUserAddressesPage from "@app-storefront/pages/user/address/SStorefrontUserAddressesPage.vue";
 import SStorefrontUserFavoritesPage from "../pages/user/favorites/SStorefrontUserFavoritesPage.vue";
@@ -50,80 +50,80 @@ import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
-const SStorefrontOrdersPage = () =>
+const StorefrontPageOrders = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/SStorefrontOrdersPage.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/orders/StorefrontPageOrders.vue"
   );
-const SStorefrontPhysicalOrderDetailPage = () =>
+const StorefrontPageBasketOrderPhysicalDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/physical/SStorefrontPhysicalOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/physical/dashbaord/StorefrontPageBasketOrderPhysicalDashboard.vue"
   );
-const SStorefrontVirtualOrderDetailPage = () =>
+const StorefrontPageBasketOrderVirtualDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/virtual/SStorefrontVirtualOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/virtual/dashboard/StorefrontPageBasketOrderVirtualDashboard.vue"
   );
-const SStorefrontAvocadoOrderDetailPage = () =>
+const StorefrontPageAvocadoOrderDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/avocado/avocado/SStorefrontAvocadoOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/avocado/order/dashboard/StorefrontPageAvocadoOrderDashboard.vue"
   );
-const SStorefrontAvocadoOrderDetailMasterLayout = () =>
+const StorefrontPageAvocadoOrder = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/avocado/SStorefrontAvocadoOrderDetailMasterLayout.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/avocado/order/StorefrontPageAvocadoOrder.vue"
   );
-const SStorefrontServiceOrderDetailPage = () =>
+const StorefrontPageBasketOrderServiceDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/service/SStorefrontServiceOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/service/dashboard/StorefrontPageBasketOrderServiceDashboard.vue"
   );
-const SStorefrontSubscriptionOrderDetailPage = () =>
+const StorefrontPageBasketOrderSubscriptionDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/subscription/SStorefrontSubscriptionOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/basket/order/subscription/dashboard/StorefrontPageBasketOrderSubscriptionDashboard.vue"
   );
 
-const SStorefrontPOSOrderDetailPage = () =>
+const StorefrontPagePosOrderDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/pos/pos/SStorefrontPOSOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/pos/order/dashboard/StorefrontPagePosOrderDashboard.vue"
   );
 const SStorefrontPOSOrderDetailMasterLayout = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/pos/SStorefrontPOSOrderDetailMasterLayout.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/pos/order/StorefrontPagePosOrder.vue"
   );
-const SStorefrontFileOrderDetailPage = () =>
+const StorefrontPageBasketOrderFileDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/file/SStorefrontFileOrderDetailPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/file/dashboard/StorefrontPageBasketOrderFileDashboard.vue"
   );
-const SStorefrontBasketOrderDetailMasterLayout = () =>
+const StorefrontPageBasketOrder = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/SStorefrontBasketOrderDetailMasterLayout.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/StorefrontPageBasketOrder.vue"
   );
-const SStorefrontHistoryOrdersAvocadoPage = () =>
+const StorefrontPageOrdersAvocado = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/avocado/avocado/SStorefrontHistoryOrdersAvocadoPage.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/orders/avocado/StorefrontPageOrdersAvocado.vue"
   );
-const SStorefrontHistoryOrdersPhysicalPage = () =>
+const StorefrontPageOrdersPhysical = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/physical/SStorefrontHistoryOrdersPhysicalPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/physical/StorefrontPageOrdersPhysical.vue"
   );
-const SStorefrontHistoryOrdersVirtualPage = () =>
+const StorefrontPageOrdersVirtual = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/virtual/SStorefrontHistoryOrdersVirtualPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/virtual/StorefrontPageOrdersVirtual.vue"
   );
-const SStorefrontHistoryOrdersFilePage = () =>
+const StorefrontPageOrdersFile = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/file/SStorefrontHistoryOrdersFilePage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/file/StorefrontPageOrdersFile.vue"
   );
-const SStorefrontHistoryOrdersServicePage = () =>
+const StorefrontPageOrdersService = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/service/SStorefrontHistoryOrdersServicePage.vue"
-  );
-
-const SStorefrontHistoryOrdersSubscriptionPage = () =>
-  import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/basket/subscription/SStorefrontHistoryOrdersSubscriptionPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/service/StorefrontPageOrdersService.vue"
   );
 
-const SStorefrontHistoryOrdersPOSPage = () =>
+const StorefrontPageOrdersSubscription = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/pos/pos/SStorefrontHistoryOrdersPOSPage.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/subscription/StorefrontPageOrdersSubscription.vue"
+  );
+
+const StorefrontPageOrdersPos = () =>
+  import(
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/pos/StorefrontPageOrdersPos.vue"
   );
 const SPageLoader = () =>
   import(
@@ -143,13 +143,13 @@ const SStorefrontInstagramPage = () =>
 
 //――――――――――――――――――――――――― Avocado ―――――――――――――――――――――――――
 
-const SStorefrontAvocadoOrderPage = () =>
+const StorefrontPageAvocadoCart = () =>
   import(
-    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/SStorefrontAvocadoOrderPage.vue"
+    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/cart/StorefrontPageAvocadoCart.vue"
   );
 const SStorefrontAvocadoPage = () =>
   import(
-    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/SStorefrontAvocadoPage.vue"
+    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/page/SStorefrontAvocadoPage.vue"
   );
 
 //――――――――――――――――――――――――― Hyper ―――――――――――――――――――――――――
@@ -167,7 +167,7 @@ const SStorefrontHyperPage = () =>
 
 const SStorefrontPOSPage = () =>
   import(
-    /* webpackChunkName: "shop-pos" */ "../pages/pos/SStorefrontPOSPage.vue"
+    /* webpackChunkName: "shop-pos" */ "../pages/pos/cart/SStorefrontPOSPage.vue"
   );
 
 //――――――――――――――――――――――――― Custom Home Page ―――――――――――――――――――――――――
@@ -314,7 +314,7 @@ const routes: IVueRoute[] = [
 
   {
     path: "",
-    component: SStorefrontLayout,
+    component: StorefrontLayout,
     meta: {
       footer: true, // Show Footer
       comparison: true, // Show Product Comparison
@@ -416,12 +416,12 @@ const routes: IVueRoute[] = [
       {
         path: "basket/:type",
         name: StorefrontRoutesName.BASKET_PAGE,
-        component: SStorefrontBasketPage,
+        component: StorefrontPageBasketCart,
       },
 
       {
         path: "user",
-        component: SStorefrontUserPagesLayout,
+        component: StorefrontLayoutCustomer,
 
         meta: {
           requiresAuth: true,
@@ -432,53 +432,53 @@ const routes: IVueRoute[] = [
           {
             path: "orders",
             name: StorefrontRoutesName.ORDERS_PAGE,
-            component: SStorefrontOrdersPage,
+            component: StorefrontPageOrders,
 
             children: [
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Physical ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "physical",
                 name: StorefrontRoutesName.HISTORY_ORDERS_PHYSICAL,
-                component: SStorefrontHistoryOrdersPhysicalPage,
+                component: StorefrontPageOrdersPhysical,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Virtual ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "virtual",
                 name: StorefrontRoutesName.HISTORY_ORDERS_VIRTUAL,
-                component: SStorefrontHistoryOrdersVirtualPage,
+                component: StorefrontPageOrdersVirtual,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ File ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "file",
                 name: StorefrontRoutesName.HISTORY_ORDERS_FILE,
-                component: SStorefrontHistoryOrdersFilePage,
+                component: StorefrontPageOrdersFile,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Service ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "service",
                 name: StorefrontRoutesName.HISTORY_ORDERS_SERVICE,
-                component: SStorefrontHistoryOrdersServicePage,
+                component: StorefrontPageOrdersService,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Subscription ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "subscription",
                 name: StorefrontRoutesName.HISTORY_ORDERS_SUBSCRIPTION,
-                component: SStorefrontHistoryOrdersSubscriptionPage,
+                component: StorefrontPageOrdersSubscription,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ POS ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "pos",
                 name: StorefrontRoutesName.HISTORY_ORDERS_POS,
-                component: SStorefrontHistoryOrdersPOSPage,
+                component: StorefrontPageOrdersPos,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Avocado ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "avocado",
                 name: StorefrontRoutesName.HISTORY_ORDERS_AVOCADO,
-                component: SStorefrontHistoryOrdersAvocadoPage,
+                component: StorefrontPageOrdersAvocado,
               },
             ],
           },
@@ -617,7 +617,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "orders",
-        component: SStorefrontBasketOrderDetailMasterLayout,
+        component: StorefrontPageBasketOrder,
         meta: {
           requiresAuth: true,
         },
@@ -628,28 +628,28 @@ const routes: IVueRoute[] = [
           {
             path: "physical/SM-:basket_id",
             name: "MyPhysicalOrderInfoPage",
-            component: SStorefrontPhysicalOrderDetailPage,
+            component: StorefrontPageBasketOrderPhysicalDashboard,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ▶ Virtual ⬬⬬⬬⬬⬬⬬⬬⬬
 
           {
             path: "virtual/SV-:basket_id",
             name: "MyVirtualOrderInfoPage",
-            component: SStorefrontVirtualOrderDetailPage,
+            component: StorefrontPageBasketOrderVirtualDashboard,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ▶ File ⬬⬬⬬⬬⬬⬬⬬⬬
 
           {
             path: "file/SF-:basket_id",
             name: "MyFileOrderInfoPage",
-            component: SStorefrontFileOrderDetailPage,
+            component: StorefrontPageBasketOrderFileDashboard,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ▶ Service ⬬⬬⬬⬬⬬⬬⬬⬬
 
           {
             path: "service/SS-:basket_id",
             name: "MyServiceOrderInfoPage",
-            component: SStorefrontServiceOrderDetailPage,
+            component: StorefrontPageBasketOrderServiceDashboard,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ▶ Subscription ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -657,7 +657,7 @@ const routes: IVueRoute[] = [
           {
             path: "subscription/SN-:basket_id",
             name: "MySubscriptionOrderInfoPage",
-            component: SStorefrontSubscriptionOrderDetailPage,
+            component: StorefrontPageBasketOrderSubscriptionDashboard,
           },
         ],
       },
@@ -676,7 +676,7 @@ const routes: IVueRoute[] = [
           {
             path: "pos/POS-:basket_id",
             name: "MyPOSOrderInfoPage",
-            component: SStorefrontPOSOrderDetailPage,
+            component: StorefrontPagePosOrderDashboard,
           },
         ],
       },
@@ -684,7 +684,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ POS Order info ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "orders",
-        component: SStorefrontAvocadoOrderDetailMasterLayout,
+        component: StorefrontPageAvocadoOrder,
         meta: {
           requiresAuth: true,
         },
@@ -694,7 +694,7 @@ const routes: IVueRoute[] = [
           {
             path: "avocado/AVO-:basket_id",
             name: "AvocadoOrderDetailPage",
-            component: SStorefrontAvocadoOrderDetailPage,
+            component: StorefrontPageAvocadoOrderDashboard,
           },
         ],
       },
@@ -706,7 +706,7 @@ const routes: IVueRoute[] = [
 
   {
     path: "",
-    component: SStorefrontLayout,
+    component: StorefrontLayout,
     meta: {}, // No footer mode!
     children: [
       {
@@ -732,7 +732,7 @@ const routes: IVueRoute[] = [
   //█████████████████████████████████████████████████████████████
   {
     path: "",
-    component: SStorefrontLayout,
+    component: StorefrontLayout,
     meta: {
       footer: false, // Show Footer
       comparison: false, // Show Product Comparison
@@ -759,7 +759,7 @@ const routes: IVueRoute[] = [
 
   {
     path: "",
-    component: SStorefrontLayout,
+    component: StorefrontLayout,
     meta: {},
     children: [
       //█████████████████████████████████████████████████████████████
@@ -770,7 +770,7 @@ const routes: IVueRoute[] = [
       {
         path: "/avocado/:hash",
         name: "AvocadoOrderPage",
-        component: SStorefrontAvocadoOrderPage,
+        component: StorefrontPageAvocadoCart,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #9eb644, #e8db8e)`,
           transparent_header: true,
@@ -841,7 +841,7 @@ const routes: IVueRoute[] = [
 
   {
     path: "/community",
-    component: SStorefrontLayout,
+    component: StorefrontLayout,
     meta: {
       card: true,
     },

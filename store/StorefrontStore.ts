@@ -13,7 +13,7 @@
  */
 
 import type {ActionContext} from "vuex";
-import Vuex, {createStore} from "vuex";
+import {createStore} from "vuex";
 import type {ICurrency} from "@core/enums/payment/Currency";
 import {Currency} from "@core/enums/payment/Currency";
 import {ProductType} from "@core/enums/product/ProductType";
@@ -25,7 +25,6 @@ import type {Offer} from "@core/models/shop/incentives/offer/offer.model";
 import {Club} from "@core/models/shop/club/club.model";
 import {Shop} from "@core/models/shop/shop.model";
 import type {Basket} from "@core/models/shop/order/basket/basket.model";
-
 
 interface State {
   user: any | null;
@@ -311,8 +310,8 @@ export default createStore<State>({
     },
     //━━━━━━━External Accounts ━━━━━━━
     /*  getExchangeRates(state) {
-          return state.exchangeRates;
-        },*/
+              return state.exchangeRates;
+            },*/
 
     //━━━━━━━ 📦 Gifts ━━━━━━━
     getGifts(state) {

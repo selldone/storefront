@@ -23,7 +23,7 @@
 
       <v-toolbar-title>
         {{ $t("global.faq.faq") }}
-        <v-icon v-if="current_tag" class="mx-2" small
+        <v-icon v-if="current_tag" class="mx-2" size="small"
           >{{ $t("icons.angle_next") }}
         </v-icon>
         {{ current_tag }}
@@ -42,7 +42,7 @@
         v-if="USER()"
         color="#8BC34A"
         dark
-        depressed
+        variant="flat"
         rounded
         @click="dialog_faq = true"
         @click.stop
@@ -68,7 +68,7 @@
               :href="faq.link"
               color="blue"
               target="_blank"
-              text
+              variant="text"
             >
               {{ $t("global.faq.read_more") }}
             </v-btn>
@@ -79,15 +79,14 @@
       <v-pagination
         v-model="page"
         :length="pageCount"
-        circle
+        rounded
         @update:model-value="fetchFAQData()"
       />
     </v-container>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list dense tile>
+      <v-list density="compact" tile>
         <v-list-item :to="{ name: 'ShopFAQ' }" exact prepend-icon="home">
-
           <v-list-item-title
             >{{ $t("global.faq.main_page") }}
           </v-list-item-title>
@@ -119,7 +118,7 @@
             v-model="question"
             :label="$t('global.faq.question_input')"
             :placeholder="$t('global.faq.question_input_placeholder')"
-            filled
+            variant="filled"
             rounded
           />
 
@@ -128,8 +127,8 @@
             :loading="busy"
             color="success"
             dark
-            depressed
-            large
+            variant="flat"
+            size="large"
             @click="sendFAQ"
           >
             {{ $t("global.actions.confirm") }}

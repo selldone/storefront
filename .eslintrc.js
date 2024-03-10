@@ -19,12 +19,19 @@ module.exports = {
     browser: true, // if your code runs in a browser environment, you should add this
     //  es2022: true, // 👈 add this
   },
-  extends: ["plugin:vue/essential", "@vue/prettier", "@vue/typescript"],
+  extends: [
+    "plugin:vue/vue3-essential",
+    "@vue/prettier",
+    "@vue/typescript",
+    "plugin:vue/base",
+    "plugin:vuetify/base",
+  ],
   rules: {
     "no-console": "off", //process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": "off", //process.env.NODE_ENV === "production" ? "error" : "off"
     "vue/valid-v-slot": "off", // To ignore errors on <template v-slot:item.icon="{ item }">
     "vue/no-mutating-props": "off", // The ESLint rule 'vue/no-mutating-props' isn't limited to just nested mutations. It will warn/error whenever any prop is mutated directly, whether it's a nested property or a top-level property. The idea behind this rule is that props should be considered immutable within a component.
+    "vue/no-v-text-v-html-on-component": "off",
   },
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features

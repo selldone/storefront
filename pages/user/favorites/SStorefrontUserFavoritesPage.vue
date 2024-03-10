@@ -22,11 +22,11 @@
       <s-progress-loading v-if="busy_fetch"></s-progress-loading>
 
       <v-data-iterator
+        v-model:options="options"
+        v-model:page="page"
         :items="products"
         :items-length="totalItems"
         :items-per-page="itemsPerPage"
-        :options.sync="options"
-        :page.sync="page"
         :search="search"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
@@ -39,10 +39,10 @@
 
         <template v-slot:header>
           <s-data-iterator-toolbar
-            :items-per-page.sync="itemsPerPage"
-            :search.sync="search"
-            :sort-by.sync="sortBy.key"
-            :sort-desc.sync="sortBy.order"
+            v-model:items-per-page="itemsPerPage"
+            v-model:search="search"
+            v-model:sort-by="sortBy.key"
+            v-model:sort-desc="sortBy.order"
             :sort-keys="keys"
           ></s-data-iterator-toolbar>
         </template>
@@ -76,7 +76,7 @@
 
         <template v-slot:bottom>
           <div class="text-center pt-2 mt-3">
-            <v-pagination v-model="page" :length="pageCount" circle />
+            <v-pagination v-model="page" :length="pageCount" rounded />
           </div>
         </template>
       </v-data-iterator>

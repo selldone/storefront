@@ -114,9 +114,7 @@ const StorefrontMixin = {
       let locale: string;
 
       // Determine if _locale is an ILanguage object and extract the code, otherwise use it directly.
-      if (
-        typeof _locale === "object" && _locale !== null
-      ) {
+      if (typeof _locale === "object" && _locale !== null) {
         locale = _locale.code;
       } else {
         locale = _locale;
@@ -161,7 +159,8 @@ const StorefrontMixin = {
           window.OverrideShopLanguagePacks[locale] = {}; // Prevent duplicate loading!
 
           // Load the language override pack.
-          rez = await window.$storefront.shop.language.fetchLanguagePack(locale);
+          rez =
+            await window.$storefront.shop.language.fetchLanguagePack(locale);
           window.OverrideShopLanguagePacks[locale] = rez;
         }
 

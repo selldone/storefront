@@ -28,9 +28,14 @@
       <h2 class="text-uppercase font-weight-light my-3">
         {{ USER().name }}
       </h2>
-      <p class="subtitle-2">
+      <p class="text-subtitle-2">
         {{ USER().email }}
-        <v-icon v-if="USER().email_verified" class="ms-1" color="success" small>
+        <v-icon
+          v-if="USER().email_verified"
+          class="ms-1"
+          color="success"
+          size="small"
+        >
           check_circle
         </v-icon>
       </p>
@@ -38,13 +43,13 @@
       <v-btn
         :loading="busy_logout"
         class="mb-3"
-        text
+        variant="text"
         @click="
           busy_logout = true;
           Logout(() => (busy_logout = false));
         "
       >
-        <v-icon class="me-1" small>logout </v-icon>
+        <v-icon class="me-1" size="small">logout</v-icon>
         {{ $t("global.actions.logout") }}
       </v-btn>
     </div>
@@ -53,7 +58,7 @@
 
     <div class="widget-box mb-5">
       <h2>
-        <v-icon class="me-1">mail_outline </v-icon>
+        <v-icon class="me-1">mail_outline</v-icon>
         {{ $t("user_profile.subscription") }}
       </h2>
       <v-list-subheader></v-list-subheader>
@@ -62,12 +67,12 @@
         <v-btn
           :color="!isSubscribed ? 'primary' : 'success'"
           :loading="busy_subscribe"
-          :text="isSubscribed"
-          depressed
-          x-large
+          :variant="isSubscribed && 'text'"
+          variant="flat"
+          size="x-large"
           @click="toggleSubscribe"
         >
-          <v-icon v-if="isSubscribed" class="me-1" small>check</v-icon>
+          <v-icon v-if="isSubscribed" class="me-1" size="small">check</v-icon>
           {{
             isSubscribed
               ? $t("global.commons.subscribed")
@@ -112,8 +117,14 @@
       </s-value-dashed>
 
       <div class="widget-buttons">
-        <v-btn :href="kyc_url" color="primary" large target="_blank" text>
-          <v-icon class="me-1" small>edit</v-icon>
+        <v-btn
+          :href="kyc_url"
+          color="primary"
+          size="large"
+          target="_blank"
+          variant="text"
+        >
+          <v-icon class="me-1" size="small">edit</v-icon>
           {{ $t("user_profile.edit_personal_info") }}
         </v-btn>
       </div>
@@ -161,7 +172,9 @@
               <small class="d-block">{{
                 $t("user_profile.club_table.free_shipping")
               }}</small>
-              <v-icon color="success" small>fa:fas fa-shipping-fast</v-icon>
+              <v-icon color="success" size="small"
+                >fa:fas fa-shipping-fast</v-icon
+              >
             </div>
           </div>
         </div>
@@ -171,14 +184,20 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Leave ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5" style="border-top: red solid 4px">
-      <p class="text-start subtitle-2">
+      <p class="text-start text-subtitle-2">
         <v-icon class="me-1">report_problem</v-icon>
         {{ $t("user_profile.leave_shop") }}
       </p>
 
       <div class="widget-buttons">
-        <v-btn class="m-2" color="#D32F2F" large text @click="LeaveShop">
-          <v-icon class="me-1" small>block</v-icon>
+        <v-btn
+          class="m-2"
+          color="#D32F2F"
+          size="large"
+          variant="text"
+          @click="LeaveShop"
+        >
+          <v-icon class="me-1" size="small">block</v-icon>
           {{ $t("user_profile.leave_shop_action") }}
         </v-btn>
       </div>

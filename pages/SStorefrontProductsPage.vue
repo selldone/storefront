@@ -12,7 +12,7 @@
   - Tread carefully, for you're treading on dreams.
   -->
 <!--
-  🍉 This view will be shown in the SStorefrontLayout.vue ▶ <router-view> component.
+  🍉 This view will be shown in the StorefrontLayout.vue ▶ <router-view> component.
 
   Header
   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

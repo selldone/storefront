@@ -65,23 +65,22 @@
               width="16"
             />
             Product Admin
-            <v-icon class="mx-1" small>open_in_new</v-icon>
+            <v-icon class="mx-1" size="small">open_in_new</v-icon>
           </v-btn>
 
           <!-- ⬬⬬⬬⬬ QR CODE ⬬⬬⬬⬬ -->
 
           <v-btn
             class="me-5 flex-grow-0"
-            icon variant="text"
+            icon
             tile
+            variant="text"
             @click="show_qr = true"
-            ><img src="@components/assets/icons/qr-code.svg" width="32"
-          />
-          <v-tooltip location="bottom" activator="parent">
-            Barcode
-          </v-tooltip>
+            ><img src="@components/assets/icons/qr-code.svg" width="32" />
+            <v-tooltip activator="parent" location="bottom">
+              Barcode
+            </v-tooltip>
           </v-btn>
-
         </v-toolbar>
 
         <s-product-overview
