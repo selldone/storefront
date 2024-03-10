@@ -24,20 +24,20 @@ import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
 //――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
 import StorefrontPageBasketCart from "@app-storefront/pages/basket/cart/StorefrontPageBasketCart.vue";
 //――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
-import SStorefrontLoginRedirect from "../pages/login/SStorefrontLoginRedirect.vue";
+import StorefrontPageLoginRedirect from "../pages/login/redirect/StorefrontPageLoginRedirect.vue";
 import SStorefrontComparisonPage from "../pages/comparison/SStorefrontComparisonPage.vue";
-import StorefrontLayoutCustomer from "../layouts/customer/StorefrontLayoutCustomer.vue";
-import SStorefrontUserProfilePage from "../pages/user/profile/SStorefrontUserProfilePage.vue";
-import SStorefrontUserAddressesPage from "@app-storefront/pages/user/address/SStorefrontUserAddressesPage.vue";
-import SStorefrontUserFavoritesPage from "../pages/user/favorites/SStorefrontUserFavoritesPage.vue";
-import SStorefrontUserCommentsPage from "../pages/user/comment/SStorefrontUserCommentsPage.vue";
-import SStorefrontUserGiftCardsPage from "../pages/user/giftcard/SStorefrontUserGiftCardsPage.vue";
+import StorefrontPageUser from "@app-storefront/pages/user/StorefrontPageUser.vue";
+import StorefrontPageUserProfile from "../pages/user/profile/StorefrontPageUserProfile.vue";
+import StorefrontUserAddresses from "@app-storefront/pages/user/addresses/StorefrontUserAddresses.vue";
+import StorefrontPageUserWishlist from "@app-storefront/pages/user/wishlist/StorefrontPageUserWishlist.vue";
+import StorefrontPageUserComments from "@app-storefront/pages/user/comments/StorefrontPageUserComments.vue";
+import StorefrontPageUserGiftcards from "@app-storefront/pages/user/giftcards/StorefrontPageUserGiftcards.vue";
 import SStorefrontAboutUsPage from "@app-storefront/pages/official/about-us/SStorefrontAboutUsPage.vue";
 import SStorefrontTermsPage from "../pages/official/terms/SStorefrontTermsPage.vue";
 import SStorefrontPrivacyPage from "../pages/official/privacy/SStorefrontPrivacyPage.vue";
 import SStorefrontProfilePage from "../pages/official/SStorefrontProfilePage.vue";
-import SStorefrontBlogPage from "../pages/blog/SStorefrontBlogPage.vue";
-import SStorefrontBlogsPage from "../pages/blog/SStorefrontBlogsPage.vue";
+import StorefrontPageBlogsView from "../pages/blog/view/StorefrontPageBlogsView.vue";
+import StorefrontPageBlogsList from "../pages/blog/list/StorefrontPageBlogsList.vue";
 import SStorefrontFAQPage from "@app-storefront/pages/official/faq/SStorefrontFAQPage.vue";
 import SStorefrontContactUsPage from "@app-storefront/pages/official/contact-us/SStorefrontContactUsPage.vue";
 
@@ -50,9 +50,9 @@ import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
-const StorefrontPageOrders = () =>
+const StorefrontPageUserOrders = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/StorefrontPageOrders.vue"
+    /* webpackChunkName: "shop-profile" */ "../pages/user/orders/StorefrontPageUserOrders.vue"
   );
 const StorefrontPageBasketOrderPhysicalDashboard = () =>
   import(
@@ -95,43 +95,43 @@ const StorefrontPageBasketOrder = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/StorefrontPageBasketOrder.vue"
   );
-const StorefrontPageOrdersAvocado = () =>
+const StorefrontPageUserOrdersAvocado = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/orders/avocado/StorefrontPageOrdersAvocado.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/avocado/StorefrontPageUserOrdersAvocado.vue"
   );
-const StorefrontPageOrdersPhysical = () =>
+const StorefrontPageUserOrdersPhysical = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/physical/StorefrontPageOrdersPhysical.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/physical/StorefrontPageUserOrdersPhysical.vue"
   );
-const StorefrontPageOrdersVirtual = () =>
+const StorefrontPageUserOrdersVirtual = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/virtual/StorefrontPageOrdersVirtual.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/virtual/StorefrontPageUserOrdersVirtual.vue"
   );
-const StorefrontPageOrdersFile = () =>
+const StorefrontPageUserOrdersFile = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/file/StorefrontPageOrdersFile.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/file/StorefrontPageUserOrdersFile.vue"
   );
-const StorefrontPageOrdersService = () =>
+const StorefrontPageUserOrdersService = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/service/StorefrontPageOrdersService.vue"
-  );
-
-const StorefrontPageOrdersSubscription = () =>
-  import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/subscription/StorefrontPageOrdersSubscription.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/service/StorefrontPageUserOrdersService.vue"
   );
 
-const StorefrontPageOrdersPos = () =>
+const StorefrontPageUserOrdersSubscription = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/orders/pos/StorefrontPageOrdersPos.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/subscription/StorefrontPageUserOrdersSubscription.vue"
+  );
+
+const StorefrontPageUserOrdersPos = () =>
+  import(
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/pos/StorefrontPageUserOrdersPos.vue"
   );
 const SPageLoader = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-page-builder/SPageLoader.vue"
   );
-const SStorefrontUserReturnRequests = () =>
+const StorefrontPageUserReturns = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/user/return-orders/SStorefrontUserReturnRequests.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/returns/StorefrontPageUserReturns.vue"
   );
 
 //――――――――――――――――――――――――― Insta ―――――――――――――――――――――――――
@@ -227,7 +227,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.BLOGS_PAGE,
-        component: SStorefrontBlogsPage,
+        component: StorefrontPageBlogsList,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Avocado ▃▃▃▃▃▃▃▃▃▃▃*/
 
@@ -421,7 +421,7 @@ const routes: IVueRoute[] = [
 
       {
         path: "user",
-        component: StorefrontLayoutCustomer,
+        component: StorefrontPageUser,
 
         meta: {
           requiresAuth: true,
@@ -432,53 +432,53 @@ const routes: IVueRoute[] = [
           {
             path: "orders",
             name: StorefrontRoutesName.ORDERS_PAGE,
-            component: StorefrontPageOrders,
+            component: StorefrontPageUserOrders,
 
             children: [
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Physical ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "physical",
                 name: StorefrontRoutesName.HISTORY_ORDERS_PHYSICAL,
-                component: StorefrontPageOrdersPhysical,
+                component: StorefrontPageUserOrdersPhysical,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Virtual ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "virtual",
                 name: StorefrontRoutesName.HISTORY_ORDERS_VIRTUAL,
-                component: StorefrontPageOrdersVirtual,
+                component: StorefrontPageUserOrdersVirtual,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ File ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "file",
                 name: StorefrontRoutesName.HISTORY_ORDERS_FILE,
-                component: StorefrontPageOrdersFile,
+                component: StorefrontPageUserOrdersFile,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Service ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "service",
                 name: StorefrontRoutesName.HISTORY_ORDERS_SERVICE,
-                component: StorefrontPageOrdersService,
+                component: StorefrontPageUserOrdersService,
               },
 
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Subscription ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "subscription",
                 name: StorefrontRoutesName.HISTORY_ORDERS_SUBSCRIPTION,
-                component: StorefrontPageOrdersSubscription,
+                component: StorefrontPageUserOrdersSubscription,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ POS ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "pos",
                 name: StorefrontRoutesName.HISTORY_ORDERS_POS,
-                component: StorefrontPageOrdersPos,
+                component: StorefrontPageUserOrdersPos,
               },
               // ⬬⬬⬬⬬⬬⬬⬬⬬ History ▶ Avocado ⬬⬬⬬⬬⬬⬬⬬⬬
               {
                 path: "avocado",
                 name: StorefrontRoutesName.HISTORY_ORDERS_AVOCADO,
-                component: StorefrontPageOrdersAvocado,
+                component: StorefrontPageUserOrdersAvocado,
               },
             ],
           },
@@ -487,42 +487,42 @@ const routes: IVueRoute[] = [
           {
             path: "profile",
             name: StorefrontRoutesName.USER_PROFILE_PAGE,
-            component: SStorefrontUserProfilePage,
+            component: StorefrontPageUserProfile,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Addresses ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "addresses",
             name: StorefrontRoutesName.USER_ADDRESSES_PAGE,
-            component: SStorefrontUserAddressesPage,
+            component: StorefrontUserAddresses,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User order returns ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "orders-return",
             name: StorefrontRoutesName.USER_RETURN_REQUESTS,
-            component: SStorefrontUserReturnRequests,
+            component: StorefrontPageUserReturns,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Favorites ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "favorites",
             name: StorefrontRoutesName.USER_FAVORITES_PAGE,
-            component: SStorefrontUserFavoritesPage,
+            component: StorefrontPageUserWishlist,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Comments ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "comments",
             name: StorefrontRoutesName.USER_COMMENTS_PAGE,
-            component: SStorefrontUserCommentsPage,
+            component: StorefrontPageUserComments,
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User gift cards ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "gift-cards",
             name: StorefrontRoutesName.USER_GIFTCARDS_PAGE,
-            component: SStorefrontUserGiftCardsPage,
+            component: StorefrontPageUserGiftcards,
           },
         ],
       },
@@ -531,7 +531,7 @@ const routes: IVueRoute[] = [
       {
         path: "selldone-callback",
         name: StorefrontRoutesName.LOGIN_REDIRECT,
-        component: SStorefrontLoginRedirect,
+        component: StorefrontPageLoginRedirect,
       },
 
       //█████████████████████████████████████████████████████████████
@@ -542,19 +542,19 @@ const routes: IVueRoute[] = [
       {
         path: "blog",
         name: StorefrontRoutesName.BLOGS_PAGE,
-        component: SStorefrontBlogsPage,
+        component: StorefrontPageBlogsList,
       },
       {
         // Old version!
         path: "blog",
         name: StorefrontRoutesName.SHOP_BLOGS_PAGE,
-        component: SStorefrontBlogsPage,
+        component: StorefrontPageBlogsList,
       },
 
       {
         path: "/team/:author-:author_id(\\d+)",
         name: StorefrontRoutesName.AUTHOR_PAGE,
-        component: SStorefrontBlogsPage,
+        component: StorefrontPageBlogsList,
         meta: {
           title: "Team | {author}",
           dark: true,
@@ -567,12 +567,12 @@ const routes: IVueRoute[] = [
       {
         path: "blog/:slug-:blog_id(\\d+)",
         name: StorefrontRoutesName.SHOP_BLOG_PAGE_SLUG,
-        component: SStorefrontBlogPage,
+        component: StorefrontPageBlogsView,
       },
       {
         path: "blog/:blog_id",
         name: StorefrontRoutesName.SHOP_BLOG_PAGE,
-        component: SStorefrontBlogPage,
+        component: StorefrontPageBlogsView,
       },
       {
         path: "",

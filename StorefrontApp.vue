@@ -44,6 +44,7 @@
       {
         'is-mobile': isMobile,
         'before-load-icon-font': !IconFontsLoaded,
+        blurred: blur,
       },
       `lang-${$i18n.locale}`,
     ]"
@@ -60,7 +61,7 @@
       },
       page_bg,
     ]"
-    class="s--shop"
+    class="s--shop blur-animate"
     @keyup.ctrl="SwitchLanguage"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -195,6 +196,8 @@ export default {
     IconFontsLoaded: false,
 
     show_popup: false,
+
+    blur: false,
   }),
 
   /**
@@ -273,6 +276,8 @@ export default {
    */
   watch: {
     $route(_new, _old) {
+      this.blur = false; // Reset blur!
+
       if (_new.query["no-scroll"]) return; // Do not scroll if no-scroll query exist!
 
       this.$nextTick(function () {
@@ -403,6 +408,13 @@ export default {
       fun(token);
     });
 
+    //▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  Blur App ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+
+    this.EventBus.$on(EventName.BLUR_APP, (blur) => {
+      console.log("🔵 BLUR_APP", blur);
+      this.blur = blur;
+    });
+
     //█████████████████████████████████████████████████████████████
     //―――――――――――――――――――――――― Get User Info ――――――――――――――――――――――――
     //█████████████████████████████████████████████████████████████
@@ -449,6 +461,7 @@ export default {
   beforeUnmount() {
     this.EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
     this.EventBus.$off(EventName.FIREBASE_GET_TOKEN);
+    this.EventBus.$off(EventName.BLUR_APP);
 
     if (this.update_exchange_rates_interval)
       clearInterval(this.update_exchange_rates_interval);
