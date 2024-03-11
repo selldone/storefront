@@ -119,7 +119,7 @@
                 success: canPayAndComplete,
                 error: hasErrorInReceiverInfo,
               }"
-              :theme="light_checkout?'light':'dark'"
+              :theme="light_checkout ? 'light' : 'dark'"
               class="receipt-bg m-0"
               color="transparent"
             >
@@ -514,7 +514,7 @@
                       has_direct_delivery
                     "
                   >
-                    <div  class="d-flex align-center my-2">
+                    <div class="d-flex align-center my-2">
                       <small>{{ $t("global.commons.shipping") }}</small>
                       <products-dense-images-circles
                         :ids="
@@ -605,7 +605,8 @@
 
                         <v-btn
                           class="ms-1"
-                          icon variant="text"
+                          icon
+                          variant="text"
                           size="small"
                           title="Show package and distance info."
                           @click="show_package_info = !show_package_info"
@@ -768,10 +769,11 @@
                             variant="outlined"
                             @update:model-value="setBasketConfig"
                           >
-                            <template v-slot:chip="{ item ,props}">
+                            <template v-slot:chip="{ item, props }">
                               <v-chip
                                 v-bind="props"
-                                color="#0061e0" variant="flat"
+                                color="#0061e0"
+                                variant="flat"
                               >
                                 <span>{{ $t(item.raw.name) }}</span>
                               </v-chip>
@@ -810,11 +812,11 @@
                             variant="outlined"
                             @update:model-value="setBasketConfig"
                           >
-                            <template v-slot:chip="{ item,props }">
+                            <template v-slot:chip="{ item, props }">
                               <v-chip
                                 v-bind="props"
-                                color="#0061e0" variant="flat"
-
+                                color="#0061e0"
+                                variant="flat"
                               >
                                 <img
                                   :src="item.raw.icon"
@@ -917,8 +919,8 @@
                         }"
                         class="select-address-button"
                         color="#4d90fe"
-
                         @click.stop="showMap()"
+                        variant="elevated"
                       >
                         <v-icon class="me-2"> near_me</v-icon>
                         {{
@@ -984,17 +986,17 @@
                       <template v-slot:prepend>
                         <v-list-item-action start>
                           <v-icon
-                              v-if="
-                            is_pickup_selected &&
-                            receiver_info.address === pickup.address
-                          "
-                              color="info"
-                          >circle
+                            v-if="
+                              is_pickup_selected &&
+                              receiver_info.address === pickup.address
+                            "
+                            color="info"
+                            >circle
                           </v-icon>
                           <v-icon
-                              v-else
-                              :color="light_checkout ? '#333' : '#fafafa'"
-                          >radio_button_unchecked
+                            v-else
+                            :color="light_checkout ? '#333' : '#fafafa'"
+                            >radio_button_unchecked
                           </v-icon>
                         </v-list-item-action>
                       </template>
@@ -1063,8 +1065,8 @@
                     class="py-2"
                   >
                     <v-icon class="me-1" color="amber" size="large"
-                      >warning</v-icon
-                    >
+                      >warning
+                    </v-icon>
                     <span v-html="msg"></span>
                   </div>
                 </div>
@@ -1100,7 +1102,7 @@
                       }"
                       class="select-address-button"
                       color="#16a085"
-                      rounded
+                      rounded  variant="elevated"
                       @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
                       <v-icon class="me-2"> fa:fas fa-shopping-bag</v-icon>
