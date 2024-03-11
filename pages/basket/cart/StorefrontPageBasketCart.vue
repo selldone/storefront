@@ -24,11 +24,11 @@
   >
     <v-card
       :flat="isMobile"
-      class="s--shop-card mb-16 s--shadow-no-padding -hide1720"
+      class="s--shop-card mb-16 s--shadow-no-padding -hide1720 text-start"
       style="min-height: 80vh"
     >
       <v-toolbar color="transparent" flat>
-        <v-btn icon @click.stop="$router.go(-1)">
+        <v-btn icon @click.stop="$router.go(-1)" variant="text">
           <v-icon>{{ $t("icons.arrow_back") }}</v-icon>
         </v-btn>
 
@@ -119,7 +119,7 @@
                 success: canPayAndComplete,
                 error: hasErrorInReceiverInfo,
               }"
-              :dark="!light_checkout"
+              :theme="light_checkout?'light':'dark'"
               class="receipt-bg m-0"
               color="transparent"
             >
@@ -241,8 +241,8 @@
                       :currency="basket.currency"
                       @loading="(val) => (refreshing_price = val)"
                       @update:model-value="selectDiscountCode"
+                      class="flex-grow-1 me-2"
                     />
-                    <v-spacer />
 
                     <price-view
                       v-if="discount_code_amount > 0 /*&& !isService*/"
@@ -384,7 +384,7 @@
                           lottery_win_selected_variant
                         "
                       >
-                        <v-menu offset-y>
+                        <v-menu>
                           <template v-slot:activator="{ props }">
                             <div class="position-relative" v-bind="props">
                               <variant-item-mini
@@ -514,8 +514,8 @@
                       has_direct_delivery
                     "
                   >
-                    <v-list-subheader class="my-2">
-                      {{ $t("global.commons.shipping") }}
+                    <div  class="d-flex align-center my-2">
+                      <small>{{ $t("global.commons.shipping") }}</small>
                       <products-dense-images-circles
                         :ids="
                           items
@@ -532,7 +532,7 @@
                         inline
                         raw-images-path
                       ></products-dense-images-circles>
-                    </v-list-subheader>
+                    </div>
 
                     <s-smart-select
                       :background-color="
@@ -605,7 +605,7 @@
 
                         <v-btn
                           class="ms-1"
-                          icon
+                          icon variant="text"
                           size="small"
                           title="Show package and distance info."
                           @click="show_package_info = !show_package_info"
@@ -619,8 +619,6 @@
                           :color="
                             customDeliveryTimes ? SaminColorDark : 'amber'
                           "
-                          :dark="customDeliveryTimes"
-                          :light="!customDeliveryTimes"
                           class="select-time-button mx-1 animated-all-normal tnt"
                           variant="flat"
                           height="48"
@@ -761,28 +759,21 @@
                             "
                             :items="dayItems"
                             :no-data-text="$t('basket_page.days_input_no_data')"
-                            append-icon="fa:fas fa-calendar-week"
+                            prepend-inner-icon="fa:fas fa-calendar-week"
                             chips
                             class="mx-2 mt-3"
                             closable-chips
                             item-value="value"
                             multiple
                             variant="outlined"
-                            small-chips
                             @update:model-value="setBasketConfig"
                           >
-                            <template v-slot:chip="{ item }">
+                            <template v-slot:chip="{ item ,props}">
                               <v-chip
-                                closable
-                                color="#0061e0"
-                                dark
-                                size="small"
-                                @click:close="
-                                  remove(delivery_info.days, item.value)
-                                "
-                                @click.stop
+                                v-bind="props"
+                                color="#0061e0" variant="flat"
                               >
-                                <span>{{ $t(item.name) }}</span>
+                                <span>{{ $t(item.raw.name) }}</span>
                               </v-chip>
                             </template>
                           </v-select>
@@ -810,7 +801,7 @@
                             :no-data-text="
                               $t('basket_page.time_input_label_no_data')
                             "
-                            append-icon="fa:fas fa-clock"
+                            prepend-inner-icon="fa:fas fa-clock"
                             chips
                             class="mx-2 mt-3"
                             closable-chips
@@ -819,24 +810,19 @@
                             variant="outlined"
                             @update:model-value="setBasketConfig"
                           >
-                            <template v-slot:chip="{ item }">
+                            <template v-slot:chip="{ item,props }">
                               <v-chip
-                                closable
-                                color="#0061e0"
-                                dark
-                                size="small"
-                                @click:close="
-                                  remove(delivery_info.time_spans, item.value)
-                                "
-                                @click.stop
+                                v-bind="props"
+                                color="#0061e0" variant="flat"
+
                               >
                                 <img
-                                  :src="item.icon"
+                                  :src="item.raw.icon"
                                   class="me-1"
                                   width="14px"
                                 />
 
-                                <span>{{ $t(item.name) }}</span>
+                                <span>{{ $t(item.raw.name) }}</span>
                               </v-chip>
                             </template>
                           </v-select>
@@ -931,7 +917,7 @@
                         }"
                         class="select-address-button"
                         color="#4d90fe"
-                        dark
+
                         @click.stop="showMap()"
                       >
                         <v-icon class="me-2"> near_me</v-icon>
@@ -995,21 +981,23 @@
                       class="row-hover pp"
                       @click="selectPickup(pickup)"
                     >
-                      <v-list-item-action>
-                        <v-icon
-                          v-if="
+                      <template v-slot:prepend>
+                        <v-list-item-action start>
+                          <v-icon
+                              v-if="
                             is_pickup_selected &&
                             receiver_info.address === pickup.address
                           "
-                          color="info"
+                              color="info"
                           >circle
-                        </v-icon>
-                        <v-icon
-                          v-else
-                          :color="light_checkout ? '#333' : '#fafafa'"
+                          </v-icon>
+                          <v-icon
+                              v-else
+                              :color="light_checkout ? '#333' : '#fafafa'"
                           >radio_button_unchecked
-                        </v-icon>
-                      </v-list-item-action>
+                          </v-icon>
+                        </v-list-item-action>
+                      </template>
 
                       <v-list-item-title>
                         <b>{{ pickup.name }}</b>
@@ -1045,7 +1033,7 @@
                   v-if="
                     has_delivery && !error_message_payment && !is_valid_location
                   "
-                  class="bg-danger-match text-white text-center font-weight-medium mt-3 px-2 mx-n3 py-2"
+                  class="bg-danger-match text-white text-center font-weight-medium mt-3 px-2 mx-n3 py-2 my-2"
                 >
                   <v-icon class="me-1 blink-me" dark size="small"
                     >error_outline
@@ -1112,7 +1100,6 @@
                       }"
                       class="select-address-button"
                       color="#16a085"
-                      dark
                       rounded
                       @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
@@ -1148,7 +1135,6 @@
                         }"
                         class="select-address-button"
                         color="#16a085"
-                        dark
                         rounded
                         @click.stop="
                           goToPaymentBasket(null, deliverySupportCOD)
@@ -1181,7 +1167,6 @@
                       :loading="busy_submit"
                       class="select-address-button"
                       color="#16a085"
-                      dark
                       rounded
                       @click.stop="submitServiceOrder()"
                     >

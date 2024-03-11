@@ -1,16 +1,22 @@
+![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
+
+![Selldone](https://img.shields.io/badge/type-Selldone-f39f37?style=flat&label=Storefront&labelColor=%23567&color=%23000)
+![Storefront Layout](https://img.shields.io/badge/Layout-Vue?style=flat&label=Official&labelColor=%23673AB7&color=%23000)
+![Vue3](https://img.shields.io/badge/version-Vue-8BC34A?style=flat&label=3&labelColor=%238BC34A&color=%2300796B)
 ![License](https://img.shields.io/github/license/selldone/storefront.svg?v=1)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ede7c7fdeac4daa9136fd040672ac22)](https://app.codacy.com/gh/selldone/storefront/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-![Selldone Official Storefront App](_docs/images/banner-storefront-app.jpg)
-
 ## Selldone ⮕ Storefront Official
+
+## IMPORTANT UPDATE ● VUE 3
+🌟 We have been migrating entire project and dependencies into **Vue3**. So please be patient and stay tuned for the updates.
 
 _Ready to build project!_
 
 * **Mode:** 🌍 Public
 * **Use case:** To build a fully-functional storefront for customers.
 * **Project Type:** Full Project
-* **Framework:** Vue
+* **Framework:** Vue3
 
 ## Manifesto: Celebrating Business Uniqueness
 
