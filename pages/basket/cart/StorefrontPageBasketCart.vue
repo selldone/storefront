@@ -1004,7 +1004,7 @@
                       <v-list-item-title>
                         <b>{{ pickup.name }}</b>
                       </v-list-item-title>
-                      <v-list-item-subtitle>
+                      <v-list-item-subtitle class="op-1-0">
                         <flag
                           v-if="pickup.country"
                           :iso="pickup.country"
