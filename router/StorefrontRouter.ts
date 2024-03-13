@@ -180,9 +180,9 @@ const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
-const CommunityLayout = () =>
+const CLayout = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/layout/CommunityLayout.vue"
+    /* webpackChunkName: "community" */ "@components/community/layout/CLayout.vue"
   );
 
 const CommunityHomePage = () =>
@@ -252,7 +252,7 @@ function getRouteForHome(): IVueRoute {
           card: true,
         },
         path: "",
-        component: CommunityLayout,
+        component: CLayout,
         children: [
           {
             path: "",
@@ -848,8 +848,8 @@ const routes: IVueRoute[] = [
     children: [
       {
         path: "",
-        name: "CommunityLayout",
-        component: CommunityLayout,
+        name: "CLayout",
+        component: CLayout,
 
         children: [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Categories (Home)  ⬬⬬⬬⬬⬬⬬⬬⬬
