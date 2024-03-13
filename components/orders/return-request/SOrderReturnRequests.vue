@@ -67,7 +67,7 @@
       </template>
 
       <template v-slot:item.basket_id="{ item }">
-        {{getBasketOrderCode(item.basket_item?.basket)}}
+        {{ getBasketOrderCode(item.basket_item?.basket) }}
       </template>
 
       <template v-slot:item.product_name="{ item }">
@@ -147,11 +147,10 @@ import VariantItemViewMicro from "@components/product/variant/VariantItemViewMic
 import { ReturnItemStates } from "@core/enums/basket/ReturnItemStates";
 import { ReturnOrderReason } from "@core/enums/basket/ReturnOrderReason";
 import { ProductType } from "@core/enums/product/ProductType";
-import BOrderButton from "@app-backoffice/components/order/button/BOrderButton.vue";
 
 export default {
   name: "SOrderReturnRequests",
-  components: { BOrderButton, VariantItemViewMicro },
+  components: { VariantItemViewMicro },
   emits: ["select"],
   props: {
     shop: {
