@@ -30,7 +30,7 @@ _Ready to build project!_
 7. [ ] Laravel SDK to self-host storefront
 8. [ ] publish Flutter SDK
 
-🔜 20th May 2024
+**🔜 Will be completed in 20th May 2024**
 
 ## Manifesto: Celebrating Business Uniqueness
 
