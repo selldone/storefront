@@ -155,7 +155,7 @@
                   })
                 }}
               </v-list-subheader>
-              <h2
+              <h2 v-if="article"
                 :style="{ color: page_article_title_color }"
                 class="text-h3 line-height-normal font-weight-black"
               >

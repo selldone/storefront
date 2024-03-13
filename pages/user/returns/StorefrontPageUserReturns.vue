@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import SBackofficeReturnRequestsList from "@components/order/return-request/SBackofficeReturnRequestsList.vue";
+import SBackofficeReturnRequestsList from "@app-backoffice/components/order/return-request/SBackofficeReturnRequestsList.vue";
 
 export default {
   name: "StorefrontPageUserReturns",

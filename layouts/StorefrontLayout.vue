@@ -562,7 +562,6 @@ a {
 
     padding: 3px 14px;
     background: #fff;
-    height: 52px;
     border-radius: 12px 12px 0 0;
     display: flex;
     align-items: center;

@@ -55,6 +55,10 @@
           {{ tag }}
         </v-btn>
       </template>
+      <template v-slot:login>
+        <!-- Shop Login -->
+        <s-shop-login  class="mt-16"></s-shop-login>
+      </template>
     </s-article-view>
 
     <div style="min-height: 5vh"></div>
@@ -64,11 +68,13 @@
 <script>
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import SArticleView from "@components/article/SArticleView.vue";
+import SShopLogin from "@components/login/SShopLogin.vue";
 
 export default {
   name: "StorefrontPageBlogsView",
 
   components: {
+    SShopLogin,
     SArticleView,
   },
 
