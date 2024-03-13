@@ -18,6 +18,20 @@ _Ready to build project!_
 * **Project Type:** Full Project
 * **Framework:** Vue3
 
+
+## Todo Roadmap
+
+1. [ ] Complete components migration (some missing components in Vuetify2 -> 3)
+2. [ ] Change compiler from Vue-CLI to Vite
+3. [ ] Publish components playground
+4. [ ] Publish full API & SDK Docs
+5. [ ] Publish full Storefront Docs
+6. [ ] Publish full Backoffice Docs
+7. [ ] Laravel SDK to self-host storefront
+8. [ ] publish Flutter SDK
+
+🔜 20th May 2024
+
 ## Manifesto: Celebrating Business Uniqueness
 
 In a world teeming with commerce, every business stands distinct. Each has its own story, ethos, and vision that sets it
