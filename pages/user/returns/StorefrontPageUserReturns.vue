@@ -21,22 +21,27 @@
       >
       </s-widget-header>
 
+      <v-list-subheader></v-list-subheader>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-backoffice-return-requests-list
-        :url="window.XAPI.GET_MY_BASKET_ITEM_RETURNS(shop_name)"
-        @select="handleSelected"
-      />
+      <s-order-return-requests :shop="shop" @select="handleSelected" />
     </div>
   </v-container>
 </template>
 
 <script>
-import SBackofficeReturnRequestsList from "@app-backoffice/components/order/return-request/SBackofficeReturnRequestsList.vue";
+import SOrderReturnRequests from "@app-storefront/components/orders/return-request/SOrderReturnRequests.vue";
 
 export default {
   name: "StorefrontPageUserReturns",
-  components: { SBackofficeReturnRequestsList },
+  components: { SOrderReturnRequests },
+
+  props: {
+    shop: {
+      type: Object,
+      required: true,
+    },
+  },
 
   data: function () {
     return {};
