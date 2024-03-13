@@ -187,12 +187,12 @@
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Customer support ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- Storefront chat box. -->
-    <s-storefront-chat-popup
+    <s-contacts-popup
       v-if="show_support_chat && has_support"
       :bottom="isMobile ? 96 : 12"
       :shop="shop"
       class="zoomIn"
-    ></s-storefront-chat-popup>
+    ></s-contacts-popup>
   </div>
 </template>
 
@@ -203,7 +203,7 @@ import { ShopApplicationInterface } from "@core/enums/application/ShopApplicatio
 import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
 import SStorefrontCampaignNotification from "@components/ui/notification/SStorefrontCampaignNotification.vue";
-import SStorefrontChatPopup from "@components/storefront/chat/SStorefrontChatPopup.vue";
+import SContactsPopup from "@components/storefront/contact/popup/SContactsPopup.vue";
 import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
 import SStorefrontPrimaryHeader from "@components/storefront/header/SStorefrontPrimaryHeader.vue";
 import SStorefrontProductInBasketIndicator from "@components/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
@@ -214,7 +214,7 @@ export default {
     SStorefrontProductInBasketIndicator,
     SStorefrontPrimaryHeader,
     SStorefrontTopMenu,
-    SStorefrontChatPopup,
+    SContactsPopup,
     SStorefrontCampaignNotification,
     SStorefrontPrimaryFooter,
     SStorefrontSearchBox,
