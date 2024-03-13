@@ -25,13 +25,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="../../../../../Components/assets/icons/avocado.svg"
+        src="@components/assets/icons/avocado.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="../../../../../Components/assets/selldone-logo/selldone-text-draw.png"
+        src="@components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Not enabled info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -135,7 +135,7 @@
         <a href="/Applications/Storefront/public" target="_blank">
           <img
             height="10"
-            src="../../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a

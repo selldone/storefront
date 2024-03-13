@@ -307,7 +307,7 @@
                         <img
                           class="mx-auto mb-1"
                           height="48"
-                          src="../../../../../Components/assets/icons/coupon.svg"
+                          src="@components/assets/icons/coupon.svg"
                           width="48"
                         />
                         <p>{{ coupon.title }}</p>
@@ -340,7 +340,7 @@
                         <img
                           class="mx-auto mb-1"
                           height="48"
-                          src="../../../../../Components/assets/icons/lottery-win.svg"
+                          src="@components/assets/icons/lottery-win.svg"
                           width="48"
                         />
                         <p>{{ prize.title }}</p>
@@ -1215,7 +1215,7 @@
         <img
           class="m-5 img-grayscale"
           height="120"
-          src="../../../../../Components/assets/icons/baskets.svg"
+          src="@components/assets/icons/baskets.svg"
         />
         <h1 class="text-uppercase text-muted">
           {{ $t("basket_page.basket_empty") }}
