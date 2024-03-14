@@ -27,7 +27,7 @@
 import ProductComparisonList from "@components/storefront/comparison/list/ProductComparisonList.vue";
 
 export default {
-  name: "SStorefrontComparisonPage",
+  name: "StorefrontPageComparison",
   components: { ProductComparisonList },
 
   /**

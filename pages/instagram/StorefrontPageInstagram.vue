@@ -27,7 +27,7 @@
 import SInstagramView from "@components/storefront/instagram/SInstagramView.vue";
 
 export default {
-  name: "SStorefrontInstagramPage",
+  name: "StorefrontPageInstagram",
   components: { SInstagramView },
 
   computed: {

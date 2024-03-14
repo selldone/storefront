@@ -215,12 +215,12 @@
 </template>
 
 <script>
-import BPosCartItems from "@components/pos/cart-items/BPosCartItems.vue";
-import SPosBillView from "@components/pos/bill-view/SPosBillView.vue";
+import BPosCartItems from "@components/storefront/pos/cart-items/BPosCartItems.vue";
+import SPosBillView from "@components/storefront/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
 import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
-import SCountryWorldMap from "@components/map/countries-svg/SCountryWorldMap.vue";
+import SCountryWorldMap from "@components/ui/map/countries-svg/SCountryWorldMap.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 
 export default {

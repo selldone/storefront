@@ -181,15 +181,15 @@
 </template>
 
 <script>
-import Mapbox from "@components/map/plugins/MapBox";
+import Mapbox from "@components/ui/map/plugins/MapBox";
 import { SetupService } from "@core/server/SetupService";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
-import SStorefrontProductVendorsList from "@components/product/vendors/SStorefrontProductVendorsList.vue";
+import SStorefrontProductVendorsList from "@components/storefront/product/vendors/SStorefrontProductVendorsList.vue";
 import _ from "lodash-es";
 
 export default {
-  name: "SStorefrontMapVendors",
+  name: "StorefrontPageMapVendors",
   components: { SStorefrontProductVendorsList, SValueCopyBox, SAddressInput },
 
   data() {

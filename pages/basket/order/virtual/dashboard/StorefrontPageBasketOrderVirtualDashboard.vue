@@ -156,12 +156,12 @@
 </template>
 
 <script>
-import VirtualItemInfo from "@components/product/virtual/VirtualItemInfo.vue";
+import VirtualItemInfo from "@components/storefront/product/virtual/VirtualItemInfo.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
+import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 

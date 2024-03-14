@@ -199,7 +199,7 @@
 </template>
 
 <script>
-import SMapLocationMarker from "@components/map/market/SMapLocationMarker.vue";
+import SMapLocationMarker from "@components/ui/map/market/SMapLocationMarker.vue";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
 import SWidgetHeader from "@components/ui/widget/header/SWidgetHeader.vue";
 

@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2023. Selldone® Business OS™
+  - Copyright (c) 2023-2024. Selldone® Business OS™
   -
   - Author: M.Pajuhaan
   - Web: https://selldone.com
@@ -25,13 +25,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="@components/assets/icons/hyper.svg"
+        src="../../../../../Components/assets/icons/hyper.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
+        src="../../../../../Components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Not enabled info ................ -->
@@ -129,10 +129,10 @@
 
       <div class="-footer">
         Powered by
-        <a href="/" target="_blank">
+        <a href="/Applications/Storefront/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="../../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -148,10 +148,10 @@ import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
 import SStorefrontHyperAddOrderForm from "@components/storefront/hyper/SStorefrontHyperAddOrderForm.vue";
 import SShopHyperCustomerOrdersList from "@components/storefront/hyper/SShopHyperCustomerOrdersList.vue";
-import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
 export default {
-  name: "SStorefrontHyperPage",
+  name: "StorefrontPageHyperCart",
   components: {
     ProductsDenseImagesCircles,
     SShopHyperCustomerOrdersList,

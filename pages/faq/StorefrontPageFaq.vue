@@ -143,7 +143,7 @@
 import _ from "lodash-es";
 
 export default {
-  name: "SStorefrontFAQPage",
+  name: "StorefrontPageFaq",
   components: {},
   props: {
     shop: {

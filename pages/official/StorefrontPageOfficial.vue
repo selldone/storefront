@@ -42,7 +42,7 @@ import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
 
 export default {
-  name: "SStorefrontProfilePage",
+  name: "StorefrontPageOfficial",
   components: { SBreadcrumbImage },
 
   props: {

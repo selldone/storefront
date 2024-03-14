@@ -68,7 +68,7 @@
 <script>
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import SArticleView from "@components/article/SArticleView.vue";
-import SShopLogin from "@components/login/SShopLogin.vue";
+import SShopLogin from "@components/storefront/login/SShopLogin.vue";
 
 export default {
   name: "StorefrontPageBlogsView",

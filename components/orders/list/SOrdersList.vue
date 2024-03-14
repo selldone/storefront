@@ -205,16 +205,16 @@
 
 <script>
 import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
-import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 import ReturnRequestButtonBadge from "@components/storefront/order/order-return/ReturnRequestButtonBadge.vue";
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
-import ProductsDenseImagesCircles from "@components/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import SOrderStatusView from "@components/order/order-status/SOrderStatusView.vue";
+import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import SOrderStatusView from "@components/storefront/order/order-status/SOrderStatusView.vue";
 import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
-import SOrderReceiverInfoCard from "@components/order/receiver-info/card/SOrderReceiverInfoCard.vue";
+import SOrderReceiverInfoCard from "@components/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import { SubscriptionOrderStates } from "@core/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@components/mixin/RouteMixin";

@@ -262,7 +262,7 @@ import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delive
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import Stamp from "@components/ui/stamp/Stamp.vue";
-import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 import { AvocadoItemStatus } from "@core/enums/avocado/AvocadoItemStatus";

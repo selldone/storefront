@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import SShopProductCard from "@components/product/card/SShopProductCard.vue";
+import SShopProductCard from "@components/storefront/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
 

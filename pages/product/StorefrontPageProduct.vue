@@ -346,37 +346,37 @@
 <script>
 import SArticleView from "@components/article/SArticleView.vue";
 
-import SProductOverview from "@components/product/overview/SProductOverview.vue";
+import SProductOverview from "@components/storefront/overview/SProductOverview.vue";
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
-import BProductSpecTable from "@components/product/spec/table/BProductSpecTable.vue";
+import BProductSpecTable from "@components/storefront/product/spec/table/BProductSpecTable.vue";
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
-import SProductOverviewLoading from "@components/product/overview/loading/SProductOverviewLoading.vue";
+import SProductOverviewLoading from "@components/storefront/overview/loading/SProductOverviewLoading.vue";
 import { SpecHelper } from "@core/helper/product/SpecHelper";
 
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { ProductType } from "@core/enums/product/ProductType";
 import { SetupService } from "@core/server/SetupService";
 
-import SShopProductProsConsTable from "@components/product/pros-cons/SShopProductProsConsTable.vue";
+import SShopProductProsConsTable from "@components/storefront/product/pros-cons/SShopProductProsConsTable.vue";
 import SFadeScroll from "@components/ui/fade-scroll/SFadeScroll.vue";
-import SShopProductIncludes from "@components/product/includes/SShopProductIncludes.vue";
+import SShopProductIncludes from "@components/storefront/product/includes/SShopProductIncludes.vue";
 import { ColorHelper } from "@core/helper/color/ColorHelper";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
-import SProductRelatedProducts from "@components/product/related-products/SProductRelatedProducts.vue";
-import SProductRelatedCategories from "@components/product/related-categories/SProductRelatedCategories.vue";
-import SProductSectionBadges from "@components/product/section/badges/SProductSectionBadges.vue";
+import SProductRelatedProducts from "@components/storefront/product/related-products/SProductRelatedProducts.vue";
+import SProductRelatedCategories from "@components/storefront/product/related-categories/SProductRelatedCategories.vue";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
-import SProductShipping from "@components/product/shipping/SProductShipping.vue";
-import SProductWarranty from "@components/product/warranty/SProductWarranty.vue";
-import SProductGuide from "@components/product/guide/SProductGuide.vue";
-import SProductFilesList from "@components/product/file/list/SProductFilesList.vue";
-import SProductComments from "@components/product/comments/SProductComments.vue";
-import SProductSubscriptionMembership from "@components/product/subscription/membership/SProductSubscriptionMembership.vue";
-import SProductOffers from "@components/product/offers/SProductOffers.vue";
-import SProductCrossSells from "@components/product/cross-sells/SProductCrossSells.vue";
+import SProductShipping from "@components/storefront/product/shipping/SProductShipping.vue";
+import SProductWarranty from "@components/storefront/product/warranty/SProductWarranty.vue";
+import SProductGuide from "@components/storefront/product/guide/SProductGuide.vue";
+import SProductFilesList from "@components/storefront/product/file/list/SProductFilesList.vue";
+import SProductComments from "@components/storefront/product/comments/SProductComments.vue";
+import SProductSubscriptionMembership from "@components/storefront/product/subscription/membership/SProductSubscriptionMembership.vue";
+import SProductOffers from "@components/storefront/product/offers/SProductOffers.vue";
+import SProductCrossSells from "@components/storefront/product/cross-sells/SProductCrossSells.vue";
 import ProductSection from "@core/enums/product/ProductSection";
 import LPageViewer from "@app-page-builder/page/viewer/LPageViewer.vue";
+import SProductSectionBadges from "@components/storefront/product/section/badges/SProductSectionBadges.vue";
 
 export default {
   name: "StorefrontPageProduct",

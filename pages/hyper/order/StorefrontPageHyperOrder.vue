@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2023. Selldone® Business OS™
+  - Copyright (c) 2023-2024. Selldone® Business OS™
   -
   - Author: M.Pajuhaan
   - Web: https://selldone.com
@@ -18,13 +18,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="@components/assets/icons/hyper.svg"
+        src="../../../../../Components/assets/icons/hyper.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
+        src="../../../../../Components/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Back to buyer form (If login) ................ -->
@@ -140,7 +140,7 @@
         <a href="/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="../../../../../Components/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -165,7 +165,7 @@ import SShopHyperItemsList from "@components/storefront/hyper/SShopHyperItemsLis
 import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
-  name: "SStorefrontHyperOrderPage",
+  name: "StorefrontPageHyperOrder",
   components: { SShopRowCustomerPendingPayment, SShopHyperItemsList, Stamp },
 
   props: {

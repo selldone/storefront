@@ -128,10 +128,10 @@
 <script>
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
-import SOrderBasketReturn from "@components/order/basket/return/SOrderBasketReturn.vue";
+import SOrderBasketReturn from "@components/storefront/order/basket/return/SOrderBasketReturn.vue";
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
-import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
+import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 
 export default {

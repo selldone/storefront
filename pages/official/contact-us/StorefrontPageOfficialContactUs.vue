@@ -124,7 +124,7 @@
 import SArticleEditor from "@components/article/SArticleEditor.vue";
 
 export default {
-  name: "SStorefrontContactUsPage",
+  name: "StorefrontPageOfficialContactUs",
   components: { SArticleEditor },
   props: {
     shop: {

@@ -17,7 +17,7 @@ import store from "../store/StorefrontStore";
 import StorefrontLayout from "../layouts/StorefrontLayout.vue";
 
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
-import SStorefrontProductsPage from "../pages/SStorefrontProductsPage.vue";
+import StorefrontPageProducts from "../pages/products/StorefrontPageProducts.vue";
 
 import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
 
@@ -25,28 +25,29 @@ import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
 import StorefrontPageBasketCart from "@app-storefront/pages/basket/cart/StorefrontPageBasketCart.vue";
 //――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
 import StorefrontPageLoginRedirect from "../pages/login/redirect/StorefrontPageLoginRedirect.vue";
-import SStorefrontComparisonPage from "../pages/comparison/SStorefrontComparisonPage.vue";
+import StorefrontPageComparison from "../pages/comparison/StorefrontPageComparison.vue";
 import StorefrontPageUser from "@app-storefront/pages/user/StorefrontPageUser.vue";
 import StorefrontPageUserProfile from "../pages/user/profile/StorefrontPageUserProfile.vue";
 import StorefrontUserAddresses from "@app-storefront/pages/user/addresses/StorefrontUserAddresses.vue";
 import StorefrontPageUserWishlist from "@app-storefront/pages/user/wishlist/StorefrontPageUserWishlist.vue";
 import StorefrontPageUserComments from "@app-storefront/pages/user/comments/StorefrontPageUserComments.vue";
 import StorefrontPageUserGiftcards from "@app-storefront/pages/user/giftcards/StorefrontPageUserGiftcards.vue";
-import SStorefrontAboutUsPage from "@app-storefront/pages/official/about-us/SStorefrontAboutUsPage.vue";
-import SStorefrontTermsPage from "../pages/official/terms/SStorefrontTermsPage.vue";
-import SStorefrontPrivacyPage from "../pages/official/privacy/SStorefrontPrivacyPage.vue";
-import SStorefrontProfilePage from "../pages/official/SStorefrontProfilePage.vue";
+import StorefrontPageOfficialAboutUs from "@app-storefront/pages/official/about-us/StorefrontPageOfficialAboutUs.vue";
+import StorefrontPageOfficialTerms from "../pages/official/terms/StorefrontPageOfficialTerms.vue";
+import StorefrontPageOfficialPrivacy from "../pages/official/privacy/StorefrontPageOfficialPrivacy.vue";
+import StorefrontPageOfficial from "../pages/official/StorefrontPageOfficial.vue";
 import StorefrontPageBlogsView from "../pages/blog/view/StorefrontPageBlogsView.vue";
 import StorefrontPageBlogsList from "../pages/blog/list/StorefrontPageBlogsList.vue";
-import SStorefrontFAQPage from "@app-storefront/pages/official/faq/SStorefrontFAQPage.vue";
-import SStorefrontContactUsPage from "@app-storefront/pages/official/contact-us/SStorefrontContactUsPage.vue";
+import StorefrontPageFaq from "@app-storefront/pages/faq/StorefrontPageFaq.vue";
+import StorefrontPageOfficialContactUs from "@app-storefront/pages/official/contact-us/StorefrontPageOfficialContactUs.vue";
 
-import SStorefrontInfoPage from "@app-storefront/pages/official/info/SStorefrontInfoPage.vue";
+import StorefrontPageInfo from "@app-storefront/pages/info/StorefrontPageInfo.vue";
 import {ShopOptionsHelper} from "@core/helper/shop/ShopOptionsHelper";
 import {SetupService} from "@core/server/SetupService";
 import {Shop} from "@core/models/shop/shop.model";
 import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
 import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
+import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
@@ -125,9 +126,9 @@ const StorefrontPageUserOrdersPos = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/pos/StorefrontPageUserOrdersPos.vue"
   );
-const SPageLoader = () =>
+const LandingRender = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-page-builder/SPageLoader.vue"
+    /* webpackChunkName: "shop-profile" */ "@app-page-builder/LandingRender"
   );
 const StorefrontPageUserReturns = () =>
   import(
@@ -136,9 +137,9 @@ const StorefrontPageUserReturns = () =>
 
 //――――――――――――――――――――――――― Insta ―――――――――――――――――――――――――
 
-const SStorefrontInstagramPage = () =>
+const StorefrontPageInstagram = () =>
   import(
-    /* webpackChunkName: "shop-insta" */ "../pages/instagram/SStorefrontInstagramPage.vue"
+    /* webpackChunkName: "shop-insta" */ "../pages/instagram/StorefrontPageInstagram.vue"
   );
 
 //――――――――――――――――――――――――― Avocado ―――――――――――――――――――――――――
@@ -147,20 +148,20 @@ const StorefrontPageAvocadoCart = () =>
   import(
     /* webpackChunkName: "shop-avocado" */ "../pages/avocado/cart/StorefrontPageAvocadoCart.vue"
   );
-const SStorefrontAvocadoPage = () =>
+const StorefrontPageAvocado = () =>
   import(
-    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/page/SStorefrontAvocadoPage.vue"
+    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/page/StorefrontPageAvocado.vue"
   );
 
 //――――――――――――――――――――――――― Hyper ―――――――――――――――――――――――――
 
-const SStorefrontHyperOrderPage = () =>
+const StorefrontPageHyperOrder = () =>
   import(
-    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/SStorefrontHyperOrderPage.vue"
+    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/order/StorefrontPageHyperOrder.vue"
   );
-const SStorefrontHyperPage = () =>
+const StorefrontPageHyperCart = () =>
   import(
-    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/SStorefrontHyperPage.vue"
+    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/cart/StorefrontPageHyperCart.vue"
   );
 
 //――――――――――――――――――――――――― POS ―――――――――――――――――――――――――
@@ -187,37 +188,37 @@ const CLayout = () =>
 
 const CommunityHomePage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/CommunityHomePage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/home/CommunityHomePage.vue"
   );
 
 const CommunityCategoryPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/CommunityCategoryPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/category/CommunityCategoryPage.vue"
   );
 
 const CommunityTopicPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/CommunityTopicPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/topic/CommunityTopicPage.vue"
   );
 
 const CommunityFeedPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/CommunityFeedPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/feed/CommunityFeedPage.vue"
   );
 
 const CommunityMyCommentsPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/CommunityMyCommentsPage.vue"
+    /* webpackChunkName: "community" */ "@components/community/pages/my-comments/CommunityMyCommentsPage.vue"
   );
 
 //――――――――――――――――――――――――― Map ―――――――――――――――――――――――――
-const SStorefrontMapProducts = () =>
+const StorefrontPageMapProducts = () =>
   import(
-    /* webpackChunkName: "shop-map" */ "../pages/map/products/SStorefrontMapProducts.vue"
+    /* webpackChunkName: "shop-map" */ "../pages/map/products/StorefrontPageMapProducts.vue"
   );
-const SStorefrontMapVendors = () =>
+const StorefrontPageMapVendors = () =>
   import(
-    /* webpackChunkName: "shop-map" */ "../pages/map/vendors/SStorefrontMapVendors.vue"
+    /* webpackChunkName: "shop-map" */ "../pages/map/vendors/StorefrontPageMapVendors.vue"
   );
 
 function getRouteForHome(): IVueRoute {
@@ -235,7 +236,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.AVOCADO_PAGE,
-        component: SStorefrontAvocadoPage,
+        component: StorefrontPageAvocado,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Hyper ▃▃▃▃▃▃▃▃▃▃▃*/
 
@@ -243,7 +244,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.HYPER_PAGE,
-        component: SStorefrontHyperPage,
+        component: StorefrontPageHyperCart,
       };
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Community ▃▃▃▃▃▃▃▃▃▃▃*/
     case Shop.Home.COMMUNITY:
@@ -266,7 +267,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.SHOP_PAGE,
-        component: SStorefrontProductsPage,
+        component: StorefrontPageProducts,
         meta: {
           search: true,
         },
@@ -276,7 +277,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.MAP_PRODUCTS_PAGE,
-        component: SStorefrontMapProducts,
+        component: StorefrontPageMapProducts,
         meta: {
           fullscreen: true,
         },
@@ -289,7 +290,7 @@ function getRouteForHome(): IVueRoute {
         return {
           path: "",
           name: StorefrontRoutesName.CUSTOM_HOME_PAGE, // Landing page loader!
-          component: SPageLoader,
+          component: LandingRender,
           meta: {
             fullscreen: true,
           },
@@ -299,7 +300,7 @@ function getRouteForHome(): IVueRoute {
       return {
         path: "",
         name: StorefrontRoutesName.SHOP_PAGE,
-        component: SStorefrontProductsPage,
+        component: StorefrontPageProducts,
         meta: {
           search: true,
         },
@@ -335,7 +336,7 @@ const routes: IVueRoute[] = [
           CUSTOM_HOME === "shop"
             ? "ShopPage-shop" // Prevent duplicated route name 'ShopPage'
             : StorefrontRoutesName.SHOP_PAGE,
-        component: SStorefrontProductsPage,
+        component: StorefrontPageProducts,
         meta: {
           search: true,
         },
@@ -345,7 +346,7 @@ const routes: IVueRoute[] = [
       {
         path: ":category_name-category",
         name: StorefrontRoutesName.SHOP_CATEGORY_PAGE,
-        component: SStorefrontProductsPage,
+        component: StorefrontPageProducts,
         meta: {
           search: true,
         },
@@ -355,7 +356,7 @@ const routes: IVueRoute[] = [
 
       {
         path: "/@:slug-:vendor_id(\\d+)",
-        component: SStorefrontProductsPage,
+        component: StorefrontPageProducts,
         name: StorefrontRoutesName.SHOP_VENDOR_PAGE,
         meta: {
           search: true,
@@ -367,7 +368,7 @@ const routes: IVueRoute[] = [
       {
         path: "pages/:page_name",
         name: StorefrontRoutesName.PAGE_RENDER,
-        component: SPageLoader,
+        component: LandingRender,
         meta: {
           fullscreen: true,
         },
@@ -378,7 +379,7 @@ const routes: IVueRoute[] = [
       {
         path: "in/:path-:include_id(\\d+)",
         name: StorefrontRoutesName.INCLUDE_PAGE_RENDER,
-        component: SPageLoader,
+        component: LandingRender,
         meta: {
           fullscreen: true,
         },
@@ -399,7 +400,7 @@ const routes: IVueRoute[] = [
       {
         path: "comparison",
         name: StorefrontRoutesName.COMPARISON_PAGE,
-        component: SStorefrontComparisonPage,
+        component: StorefrontPageComparison,
         meta: {
           bg_color: "#f0f0f0", // Page background color | Set as --background root style variable
         },
@@ -409,7 +410,7 @@ const routes: IVueRoute[] = [
       {
         path: "info",
         name: StorefrontRoutesName.SHOP_INFO_PAGE_MOBILE,
-        component: SStorefrontInfoPage,
+        component: StorefrontPageInfo,
       },
 
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ basket Page  ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -576,33 +577,33 @@ const routes: IVueRoute[] = [
       },
       {
         path: "",
-        component: SStorefrontProfilePage,
+        component: StorefrontPageOfficial,
 
         children: [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ About Us ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "about-us",
             name: StorefrontRoutesName.SHOP_PROFILE_PAGE_ABOUT_US,
-            component: SStorefrontAboutUsPage,
+            component: StorefrontPageOfficialAboutUs,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ Terms ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "terms",
             name: StorefrontRoutesName.SHOP_PROFILE_PAGE_TERMS,
-            component: SStorefrontTermsPage,
+            component: StorefrontPageOfficialTerms,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Profile ▶ Privacy ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "privacy",
             name: StorefrontRoutesName.SHOP_PROFILE_PAGE_PRIVACY,
-            component: SStorefrontPrivacyPage,
+            component: StorefrontPageOfficialPrivacy,
           },
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Contact US ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "contact-us",
             name: StorefrontRoutesName.SHOP_CONTACT_US,
-            component: SStorefrontContactUsPage,
+            component: StorefrontPageOfficialContactUs,
           },
         ],
       },
@@ -611,7 +612,7 @@ const routes: IVueRoute[] = [
       {
         path: "faq/:tag?",
         name: "ShopFAQ",
-        component: SStorefrontFAQPage,
+        component: StorefrontPageFaq,
       },
 
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -711,7 +712,7 @@ const routes: IVueRoute[] = [
     children: [
       {
         path: "/map",
-        component: SStorefrontMapProducts,
+        component: StorefrontPageMapProducts,
         meta: {
           fullscreen: true,
         },
@@ -719,7 +720,7 @@ const routes: IVueRoute[] = [
 
       {
         path: "/map-vendors",
-        component: SStorefrontMapVendors,
+        component: StorefrontPageMapVendors,
         meta: {
           fullscreen: true,
         },
@@ -745,7 +746,7 @@ const routes: IVueRoute[] = [
       {
         path: "instagram",
         name: "InstagramPage",
-        component: SStorefrontInstagramPage,
+        component: StorefrontPageInstagram,
         meta: {
           channel: "instagram", // To save channel entry
         },
@@ -782,7 +783,7 @@ const routes: IVueRoute[] = [
       {
         path: "/avocado",
         name: StorefrontRoutesName.AVOCADO_PAGE,
-        component: SStorefrontAvocadoPage,
+        component: StorefrontPageAvocado,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #9eb644, #e8db8e)`,
           transparent_header: true,
@@ -798,7 +799,7 @@ const routes: IVueRoute[] = [
       {
         path: "/hyper/:basket_id",
         name: "HyperOrderPage",
-        component: SStorefrontHyperOrderPage,
+        component: StorefrontPageHyperOrder,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #C2185B, #FF5722)`,
           transparent_header: true,
@@ -810,7 +811,7 @@ const routes: IVueRoute[] = [
       {
         path: "/hyper",
         name: StorefrontRoutesName.HYPER_PAGE,
-        component: SStorefrontHyperPage,
+        component: StorefrontPageHyperCart,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #C2185B, #FF5722)`,
           transparent_header: true,
@@ -874,14 +875,14 @@ const routes: IVueRoute[] = [
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Category (Topics list)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
-            path: ":category_id-:category_slug?",
+            path: ":category_id(\\d+)-:category_slug?",
             name: CommunityRoutesName.COMMUNITY_CATEGORY_PAGE,
             component: CommunityCategoryPage,
           },
 
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Topic  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
-            path: ":category_id-:category_slug?/:topic_id-:topic_slug?",
+            path: ":category_id(\\d+)-:category_slug?/:topic_id(\\d+)-:topic_slug?",
             name: CommunityRoutesName.COMMUNITY_TOPIC_PAGE,
             component: CommunityTopicPage,
           },
@@ -890,9 +891,8 @@ const routes: IVueRoute[] = [
     ],
   },
 
-  //█████████████████████████████████████████████████████████████
-  //―――――――――――――― Shop User Layout (Global - for all shops) ―――――――――――――――――
-  //█████████████████████████████████████████████████████████████
+  // will match everything and put it under `route.params.pathMatch`
+  { path: "/:pathMatch(.*)*", component: StorefrontPageError404 },
 ];
 
 const router = createRouter({

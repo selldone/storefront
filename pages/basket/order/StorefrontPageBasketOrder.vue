@@ -91,7 +91,7 @@
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { ProductType } from "@core/enums/product/ProductType";
-import SOrderDeliveryStatusStepper from "@components/order/delivery/status/stepper/SOrderDeliveryStatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
 import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
 import { FileOrderStates } from "@core/enums/basket/FileOrderStates";

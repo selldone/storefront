@@ -185,16 +185,16 @@
 </template>
 
 <script>
-import Mapbox from "@components/map/plugins/MapBox";
+import Mapbox from "@components/ui/map/plugins/MapBox";
 import { SetupService } from "@core/server/SetupService";
 import SProductsListing from "@components/storefront/products/listing/SProductsListing.vue";
 import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
-import SShopProductCard from "@components/product/card/SShopProductCard.vue";
+import SShopProductCard from "@components/storefront/product/card/SShopProductCard.vue";
 import _ from "lodash-es";
 
 export default {
-  name: "SStorefrontMapProducts",
+  name: "StorefrontPageMapProducts",
   components: {
     SShopProductCard,
     SValueCopyBox,

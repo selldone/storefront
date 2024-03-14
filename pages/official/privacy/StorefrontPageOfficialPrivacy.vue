@@ -44,7 +44,7 @@ import SArticleEditor from "@components/article/SArticleEditor.vue";
 import SStorefrontCookiePreferences from "@components/storefront/cookie/SStorefrontCookiePreferences.vue";
 
 export default {
-  name: "SStorefrontPrivacyPage",
+  name: "StorefrontPageOfficialPrivacy",
   components: { SStorefrontCookiePreferences, SArticleEditor },
   data: () => ({
     state: "editing",

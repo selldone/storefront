@@ -23,7 +23,7 @@
 import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
 
 export default {
-  name: "SStorefrontInfoPage",
+  name: "StorefrontPageInfo",
   components: { SStorefrontPrimaryFooter },
   props: {
     shop: {

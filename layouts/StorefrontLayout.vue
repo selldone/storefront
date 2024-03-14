@@ -556,11 +556,11 @@ a {
 
     z-index: 1;
 
-    top: 14px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
 
-    padding: 3px 14px;
+    padding: 0 14px;
     background: #fff;
     border-radius: 12px 12px 0 0;
     display: flex;

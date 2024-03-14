@@ -190,10 +190,10 @@
 <script>
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import SOrderBasketReturn from "@components/order/basket/return/SOrderBasketReturn.vue";
+import SOrderBasketReturn from "@components/storefront/order/basket/return/SOrderBasketReturn.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
-import SOrderChatBox from "@components/order/chat/box/SOrderChatBox.vue";
+import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
 import { ProductType } from "@core/enums/product/ProductType";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 
