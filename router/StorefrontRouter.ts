@@ -893,6 +893,10 @@ const routes: IVueRoute[] = [
 
   // will match everything and put it under `route.params.pathMatch`
   { path: "/:pathMatch(.*)*", component: StorefrontPageError404 },
+  //{ name: "AvocadoBuyerFormPage", component: StorefrontPageError404 },
+  { name: "ShopHyperPage", component: StorefrontPageError404 },
+
+
 ];
 
 const router = createRouter({
@@ -951,6 +955,9 @@ router.afterEach((/*to: Route, from: Route*/) => {
   // Update the current location in header:
   window.axios.defaults.headers.common["S-Location"] = window.location.href;
 });
+
+
+
 
 export default router;
 
