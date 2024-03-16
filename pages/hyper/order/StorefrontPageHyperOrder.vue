@@ -63,8 +63,8 @@
             <p class="mb-0 mt-4 text-subtitle-2">
               {{ $t("global.commons.cart_list") }}
             </p>
-            <s-shop-hyper-items-list :hyper="hyper" :items="items" class="my-3">
-            </s-shop-hyper-items-list>
+            <s-hyper-cart-items :hyper="hyper" :items="items" class="my-3">
+            </s-hyper-cart-items>
 
             <hr />
 
@@ -161,12 +161,12 @@
 <script>
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import Stamp from "@components/ui/stamp/Stamp.vue";
-import SShopHyperItemsList from "@components/storefront/hyper/SShopHyperItemsList.vue";
+import SHyperCartItems from "@components/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
   name: "StorefrontPageHyperOrder",
-  components: { SShopRowCustomerPendingPayment, SShopHyperItemsList, Stamp },
+  components: { SShopRowCustomerPendingPayment, SHyperCartItems, Stamp },
 
   props: {
     shop: {

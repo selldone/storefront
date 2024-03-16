@@ -56,19 +56,20 @@
         </template>
 
         <template v-slot:default="">
-          <v-fade-transition class="mx-0" group hide-on-leave tag="v-row">
-            <v-col
-              v-for="gift_card in giftcards"
-              :key="gift_card.id"
-              class="p-2"
-              cols="12"
-              lg="3"
-              md="4"
-              sm="6"
-            >
-              <s-storefront-giftcard-view :gift-card="gift_card" />
-            </v-col>
-          </v-fade-transition>
+          <v-row>
+            <v-fade-transition group hide-on-leave>
+              <v-col
+                v-for="gift_card in giftcards"
+                :key="gift_card.id"
+                cols="12"
+                lg="3"
+                md="4"
+                sm="6"
+              >
+                <s-giftcard-view :gift-card="gift_card" />
+              </v-col>
+            </v-fade-transition>
+          </v-row>
         </template>
 
         <template v-slot:no-data>
@@ -91,7 +92,7 @@
     </div>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add card  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <s-storefront-giftcard-add-dialog
+    <s-giftcard-add
       v-model="dialog"
       @add="
         (gift_card) => {
@@ -100,22 +101,22 @@
           dialog = false;
         }
       "
-    ></s-storefront-giftcard-add-dialog>
+    ></s-giftcard-add>
   </v-container>
 </template>
 
 <script>
-import SStorefrontGiftcardView from "@components/storefront/giftcard/view/SStorefrontGiftcardView.vue";
+import SGiftcardView from "@components/storefront/giftcard/view/SGiftcardView.vue";
 import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
-import SStorefrontGiftcardAddDialog from "@components/storefront/giftcard/add-dialog/SStorefrontGiftcardAddDialog.vue";
+import SGiftcardAdd from "@components/storefront/giftcard/add/SGiftcardAdd.vue";
 import _ from "lodash-es";
 
 export default {
   name: "StorefrontPageUserGiftcards",
   components: {
-    SStorefrontGiftcardAddDialog,
+    SGiftcardAdd,
     SDataIteratorToolbar,
-    SStorefrontGiftcardView,
+    SGiftcardView,
   },
   data: () => ({
     giftcards: [],

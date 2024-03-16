@@ -124,13 +124,13 @@
                 height="auto"
                 width="100%"
               />
-              <s-blog-user-category-view
+              <s-blog-card-author-category
                 v-if="latest_article.parent"
                 :categories="categories"
                 :category-name="latest_article.parent.category_id"
                 :user="latest_article.user"
                 class="mt-4"
-              ></s-blog-user-category-view>
+              ></s-blog-card-author-category>
 
               <h2 class="my-2 font-weight-black fadeInUp delay_200">
                 {{ latest_article.title }}
@@ -168,11 +168,11 @@
                 </template>
 
                 <v-list-item-subtitle class="op-1-0">
-                  <s-blog-user-category-view
+                  <s-blog-card-author-category
                     :categories="categories"
                     :category-name="article.parent.category_id"
                     :user="article.user"
-                  ></s-blog-user-category-view>
+                  ></s-blog-card-author-category>
                 </v-list-item-subtitle>
                 <v-list-item-title>
                   <h2
@@ -347,13 +347,13 @@
                 </v-avatar>
               </template>
 
-              <s-blog-user-category-view
+              <s-blog-card-author-category
                 :categories="categories"
                 :category-name="
                   article.parent ? article.parent.category_id : null
                 "
                 :user="article.user"
-              ></s-blog-user-category-view>
+              ></s-blog-card-author-category>
               <v-list-item-title
                 class="font-weight-bold list-item-bold line-height-normal my-1"
                 style="white-space: normal; min-height: 40px"
@@ -399,11 +399,11 @@
                       md="4"
                       sm="6"
                     >
-                      <s-shop-blog-card
+                      <s-blog-card
                         :article="article"
                         :categories="categories"
                         rounded="xl"
-                      ></s-shop-blog-card>
+                      ></s-blog-card>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -555,8 +555,8 @@
 </template>
 
 <script>
-import SShopBlogCard from "@components/storefront/blog/SShopBlogCard.vue";
-import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
+import SBlogCard from "@components/storefront/blog/card/SBlogCard.vue";
+import SBlogCardAuthorCategory from "@components/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 import _ from "lodash-es";
 import ScrollHelper from "@core/utils/scroll/ScrollHelper";
 import SBlogRow from "@app-storefront/components/blog/row/SBlogRow.vue";
@@ -565,8 +565,8 @@ export default {
   name: "StorefrontPageBlogsList",
   components: {
     SBlogRow,
-    SBlogUserCategoryView,
-    SShopBlogCard,
+    SBlogCardAuthorCategory,
+    SBlogCard,
   },
 
   /**

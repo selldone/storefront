@@ -13,18 +13,18 @@
   -->
 
 <template>
-  <s-storefront-primary-footer
+  <s-footer-section
     v-if="isMobile"
     :shop="shop"
-  ></s-storefront-primary-footer>
+  ></s-footer-section>
 </template>
 
 <script>
-import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
+import SFooterSection from "@components/storefront/footer/section/SFooterSection.vue";
 
 export default {
   name: "StorefrontPageInfo",
-  components: { SStorefrontPrimaryFooter },
+  components: { SFooterSection },
   props: {
     shop: {
       type: Object,

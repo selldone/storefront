@@ -18,17 +18,17 @@
       class="py-16"
       style="min-height: 800px; background-color: white; border-radius: 18px"
     >
-      <product-comparison-list v-if="!busy" :products="productsList" />
+      <s-comparison-list v-if="!busy" :products="productsList" />
     </div>
   </div>
 </template>
 
 <script>
-import ProductComparisonList from "@components/storefront/comparison/list/ProductComparisonList.vue";
+import SComparisonList from "@components/storefront/comparison/list/SComparisonList.vue";
 
 export default {
   name: "StorefrontPageComparison",
-  components: { ProductComparisonList },
+  components: { SComparisonList },
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

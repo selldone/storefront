@@ -44,12 +44,12 @@
     </template>
 
     <v-list-item-subtitle class="op-1-0">
-      <s-blog-user-category-view
+      <s-blog-card-author-category
         v-if="article.parent"
         :categories="categories"
         :category-name="article.parent.category_id"
         :user="article.user"
-      ></s-blog-user-category-view>
+      ></s-blog-card-author-category>
     </v-list-item-subtitle>
     <v-list-item-title>
       <h2
@@ -70,11 +70,11 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import SBlogUserCategoryView from "@components/storefront/blog/SBlogUserCategoryView.vue";
+import SBlogCardAuthorCategory from "@components/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 
 export default defineComponent({
   name: "SBlogRow",
-  components: { SBlogUserCategoryView },
+  components: { SBlogCardAuthorCategory },
   props: {
     article: {
       type: Object,

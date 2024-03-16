@@ -59,11 +59,11 @@
         <!-- ................ Orders history ................ -->
 
         <div class="my-14 fadeIn">
-          <s-shop-hyper-customer-orders-list
+          <s-hyper-orders
             :orders="orders"
             class="mx-auto mb-4 my-3"
             style="max-width: 420px"
-          ></s-shop-hyper-customer-orders-list>
+          ></s-hyper-orders>
 
           <v-pagination
             v-if="pages > 1"
@@ -110,7 +110,7 @@
 
       <!-- ................ Add order (By customer) ................ -->
 
-      <s-storefront-hyper-add-order-form
+      <s-hyper-cart
         v-if="add_mode && open_hyper"
         v-model:hyper="open_hyper"
         :shop="shop"
@@ -123,7 +123,7 @@
             getOpenHyper();
           }
         "
-      ></s-storefront-hyper-add-order-form>
+      ></s-hyper-cart>
 
       <!-- ................ Footer ................ -->
 
@@ -146,16 +146,16 @@
 <script>
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 
-import SStorefrontHyperAddOrderForm from "@components/storefront/hyper/SStorefrontHyperAddOrderForm.vue";
-import SShopHyperCustomerOrdersList from "@components/storefront/hyper/SShopHyperCustomerOrdersList.vue";
+import SHyperCart from "@components/storefront/hyper/cart/SHyperCart.vue";
+import SHyperOrders from "@components/storefront/hyper/orders/SHyperOrders.vue";
 import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
 export default {
   name: "StorefrontPageHyperCart",
   components: {
     ProductsDenseImagesCircles,
-    SShopHyperCustomerOrdersList,
-    SStorefrontHyperAddOrderForm,
+    SHyperOrders,
+    SHyperCart,
   },
 
   props: {

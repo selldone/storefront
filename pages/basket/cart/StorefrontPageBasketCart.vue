@@ -235,7 +235,7 @@
                     v-if="!isSubscription"
                     class="data-row d-flex align-center"
                   >
-                    <s-storefront-discount-code-input
+                    <s-discount-code-input
                       v-model="basket.discount_code"
                       :basket="basket"
                       :currency="basket.currency"
@@ -1276,7 +1276,7 @@ import SShopBasketItems from "@components/storefront/order/basket/SShopBasketIte
 import { WeekDays } from "@core/enums/logistic/WeekDays";
 import { TimeSpans } from "@core/enums/logistic/TimeSpans";
 import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
-import SStorefrontDiscountCodeInput from "@components/storefront/discount-code/input/SStorefrontDiscountCodeInput.vue";
+import SDiscountCodeInput from "@components/storefront/discount-code/input/SDiscountCodeInput.vue";
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import SStorefrontCouponsList from "@components/storefront/coupon/list/SStorefrontCouponsList.vue";
 import { ProductType } from "@core/enums/product/ProductType";
@@ -1315,7 +1315,7 @@ export default {
     VariantItemMini,
     SStorefrontLotteryPrizesList,
     SStorefrontCouponsList,
-    SStorefrontDiscountCodeInput,
+    SDiscountCodeInput,
     SShopBasketItems,
   },
   /**

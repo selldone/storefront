@@ -66,17 +66,17 @@
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <Teleport to="#banners-placeholder">
-      <s-storefront-campaign-banner :shop="shop" />
+      <s-campaign-banner :shop="shop" />
     </Teleport>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Private / Restricted Shop ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-private-access-check-view
+    <s-access-private-check
       v-else
       :shop="shop"
-    ></s-storefront-private-access-check-view>
+    ></s-access-private-check>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-social-buttons
@@ -91,7 +91,7 @@
     <s-storefront-master-payment-dialog v-if="shop" :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-products-comparison-button v-if="has_comparison" />
+    <s-comparison-button v-if="has_comparison" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-need-login-dialog />
@@ -108,7 +108,7 @@
     <s-map-dialog></s-map-dialog>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Cookie Agreement ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-cookie-dialog v-if="has_gdpr"></s-storefront-cookie-dialog>
+    <s-cookie-consent v-if="has_gdpr"></s-cookie-consent>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-pwa-update-snackbar
@@ -116,9 +116,9 @@
     ></s-pwa-update-snackbar>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-bottom-navigation
+    <s-footer-navigation
       v-if="isMobile"
-    ></s-storefront-bottom-navigation>
+    ></s-footer-navigation>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-popup
@@ -137,7 +137,7 @@
     ></s-storefront-retrieve-share-order>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-webapp-debug-view></s-storefront-webapp-debug-view>
+    <s-debugger></s-debugger>
   </v-app>
 </template>
 
@@ -148,41 +148,41 @@ import { FirebaseNotificationCategories } from "@core/enums/push-notification/Fi
 import SStorefrontNeedLoginDialog from "@components/storefront/login/SStorefrontNeedLoginDialog.vue";
 import SNotificationsAndAlerts from "@components/ui/notification/SNotificationsAndAlerts.vue";
 import { Language } from "@core/enums/language/Language";
-import SStorefrontCookieDialog from "@components/storefront/gdpr/SStorefrontCookieDialog.vue";
+import SCookieConsent from "@components/storefront/cookie/consent/SCookieConsent.vue";
 import SPwaUpdateSnackbar from "@components/ui/snackbar/SPwaUpdateSnackbar.vue";
-import SStorefrontBottomNavigation from "@components/storefront/footer/SStorefrontBottomNavigation.vue";
+import SFooterNavigation from "@components/storefront/footer/navigarion/SFooterNavigation.vue";
 import { SetupService } from "@core/server/SetupService";
 import SStorefrontPopup from "@components/storefront/popup/SStorefrontPopup.vue";
 import { FontHelper } from "@core/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@components/ui/image/SFullscreenViewAnimator.vue";
 import SStorefrontSocialButtons from "@components/storefront/social/SStorefrontSocialButtons.vue";
-import SStorefrontCampaignBanner from "@components/storefront/campaign/banner/SStorefrontCampaignBanner.vue";
+import SCampaignBanner from "@components/storefront/campaign/banner/SCampaignBanner.vue";
 import { ShopRestriction } from "@core/enums/shop/options/ShopRestriction";
-import SStorefrontPrivateAccessCheckView from "@components/storefront/access/SStorefrontPrivateAccessCheckView.vue";
+import SAccessPrivateCheck from "@components/storefront/access/private/check/SAccessPrivateCheck.vue";
 import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
-import SStorefrontProductsComparisonButton from "@components/storefront/comparison/button/SStorefrontProductsComparisonButton.vue";
+import SComparisonButton from "@components/storefront/comparison/button/SComparisonButton.vue";
 import { EventName } from "@core/events/EventBus";
 import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
 import SMapDialog from "@components/ui/map/map-dialog/SMapDialog.vue";
-import SStorefrontWebappDebugView from "@components/storefront/debug/SStorefrontWebappDebugView.vue";
+import SDebugger from "@components/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@core/utils/scroll/ScrollHelper";
 
 export default {
   name: "StorefrontApp",
   components: {
-    SStorefrontWebappDebugView,
+    SDebugger,
     SMapDialog,
     SStorefrontApplicationLogin,
-    SStorefrontProductsComparisonButton,
+    SComparisonButton,
     SStorefrontRetrieveShareOrder,
-    SStorefrontPrivateAccessCheckView,
-    SStorefrontCampaignBanner,
+    SAccessPrivateCheck,
+    SCampaignBanner,
     SStorefrontSocialButtons,
     SFullscreenViewAnimator,
     SStorefrontPopup,
-    SStorefrontBottomNavigation,
+    SFooterNavigation,
     SPwaUpdateSnackbar,
-    SStorefrontCookieDialog,
+    SCookieConsent,
     SNotificationsAndAlerts,
     SStorefrontNeedLoginDialog,
     SStorefrontMasterPaymentDialog,

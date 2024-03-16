@@ -52,14 +52,14 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- This is the primary header at the top of the website, where you can display your site's name, logo, user avatar, and navigation menu. -->
 
-    <s-storefront-primary-header
+    <s-header-section
       v-if="
         !header_mode ||
         header_mode === 'normal' /*Show primary header in top of page!*/
       "
       :search-mode="search_mode"
       :shop="shop"
-    ></s-storefront-primary-header>
+    ></s-header-section>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- This is the main search bar for the shop. -->
@@ -130,7 +130,7 @@
         <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
         <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
         <template v-slot:header="{ center }">
-          <s-storefront-primary-header
+          <s-header-section
             v-if="
               header_mode ===
               'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
@@ -140,7 +140,7 @@
             :search-mode="search_mode"
             :shop="shop"
             overlay
-          ></s-storefront-primary-header>
+          ></s-header-section>
 
           <!-- The storefront menu customized and set up by the merchant. -->
           <s-storefront-top-menu
@@ -165,7 +165,7 @@
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- Primary footer of the storefront. -->
-    <s-storefront-primary-footer
+    <s-footer-section
       v-if="!isMobile && !is_standalone && !isNative && shop && has_footer"
       :dark="!is_light_footer"
       :shop="shop"
@@ -198,25 +198,25 @@
 
 <script>
 import SStorefrontSearchBox from "@components/storefront/search/SStorefrontSearchBox.vue";
-import SStorefrontPrimaryFooter from "@components/storefront/footer/SStorefrontPrimaryFooter.vue";
+import SFooterSection from "@components/storefront/footer/section/SFooterSection.vue";
 import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
 import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
 import SStorefrontCampaignNotification from "@components/ui/notification/SStorefrontCampaignNotification.vue";
 import SContactsPopup from "@components/storefront/contact/popup/SContactsPopup.vue";
 import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
-import SStorefrontPrimaryHeader from "@components/storefront/header/SStorefrontPrimaryHeader.vue";
+import SHeaderSection from "@components/storefront/header/section/SHeaderSection.vue";
 import SStorefrontProductInBasketIndicator from "@components/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
 
 export default {
   name: "StorefrontLayout",
   components: {
     SStorefrontProductInBasketIndicator,
-    SStorefrontPrimaryHeader,
+    SHeaderSection,
     SStorefrontTopMenu,
     SContactsPopup,
     SStorefrontCampaignNotification,
-    SStorefrontPrimaryFooter,
+    SFooterSection,
     SStorefrontSearchBox,
   },
 
