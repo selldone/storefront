@@ -26,7 +26,7 @@
           <div style="height: 18px"></div>
         </template>
 
-        <s-circle-button
+        <u-button-circle
           v-for="type in types"
           :key="type.code"
           :badge-number="getBadgeCount(type.code)"
@@ -40,7 +40,7 @@
           @click="goToHistoryPage(type)"
         />
 
-        <s-circle-button
+        <u-button-circle
           v-if="USER()"
           key="pos"
           :src="require('@components/assets/icons/pos-order-type.svg')"
@@ -51,7 +51,7 @@
           tile
         />
 
-        <s-circle-button
+        <u-button-circle
           v-if="USER()"
           key="avo"
           :badge-number="getBadgeCount('AVO')"

@@ -28,18 +28,18 @@
     </div>
     <div :class="{ '-full': $vuetify.display.xs }" class="map-viewer">
       <!-- Pre loading -->
-      <s-loading
+      <u-loading-ellipsis
         v-if="!map_box"
         class="center-absolute"
         css-mode
         light
-      ></s-loading>
+      ></u-loading-ellipsis>
       <!-- MAP -->
       <div :id="`map_box${map_id}`" class="-map"></div>
 
       <!-- ▄▄▄▄▄▄▄▄▄▄▄ Search ▄▄▄▄▄▄▄▄▄▄▄ -->
       <div class="map-search-box">
-        <s-address-input
+        <u-map-address-input
           v-model="address"
           :center="center"
           :rows="1"
@@ -50,7 +50,7 @@
           rounded
           solo
           @select:address="(it) => onSelectAddress(it)"
-        ></s-address-input>
+        ></u-map-address-input>
 
         <div class="pt-1 pen usn" style="text-shadow: 1px 1px 3px #fff">
           <flag v-if="country" :iso="country" :squared="false" />
@@ -181,16 +181,16 @@
 </template>
 
 <script>
-import Mapbox from "@components/ui/map/plugins/MapBox";
+import Mapbox from "@components/ui/map/providers/mapbox/MapBox";
 import { SetupService } from "@core/server/SetupService";
-import SAddressInput from "@components/ui/input/address/SAddressInput.vue";
+import UMapAddressInput from "@components/ui/map/address/input/UMapAddressInput.vue";
 import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
 import SStorefrontProductVendorsList from "@components/storefront/product/vendors/SStorefrontProductVendorsList.vue";
 import _ from "lodash-es";
 
 export default {
   name: "StorefrontPageMapVendors",
-  components: { SStorefrontProductVendorsList, SValueCopyBox, SAddressInput },
+  components: { SStorefrontProductVendorsList, SValueCopyBox, UMapAddressInput },
 
   data() {
     return {

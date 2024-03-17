@@ -24,7 +24,7 @@
 
       <v-list-subheader></v-list-subheader>
 
-      <s-progress-loading v-if="busy"></s-progress-loading>
+      <u-loading-progress v-if="busy"></u-loading-progress>
       <div class="widget-buttons">
         <v-btn
           color="success"
@@ -102,7 +102,7 @@
               :src="`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${address.location.lng},${address.location.lat},13.96,0,0/200x200?access_token=pk.eyJ1IjoicGFqdWhhYW4iLCJhIjoiY2sxaHNtbnU3MDFjcjNta2V0OTZ0d2ExYiJ9.YKRh0EP7NnhbmuSil7AvSw`"
               class="map-image"
             />
-            <s-map-location-marker class="map-pointer"></s-map-location-marker>
+            <u-map-view-pin class="map-pointer"></u-map-view-pin>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
       :scrim="false"
       transition="dialog-bottom-transition"
     >
-      <s-map-view
+      <u-map-view
         v-if="dialog_pre"
         ref="map_view_dialog"
         v-model="map_location"
@@ -199,13 +199,13 @@
 </template>
 
 <script>
-import SMapLocationMarker from "@components/ui/map/market/SMapLocationMarker.vue";
+import UMapViewPin from "@components/ui/map/view/market/UMapViewPin.vue";
 import SValueDashed from "@components/ui/text/SValueDashed.vue";
 import SWidgetHeader from "@components/ui/widget/header/SWidgetHeader.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { SWidgetHeader, SValueDashed, SMapLocationMarker },
+  components: { SWidgetHeader, SValueDashed, UMapViewPin },
   data() {
     return {
       addresses: [],

@@ -41,7 +41,7 @@
           </v-btn>
 
           <!-- ⬬⬬⬬⬬ Breadcrumbs ⬬⬬⬬⬬ -->
-          <s-breadcrumb-image
+          <u-breadcrumb
             v-if="product"
             :hierarchy-items="hierarchy_items"
             class="flex-grow-1"
@@ -92,7 +92,7 @@
         />
         <s-product-overview-loading v-else />
 
-        <s-progress-loading v-if="busy"></s-progress-loading>
+        <u-loading-progress v-if="busy"></u-loading-progress>
       </div>
     </div>
 
@@ -174,7 +174,7 @@
       </div>
 
       <div v-if="has_article" :style="{ order: getOrder('review') }">
-        <s-article-view
+        <article-viewer
           :article-type="article_type.code"
           :hide-title="!!has_pros_cons"
           :initial-article-pack="product.article_pack"
@@ -316,7 +316,7 @@
           class="dialog-shadow"
         >
           <div>
-            <s-qrcode
+            <u-qrcode
               v-if="qrcode_value"
               :options="{
                 width: qr_size,
@@ -326,7 +326,7 @@
             />
             <v-btn
               class="hover-scale-small"
-              icon
+              icon variant="text"
               style="position: absolute; top: 10%; left: 10%"
               @click="show_qr = false"
             >
@@ -344,11 +344,11 @@
 </template>
 
 <script>
-import SArticleView from "@components/article/SArticleView.vue";
+import ArticleViewer from "@components/article/ArticleViewer.vue";
 
 import SProductOverview from "@components/storefront/overview/SProductOverview.vue";
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
-import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
+import UBreadcrumb from "@components/ui/breadcrumb/UBreadcrumb.vue";
 import BProductSpecTable from "@components/storefront/product/spec/table/BProductSpecTable.vue";
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
 import SProductOverviewLoading from "@components/storefront/overview/loading/SProductOverviewLoading.vue";
@@ -404,9 +404,9 @@ export default {
 
     SProductOverviewLoading,
     BProductSpecTable,
-    SBreadcrumbImage,
+    UBreadcrumb,
     SProductOverview,
-    SArticleView,
+    ArticleViewer,
   },
 
   data: function () {

@@ -18,7 +18,7 @@
       <h1 class="text-start text-h2 font-weight-black text-capitalize">
         {{ $t("official_pages.about_us") }}
       </h1>
-      <s-progress-loading v-if="busy"></s-progress-loading>
+      <u-loading-progress v-if="busy"></u-loading-progress>
 
       <div class="text-start px-lg-5 px-md-4 px-3 master-article-container">
         <s-article-editor

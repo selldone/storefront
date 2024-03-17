@@ -14,7 +14,7 @@
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
-    <s-progress-loading v-if="busy_fetch"></s-progress-loading>
+    <u-loading-progress v-if="busy_fetch"></u-loading-progress>
     <v-data-table-server
       v-model:options="options"
       v-model:page="page"

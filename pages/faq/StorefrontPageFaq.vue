@@ -50,7 +50,7 @@
         {{ $t("global.faq.add_question_action") }}
       </v-btn>
 
-      <s-loading v-if="!faqs.length && busy_fetch" css-mode light></s-loading>
+      <u-loading-ellipsis v-if="!faqs.length && busy_fetch" css-mode light></u-loading-ellipsis>
 
       <v-fade-transition
         :class="{ blurred: busy_fetch }"

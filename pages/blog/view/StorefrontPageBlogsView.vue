@@ -22,14 +22,14 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <v-toolbar color="transparent" flat>
-      <s-circle-button
+      <u-button-circle
         :icon="$t('icons.arrow_back')"
         :to="{ name: 'Blogs' }"
         :tooltip="$t('global.actions.back')"
       />
     </v-toolbar>
 
-    <s-article-view
+    <article-viewer
       :article-type="article_type.code"
       :shop="getShop()"
       :shop-id="getShop().id"
@@ -59,7 +59,7 @@
         <!-- Shop Login -->
         <s-shop-login  class="mt-16 rounded-16px"></s-shop-login>
       </template>
-    </s-article-view>
+    </article-viewer>
 
     <div style="min-height: 5vh"></div>
   </v-card>
@@ -67,7 +67,7 @@
 
 <script>
 import { ArticleTypes } from "@core/enums/article/ArticleTypes";
-import SArticleView from "@components/article/SArticleView.vue";
+import ArticleViewer from "@components/article/ArticleViewer.vue";
 import SShopLogin from "@components/storefront/login/SShopLogin.vue";
 
 export default {
@@ -75,7 +75,7 @@ export default {
 
   components: {
     SShopLogin,
-    SArticleView,
+    ArticleViewer,
   },
 
   /**

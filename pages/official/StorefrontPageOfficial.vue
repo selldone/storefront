@@ -19,14 +19,14 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <v-toolbar color="transparent" flat>
-      <s-circle-button
+      <u-button-circle
         :icon="$t('icons.arrow_back')"
         :to="{ name: 'ShopPage' }"
         :tooltip="$t('global.actions.back')"
       />
 
       <!-- ⬬⬬⬬⬬ Breadcrumbs ⬬⬬⬬⬬ -->
-      <s-breadcrumb-image :hierarchy-items="hierarchy_items" />
+      <u-breadcrumb :hierarchy-items="hierarchy_items" />
 
       <v-spacer />
     </v-toolbar>
@@ -39,11 +39,11 @@
 <script>
 import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
 
-import SBreadcrumbImage from "@components/ui/breadcrumb/SBreadcrumbImage.vue";
+import UBreadcrumb from "@components/ui/breadcrumb/UBreadcrumb.vue";
 
 export default {
   name: "StorefrontPageOfficial",
-  components: { SBreadcrumbImage },
+  components: { UBreadcrumb },
 
   props: {
     shop: {

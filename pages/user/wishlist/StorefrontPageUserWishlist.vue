@@ -19,7 +19,7 @@
       </s-widget-header>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ User favorites  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-progress-loading v-if="busy_fetch"></s-progress-loading>
+      <u-loading-progress v-if="busy_fetch"></u-loading-progress>
 
       <v-data-iterator
         v-model:options="options"

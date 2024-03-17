@@ -46,7 +46,7 @@
         justify="center"
         style="min-height: 65vh"
       >
-        <s-loading v-if="busy" css-mode light></s-loading>
+        <u-loading-ellipsis v-if="busy" css-mode light></u-loading-ellipsis>
 
         <v-col v-if="shop && hyper" class="flex-grow-1" cols="12">
           <!-- ................ Show Hyper Details ................ -->
@@ -71,24 +71,24 @@
             <div class="d-flex">
               <p class="flex-grow-1">{{ $t("global.commons.net_price") }}</p>
 
-              <price-view
+              <u-price
                 :amount="hyper.price"
                 :currency="hyper.currency"
                 not-show-zero
               >
-              </price-view>
+              </u-price>
             </div>
 
             <div class="d-flex">
               <p class="flex-grow-1">{{ $t("global.commons.tax") }}</p>
 
-              <price-view
+              <u-price
                 :amount="hyper.tax"
                 :currency="hyper.currency"
                 :line-through="hyper.tax_included"
                 not-show-zero
               >
-              </price-view>
+              </u-price>
             </div>
 
             <div v-if="isPayed" class="text-subtitle-2">
@@ -105,19 +105,19 @@
             <hr />
 
             <div class="py-3">
-              <price-view
+              <u-price
                 :amount="sum"
                 :currency="hyper.currency"
                 large
                 not-show-zero
               >
-              </price-view>
-              <stamp v-if="isPayed" class="float-end" is-approved>
+              </u-price>
+              <u-stamp v-if="isPayed" class="float-end" is-approved>
                 {{ $t("global.status.paid") }}
-              </stamp>
-              <stamp v-if="isCanceled" class="float-end" is-declined>
+              </u-stamp>
+              <u-stamp v-if="isCanceled" class="float-end" is-declined>
                 {{ $t("global.status.canceled") }}
-              </stamp>
+              </u-stamp>
             </div>
           </div>
         </v-col>
@@ -160,13 +160,13 @@
 
 <script>
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import Stamp from "@components/ui/stamp/Stamp.vue";
+import UStamp from "@components/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@components/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
   name: "StorefrontPageHyperOrder",
-  components: { SShopRowCustomerPendingPayment, SHyperCartItems, Stamp },
+  components: { SShopRowCustomerPendingPayment, SHyperCartItems, UStamp },
 
   props: {
     shop: {

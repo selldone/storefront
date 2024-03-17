@@ -40,7 +40,7 @@
       </v-toolbar>
 
       <div v-if="filtered_types.length > 1" class="text-center pt-2">
-        <s-circle-button
+        <u-button-circle
           v-for="item in filtered_types"
           :key="item.code"
           :badge-number="getCount(item.code)"
@@ -124,10 +124,10 @@
               color="transparent"
             >
               <div class="receipt-container m-lg-2 m-md-1 position-relative">
-                <s-progress-loading v-if="busy_save"></s-progress-loading>
+                <u-loading-progress v-if="busy_save"></u-loading-progress>
 
                 <div v-if="busy_bill" class="text-center">
-                  <s-loading css-mode></s-loading>
+                  <u-loading-ellipsis css-mode></u-loading-ellipsis>
                 </div>
                 <div v-else-if="bill">
                   <!-- START OF PRICES -->
@@ -138,7 +138,7 @@
                       <template v-slot:label>
                         {{ $t("basket_page.total_price") }}
                       </template>
-                      <price-view :amount="raw_items_price" medium></price-view>
+                      <u-price :amount="raw_items_price" medium></u-price>
                     </s-value-dashed>
                   </div>
 
@@ -155,11 +155,11 @@
                         {{ $t("basket_page.shipping") }}
                       </template>
 
-                      <price-view
+                      <u-price
                         v-if="shipping_cost > 0"
                         :amount="shipping_cost"
                         medium
-                      ></price-view>
+                      ></u-price>
 
                       <span v-else-if="shipping_cost === 0">
                         {{ $t("basket_page.free_shipping") }}
@@ -184,10 +184,10 @@
                         {{ $t("basket_page.total_discount") }}
                       </template>
                       <p class="text-success">
-                        <price-view
+                        <u-price
                           :amount="-total_items_discount"
                           medium
-                        ></price-view>
+                        ></u-price>
 
                         <span v-if="total_offers_amount">
                           <v-icon class="mx-1 align-baseline" size="small"
@@ -200,10 +200,10 @@
                             size="small"
                             >fa:fas fa-gift</v-icon
                           >
-                          <price-view
+                          <u-price
                             :amount="-total_offers_amount"
                             medium
-                          ></price-view>
+                          ></u-price>
                         </span>
                       </p>
                     </s-value-dashed>
@@ -222,10 +222,10 @@
                         {{ $t("basket_page.cross_selling_discount") }}
                       </template>
                       <p class="text-success">
-                        <price-view
+                        <u-price
                           :amount="-cross_selling_discount"
                           medium
-                        ></price-view>
+                        ></u-price>
                       </p>
                     </s-value-dashed>
                   </div>
@@ -244,12 +244,12 @@
                       class="flex-grow-1 me-2"
                     />
 
-                    <price-view
+                    <u-price
                       v-if="discount_code_amount > 0 /*&& !isService*/"
                       :amount="-discount_code_amount"
                       class="text-success font-weight-medium"
                       medium
-                    ></price-view>
+                    ></u-price>
                     <!-- SERVICE: Dont show price for service -->
                   </div>
 
@@ -290,11 +290,11 @@
                             $t("basket_page.customer_club_discount")
                           }}
                         </template>
-                        <price-view
+                        <u-price
                           :amount="-customer_club_discount"
                           class="text-success"
                           medium
-                        ></price-view>
+                        ></u-price>
                       </s-value-dashed>
                     </div>
                   </div>
@@ -322,11 +322,11 @@
                               $t("global.commons.coupon")
                             }}
                           </template>
-                          <price-view
+                          <u-price
                             :amount="-coupon_discount"
                             class="text-success"
                             medium
-                          ></price-view>
+                          ></u-price>
                         </s-value-dashed>
                       </div>
                     </div>
@@ -355,12 +355,12 @@
                               $t("global.commons.prize")
                             }}
                           </template>
-                          <price-view
+                          <u-price
                             v-if="prize.discount || prize.amount"
                             :amount="-prize_discount"
                             class="text-success"
                             medium
-                          ></price-view>
+                          ></u-price>
                           <div v-else-if="prize.product">
                             <v-avatar
                               class="me-1 hover-scale-small pointer-pointer"
@@ -430,7 +430,7 @@
                       <template v-slot:label>
                         {{ $t("global.commons.net_price") }}
                       </template>
-                      <price-view :amount="net_price" medium></price-view>
+                      <u-price :amount="net_price" medium></u-price>
                     </s-value-dashed>
                   </div>
 
@@ -439,7 +439,7 @@
                       <template v-slot:label>
                         {{ $t("global.commons.tax") }}
                       </template>
-                      <price-view :amount="bill.tax" medium></price-view>
+                      <u-price :amount="bill.tax" medium></u-price>
                     </s-value-dashed>
                   </div>
 
@@ -451,10 +451,10 @@
                       <template v-slot:label>
                         {{ $t("global.commons.shipping_tax") }}
                       </template>
-                      <price-view
+                      <u-price
                         :amount="bill.tax_shipping"
                         medium
-                      ></price-view>
+                      ></u-price>
                     </s-value-dashed>
                   </div>
 
@@ -468,13 +468,13 @@
                       :
                     </p>
                     <p class="value font-weight-black">
-                      <s-loading v-if="refreshing_price" css-mode></s-loading>
+                      <u-loading-ellipsis v-if="refreshing_price" css-mode></u-loading-ellipsis>
 
-                      <price-view
+                      <u-price
                         v-else
                         :amount="final_price"
                         x-large
-                      ></price-view>
+                      ></u-price>
 
                       <span v-if="isSubscription && subscription_period_obj">
                         / {{ $t(subscription_period_obj.title) }}</span
@@ -534,7 +534,7 @@
                       ></products-dense-images-circles>
                     </div>
 
-                    <s-smart-select
+                    <u-smart-select
                       :background-color="
                         !light_checkout ? SaminColorDark : '#fafafa'
                       "
@@ -579,13 +579,13 @@
                         <div v-if="item.free_shipping" class="me-2 text-green">
                           ● {{ $t("global.commons.free_shipping") }}
                           {{ item.free_shipping_limit ? `for + ` : "" }}
-                          <price-view
+                          <u-price
                             :amount="item.free_shipping_limit"
                             :currency="item.currency"
-                          ></price-view>
+                          ></u-price>
                         </div>
                       </template>
-                    </s-smart-select>
+                    </u-smart-select>
 
                     <div class="spacer-line my-4" />
                   </template>
@@ -834,7 +834,7 @@
                         <template v-if="need_ask_shipping_date">
                           <v-list-subheader> Receive date</v-list-subheader>
 
-                          <s-date-input
+                          <u-date-input
                             v-model="delivery_info.date"
                             :date-only="
                               [ETA.date.code].includes(transportation?.eta)
@@ -859,7 +859,7 @@
                                 >warning
                               </v-icon>
                             </template>
-                          </s-date-input>
+                          </u-date-input>
                         </template>
                       </div>
                     </v-expand-transition>
@@ -929,12 +929,12 @@
                             : $t("global.receiver_info.receiver_address")
                         }}
 
-                        <price-view
+                        <u-price
                           v-if="final_price > 0 && !intersect_location_btn"
                           :amount="final_price"
                           :currency="basket.currency"
                           class="ms-3 ps-3 border-start"
-                        ></price-view>
+                        ></u-price>
                       </v-btn>
                     </div>
 
@@ -1108,12 +1108,12 @@
                       <v-icon class="me-2"> fa:fas fa-shopping-bag</v-icon>
                       {{ $t("basket_page.final_confirm_action") }}
 
-                      <price-view
+                      <u-price
                         v-if="final_price > 0 && !intersect_payment_btn"
                         :amount="final_price"
                         :currency="basket.currency"
                         class="ms-3 ps-3 border-start"
-                      ></price-view>
+                      ></u-price>
                     </v-btn>
 
                     <!-- Payment button (Online) -->
@@ -1145,12 +1145,12 @@
                         <v-icon class="me-2"> payment</v-icon>
                         {{ $t("basket_page.pay_and_complete_action") }}
 
-                        <price-view
+                        <u-price
                           v-if="final_price > 0 && !intersect_payment_btn"
                           :amount="final_price"
                           :currency="basket.currency"
                           class="ms-3 ps-3 border-start"
-                        ></price-view>
+                        ></u-price>
                       </v-btn>
                     </template>
                     <!-- Checkout without payment (Service) -->
@@ -1175,12 +1175,12 @@
                       <v-icon class="me-2"> check_circle</v-icon>
                       {{ $t("basket_page.pre_confirm_service") }}
 
-                      <price-view
+                      <u-price
                         v-if="final_price > 0 && !intersect_payment_btn"
                         :amount="final_price"
                         :currency="basket.currency"
                         class="ms-3 ps-3 border-start"
-                      ></price-view>
+                      ></u-price>
                     </v-btn>
                   </div>
                 </div>
@@ -1242,7 +1242,7 @@
       transition="dialog-bottom-transition"
     >
       <!-- Shop Configuration ➡ Map enabled / disabled -->
-      <s-map-view
+      <u-map-view
         v-if="dialog_pre"
         v-model="receiver_info"
         v-model:center="center"
@@ -1290,10 +1290,10 @@ import SShopShareOrderButton from "@components/storefront/order/share-order/SSho
 import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
 import BillingPeriod from "@core/enums/subscription/BillingPeriod";
 import SShopConnectShippingOptions from "@components/storefront/order/shipping/SShopConnectShippingOptions.vue";
-import SSmartSelect from "@components/ui/smart/SSmartSelect.vue";
+import USmartSelect from "@components/ui/smart/select/USmartSelect.vue";
 import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import { ETA } from "@core/enums/logistic/ETA";
-import SDateInput from "@components/ui/calendar/date-input/SDateInput.vue";
+import UDateInput from "@components/ui/date/input/UDateInput.vue";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
 import _ from "lodash-es";
 import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
@@ -1303,9 +1303,9 @@ export default {
   name: "StorefrontPageBasketCart",
   components: {
     SStripeSplitPaymentInfo,
-    SDateInput,
+    UDateInput,
     ProductsDenseImagesCircles,
-    SSmartSelect,
+    USmartSelect,
     SShopConnectShippingOptions,
     SShopBillingAddressForm,
     SShopShareOrderButton,

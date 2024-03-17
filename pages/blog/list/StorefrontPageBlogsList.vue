@@ -21,7 +21,7 @@
     <slot name="header"></slot>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <s-progress-loading v-if="busy"></s-progress-loading>
+    <u-loading-progress v-if="busy"></u-loading-progress>
 
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Header ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 

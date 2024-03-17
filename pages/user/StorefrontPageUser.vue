@@ -31,7 +31,7 @@
 
       <!-- ⦿ Orders History -->
 
-      <s-circle-button
+      <u-button-circle
         :auto-disabled-route-name="window.$storefront.routes.ORDERS_PAGE"
         :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }"
         :tooltip="$t('user_page.menu.orders')"
@@ -40,7 +40,7 @@
 
       <!-- ⦿ Address -->
 
-      <s-circle-button
+      <u-button-circle
         v-if="USER()"
         :auto-disabled-route-name="
           window.$storefront.routes.USER_ADDRESSES_PAGE
@@ -51,7 +51,7 @@
       />
       <!-- ⦿ Return request -->
 
-      <s-circle-button
+      <u-button-circle
         v-if="USER()"
         :auto-disabled-route-name="
           window.$storefront.routes.USER_RETURN_REQUESTS
@@ -62,7 +62,7 @@
       />
       <!-- ⦿ Favorites -->
 
-      <s-circle-button
+      <u-button-circle
         v-if="USER()"
         :auto-disabled-route-name="
           window.$storefront.routes.USER_FAVORITES_PAGE
@@ -73,7 +73,7 @@
       />
       <!-- ⦿ Comments -->
 
-      <s-circle-button
+      <u-button-circle
         v-if="USER()"
         :auto-disabled-route-name="window.$storefront.routes.USER_COMMENTS_PAGE"
         :to="{ name: window.$storefront.routes.USER_COMMENTS_PAGE }"
@@ -83,7 +83,7 @@
 
       <!-- ⦿ Gift cards -->
 
-      <s-circle-button
+      <u-button-circle
         v-if="USER()"
         :auto-disabled-route-name="
           window.$storefront.routes.USER_GIFTCARDS_PAGE
@@ -95,7 +95,7 @@
 
       <!-- ⦿ Profile -->
 
-      <s-circle-button
+      <u-button-circle
         :auto-disabled-route-name="window.$storefront.routes.USER_PROFILE_PAGE"
         :to="{ name: window.$storefront.routes.USER_PROFILE_PAGE }"
         :tooltip="$t('user_page.menu.profile')"

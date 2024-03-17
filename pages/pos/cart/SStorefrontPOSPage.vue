@@ -66,11 +66,11 @@
               >{{ $t("global.commons.total") }}:</span
             >
             <v-spacer></v-spacer>
-            <price-view
+            <u-price
               :amount="bill.sum - bill.pay_by_giftcards"
               :currency="bill.currency"
               large
-            ></price-view>
+            ></u-price>
           </v-card-actions>
 
           <!------------ Pending Payments ------------>
@@ -116,11 +116,11 @@
                 </p>
               </div>
               <div class="py-2">
-                <price-view
+                <u-price
                   :amount="transaction_pending.amount"
                   :currency="transaction_pending.currency"
                   x-large
-                ></price-view>
+                ></u-price>
               </div>
 
               <div>
@@ -160,11 +160,11 @@
               {{ gateway.name }}
             </div>
             <div class="py-2">
-              <price-view
+              <u-price
                 :amount="payment.amount"
                 :currency="payment.currency"
                 large
-              ></price-view>
+              ></u-price>
             </div>
             <v-row class="align-items-center">
               <div>
@@ -187,11 +187,11 @@
                 ></s-payment-billing-details>
               </div>
 
-              <s-country-world-map
+              <u-map-countries-single
                 v-if="payment.card && payment.card.country"
                 :country="payment.card.country"
                 class="min-width-200 flex-grow-1 m-1"
-              ></s-country-world-map>
+              ></u-map-countries-single>
             </v-row>
           </v-card-text>
         </div>
@@ -220,13 +220,13 @@ import SPosBillView from "@components/storefront/pos/bill-view/SPosBillView.vue"
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
 import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
-import SCountryWorldMap from "@components/ui/map/countries-svg/SCountryWorldMap.vue";
+import UMapCountriesSingle from "@components/ui/map/countries/single/UMapCountriesSingle.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 
 export default {
   name: "SStorefrontPOSPage",
   components: {
-    SCountryWorldMap,
+    UMapCountriesSingle,
     SPaymentBillingDetails,
     SPaymentCard,
     SPosBillView,

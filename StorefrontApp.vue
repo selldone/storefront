@@ -97,7 +97,7 @@
     <s-storefront-need-login-dialog />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-notifications-and-alerts />
+    <u-notification-side />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-application-login
@@ -105,15 +105,15 @@
     ></s-storefront-application-login>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-map-dialog></s-map-dialog>
+    <u-map-dialog></u-map-dialog>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Cookie Agreement ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-cookie-consent v-if="has_gdpr"></s-cookie-consent>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-pwa-update-snackbar
+    <s-pwa-version-check
       :style="$vuetify.display.smAndDown ? 'margin-top:-42px' : ''"
-    ></s-pwa-update-snackbar>
+    ></s-pwa-version-check>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-footer-navigation
@@ -146,10 +146,10 @@ import _ from "lodash-es";
 import SStorefrontMasterPaymentDialog from "@components/storefront/payment/SStorefrontMasterPaymentDialog.vue";
 import { FirebaseNotificationCategories } from "@core/enums/push-notification/FirebaseNotificationCategories";
 import SStorefrontNeedLoginDialog from "@components/storefront/login/SStorefrontNeedLoginDialog.vue";
-import SNotificationsAndAlerts from "@components/ui/notification/SNotificationsAndAlerts.vue";
+import UNotificationSide from "@components/ui/notification/side/UNotificationSide.vue";
 import { Language } from "@core/enums/language/Language";
 import SCookieConsent from "@components/storefront/cookie/consent/SCookieConsent.vue";
-import SPwaUpdateSnackbar from "@components/ui/snackbar/SPwaUpdateSnackbar.vue";
+import SPwaVersionCheck from "@components/system/pwa/version-check/SPwaVersionCheck.vue";
 import SFooterNavigation from "@components/storefront/footer/navigarion/SFooterNavigation.vue";
 import { SetupService } from "@core/server/SetupService";
 import SStorefrontPopup from "@components/storefront/popup/SStorefrontPopup.vue";
@@ -163,7 +163,7 @@ import SStorefrontRetrieveShareOrder from "@components/storefront/order/share-or
 import SComparisonButton from "@components/storefront/comparison/button/SComparisonButton.vue";
 import { EventName } from "@core/events/EventBus";
 import SStorefrontApplicationLogin from "@components/storefront/login/SStorefrontApplicationLogin.vue";
-import SMapDialog from "@components/ui/map/map-dialog/SMapDialog.vue";
+import UMapDialog from "@components/ui/map/dialog/UMapDialog.vue";
 import SDebugger from "@components/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@core/utils/scroll/ScrollHelper";
 
@@ -171,7 +171,7 @@ export default {
   name: "StorefrontApp",
   components: {
     SDebugger,
-    SMapDialog,
+    UMapDialog,
     SStorefrontApplicationLogin,
     SComparisonButton,
     SStorefrontRetrieveShareOrder,
@@ -181,9 +181,9 @@ export default {
     SFullscreenViewAnimator,
     SStorefrontPopup,
     SFooterNavigation,
-    SPwaUpdateSnackbar,
+    SPwaVersionCheck,
     SCookieConsent,
-    SNotificationsAndAlerts,
+    UNotificationSide,
     SStorefrontNeedLoginDialog,
     SStorefrontMasterPaymentDialog,
   },

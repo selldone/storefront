@@ -25,7 +25,7 @@
       </s-widget-header>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ My Gift cards  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-progress-loading v-if="busy_fetch"></s-progress-loading>
+      <u-loading-progress v-if="busy_fetch"></u-loading-progress>
 
       <v-data-iterator
         v-model:options="options"
@@ -41,7 +41,7 @@
         hide-default-footer
       >
         <template v-slot:loading>
-          <s-loading css-mode light></s-loading>
+          <u-loading-ellipsis css-mode light></u-loading-ellipsis>
         </template>
 
         <template v-slot:header>

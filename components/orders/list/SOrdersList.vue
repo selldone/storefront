@@ -14,7 +14,7 @@
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div>
-    <s-progress-loading v-if="busy_fetch"></s-progress-loading>
+    <u-loading-progress v-if="busy_fetch"></u-loading-progress>
     <v-data-table-server
       v-model="selected"
       v-model:options="options"
@@ -44,7 +44,7 @@
       @click:row="(_, r) => handleSelected(r.item)"
     >
       <template v-slot:loading>
-        <s-loading css-mode light></s-loading>
+        <u-loading-ellipsis css-mode light></u-loading-ellipsis>
       </template>
 
       <template v-slot:item.id="{ item }">
@@ -103,11 +103,11 @@
           >
           {{ $t("global.commons.waiting_review") }}</span
         >
-        <price-view
+        <u-price
           v-else
           :amount="item.price"
           :currency="item.currency"
-        ></price-view>
+        ></u-price>
       </template>
 
       <template v-slot:item.status="{ item }">

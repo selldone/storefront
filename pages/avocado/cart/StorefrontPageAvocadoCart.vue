@@ -46,7 +46,7 @@
         justify="center"
         style="min-height: 65vh"
       >
-        <s-loading v-if="busy" css-mode light></s-loading>
+        <u-loading-ellipsis v-if="busy" css-mode light></u-loading-ellipsis>
 
         <v-col v-if="shop && avocado" class="flex-grow-1" cols="12">
           <!-- ................ Progress ................ -->
@@ -96,7 +96,7 @@
             <div class="d-flex">
               <p class="flex-grow-1">{{ $t("global.commons.net_price") }}</p>
 
-              <price-view
+              <u-price
                 :amount="
                   avocado.price -
                   (avocado.delivery ? avocado.delivery_price : 0)
@@ -104,7 +104,7 @@
                 :currency="avocado.currency"
                 not-show-zero
               >
-              </price-view>
+              </u-price>
             </div>
 
             <div class="d-flex">
@@ -112,24 +112,24 @@
                 {{ $t("global.commons.delivery_price") }}
               </p>
 
-              <price-view
+              <u-price
                 :amount="avocado.delivery_price"
                 :currency="avocado.currency"
                 not-show-zero
               >
-              </price-view>
+              </u-price>
             </div>
 
             <div class="d-flex">
               <p class="flex-grow-1">{{ $t("global.commons.tax") }}</p>
 
-              <price-view
+              <u-price
                 :amount="avocado.tax"
                 :currency="avocado.currency"
                 :line-through="avocado.tax_included"
                 not-show-zero
               >
-              </price-view>
+              </u-price>
             </div>
 
             <div v-if="isPayed" class="text-subtitle-2">
@@ -146,19 +146,19 @@
             <hr />
 
             <div class="py-3">
-              <price-view
+              <u-price
                 :amount="sum"
                 :currency="avocado.currency"
                 large
                 not-show-zero
               >
-              </price-view>
-              <stamp v-if="isPayed" class="float-end" is-approved>
+              </u-price>
+              <u-stamp v-if="isPayed" class="float-end" is-approved>
                 {{ $t("global.status.paid") }}
-              </stamp>
-              <stamp v-if="isCanceled" class="float-end" is-declined>
+              </u-stamp>
+              <u-stamp v-if="isCanceled" class="float-end" is-declined>
                 {{ $t("global.status.canceled") }}
-              </stamp>
+              </u-stamp>
             </div>
 
             <div v-if="avocado.delivery" class="mb-4">
@@ -261,7 +261,7 @@
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import Stamp from "@components/ui/stamp/Stamp.vue";
+import UStamp from "@components/ui/stamp/UStamp.vue";
 import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
@@ -272,7 +272,7 @@ export default {
   components: {
     SShopAvocadoCustomerOrderItems,
     SOrderDeliveryStatusStepper,
-    Stamp,
+    UStamp,
     SShopCustomerReceiverInfoWidget,
   },
 

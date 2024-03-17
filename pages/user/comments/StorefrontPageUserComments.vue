@@ -18,7 +18,7 @@
       <s-widget-header :title="$t('user_comments.title')" icon="chat_bubble">
       </s-widget-header>
 
-      <s-progress-loading v-if="busy_fetch"></s-progress-loading>
+      <u-loading-progress v-if="busy_fetch"></u-loading-progress>
 
       <v-data-iterator
         v-model:options="options"

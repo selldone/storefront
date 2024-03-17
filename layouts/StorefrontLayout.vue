@@ -202,7 +202,7 @@ import SFooterSection from "@components/storefront/footer/section/SFooterSection
 import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
 import { ShopEventsName } from "@core/enums/application/ShopEventsName";
 
-import SStorefrontCampaignNotification from "@components/ui/notification/SStorefrontCampaignNotification.vue";
+import SStorefrontCampaignNotification from "@components/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
 import SContactsPopup from "@components/storefront/contact/popup/SContactsPopup.vue";
 import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
 import SHeaderSection from "@components/storefront/header/section/SHeaderSection.vue";

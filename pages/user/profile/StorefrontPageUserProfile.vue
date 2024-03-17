@@ -106,10 +106,10 @@
           </v-list-subheader>
         </template>
         <div class="text-success">
-          <s-check
+          <u-check
             :value="USER().personal_information_verified"
             class="me-1"
-          ></s-check>
+          ></u-check>
           <span v-if="USER().personal_information_verified">
             {{ $t("user_profile.success_kyc") }}</span
           >
@@ -162,10 +162,10 @@
               <small class="d-block">{{
                 $t("user_profile.club_table.limit")
               }}</small>
-              <price-view
+              <u-price
                 :amount="getClub().limit"
                 :currency="getClub().currency"
-              ></price-view>
+              ></u-price>
             </div>
 
             <div v-if="getClub().free_shipping" class="flex-grow-1">

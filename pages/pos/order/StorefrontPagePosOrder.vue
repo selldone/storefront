@@ -33,7 +33,7 @@
 
       <!-- ⦿ Back -->
 
-      <s-circle-button
+      <u-button-circle
         :icon="$t('icons.arrow_back')"
         :to="
           buildReturnRoute(
@@ -47,7 +47,7 @@
 
       <v-spacer></v-spacer>
 
-      <s-loading v-if="busy" css-mode></s-loading>
+      <u-loading-ellipsis v-if="busy" css-mode></u-loading-ellipsis>
 
       <v-spacer></v-spacer>
 
