@@ -81,9 +81,9 @@
               :key="index"
               :class="{
                 '': transaction_pending.status === 'RequireAction',
-                'bg-info text-white':
+                'bg-cyan text-white':
                   transaction_pending.status === 'Processing',
-                'bg-danger text-white':
+                'bg-red text-white':
                   transaction_pending.status === 'Canceled',
               }"
               class="text-start"

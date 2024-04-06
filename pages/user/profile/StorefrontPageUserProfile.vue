@@ -90,16 +90,16 @@
         {{ $t("user_profile.title") }}
       </h2>
 
-      <s-value-dashed>
+      <u-text-value-dashed>
         <template v-slot:label>
           <v-list-subheader>
             {{ $t("user_profile.tel") }}
           </v-list-subheader>
         </template>
         <b>{{ USER().phone }}</b>
-      </s-value-dashed>
+      </u-text-value-dashed>
 
-      <s-value-dashed>
+      <u-text-value-dashed>
         <template v-slot:label>
           <v-list-subheader>
             {{ $t("user_profile.identity") }}
@@ -114,7 +114,7 @@
             {{ $t("user_profile.success_kyc") }}</span
           >
         </div>
-      </s-value-dashed>
+      </u-text-value-dashed>
 
       <div class="widget-buttons">
         <v-btn
@@ -207,11 +207,11 @@
 
 <script>
 import { SetupService } from "@core/server/SetupService";
-import SValueDashed from "@components/ui/text/SValueDashed.vue";
+import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
 
 export default {
   name: "StorefrontPageUserProfile",
-  components: { SValueDashed },
+  components: { UTextValueDashed },
   props: {
     shop: {
       require: true,

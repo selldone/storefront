@@ -55,46 +55,46 @@
         ></s-widget-header>
         <v-list-subheader></v-list-subheader>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.receiver") }}</template>
           <b class="max-w-300"> {{ address.name }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.address") }}</template>
           <b class="max-w-300"> {{ address.address }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label
             >{{ $t("addresses_page.building_no") }}
           </template>
           <b> {{ address.no }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label
             >{{ $t("addresses_page.building_unit") }}
           </template>
           <b> {{ address.unit }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.postcode") }}</template>
           <b> {{ address.postal }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label>{{ $t("addresses_page.tel") }}</template>
           <b> {{ address.phone }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
-        <s-value-dashed>
+        <u-text-value-dashed>
           <template v-slot:label
             >{{ $t("addresses_page.description") }}
           </template>
           <b> {{ address.message }}</b>
-        </s-value-dashed>
+        </u-text-value-dashed>
 
         <div class="position-relative">
           <div class="position-relative map-circle ma-auto">
@@ -200,12 +200,12 @@
 
 <script>
 import UMapViewPin from "@components/ui/map/view/market/UMapViewPin.vue";
-import SValueDashed from "@components/ui/text/SValueDashed.vue";
+import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
 import SWidgetHeader from "@components/ui/widget/header/SWidgetHeader.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { SWidgetHeader, SValueDashed, UMapViewPin },
+  components: { SWidgetHeader, UTextValueDashed, UMapViewPin },
   data() {
     return {
       addresses: [],

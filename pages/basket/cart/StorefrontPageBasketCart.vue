@@ -134,12 +134,12 @@
 
                   <div class="font-weight-medium data-row">
                     <!-- SERVICE: Dont show price for service -->
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         {{ $t("basket_page.total_price") }}
                       </template>
                       <u-price :amount="raw_items_price" medium></u-price>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <!-- Delivery price -->
@@ -149,7 +149,7 @@
                     class="font-weight-medium data-row"
                   >
                     <!-- SERVICE: Dont show price for service / Show shipping cost after user select address! -->
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         <i class="fas fa-shipping-fast me-1" />
                         {{ $t("basket_page.shipping") }}
@@ -168,7 +168,7 @@
                       <span v-else>
                         {{ $t("basket_page.shipping_not_pay") }}
                       </span>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <!-- Products Discount -->
@@ -178,7 +178,7 @@
                     class="data-row font-weight-medium"
                   >
                     <!-- SERVICE: Dont show price for service -->
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         <i class="fas fa-tags me-1" />
                         {{ $t("basket_page.total_discount") }}
@@ -206,7 +206,7 @@
                           ></u-price>
                         </span>
                       </p>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <!-- Cross selling discount -->
@@ -216,7 +216,7 @@
                     class="data-row font-weight-medium"
                   >
                     <!-- SERVICE: Dont show price for service -->
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         <v-icon class="me-1" size="small">whatshot</v-icon>
                         {{ $t("basket_page.cross_selling_discount") }}
@@ -227,7 +227,7 @@
                           medium
                         ></u-price>
                       </p>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <!-- Discount Code -->
@@ -284,7 +284,7 @@
                       class="font-weight-medium data-row"
                     >
                       <!-- SERVICE: Dont show price for service -->
-                      <s-value-dashed>
+                      <u-text-value-dashed>
                         <template v-slot:label>
                           <i class="fas fa-heart me-1" />{{
                             $t("basket_page.customer_club_discount")
@@ -295,7 +295,7 @@
                           class="text-success"
                           medium
                         ></u-price>
-                      </s-value-dashed>
+                      </u-text-value-dashed>
                     </div>
                   </div>
 
@@ -316,7 +316,7 @@
 
                       <div class="font-weight-medium data-row">
                         <!-- SERVICE: Dont show price for service -->
-                        <s-value-dashed>
+                        <u-text-value-dashed>
                           <template v-slot:label>
                             <i class="fas fa-ticket-alt me-1" />{{
                               $t("global.commons.coupon")
@@ -327,7 +327,7 @@
                             class="text-success"
                             medium
                           ></u-price>
-                        </s-value-dashed>
+                        </u-text-value-dashed>
                       </div>
                     </div>
                   </v-expand-transition>
@@ -349,7 +349,7 @@
 
                       <div class="font-weight-medium data-row">
                         <!-- SERVICE: Dont show price for service -->
-                        <s-value-dashed>
+                        <u-text-value-dashed>
                           <template v-slot:label>
                             <i class="fas fa-dice me-1" />{{
                               $t("global.commons.prize")
@@ -374,7 +374,7 @@
 
                             {{ prize.product.title }}
                           </div>
-                        </s-value-dashed>
+                        </u-text-value-dashed>
                       </div>
 
                       <!-- Product has variant! User can select variant for prize. -->
@@ -426,28 +426,28 @@
                   <!-- ========== Tax ========== -->
 
                   <div class="font-weight-medium data-row">
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         {{ $t("global.commons.net_price") }}
                       </template>
                       <u-price :amount="net_price" medium></u-price>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <div v-if="bill.tax" class="font-weight-medium data-row">
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         {{ $t("global.commons.tax") }}
                       </template>
                       <u-price :amount="bill.tax" medium></u-price>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <div
                     v-if="bill.tax_shipping"
                     class="font-weight-medium data-row"
                   >
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         {{ $t("global.commons.shipping_tax") }}
                       </template>
@@ -455,7 +455,7 @@
                         :amount="bill.tax_shipping"
                         medium
                       ></u-price>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
                   </div>
 
                   <!-- ========== Spacer ========== -->
@@ -598,7 +598,7 @@
                   >
                     <!-- ━━━━━━━━━━━━━━━━━━ Select preferred arrival time button ━━━━━━━━━━━━━━━━━━ -->
 
-                    <s-value-dashed>
+                    <u-text-value-dashed>
                       <template v-slot:label>
                         <i class="fas fa-calendar-check me-1" />
                         {{ $t("basket_page.receive_time") }}
@@ -668,7 +668,7 @@
                           </div>
                         </v-btn>
                       </span>
-                    </s-value-dashed>
+                    </u-text-value-dashed>
 
                     <!-- ━━━━━━━━━━━━━━━━━━ Show package and distance info ━━━━━━━━━━━━━━━━━━ -->
 
@@ -716,7 +716,7 @@
                     <!-- ━━━━━━━━━━━━━━━━━━ Lead time ━━━━━━━━━━━━━━━━━━ -->
 
                     <div class="font-weight-medium data-row">
-                      <s-value-dashed>
+                      <u-text-value-dashed>
                         <template v-slot:label>
                           <i class="fas fa-clock me-1" />
                           {{ $t("basket_page.lead_time") }}
@@ -728,7 +728,7 @@
                           }}
                           {{ $t("basket_page.lead_time_unit") }}
                         </span>
-                      </s-value-dashed>
+                      </u-text-value-dashed>
                     </div>
 
                     <!-- ════════════════════════ Custom delivery time ════════════════════════ -->
@@ -1284,7 +1284,7 @@ import SStorefrontLotteryPrizesList from "@components/storefront/lottery/prizes-
 import VariantItemMini from "@components/storefront/product/variant/VariantItemMini.vue";
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
-import SValueDashed from "@components/ui/text/SValueDashed.vue";
+import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
 import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
@@ -1310,7 +1310,7 @@ export default {
     SShopBillingAddressForm,
     SShopShareOrderButton,
 
-    SValueDashed,
+    UTextValueDashed,
     SShopCustomerReceiverInfoWidget,
     VariantItemMini,
     SStorefrontLotteryPrizesList,

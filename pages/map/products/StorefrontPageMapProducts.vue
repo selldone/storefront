@@ -170,13 +170,13 @@
             </v-carousel-item>
           </v-carousel>
 
-          <s-value-copy-box
+          <u-text-copy-box
             :value="share_url"
             background-color="#111"
             class="my-7"
             color="#1976D2"
             small-width-mode
-          ></s-value-copy-box>
+          ></u-text-copy-box>
           <div class="d-sm-none d-block" style="min-height: 72px"></div>
         </v-card-text>
       </v-card>
@@ -189,7 +189,7 @@ import Mapbox from "@components/ui/map/providers/mapbox/MapBox";
 import { SetupService } from "@core/server/SetupService";
 import SProductsListing from "@components/storefront/products/listing/SProductsListing.vue";
 import UMapAddressInput from "@components/ui/map/address/input/UMapAddressInput.vue";
-import SValueCopyBox from "@components/ui/text/SValueCopyBox.vue";
+import UTextCopyBox from "@components/ui/text/copy-box/UTextCopyBox.vue";
 import SShopProductCard from "@components/storefront/product/card/SShopProductCard.vue";
 import _ from "lodash-es";
 
@@ -197,7 +197,7 @@ export default {
   name: "StorefrontPageMapProducts",
   components: {
     SShopProductCard,
-    SValueCopyBox,
+    UTextCopyBox,
     UMapAddressInput,
     SProductsListing,
   },
