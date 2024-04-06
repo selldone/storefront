@@ -288,14 +288,14 @@
 
       <!-- ▁▁▁▁▁▁ 🞇 Badges 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('badges') }">
-        <s-fade-scroll>
+        <u-fade-scroll>
           <s-product-section-badges
             :large="$vuetify.display.mdAndUp"
             :product="product"
             :shop="shop"
             class="py-16"
           ></s-product-section-badges>
-        </s-fade-scroll>
+        </u-fade-scroll>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Dialog > QR Code ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
@@ -359,7 +359,7 @@ import { ProductType } from "@core/enums/product/ProductType";
 import { SetupService } from "@core/server/SetupService";
 
 import SShopProductProsConsTable from "@components/storefront/product/pros-cons/SShopProductProsConsTable.vue";
-import SFadeScroll from "@components/ui/fade-scroll/SFadeScroll.vue";
+import UFadeScroll from "@components/ui/fade-scroll/UFadeScroll.vue";
 import SShopProductIncludes from "@components/storefront/product/includes/SShopProductIncludes.vue";
 import { ColorHelper } from "@core/helper/color/ColorHelper";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
@@ -399,7 +399,7 @@ export default {
     SProductRelatedCategories,
     SProductRelatedProducts,
     SShopProductIncludes,
-    SFadeScroll,
+    UFadeScroll,
     SShopProductProsConsTable,
 
     SProductOverviewLoading,
