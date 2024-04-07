@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2023. Selldone® Business OS™
  *
@@ -34,8 +35,9 @@ import type {Coupon} from "@core/models/shop/incentives/coupon/coupon.model";
 import type {Offer} from "@core/models/shop/incentives/offer/offer.model";
 import type {RouteRecord} from "vue-router/types/router";
 import {Shop} from "@core/models/shop/shop.model";
+import {defineComponent} from "vue";
 
-const StorefrontMixin = {
+const StorefrontMixin = defineComponent({
   data() {
     return {
       // Data properties
@@ -1115,6 +1117,5 @@ const StorefrontMixin = {
       // PushNotification.AskForPermission();
     },
   },
-};
-
+});
 export default StorefrontMixin;

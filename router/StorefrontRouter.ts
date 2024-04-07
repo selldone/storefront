@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2023. Selldone® Business OS™
  *
@@ -48,6 +49,7 @@ import {Shop} from "@core/models/shop/shop.model";
 import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
 import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
 import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
+import LandingRender from "@app-page-builder/LandingRender.vue";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
@@ -126,10 +128,7 @@ const StorefrontPageUserOrdersPos = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/pos/StorefrontPageUserOrdersPos.vue"
   );
-const LandingRender = () =>
-  import(
-    /* webpackChunkName: "shop-profile" */ "@app-page-builder/LandingRender"
-  );
+
 const StorefrontPageUserReturns = () =>
   import(
     /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/returns/StorefrontPageUserReturns.vue"

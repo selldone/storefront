@@ -16,23 +16,23 @@
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
-import { createApp } from "vue";
-import App from "./StorefrontApp.vue";
+import {createApp} from "vue";
+import StorefrontApp from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import VueCookies from "vue-cookies";
-import { i18n } from "./lang/i18n_shop";
-import { Language } from "@core/enums/language/Language";
-import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
-import { StorefrontSDK } from "@sdk-storefront/StorefrontSDK";
+import {i18n} from "./lang/i18n_shop";
+import {Language} from "@core/enums/language/Language";
+import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationInterface";
+import {StorefrontSDK} from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
-import { CapiCommunity } from "@sdk-community/CapiCommunity"; // Register the service worker.
-import { VuetifyInstance } from "@components/plugins/vuetify/vuetify";
+import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the service worker.
+import {VuetifyInstance} from "@components/plugins/vuetify/vuetify";
 //█████████████████████████████████████████████████████████████
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
-import { createComponents } from "@components/components";
-import { SetupPageBuilder } from "@app-page-builder/page-builder";
+import {createComponents} from "@components/components";
+import {SetupPageBuilder} from "@app-page-builder/page-builder";
 
 const vuetify = VuetifyInstance(i18n);
 
@@ -41,6 +41,7 @@ const vuetify = VuetifyInstance(i18n);
 //█████████████████████████████████████████████████████████████
 
 // ━━━ Global Language ━━━
+// @ts-ignore
 window.$language = Language[i18n.locale] ? Language[i18n.locale] : Language.en;
 
 //━━━  Multi languages support ━━━
@@ -60,7 +61,8 @@ window.OverrideShopLanguagePacks = {};
 //█████████████████████████████████████████████████████████████
 //――――――――――――― Initialize Vue App ―――――――――――――
 //█████████████████████████████████████████████████████████████
-const app = createApp(App);
+// @ts-ignore
+const app = createApp(StorefrontApp);
 
 const components = createComponents({});
 app.use(components);
@@ -98,10 +100,10 @@ window.SetToken = function (
   );
   window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
-  (storefrontVueApp as InstanceType<typeof StorefrontMixin>).UpdateUserInfo();
+  (storefrontVueApp as InstanceType<typeof StorefrontMixin>)?.UpdateUserInfo();
   (
     storefrontVueApp as InstanceType<typeof StorefrontMixin>
-  ).fetchBasketAndShop();
+  )?.fetchBasketAndShop();
 };
 
 //█████████████████████████████████████████████████████████████
@@ -109,11 +111,12 @@ window.SetToken = function (
 //█████████████████████████████████████████████████████████████
 
 // ━━━ Global Mixin ━━━
+// @ts-ignore
 app.mixin(StorefrontMixin); // Mixin with global helper methods.
 app.use(VueCookies); // Use Vue Cookies.
 
 // ━━━ Native App Interface ━━━
-require("@components/plugins/native/NativeAppInterface");
+//require("@components/plugins/native/NativeAppInterface");
 
 // ━━━ Vue Instance ━━━
 
@@ -124,16 +127,6 @@ app.use(vuetify);
 
 // Mount the application
 const storefrontVueApp = app.mount("#app");
-/*
-const storefrontVueApp = new Vue({
-  i18n,
-  router,
-  store,
-  render: (h) => h(App),
-  vuetify,
-}).$mount("#app");*/
 
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
-SetupPageBuilder(app, {
-  mode: "view",
-});
+SetupPageBuilder(app, { mode: "view" });
