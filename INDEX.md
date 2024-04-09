@@ -19,7 +19,7 @@ tags are essential for defining shop characteristics, API endpoints, CDN links, 
     - These tags classify the site as a shop and attribute copyright to Selldone.
 
 - **Shop Name**
-    - `<meta name="shop-name" content="<%= process.env.VUE_APP_SAMPLE_SHOP_NAME %>">`
+    - `<meta name="shop-name" content="<%= process.env.VITE_APP_SAMPLE_SHOP_NAME %>">`
     - Specifies the name of the shop, dynamically loaded from environment variables.
 
 - **Shop Prefix Address**
@@ -27,7 +27,7 @@ tags are essential for defining shop characteristics, API endpoints, CDN links, 
     - Defines a prefix for the shop's address (e.g., a unique identifier or slug).
 
 - **Custom Home Page**
-    - `<meta name="custom-home" content="<%= process.env.VUE_APP_SAMPLE_SHOP_CUSTOM_HOME %>">`
+    - `<meta name="custom-home" content="%VITE_APP_SAMPLE_SHOP_CUSTOM_HOME%">`
     - Sets a custom landing page for the shop, loaded from environment variables.
 
 ### Business OS Configuration
@@ -59,13 +59,13 @@ tags are essential for defining shop characteristics, API endpoints, CDN links, 
 
 - **Default Currency, Country, and Language**
     - These tags set the default currency, country, and language for the storefront.
-    - Example: `<meta name="default-currency" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>">`
+    - Example: `<meta name="default-currency" content="%VITE_APP_SAMPLE_DEFAULT_CURRENCY%">`
 
 ### Theme Customization
 
 - **Theme Colors**
     - These tags define the color scheme for various theme modes (light, dark, deep dark, info).
-    - Example: `<meta name="color--theme-light" content="<%= process.env.VUE_APP_SAMPLE_DEFAULT_CURRENCY %>">`
+    - Example: `<meta name="color--theme-light" content="%VITE_APP_SAMPLE_THEME_COLOR_LIGHT%">`
 
 The meta tags in the Selldone Storefront's `index.html` are essential for configuring the storefront's functionality and
 appearance. They ensure that the storefront aligns with the specific requirements of the Selldone hosting environment

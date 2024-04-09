@@ -142,8 +142,8 @@ the `.env` file with the following variables:
 
 | Variable                        | Description                                                                                                                                                          | Example   |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| VUE_APP_SAMPLE_SHOP_NAME        | Your Selldone shop name. Use the format `my-shop-name`.                                                                                                              | toysworld |
-| VUE_APP_SAMPLE_SHOP_CUSTOM_HOME | Define the first page of your storefront. Options include `blog`, `avocado`, `hyper`, `community`, `shop`, `map`, `number`, a specific _LANDING-PAGE-ID_, or `null`. | 3001      |
+| VITE_APP_SAMPLE_SHOP_NAME        | Your Selldone shop name. Use the format `my-shop-name`.                                                                                                              | toysworld |
+| VITE_APP_SAMPLE_SHOP_CUSTOM_HOME | Define the first page of your storefront. Options include `blog`, `avocado`, `hyper`, `community`, `shop`, `map`, `number`, a specific _LANDING-PAGE-ID_, or `null`. | 3001      |
 
 By following these steps, you'll be well on your way to developing a unique and fully customized storefront for Selldone
 using the Vue framework. Happy coding!
@@ -154,26 +154,26 @@ Sample .env file to load data from Selldone:
 
 # ▃▃▃▃▃▃▃▃▃▃▃▃ Sample Storefront ▃▃▃▃▃▃▃▃▃▃▃▃
 
-VUE_APP_SAMPLE_SHOP_NAME=toysworld
+VITE_APP_SAMPLE_SHOP_NAME=toysworld
 
 #Number: custom landing page number
-VUE_APP_SAMPLE_SHOP_CUSTOM_HOME=3001
+VITE_APP_SAMPLE_SHOP_CUSTOM_HOME=3001
 
-VUE_APP_SAMPLE_DEFAULT_CURRENCY=GBP
-VUE_APP_SAMPLE_DEFAULT_COUNTRY=GB
-VUE_APP_SAMPLE_DEFAULT_LANGUAGE=en
+VITE_APP_SAMPLE_DEFAULT_CURRENCY=GBP
+VITE_APP_SAMPLE_DEFAULT_COUNTRY=GB
+VITE_APP_SAMPLE_DEFAULT_LANGUAGE=en
 
 
-VUE_APP_SAMPLE_THEME_COLOR_LIGHT="#70557E"
-VUE_APP_SAMPLE_THEME_COLOR_DARK="#000000"
-VUE_APP_SAMPLE_THEME_COLOR_DEEP_DARK="#000000"
-VUE_APP_SAMPLE_THEME_COLOR_INFO="#E91E63"
+VITE_APP_SAMPLE_THEME_COLOR_LIGHT="#70557E"
+VITE_APP_SAMPLE_THEME_COLOR_DARK="#000000"
+VITE_APP_SAMPLE_THEME_COLOR_DEEP_DARK="#000000"
+VITE_APP_SAMPLE_THEME_COLOR_INFO="#E91E63"
 
 # ▃▃▃▃▃▃▃▃▃▃▃▃ Dev Server ▃▃▃▃▃▃▃▃▃▃▃▃
 
-VUE_DEV_SERVER_HOST=
-VUE_DEV_SERVER_PORT=
-VUE_DEV_SERVER_HTTPS=TRUE
+VITE_APP_DEV_SERVER_HOST=
+VITE_APP_DEV_SERVER_PORT=
+VITE_APP_DEV_SERVER_HTTPS=TRUE
 ```
 
 ## Deploy

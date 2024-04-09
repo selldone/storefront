@@ -17,15 +17,9 @@ module.exports = {
   env: {
     node: true,
     browser: true, // if your code runs in a browser environment, you should add this
-    //  es2022: true, // 👈 add this
+     es2022: true, // 👈 add this
   },
-  extends: [
-    "plugin:vue/vue3-essential",
-    "@vue/prettier",
-    "@vue/typescript",
-    "plugin:vue/base",
-    "plugin:vuetify/base",
-  ],
+  extends: ["plugin:vue/vue3-essential", "@vue/prettier", "@vue/typescript",'plugin:vue/base', 'plugin:vuetify/base'],
   rules: {
     "no-console": "off", //process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": "off", //process.env.NODE_ENV === "production" ? "error" : "off"
@@ -49,4 +43,5 @@ module.exports = {
     $: true,
     jQuery: true,
   },
+
 };

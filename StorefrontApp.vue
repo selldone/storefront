@@ -238,7 +238,7 @@ export default {
     },
 
     popup() {
-      return this.shop && this.shop.popup;
+      return  this.shop?.popup;
     },
 
     // --------------------------------------------------------------------------------
@@ -304,9 +304,12 @@ export default {
     },
 
     popup(popup) {
-      if (!popup) return;
+      if (!popup) {
+        console.style("<b>🛸 Popup : None! </b>");
+        return;
+      }
 
-      console.style("<b>🛸 You have a popup </b>");
+      console.style("<b>🛸 You have a popup! </b>");
 
       setTimeout(() => {
         this.show_popup = true;
