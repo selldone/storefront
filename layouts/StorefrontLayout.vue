@@ -59,6 +59,7 @@
       "
       :search-mode="search_mode"
       :shop="shop"
+      :color="header_color"
     ></s-header-section>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -106,60 +107,64 @@
       "
     >
       <!-- The 'router-view' will display the content of children components as defined in the Router. -->
-      <router-view
-        v-if="shop"
-        :class="{
-          's--shop-card s--shadow-no-padding -hide1720 mb-16 bg-white position-relative':
-            is_view_card_mode,
-        }"
-        :shop="shop"
-        :style="{ 'padding-bottom': bottom_padding_container }"
-        @update:menu-transparent="
-          (val) => (transparent_header = val) /*Update on custome pages*/
-        "
-        @update:menu-dark="
-          (val) => (dark_header = val) /*Update on custome pages*/
-        "
-        @update:header-mode="
-          (val) => (header_mode = val) /*Update on custome pages*/
-        "
-        @update:header-color="
-          (val) => (header_color = val) /*Update on header color*/
-        "
-      >
-        <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-        <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
-        <template v-slot:header="{ center }">
-          <s-header-section
-            v-if="
-              header_mode ===
-              'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
-            "
-            :color="header_color"
-            :overlay-dark="!!dark_header"
-            :search-mode="search_mode"
-            :shop="shop"
-            overlay
-          ></s-header-section>
+      <router-view v-if="shop" v-slot="{ Component }">
+        <component
+          :is="Component"
+          :class="{
+            's--shop-card s--shadow-no-padding -hide1720 mb-16 bg-white position-relative':
+              is_view_card_mode,
+          }"
+          :shop="shop"
+          :style="{ 'padding-bottom': bottom_padding_container }"
+          @update:menu-transparent="
+            (val) => (transparent_header = val) /*Update on custome pages*/
+          "
+          @update:menu-dark="
+            (val) => (dark_header = val) /*Update on custome pages*/
+          "
+          @update:header-mode="
+            (val) => (header_mode = val) /*Update on custome pages*/
+          "
+          @update:header-color="
+            (val) => (header_color = val) /*Update on header color*/
+          "
+        >
+          <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+          <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
+          <template v-slot:header="{ center }">
+            <s-header-section
+              v-if="
+                header_mode ===
+                'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
+              "
+              :color="header_color"
+              :overlay-dark="!!dark_header"
+              :search-mode="search_mode"
+              :shop="shop"
+              overlay
+            ></s-header-section>
 
-          <!-- The storefront menu customized and set up by the merchant. -->
-          <s-storefront-top-menu
-            v-if="top_menu && !header_disabled"
-            :center="center"
-            :force-dark="dark_header"
-            :fullscreen="is_fullscreen"
-            :shop="shop"
-            :style="{
-              marginTop:
-                header_mode === 'hidden'
-                  ? '64px'
-                  : 0 /*Cover -64px of main view of shop*/,
-            }"
-            :tabs="top_menu.menu"
-            :transparent="transparent_header"
-            flat
-          ></s-storefront-top-menu>
-        </template>
+            <!-- The storefront menu customized and set up by the merchant. -->
+            <s-storefront-top-menu
+              v-if="top_menu && !header_disabled"
+              :center="center"
+              :force-dark="dark_header"
+              :fullscreen="is_fullscreen"
+              :shop="shop"
+              :style="{
+                marginTop:
+                  header_mode === 'hidden'
+                    ? '64px'
+                    : 0 /*Cover -64px of main view of shop*/,
+              }"
+              :tabs="top_menu.menu"
+              :transparent="transparent_header"
+              :color="header_color"
+              flat
+              :class="{'s--custom-top-menu-transparent':transparent_header || header_mode === 'overlay'}"
+            ></s-storefront-top-menu>
+          </template>
+        </component>
       </router-view>
     </v-main>
 
@@ -589,5 +594,9 @@ a {
       width: 100%;
     }
   }
+}
+.s--custom-top-menu-transparent{
+  position: absolute;
+  z-index: 10;
 }
 </style>
