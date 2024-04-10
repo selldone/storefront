@@ -19,7 +19,7 @@
     <div style="order: 0">
       <div class="s--product-section-info">
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Shop Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-        <slot :center="true" name="header"></slot>
+        <slot :center="false" name="header"></slot>
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
         <v-toolbar color="transparent" flat>
@@ -54,7 +54,6 @@
             v-if="$vuetify.display.mdAndUp && admin_url"
             :href="admin_url"
             class="tnt fadeIn"
-            dark
             target="_blank"
             title="Open product admin panel"
           >
