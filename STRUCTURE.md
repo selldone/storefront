@@ -19,3 +19,15 @@ the development of a Vue.js application. Below is an overview of these directori
 ## File Naming
 
 ![file-naming.png](_docs/images/file-naming.png)
+
+## Components Naming
+
+Generally, component naming adheres to the following rules:
+
+| Prefix | Description                                     | Example               |
+|--------|-------------------------------------------------|-----------------------|
+| `Sxxx` | Components used in the storefront.              | `<s-blog-card>`       |
+| `Uxxx` | General-purpose UI components.                  | `<u-chip-change>`     |
+| `Bxxx` | Components for backoffice (dashboard) use.      | `<b-club-select>`     |
+| `Cxxx` | Components designed for community features.     | `<c-breadcrumb>`      |
+| `Lxxx` | Components developed for the landing builder.   | `<l-section-article>` |
