@@ -8,21 +8,20 @@
 
 ## Selldone ⮕ Storefront Official
 
-## IMPORTANT UPDATE ● VUE 3
-🌟 We have been migrating entire project and dependencies into **Vue3**. So please be patient and stay tuned for the updates.
+## VUE 3 ![Vue.js](https://img.shields.io/badge/vue3-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) + Vite ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 _Ready to build project!_
 
 * **Mode:** 🌍 Public
 * **Use case:** To build a fully-functional storefront for customers.
 * **Project Type:** Full Project
-* **Framework:** Vue3
+* **Framework:**  Vue 3
 
 
 ## Todo Roadmap
 
-1. [ ] Complete components migration (some missing components in Vuetify2 -> 3)
-2. [ ] Change compiler from Vue-CLI to Vite
+1. [x] Complete components migration (some missing components in Vuetify2 -> 3)
+2. [x] Change compiler from Vue-CLI to Vite
 3. [ ] Publish components playground
 4. [ ] Publish full API & SDK Docs
 5. [ ] Publish full Storefront Docs
@@ -117,16 +116,16 @@ commands:
 With Yarn:
 
 ```shell
-yarn serve --https
+yarn serve 
 ```
 
 With npm:
 
 ```shell
-npm serve --https
+npm serve 
 ```
 
-Open served address: e.g. `https://localhost:8080/`
+Open served address: e.g. `http://localhost:8080/`
 
 ### Configuring Your Storefront
 
