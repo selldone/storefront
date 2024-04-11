@@ -332,9 +332,7 @@ const routes: IVueRoute[] = [
         // Order important! first route to ShopPage consider as ShopPage!
         path: "shop",
         name:
-          CUSTOM_HOME === "shop"
-            ? "ShopPage-shop" // Prevent duplicated route name 'ShopPage'
-            : StorefrontRoutesName.SHOP_PAGE,
+          StorefrontRoutesName.SHOP_PAGE + (CUSTOM_HOME===Shop.Home.SHOP?'-reserve':''),
         component: StorefrontPageProducts,
         meta: {
           search: true,
@@ -541,7 +539,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Blog ▶ Blogs List ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "blog",
-        name: StorefrontRoutesName.BLOGS_PAGE,
+        name: StorefrontRoutesName.BLOGS_PAGE + (CUSTOM_HOME===Shop.Home.BLOG?'-reserve':''),
         component: StorefrontPageBlogsList,
       },
       {
@@ -781,7 +779,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Avocado ▶ Form ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "/avocado",
-        name: StorefrontRoutesName.AVOCADO_PAGE,
+        name: StorefrontRoutesName.AVOCADO_PAGE + (CUSTOM_HOME===Shop.Home.AVOCADO?'-reserve':''),
         component: StorefrontPageAvocado,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #9eb644, #e8db8e)`,
@@ -809,7 +807,7 @@ const routes: IVueRoute[] = [
       // ⬬⬬⬬⬬⬬⬬⬬⬬ Hyper ▶ Form ⬬⬬⬬⬬⬬⬬⬬⬬
       {
         path: "/hyper",
-        name: StorefrontRoutesName.HYPER_PAGE,
+        name: StorefrontRoutesName.HYPER_PAGE + (CUSTOM_HOME===Shop.Home.HYPER?'-reserve':''),
         component: StorefrontPageHyperCart,
         meta: {
           page_background: `background-image: linear-gradient(60deg, #C2185B, #FF5722)`,
@@ -855,7 +853,7 @@ const routes: IVueRoute[] = [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Categories (Home)  ⬬⬬⬬⬬⬬⬬⬬⬬
           {
             path: "",
-            name: CommunityRoutesName.COMMUNITY_HOME_PAGE,
+            name: CommunityRoutesName.COMMUNITY_HOME_PAGE + (CUSTOM_HOME===Shop.Home.COMMUNITY?'-reserve':''),
             component: CommunityHomePage,
           },
 
