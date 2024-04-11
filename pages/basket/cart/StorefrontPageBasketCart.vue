@@ -66,7 +66,7 @@
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
-              <s-shop-basket-items  :items="items" :shop="shop" />
+              <s-shop-basket-items :items="items" :shop="shop" />
 
               <v-spacer></v-spacer>
               <!-- Share order - Secure link generator -->
@@ -451,10 +451,7 @@
                       <template v-slot:label>
                         {{ $t("global.commons.shipping_tax") }}
                       </template>
-                      <u-price
-                        :amount="bill.tax_shipping"
-                        medium
-                      ></u-price>
+                      <u-price :amount="bill.tax_shipping" medium></u-price>
                     </u-text-value-dashed>
                   </div>
 
@@ -468,13 +465,12 @@
                       :
                     </p>
                     <p class="value font-weight-black">
-                      <u-loading-ellipsis v-if="refreshing_price" css-mode></u-loading-ellipsis>
+                      <u-loading-ellipsis
+                        v-if="refreshing_price"
+                        css-mode
+                      ></u-loading-ellipsis>
 
-                      <u-price
-                        v-else
-                        :amount="final_price"
-                        x-large
-                      ></u-price>
+                      <u-price v-else :amount="final_price" x-large></u-price>
 
                       <span v-if="isSubscription && subscription_period_obj">
                         / {{ $t(subscription_period_obj.title) }}</span
@@ -1102,7 +1098,8 @@
                       }"
                       class="select-address-button"
                       color="#16a085"
-                      rounded  variant="elevated"
+                      rounded
+                      variant="elevated"
                       @click.stop="goToPaymentBasket(null, deliverySupportCOD)"
                     >
                       <v-icon class="me-2"> fa:fas fa-shopping-bag</v-icon>
@@ -1194,11 +1191,11 @@
                     !isService
                   "
                 >
-                  <s-stripe-split-payment-info
+                  <u-payment-stripe-split
                     :basket="basket"
                     :country-code="receiver_info?.country"
                     :dark="!light_checkout"
-                  ></s-stripe-split-payment-info>
+                  ></u-payment-stripe-split>
                 </template>
               </div>
             </v-sheet>
@@ -1209,7 +1206,7 @@
       <div
         v-else
         :class="{ blurred: busy_shop }"
-        class="blur-animate"
+        class="blur-animate text-center"
         style="min-height: 60vh; padding-top: 15vh"
       >
         <img
@@ -1296,13 +1293,13 @@ import { ETA } from "@core/enums/logistic/ETA";
 import UDateInput from "@components/ui/date/input/UDateInput.vue";
 import { ShadeColor } from "@core/helper/color/ColorGenerator";
 import _ from "lodash-es";
-import SStripeSplitPaymentInfo from "@components/payment/stripe/SStripeSplitPaymentInfo.vue";
+import UPaymentStripeSplit from "@components/ui/payment/stripe/split/UPaymentStripeSplit.vue";
 import { BasketHelper } from "@core/helper/shop/BasketHelper";
 
 export default {
   name: "StorefrontPageBasketCart",
   components: {
-    SStripeSplitPaymentInfo,
+    UPaymentStripeSplit,
     UDateInput,
     ProductsDenseImagesCircles,
     USmartSelect,

@@ -168,23 +168,23 @@
             </div>
             <v-row class="align-items-center">
               <div>
-                <s-payment-card
+                <u-payment-card
                   v-if="payment.card"
                   :card="payment.card"
                   :currency="payment.currency"
                   :method="payment.method"
                   horizontal
-                ></s-payment-card>
+                ></u-payment-card>
                 <span v-else-if="payment.cod">{{
                   $t("process_center.payment_widget.cod")
                 }}</span>
 
                 {{ getLocalTimeString(payment.payment_at) }}
-                <s-payment-billing-details
+                <u-payment-billing-details
                   v-if="payment.billing_details"
                   :billing-detail="payment.billing_details"
                   class="min-width-200"
-                ></s-payment-billing-details>
+                ></u-payment-billing-details>
               </div>
 
               <u-map-countries-single
@@ -218,8 +218,8 @@
 import BPosCartItems from "@components/storefront/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@components/storefront/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import SPaymentCard from "@components/payment/card/SPaymentCard.vue";
-import SPaymentBillingDetails from "@components/payment/widgets/SPaymentBillingDetails.vue";
+import UPaymentCard from "@components/ui/payment/card/UPaymentCard.vue";
+import UPaymentBillingDetails from "@components/ui/payment/billing-details/UPaymentBillingDetails.vue";
 import UMapCountriesSingle from "@components/ui/map/countries/single/UMapCountriesSingle.vue";
 import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
 
@@ -227,8 +227,8 @@ export default {
   name: "SStorefrontPOSPage",
   components: {
     UMapCountriesSingle,
-    SPaymentBillingDetails,
-    SPaymentCard,
+    UPaymentBillingDetails,
+    UPaymentCard,
     SPosBillView,
     BPosCartItems,
   },
