@@ -8,9 +8,9 @@
 
 ## Selldone ⮕ Storefront Official
 
-## VUE 3 ![Vue.js](https://img.shields.io/badge/vue3-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) + Vite ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vue3-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)  ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-_Ready to build project!_
+🎊 _Ready to build project!_
 
 * **Mode:** 🌍 Public
 * **Use case:** To build a fully-functional storefront for customers.
@@ -29,7 +29,6 @@ _Ready to build project!_
 7. [ ] Laravel SDK to self-host storefront
 8. [ ] publish Flutter SDK
 
-**🔜 Will be completed on 20th May 2024**
 
 ## Manifesto: Celebrating Business Uniqueness
 
