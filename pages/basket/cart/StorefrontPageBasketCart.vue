@@ -66,7 +66,7 @@
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
-              <s-shop-basket-items :items="items" :shop="shop" />
+              <s-shop-basket-items  :items="items" :shop="shop" />
 
               <v-spacer></v-spacer>
               <!-- Share order - Secure link generator -->
