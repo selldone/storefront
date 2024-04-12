@@ -3,6 +3,7 @@
   "version": "0.2024.03.11",
   "private": false,
   "license": "Selldone®",
+  "type": "module",
   "description": "This is Selldone open-source storefront project, offering developers the tools to create fully customized and professional websites using pre-built components and open-sourced SDKs.",
   "scripts": {
     "serve": "vite",

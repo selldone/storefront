@@ -16,7 +16,6 @@ import {defineConfig, loadEnv} from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import vitePluginRequire from "vite-plugin-require";
-import Integer from "@zxing/library/es2015/core/util/Integer";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 
 const manifest = require("./manifest.json");
@@ -33,23 +32,23 @@ let DEV_PORT: number;
 let IS_HTTPS: boolean;
 
 // ▃▃▃▃▃▃▃▃▃▃▃▃ Storefront Web App ▃▃▃▃▃▃▃▃▃▃▃▃
-export default ({ mode }: any) => {
+export default ({mode}: any) => {
   const env = loadEnv(mode, process.cwd());
 
   IS_PRODUCTION = mode === "production";
   DEV_HOST = env.VITE_APP_DEV_SERVER_HOST || "localhost";
   DEV_PORT = env.VITE_APP_DEV_SERVER_PORT
-    ? Integer.parseInt(env.VITE_APP_DEV_SERVER_PORT)
-    : 8080;
+      ? parseInt(env.VITE_APP_DEV_SERVER_PORT)
+      : 8080;
   IS_HTTPS =
-    !!env.VITE_APP_DEV_SERVER_HTTPS && env.VITE_APP_DEV_SERVER_HTTPS === "TRUE";
+      !!env.VITE_APP_DEV_SERVER_HTTPS && env.VITE_APP_DEV_SERVER_HTTPS === "TRUE";
 
   // Calculate base URL
   const baseURL = IS_PRODUCTION
-    ? fixPath(
-        `${manifest.deploy_server}/${manifest.deploy_path}/${manifest.package}/${manifest.version}`,
+      ? fixPath(
+          `${manifest.deploy_server}/${manifest.deploy_path}/${manifest.package}/${manifest.version}`,
       )
-    : `${IS_HTTPS ? "https" : "http"}://${process.env.VITE_DEV_HOST}:${process.env.VITE_DEV_PORT}/`;
+      : `${IS_HTTPS ? "https" : "http"}://${DEV_HOST}:${DEV_PORT}/`;
 
   console.log("Build base URL:", baseURL);
 
@@ -63,10 +62,10 @@ export default ({ mode }: any) => {
       //@ts-ignore
       vitePluginRequire.default(),
       ...(IS_HTTPS
-        ? [
-            basicSsl({ name: "selldone-test-cert" }), // Enable if you want to use https
+          ? [
+            basicSsl({name: "selldone-test-cert"}), // Enable if you want to use https
           ]
-        : []),
+          : []),
     ],
     resolve: {
       alias: {
@@ -79,8 +78,8 @@ export default ({ mode }: any) => {
         "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
 
         "@app-page-builder": path.resolve(
-          __dirname,
-          "src/Applications/PageBuilder/",
+            __dirname,
+            "src/Applications/PageBuilder/",
         ),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
@@ -117,8 +116,8 @@ export default ({ mode }: any) => {
           assetFileNames: (assetInfo) => {
             if (assetInfo!.name!.endsWith(".css")) {
               return ["shop.css"].includes(assetInfo.name!)
-                ? `${VERSION_DIR}/[name].[ext]`
-                : `${VERSION_DIR}/css/[name].[hash].[ext]`;
+                  ? `${VERSION_DIR}/[name].[ext]`
+                  : `${VERSION_DIR}/css/[name].[hash].[ext]`;
             }
             return `${VERSION_DIR}/assets/[name].[hash].[ext]`;
           },
@@ -136,22 +135,22 @@ function fixPath(str: string) {
 function printDevServerConfig() {
   console.log("");
   console.log(
-    "███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗",
+      "███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗",
   );
   console.log(
-    "██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝",
+      "██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝",
   );
   console.log(
-    "███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  ",
+      "███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  ",
   );
   console.log(
-    "╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  ",
+      "╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  ",
   );
   console.log(
-    "███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗",
+      "███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗",
   );
   console.log(
-    "╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝",
+      "╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝",
   );
   console.log("");
 
@@ -162,7 +161,7 @@ function printDevServerConfig() {
   console.log("");
 
   const tableRow = (key: string, value: any) =>
-    `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
+      `┃ ${key.padEnd(20)} ┃ ${value.toString().padEnd(20)} ┃`;
 
   console.log("┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓");
   console.log("┃    Configuration     ┃       Value          ┃");
