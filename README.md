@@ -17,7 +17,6 @@
 * **Project Type:** Full Project
 * **Framework:**  Vue 3
 
-
 ## Todo Roadmap
 
 1. [x] Complete components migration (some missing components in Vuetify2 -> 3)
@@ -28,7 +27,6 @@
 6. [ ] Publish full Backoffice Docs
 7. [ ] Laravel SDK to self-host storefront
 8. [ ] publish Flutter SDK
-
 
 ## Manifesto: Celebrating Business Uniqueness
 
@@ -138,8 +136,8 @@ the `manifest.json` file. This step is crucial for personalizing and defining th
 For a realistic development experience, your project will use data from an actual Selldone store. To set this up, modify
 the `.env` file with the following variables:
 
-| Variable                        | Description                                                                                                                                                          | Example   |
-|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| Variable                         | Description                                                                                                                                                          | Example   |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
 | VITE_APP_SAMPLE_SHOP_NAME        | Your Selldone shop name. Use the format `my-shop-name`.                                                                                                              | toysworld |
 | VITE_APP_SAMPLE_SHOP_CUSTOM_HOME | Define the first page of your storefront. Options include `blog`, `avocado`, `hyper`, `community`, `shop`, `map`, `number`, a specific _LANDING-PAGE-ID_, or `null`. | 3001      |
 
