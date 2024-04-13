@@ -24,11 +24,11 @@ const VERSION_DIR = manifest.version;
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
-const DEV_HOST = process.env.VUE_DEV_SERVER_HOST || "localhost";
-const DEV_PORT = process.env.VUE_DEV_SERVER_PORT || 8080;
+const DEV_HOST = process.env.VITE_APP_DEV_SERVER_HOST || "localhost";
+const DEV_PORT = process.env.VITE_APP_DEV_SERVER_PORT || 8080;
 const IS_HTTPS =
-  !!process.env.VUE_DEV_SERVER_HTTPS &&
-  process.env.VUE_DEV_SERVER_HTTPS !== "FALSE";
+  !!process.env.VITE_APP_DEV_SERVER_HTTPS &&
+  process.env.VITE_APP_DEV_SERVER_HTTPS !== "FALSE";
 
 printDevServerConfig();
 
