@@ -200,8 +200,7 @@ CLI: https://www.npmjs.com/package/selldone-cli
 
 ## Developer Panel
 
-Access the developer panel to manage your layouts here: [**Selldone Developer Layouts
-**](https://selldone.com/developer/layouts).
+Access the developer panel to manage your layouts here: [**https://selldone.com/developer/layouts**](https://selldone.com/developer/layouts).
 
 ## Monetization 🤑
 
