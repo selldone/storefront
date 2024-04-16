@@ -151,6 +151,9 @@ const StorefrontMixin = defineComponent({
         /**
          * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}
          */
+
+        // Update lang-x class in the body:
+        this.setBodyLanguageClass()
       });
 
       // Attempt to apply any language pack overrides.

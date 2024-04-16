@@ -35,7 +35,6 @@
         :items-per-page="itemsPerPage"
         :search="search"
         :sort-by="sortBy"
-        :sort-desc="sortDesc"
         class="bg-transparent"
         density="compact"
         hide-default-footer
@@ -48,8 +47,8 @@
           <s-data-iterator-toolbar
             v-model:items-per-page="itemsPerPage"
             v-model:search="search"
-            v-model:sort-by="sortBy.key"
-            v-model:sort-desc="sortBy.order"
+            v-model:sort-key="sortBy[0].key"
+            v-model:sort-order="sortBy[0].order"
             :base-items-count="8"
             :sort-keys="keys"
           ></s-data-iterator-toolbar>
@@ -126,7 +125,6 @@ export default {
 
     search: "",
     filter: {},
-    sortDesc: true,
     sortBy: [{ key: null, order: "desc" }],
 
     busy_fetch: false,

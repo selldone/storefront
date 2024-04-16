@@ -46,7 +46,6 @@
         'before-load-icon-font': !IconFontsLoaded,
         blurred: blur,
       },
-      `lang-${$i18n.locale}`,
     ]"
     :style="[
       {
