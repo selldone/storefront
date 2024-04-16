@@ -79,6 +79,13 @@ simple steps to get started:
 
 ### Setting Up Your Development Environment
 
+* Here you can see how to set up a dev server on any live website without the need for a single line of backend
+coding: [**Medium Article - How to develop a storefront on a live website with live updates (Vue + Vite + Selldone)**](https://pajuhaan.medium.com/how-to-develop-a-storefront-on-a-live-website-with-live-updates-vue-vite-selldone-55099a330911) 
+
+* Additionally, if you simply want to serve the dev server on your localhost, visit:
+[**Medium Article - How to develop a storefront for your ecommerce (PWA) with Vue + Vite + Selldone and test it on your PC with live data**](https://pajuhaan.medium.com/how-to-develop-a-storefront-for-your-ecommerce-pwa-with-vue-vite-selldone-and-test-it-on-your-7c0510ea33a1)
+It's the fastest way to develop a web app in the entire world!
+
 #### Step 1: Clone the Storefront Project
 
 First, clone the project to your local machine using the following command:
