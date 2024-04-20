@@ -354,7 +354,7 @@ export default {
     )
       this.setCurrentLanguage(SetupService.GetInitialLanguage());
 
-    //this.$vuetify.rtl = this.getCurrentLanguage().dir === "rtl";
+    //this.$vuetify.locale.isRtl = this.getCurrentLanguage().dir === "rtl";
 
     /**
      * Auto RTL/LTR set by linked i18n to vuetify instance. {@see VuetifyInstance}

@@ -28,7 +28,7 @@
   }
 }
 
-.v-application--is-rtl {
+.v-locale--is-rtl {
   .add-marginal-side-menu-open {
     margin-left: 0px !important;
     margin-right: var(--products-filter-width) !important;
@@ -53,7 +53,7 @@
 
 }
 
-.v-application--is-rtl {
+.v-locale--is-rtl {
   .social-stick {
     right: unset;
     left: 10px;
