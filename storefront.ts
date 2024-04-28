@@ -125,8 +125,10 @@ app.use(router);
 app.use(store);
 app.use(vuetify);
 
+//――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
+SetupPageBuilder(app, { mode: "view" });
+
+
 // Mount the application
 const storefrontVueApp = app.mount("#app");
 
-//――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
-SetupPageBuilder(app, { mode: "view" });
