@@ -63,7 +63,8 @@
       "dom.iterable",
       "scripthost"
     ],
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "./**/*.vue",
