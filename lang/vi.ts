@@ -1,7 +1,7 @@
-import global from "@selldone/core-js/lang/global/vi";
-import icons from "@selldone/core-js/lang/global/icons/ltr";
-import community from "@selldone/core-js/lang/global/community/vi";
-import pack from "@selldone/core-js/lang/shop/vi";
+import global from "@selldone/translate/global/vi";
+import icons from "@selldone/translate/global/icons/ltr";
+import community from "@selldone/translate/global/community/vi";
+import pack from "@selldone/translate/shop/vi";
 
 export default {
   /** ---------------- Icons ---------------- **/

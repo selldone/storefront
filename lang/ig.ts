@@ -1,7 +1,7 @@
-import global from "@selldone/core-js/lang/global/ig";
-import icons from "@selldone/core-js/lang/global/icons/ltr";
-import community from "@selldone/core-js/lang/global/community/ig";
-import pack from "@selldone/core-js/lang/shop/ig";
+import global from "@selldone/translate/global/ig";
+import icons from "@selldone/translate/global/icons/ltr";
+import community from "@selldone/translate/global/community/ig";
+import pack from "@selldone/translate/shop/ig";
 
 export default {
   /** ---------------- Icons ---------------- **/
