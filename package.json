@@ -29,6 +29,8 @@
   "homepage": "https://selldone.com",
   "dependencies": {
     "@selldone/core-js": "^1.0.5",
+    "@selldone/translate": "^1.0.1",
+
     "@asika32764/vue-animate": "^3.0.2",
     "@floating-ui/dom": "^1.6.3",
     "@kyvg/vue3-notification": "^3.2.1",
