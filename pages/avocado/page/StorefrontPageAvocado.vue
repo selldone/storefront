@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 
 import SStorefrontAvocadoCustomerOrderList from "@components/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
 import SStorefrontAvocadoCustomerOrderForm from "@components/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";

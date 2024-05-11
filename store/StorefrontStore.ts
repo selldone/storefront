@@ -14,17 +14,17 @@
 
 import type {ActionContext} from "vuex";
 import {createStore} from "vuex";
-import type {ICurrency} from "@core/enums/payment/Currency";
-import {Currency} from "@core/enums/payment/Currency";
-import {ProductType} from "@core/enums/product/ProductType";
-import {OverrideCustomVariantsName} from "@core/enums/product/ProductVariants";
+import type {ICurrency} from "@selldone/core-js/enums/payment/Currency";
+import {Currency} from "@selldone/core-js/enums/payment/Currency";
+import {ProductType} from "@selldone/core-js/enums/product/ProductType";
+import {OverrideCustomVariantsName} from "@selldone/core-js/enums/product/ProductVariants";
 import {XapiShop} from "@sdk-storefront/shop/XapiShop";
-import type {ProductCompare} from "@core/models/shop/product/product-compare.model";
-import type {Coupon} from "@core/models/shop/incentives/coupon/coupon.model";
-import type {Offer} from "@core/models/shop/incentives/offer/offer.model";
-import {Club} from "@core/models/shop/club/club.model";
-import {Shop} from "@core/models/shop/shop.model";
-import type {Basket} from "@core/models/shop/order/basket/basket.model";
+import type {ProductCompare} from "@selldone/core-js/models/shop/product/product-compare.model";
+import type {Coupon} from "@selldone/core-js/models/shop/incentives/coupon/coupon.model";
+import type {Offer} from "@selldone/core-js/models/shop/incentives/offer/offer.model";
+import {Club} from "@selldone/core-js/models/shop/club/club.model";
+import {Shop} from "@selldone/core-js/models/shop/shop.model";
+import type {Basket} from "@selldone/core-js/models/shop/order/basket/basket.model";
 
 interface State {
   user: any | null;

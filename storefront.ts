@@ -15,15 +15,15 @@
 //█████████████████████████████████████████████████████████████
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
-import "@core/utils/service-worker/registerServiceWorker"; // Register service worker:
+import "@selldone/core-js/utils/service-worker/registerServiceWorker"; // Register service worker:
 import {createApp} from "vue";
 import StorefrontApp from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import VueCookies from "vue-cookies";
 import {i18n} from "./lang/i18n_shop";
-import {Language} from "@core/enums/language/Language";
-import {ShopApplicationInterface} from "@core/enums/application/ShopApplicationInterface";
+import {Language} from "@selldone/core-js/enums/language/Language";
+import {ShopApplicationInterface} from "@selldone/core-js/enums/application/ShopApplicationInterface";
 import {StorefrontSDK} from "@sdk-storefront/StorefrontSDK";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the service worker.

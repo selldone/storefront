@@ -346,25 +346,25 @@
 import ArticleViewer from "@components/article/ArticleViewer.vue";
 
 import SProductOverview from "@components/storefront/overview/SProductOverview.vue";
-import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
+import { HierarchyHelper } from "@selldone/core-js/helper/breadcrumb/HierarchyHelper";
 import UBreadcrumb from "@components/ui/breadcrumb/UBreadcrumb.vue";
 import BProductSpecTable from "@components/storefront/product/spec/table/BProductSpecTable.vue";
-import { ArticleTypes } from "@core/enums/article/ArticleTypes";
+import { ArticleTypes } from "@selldone/core-js/enums/article/ArticleTypes";
 import SProductOverviewLoading from "@components/storefront/overview/loading/SProductOverviewLoading.vue";
-import { SpecHelper } from "@core/helper/product/SpecHelper";
+import { SpecHelper } from "@selldone/core-js/helper/product/SpecHelper";
 
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import { ProductType } from "@core/enums/product/ProductType";
-import { SetupService } from "@core/server/SetupService";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
+import { SetupService } from "@selldone/core-js/server/SetupService";
 
 import SShopProductProsConsTable from "@components/storefront/product/pros-cons/SShopProductProsConsTable.vue";
 import UFadeScroll from "@components/ui/fade-scroll/UFadeScroll.vue";
 import SShopProductIncludes from "@components/storefront/product/includes/SShopProductIncludes.vue";
-import { ColorHelper } from "@core/helper/color/ColorHelper";
-import { ShadeColor } from "@core/helper/color/ColorGenerator";
+import { ColorHelper } from "@selldone/core-js/helper/color/ColorHelper";
+import { ShadeColor } from "@selldone/core-js/helper/color/ColorGenerator";
 import SProductRelatedProducts from "@components/storefront/product/related-products/SProductRelatedProducts.vue";
 import SProductRelatedCategories from "@components/storefront/product/related-categories/SProductRelatedCategories.vue";
-import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
+import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations";
 import SProductShipping from "@components/storefront/product/shipping/SProductShipping.vue";
 import SProductWarranty from "@components/storefront/product/warranty/SProductWarranty.vue";
 import SProductGuide from "@components/storefront/product/guide/SProductGuide.vue";
@@ -373,7 +373,7 @@ import SProductComments from "@components/storefront/product/comments/SProductCo
 import SProductSubscriptionMembership from "@components/storefront/product/subscription/membership/SProductSubscriptionMembership.vue";
 import SProductOffers from "@components/storefront/product/offers/SProductOffers.vue";
 import SProductCrossSells from "@components/storefront/product/cross-sells/SProductCrossSells.vue";
-import ProductSection from "@core/enums/product/ProductSection";
+import ProductSection from "@selldone/core-js/enums/product/ProductSection";
 import LPageViewer from "@app-page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@components/storefront/product/section/badges/SProductSectionBadges.vue";
 

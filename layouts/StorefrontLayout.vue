@@ -204,8 +204,8 @@
 <script>
 import SStorefrontSearchBox from "@components/storefront/search/SStorefrontSearchBox.vue";
 import SFooterSection from "@components/storefront/footer/section/SFooterSection.vue";
-import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
-import { ShopEventsName } from "@core/enums/application/ShopEventsName";
+import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
+import { ShopEventsName } from "@selldone/core-js/enums/application/event/ShopEventsName.ts";
 
 import SStorefrontCampaignNotification from "@components/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
 import SContactsPopup from "@components/storefront/contact/popup/SContactsPopup.vue";

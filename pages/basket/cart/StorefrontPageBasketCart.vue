@@ -1270,31 +1270,31 @@
 
 <script>
 import SShopBasketItems from "@components/storefront/order/basket/SShopBasketItems.vue";
-import { WeekDays } from "@core/enums/logistic/WeekDays";
-import { TimeSpans } from "@core/enums/logistic/TimeSpans";
-import { ShopTransportations } from "@core/enums/logistic/ShopTransportations";
+import { WeekDays } from "@selldone/core-js/enums/logistic/WeekDays";
+import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans";
+import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations";
 import SDiscountCodeInput from "@components/storefront/discount-code/input/SDiscountCodeInput.vue";
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import SStorefrontCouponsList from "@components/storefront/coupon/list/SStorefrontCouponsList.vue";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SStorefrontLotteryPrizesList from "@components/storefront/lottery/prizes-list/SStorefrontLotteryPrizesList.vue";
 import VariantItemMini from "@components/storefront/product/variant/VariantItemMini.vue";
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
-import { ShopOptionsHelper } from "@core/helper/shop/ShopOptionsHelper";
+import { ShopOptionsHelper } from "@selldone/core-js/helper/shop/ShopOptionsHelper";
 import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
-import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
+import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
-import BillingPeriod from "@core/enums/subscription/BillingPeriod";
+import BillingPeriod from "@selldone/core-js/enums/subscription/BillingPeriod";
 import SShopConnectShippingOptions from "@components/storefront/order/shipping/SShopConnectShippingOptions.vue";
 import USmartSelect from "@components/ui/smart/select/USmartSelect.vue";
 import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import { ETA } from "@core/enums/logistic/ETA";
+import { ETA } from "@selldone/core-js/enums/logistic/ETA";
 import UDateInput from "@components/ui/date/input/UDateInput.vue";
-import { ShadeColor } from "@core/helper/color/ColorGenerator";
+import { ShadeColor } from "@selldone/core-js/helper/color/ColorGenerator";
 import _ from "lodash-es";
 import UPaymentStripeSplit from "@components/ui/payment/stripe/split/UPaymentStripeSplit.vue";
-import { BasketHelper } from "@core/helper/shop/BasketHelper";
+import { BasketHelper } from "@selldone/core-js/helper/shop/BasketHelper";
 
 export default {
   name: "StorefrontPageBasketCart",

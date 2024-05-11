@@ -259,13 +259,13 @@
 
 <script>
 import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
-import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
 import UStamp from "@components/ui/stamp/UStamp.vue";
 import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
-import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
-import { AvocadoItemStatus } from "@core/enums/avocado/AvocadoItemStatus";
+import { AvocadoItemStatus } from "@selldone/core-js/enums/avocado/AvocadoItemStatus";
 
 export default {
   name: "StorefrontPageAvocadoCart",

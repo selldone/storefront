@@ -43,11 +43,11 @@ import StorefrontPageFaq from "@app-storefront/pages/faq/StorefrontPageFaq.vue";
 import StorefrontPageOfficialContactUs from "@app-storefront/pages/official/contact-us/StorefrontPageOfficialContactUs.vue";
 
 import StorefrontPageInfo from "@app-storefront/pages/info/StorefrontPageInfo.vue";
-import {ShopOptionsHelper} from "@core/helper/shop/ShopOptionsHelper";
-import {SetupService} from "@core/server/SetupService";
-import {Shop} from "@core/models/shop/shop.model";
-import {StorefrontRoutesName} from "@core/enums/route/StorefrontRoutesName";
-import {CommunityRoutesName} from "@core/enums/route/CommunityRoutesName";
+import {ShopOptionsHelper} from "@selldone/core-js/helper/shop/ShopOptionsHelper";
+import {SetupService} from "@selldone/core-js/server/SetupService";
+import {Shop} from "@selldone/core-js/models/shop/shop.model";
+import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRoutesName.ts";
+import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName.ts";
 import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
 import LandingRender from "@app-page-builder/LandingRender.vue";
 

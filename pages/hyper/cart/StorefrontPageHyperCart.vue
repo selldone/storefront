@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 
 import SHyperCart from "@components/storefront/hyper/cart/SHyperCart.vue";
 import SHyperOrders from "@components/storefront/hyper/orders/SHyperOrders.vue";

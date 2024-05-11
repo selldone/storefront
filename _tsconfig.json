@@ -32,9 +32,7 @@
       "webpack-env"
     ],
     "paths": {
-      "@core/*": [
-        "core/*"
-      ],
+
       "@components/*": [
         "src/Components/*"
       ],

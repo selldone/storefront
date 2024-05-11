@@ -132,7 +132,7 @@ import SOrderBasketReturn from "@components/storefront/order/basket/return/SOrde
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 
 export default {
   name: "StorefrontPageBasketOrderSubscriptionDashboard",

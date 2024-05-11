@@ -89,15 +89,15 @@
 
 <script>
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "@core/enums/basket/BasketStatus";
-import { ProductType } from "@core/enums/product/ProductType";
+import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
-import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
-import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
-import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
-import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
-import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
-import { SubscriptionOrderStates } from "@core/enums/basket/SubscriptionOrderStates";
+import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
+import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
+import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
+import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
+import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
+import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {

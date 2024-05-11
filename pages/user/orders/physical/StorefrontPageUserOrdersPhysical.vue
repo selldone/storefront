@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrdersList from "../../../../components/orders/list/SOrdersList.vue";
 
 export default {

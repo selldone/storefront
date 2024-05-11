@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 
 export default {
   name: "StorefrontPageUserOrders",

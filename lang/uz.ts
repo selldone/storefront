@@ -1,7 +1,7 @@
-import global from "@core/lang/global/uz";
-import icons from "@core/lang/global/icons/ltr";
-import community from "@core/lang/global/community/uz";
-import pack from "@core/lang/shop/uz";
+import global from "@selldone/core-js/lang/global/uz";
+import icons from "@selldone/core-js/lang/global/icons/ltr";
+import community from "@selldone/core-js/lang/global/community/uz";
+import pack from "@selldone/core-js/lang/shop/uz";
 
 export default {
   /** ---------------- Icons ---------------- **/

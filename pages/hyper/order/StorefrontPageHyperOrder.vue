@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import UStamp from "@components/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@components/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";

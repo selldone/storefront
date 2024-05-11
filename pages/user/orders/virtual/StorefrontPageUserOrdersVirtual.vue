@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
-import { ProductType } from "@core/enums/product/ProductType";
+import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrdersList from "../../../../components/orders/list/SOrdersList.vue";
 
 export default {

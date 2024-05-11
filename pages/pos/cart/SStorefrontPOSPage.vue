@@ -217,11 +217,11 @@
 <script>
 import BPosCartItems from "@components/storefront/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@components/storefront/pos/bill-view/SPosBillView.vue";
-import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import UPaymentCard from "@components/ui/payment/card/UPaymentCard.vue";
 import UPaymentBillingDetails from "@components/ui/payment/billing-details/UPaymentBillingDetails.vue";
 import UMapCountriesSingle from "@components/ui/map/countries/single/UMapCountriesSingle.vue";
-import { TransactionStatus } from "@core/enums/payment/TransactionStatus";
+import { TransactionStatus } from "@selldone/core-js/enums/payment/TransactionStatus";
 
 export default {
   name: "SStorefrontPOSPage",

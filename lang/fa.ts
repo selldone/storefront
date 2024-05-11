@@ -1,7 +1,7 @@
-import global from "@core/lang/global/fa";
-import icons from "@core/lang/global/icons/rtl";
-import community from "@core/lang/global/community/fa";
-import pack from "@core/lang/shop/fa";
+import global from "@selldone/core-js/lang/global/fa";
+import icons from "@selldone/core-js/lang/global/icons/rtl";
+import community from "@selldone/core-js/lang/global/community/fa";
+import pack from "@selldone/core-js/lang/shop/fa";
 import {fa} from "vuetify/locale";
 
 export default {

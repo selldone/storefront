@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { HierarchyHelper } from "@core/helper/breadcrumb/HierarchyHelper";
+import { HierarchyHelper } from "@selldone/core-js/helper/breadcrumb/HierarchyHelper";
 
 import UBreadcrumb from "@components/ui/breadcrumb/UBreadcrumb.vue";
 

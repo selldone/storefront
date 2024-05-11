@@ -52,7 +52,7 @@
         </div>
       </div>
       <img
-        :src="require('@core/assets/order-types/basket-avocado.svg')"
+        :src="require('@selldone/core-js/assets/order-types/basket-avocado.svg')"
         class="me-5"
         height="28"
         width="28"
@@ -69,7 +69,7 @@
 
 <script>
 import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "@core/enums/basket/BasketStatus";
+import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {

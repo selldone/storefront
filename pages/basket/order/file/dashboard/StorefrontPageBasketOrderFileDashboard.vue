@@ -194,7 +194,7 @@ import SOrderBasketReturn from "@components/storefront/order/basket/return/SOrde
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
 import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
 
 export default {

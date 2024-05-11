@@ -1,7 +1,7 @@
-import global from "@core/lang/global/xh";
-import icons from "@core/lang/global/icons/ltr";
-import community from "@core/lang/global/community/xh";
-import pack from "@core/lang/shop/xh";
+import global from "@selldone/core-js/lang/global/xh";
+import icons from "@selldone/core-js/lang/global/icons/ltr";
+import community from "@selldone/core-js/lang/global/community/xh";
+import pack from "@selldone/core-js/lang/shop/xh";
 
 export default {
   /** ---------------- Icons ---------------- **/

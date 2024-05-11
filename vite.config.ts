@@ -70,7 +70,6 @@ export default ({mode}: any) => {
     resolve: {
       alias: {
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
-        "@core": path.resolve(__dirname, "core/"),
         "@components": path.resolve(__dirname, "src/Components/"),
         "@sdk-storefront": path.resolve(__dirname, "SDKs/storefront/"),
         "@sdk-backoffice": path.resolve(__dirname, "SDKs/backoffice/"),

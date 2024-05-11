@@ -159,7 +159,7 @@ import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delive
 
 import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 
 export default {
   name: "StorefrontPageBasketOrderPhysicalDashboard",

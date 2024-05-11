@@ -144,9 +144,9 @@
 
 <script>
 import VariantItemViewMicro from "@components/storefront/product/variant/VariantItemViewMicro.vue";
-import { ReturnItemStates } from "@core/enums/basket/ReturnItemStates";
-import { ReturnOrderReason } from "@core/enums/basket/ReturnOrderReason";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ReturnItemStates } from "@selldone/core-js/enums/basket/ReturnItemStates";
+import { ReturnOrderReason } from "@selldone/core-js/enums/basket/ReturnOrderReason";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 
 export default {
   name: "SOrderReturnRequests",

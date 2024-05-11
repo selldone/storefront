@@ -51,9 +51,9 @@
         <img
           :src="
             isAvocado
-              ? require('@core/assets/order-types/basket-avocado.svg')
+              ? require('@selldone/core-js/assets/order-types/basket-avocado.svg')
               : isPos
-                ? require('@core/assets/order-types/basket-pos.svg')
+                ? require('@selldone/core-js/assets/order-types/basket-pos.svg')
                 : type.basket
           "
           class="my-2 me-2"
@@ -204,19 +204,19 @@
 </template>
 
 <script>
-import { VirtualOrderStates } from "@core/enums/basket/VirtualOrderStates";
+import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
 import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
-import { ProductType } from "@core/enums/product/ProductType";
+import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import ReturnRequestButtonBadge from "@components/storefront/order/order-return/ReturnRequestButtonBadge.vue";
-import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
-import { FileOrderStates } from "@core/enums/basket/FileOrderStates";
+import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
+import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
 import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import SOrderStatusView from "@components/storefront/order/order-status/SOrderStatusView.vue";
-import { ServiceOrderStates } from "@core/enums/basket/ServiceOrderStates";
-import { AvocadoOrderStates } from "@core/enums/avocado/AvocadoOrderStates";
+import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
+import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 import SOrderReceiverInfoCard from "@components/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
-import { StorefrontLocalStorages } from "@core/helper/local-storage/StorefrontLocalStorages";
-import { SubscriptionOrderStates } from "@core/enums/basket/SubscriptionOrderStates";
+import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
+import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@components/mixin/RouteMixin";
 
 export default {

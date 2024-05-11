@@ -63,7 +63,7 @@
 <script>
 import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 
-import { PhysicalOrderStates } from "@core/enums/basket/PhysicalOrderStates";
+import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
 import SShopCustomerDeliveryInfoWidget from "@components/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";

@@ -13,7 +13,7 @@
  */
 
 import { XapiShop } from "@sdk-storefront/shop/XapiShop";
-import { ShopApplicationInterface } from "@core/enums/application/ShopApplicationInterface";
+import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
 import { Store } from "vuex";
 
 declare global {
