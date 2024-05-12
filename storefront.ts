@@ -32,7 +32,7 @@ import {VuetifyInstance} from "@selldone/components-vue/plugins/vuetify/vuetify"
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
 import {createComponents} from "@selldone/components-vue/components";
-import {SetupPageBuilder} from "@app-page-builder/page-builder";
+import {SetupPageBuilder} from "@selldone/page-builder";
 
 const vuetify = VuetifyInstance(i18n);
 // Load fonts:

@@ -374,7 +374,7 @@ import SProductSubscriptionMembership from "@selldone/components-vue/storefront/
 import SProductOffers from "@selldone/components-vue/storefront/product/offers/SProductOffers.vue";
 import SProductCrossSells from "@selldone/components-vue/storefront/product/cross-sells/SProductCrossSells.vue";
 import ProductSection from "@selldone/core-js/enums/product/ProductSection";
-import LPageViewer from "@app-page-builder/page/viewer/LPageViewer.vue";
+import LPageViewer from "@selldone/page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
 
 export default {
