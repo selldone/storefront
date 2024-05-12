@@ -33,6 +33,7 @@
     "@selldone/sdk-storefront": "^1.0.0",
     "@selldone/sdk-community": "^1.0.0",
     "@selldone/components-vue": "^1.0.0",
+    "@selldone/page-builder": "^1.0.0",
 
 
     "@asika32764/vue-animate": "^3.0.2",
