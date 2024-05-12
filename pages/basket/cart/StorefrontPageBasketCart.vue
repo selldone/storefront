@@ -307,7 +307,7 @@
                         <img
                           class="mx-auto mb-1"
                           height="48"
-                          src="@components/assets/icons/coupon.svg"
+                          src="@selldone/components-vue/assets/icons/coupon.svg"
                           width="48"
                         />
                         <p>{{ coupon.title }}</p>
@@ -340,7 +340,7 @@
                         <img
                           class="mx-auto mb-1"
                           height="48"
-                          src="@components/assets/icons/lottery-win.svg"
+                          src="@selldone/components-vue/assets/icons/lottery-win.svg"
                           width="48"
                         />
                         <p>{{ prize.title }}</p>
@@ -1212,7 +1212,7 @@
         <img
           class="m-5 img-grayscale"
           height="120"
-          src="@components/assets/icons/baskets.svg"
+          src="@selldone/components-vue/assets/icons/baskets.svg"
         />
         <h1 class="text-uppercase text-muted">
           {{ $t("basket_page.basket_empty") }}
@@ -1269,31 +1269,31 @@
 </template>
 
 <script>
-import SShopBasketItems from "@components/storefront/order/basket/SShopBasketItems.vue";
+import SShopBasketItems from "@selldone/components-vue/storefront/order/basket/SShopBasketItems.vue";
 import { WeekDays } from "@selldone/core-js/enums/logistic/WeekDays";
 import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans";
 import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations";
-import SDiscountCodeInput from "@components/storefront/discount-code/input/SDiscountCodeInput.vue";
-import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import SStorefrontCouponsList from "@components/storefront/coupon/list/SStorefrontCouponsList.vue";
+import SDiscountCodeInput from "@selldone/components-vue/storefront/discount-code/input/SDiscountCodeInput.vue";
+import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
+import SStorefrontCouponsList from "@selldone/components-vue/storefront/coupon/list/SStorefrontCouponsList.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
-import SStorefrontLotteryPrizesList from "@components/storefront/lottery/prizes-list/SStorefrontLotteryPrizesList.vue";
-import VariantItemMini from "@components/storefront/product/variant/VariantItemMini.vue";
-import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
+import SStorefrontLotteryPrizesList from "@selldone/components-vue/storefront/lottery/prizes-list/SStorefrontLotteryPrizesList.vue";
+import VariantItemMini from "@selldone/components-vue/storefront/product/variant/VariantItemMini.vue";
+import SShopCustomerReceiverInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { ShopOptionsHelper } from "@selldone/core-js/helper/shop/ShopOptionsHelper";
-import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
+import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
-import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
-import SShopBillingAddressForm from "@components/storefront/order/billing/SShopBillingAddressForm.vue";
+import SShopShareOrderButton from "@selldone/components-vue/storefront/order/share-order/SShopShareOrderButton.vue";
+import SShopBillingAddressForm from "@selldone/components-vue/storefront/order/billing/SShopBillingAddressForm.vue";
 import BillingPeriod from "@selldone/core-js/enums/subscription/BillingPeriod";
-import SShopConnectShippingOptions from "@components/storefront/order/shipping/SShopConnectShippingOptions.vue";
-import USmartSelect from "@components/ui/smart/select/USmartSelect.vue";
-import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import SShopConnectShippingOptions from "@selldone/components-vue/storefront/order/shipping/SShopConnectShippingOptions.vue";
+import USmartSelect from "@selldone/components-vue/ui/smart/select/USmartSelect.vue";
+import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import { ETA } from "@selldone/core-js/enums/logistic/ETA";
-import UDateInput from "@components/ui/date/input/UDateInput.vue";
+import UDateInput from "@selldone/components-vue/ui/date/input/UDateInput.vue";
 import { ShadeColor } from "@selldone/core-js/helper/color/ColorGenerator";
 import _ from "lodash-es";
-import UPaymentStripeSplit from "@components/ui/payment/stripe/split/UPaymentStripeSplit.vue";
+import UPaymentStripeSplit from "@selldone/components-vue/ui/payment/stripe/split/UPaymentStripeSplit.vue";
 import { BasketHelper } from "@selldone/core-js/helper/shop/BasketHelper";
 
 export default {

@@ -24,17 +24,23 @@ import VueCookies from "vue-cookies";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@selldone/core-js/enums/language/Language";
 import {ShopApplicationInterface} from "@selldone/core-js/enums/application/ShopApplicationInterface";
-import {StorefrontSDK} from "@sdk-storefront/StorefrontSDK";
+import {StorefrontSDK} from "@selldone/sdk-storefront";
 import StorefrontMixin from "./mixin/StorefrontMixin";
-import {CapiCommunity} from "@sdk-community/CapiCommunity"; // Register the service worker.
-import {VuetifyInstance} from "@components/plugins/vuetify/vuetify";
+import {CapiCommunity} from "@selldone/sdk-community"; // Register the service worker.
+import {VuetifyInstance} from "@selldone/components-vue/plugins/vuetify/vuetify";
 //█████████████████████████████████████████████████████████████
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
-import {createComponents} from "@components/components";
+import {createComponents} from "@selldone/components-vue/components";
 import {SetupPageBuilder} from "@app-page-builder/page-builder";
 
 const vuetify = VuetifyInstance(i18n);
+// Load fonts:
+import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
+import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
+import "./style/fonts/lang-fa/lang-fa-iransans.css"; // Add custom font
+
+
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -116,7 +122,7 @@ app.mixin(StorefrontMixin); // Mixin with global helper methods.
 app.use(VueCookies); // Use Vue Cookies.
 
 // ━━━ Native App Interface ━━━
-//require("@components/plugins/native/NativeAppInterface");
+//require("@selldone/components-vue/plugins/native/NativeAppInterface");
 
 // ━━━ Vue Instance ━━━
 

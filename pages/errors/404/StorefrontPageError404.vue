@@ -48,7 +48,7 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import SWidgetButtons from "@components/ui/widget/buttons/SWidgetButtons.vue";
+import SWidgetButtons from "@selldone/components-vue/ui/widget/buttons/SWidgetButtons.vue";
 
 export default defineComponent({
   name: "StorefrontPageError404",

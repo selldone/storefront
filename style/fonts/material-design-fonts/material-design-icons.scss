@@ -1,0 +1,95 @@
+/*!
+ * Copyright (c) 2023. Selldone® Business OS™
+ *
+ * Author: M.Pajuhaan
+ * Web: https://selldone.com
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * All rights reserved. In the weave of time, where traditions and innovations intermingle, this content was crafted.
+ * From the essence of thought, through the corridors of creativity, each word, and sentiment has been molded.
+ * Not just to exist, but to inspire. Like an artist's stroke or a sculptor's chisel, every nuance is deliberate.
+ * Our journey is not just about reaching a destination, but about creating a masterpiece.
+ * Tread carefully, for you're treading on dreams.
+ */
+
+@import 'variables';
+@import 'mixins';
+
+$material-design-icons-class-icons-generate-codepoints: true !default;
+$material-design-icons-class-icons-prefix: '' !default;
+/* Download fonts here: https://github.com/jossef/material-design-icons-iconfont*/
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../material-design-fonts/fonts/MaterialIcons-Regular.eot"); /* For IE6-8 */
+  src: url("../material-design-fonts/fonts/MaterialIcons-Regular.woff2") format('woff2'),
+  url("../material-design-fonts/fonts/MaterialIcons-Regular.woff") format('woff'),
+  url("../material-design-fonts/fonts/MaterialIcons-Regular.ttf") format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: inherit;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  @if $material-design-icons-class-icons-generate-codepoints {
+    @each $name, $codepoint in $material-icons-codepoints {
+      $codepoint: map-get($material-icons-codepoints, $name);
+
+      $class-name: $material-design-icons-class-icons-prefix + $name;
+      $class-name: normalize-class-name($class-name);
+
+      &.#{$class-name} {
+        &:before {
+          content: material-icons-content($codepoint);
+        }
+      }
+    }
+  }
+
+
+}
+
+// Fix icon size:
+
+.v-icon--size-x-small {
+  font-size: calc(var(--v-icon-size-multiplier) * 1em) !important;
+}
+
+.v-icon--size-small {
+  font-size: calc(var(--v-icon-size-multiplier) * 1.25em) !important;
+}
+
+.v-icon--size-default {
+  font-size: calc(var(--v-icon-size-multiplier) * 1.5em) !important;
+}
+
+.v-icon--size-large {
+  font-size: calc(var(--v-icon-size-multiplier) * 1.75em) !important;
+}
+
+.v-icon--size-large {
+  font-size: calc(var(--v-icon-size-multiplier) * 2em) !important;
+}
+
+
+

@@ -105,9 +105,9 @@
 </template>
 
 <script>
-import SGiftcardView from "@components/storefront/giftcard/view/SGiftcardView.vue";
-import SDataIteratorToolbar from "@components/ui/toolbar/SDataIteratorToolbar.vue";
-import SGiftcardAdd from "@components/storefront/giftcard/add/SGiftcardAdd.vue";
+import SGiftcardView from "@selldone/components-vue/storefront/giftcard/view/SGiftcardView.vue";
+import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
+import SGiftcardAdd from "@selldone/components-vue/storefront/giftcard/add/SGiftcardAdd.vue";
 import _ from "lodash-es";
 
 export default {

@@ -43,7 +43,7 @@
         <u-button-circle
           v-if="USER()"
           key="pos"
-          :src="require('@components/assets/icons/pos-order-type.svg')"
+          :src="require('@selldone/components-vue/assets/icons/pos-order-type.svg')"
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_POS }"
           :tooltip="$t('global.commons.pos')"
           exact
@@ -55,7 +55,7 @@
           v-if="USER()"
           key="avo"
           :badge-number="getBadgeCount('AVO')"
-          :src="require('@components/assets/icons/avocado.svg')"
+          :src="require('@selldone/components-vue/assets/icons/avocado.svg')"
           :to="{ name: window.$storefront.routes.HISTORY_ORDERS_AVOCADO }"
           :tooltip="$t('global.commons.avocado')"
           exact

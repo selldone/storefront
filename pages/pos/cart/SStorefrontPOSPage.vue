@@ -33,7 +33,7 @@
             <img
               class="flipInX delay_300"
               height="48"
-              src="@components/assets/selldone-logo/selldone-text-draw.png"
+              src="@selldone/components-vue/assets/selldone-logo/selldone-text-draw.png"
             />
           </div>
 
@@ -203,7 +203,7 @@
         <a href="/Applications/Storefront/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@selldone/components-vue/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -215,12 +215,12 @@
 </template>
 
 <script>
-import BPosCartItems from "@components/storefront/pos/cart-items/BPosCartItems.vue";
-import SPosBillView from "@components/storefront/pos/bill-view/SPosBillView.vue";
+import BPosCartItems from "@selldone/components-vue/storefront/pos/cart-items/BPosCartItems.vue";
+import SPosBillView from "@selldone/components-vue/storefront/pos/bill-view/SPosBillView.vue";
 import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
-import UPaymentCard from "@components/ui/payment/card/UPaymentCard.vue";
-import UPaymentBillingDetails from "@components/ui/payment/billing-details/UPaymentBillingDetails.vue";
-import UMapCountriesSingle from "@components/ui/map/countries/single/UMapCountriesSingle.vue";
+import UPaymentCard from "@selldone/components-vue/ui/payment/card/UPaymentCard.vue";
+import UPaymentBillingDetails from "@selldone/components-vue/ui/payment/billing-details/UPaymentBillingDetails.vue";
+import UMapCountriesSingle from "@selldone/components-vue/ui/map/countries/single/UMapCountriesSingle.vue";
 import { TransactionStatus } from "@selldone/core-js/enums/payment/TransactionStatus";
 
 export default {

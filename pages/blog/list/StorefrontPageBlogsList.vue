@@ -555,8 +555,8 @@
 </template>
 
 <script>
-import SBlogCard from "@components/storefront/blog/card/SBlogCard.vue";
-import SBlogCardAuthorCategory from "@components/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
+import SBlogCard from "@selldone/components-vue/storefront/blog/card/SBlogCard.vue";
+import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 import _ from "lodash-es";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import SBlogRow from "@app-storefront/components/blog/row/SBlogRow.vue";

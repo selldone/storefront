@@ -18,13 +18,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="@components/assets/icons/hyper.svg"
+        src="@selldone/components-vue/assets/icons/hyper.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
+        src="@selldone/components-vue/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Back to buyer form (If login) ................ -->
@@ -140,7 +140,7 @@
         <a href="/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@selldone/components-vue/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -160,9 +160,9 @@
 
 <script>
 import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
-import UStamp from "@components/ui/stamp/UStamp.vue";
-import SHyperCartItems from "@components/storefront/hyper/cart/items/SHyperCartItems.vue";
-import SShopRowCustomerPendingPayment from "@components/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
+import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
+import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/items/SHyperCartItems.vue";
+import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 
 export default {
   name: "StorefrontPageHyperOrder",

@@ -33,18 +33,10 @@
     ],
     "paths": {
 
-      "@components/*": [
+      "@selldone/components-vue/*": [
         "src/Components/*"
       ],
-      "@sdk-storefront/*": [
-        "SDKs/storefront/*"
-      ],
-      "@sdk-community/*": [
-        "SDKs/community/*"
-      ],
-      "@sdk-vendor/*": [
-        "SDKs/vendor/*"
-      ],
+
       "@app-page-builder/*": [
         "src/Applications/PageBuilder/*"
       ],

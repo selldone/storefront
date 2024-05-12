@@ -205,19 +205,19 @@
 
 <script>
 import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
-import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
-import ReturnRequestButtonBadge from "@components/storefront/order/order-return/ReturnRequestButtonBadge.vue";
+import ReturnRequestButtonBadge from "@selldone/components-vue/storefront/order/order-return/ReturnRequestButtonBadge.vue";
 import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
 import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
-import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
-import SOrderStatusView from "@components/storefront/order/order-status/SOrderStatusView.vue";
+import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import SOrderStatusView from "@selldone/components-vue/storefront/order/order-status/SOrderStatusView.vue";
 import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
 import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
-import SOrderReceiverInfoCard from "@components/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
+import SOrderReceiverInfoCard from "@selldone/components-vue/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
-import { RouteMixin } from "@components/mixin/RouteMixin";
+import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 
 export default {
   name: "SOrdersList",
@@ -486,7 +486,7 @@ export default {
           out.push(
             item.image
               ? item.image
-              : require("@components/assets/icons/circle-blue.svg"),
+              : require("@selldone/components-vue/assets/icons/circle-blue.svg"),
           );
         });
       } else {

@@ -41,7 +41,7 @@
         <div v-if="!busy_fetch" class="py-5 usn text-center fadeIn">
           <img
             :src="
-              require('@components/assets/guides/returned-orders-empty.png')
+              require('@selldone/components-vue/assets/guides/returned-orders-empty.png')
             "
             class="m-3 op-0-3"
             style="max-height: 400px; object-fit: contain"
@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import VariantItemViewMicro from "@components/storefront/product/variant/VariantItemViewMicro.vue";
+import VariantItemViewMicro from "@selldone/components-vue/storefront/product/variant/VariantItemViewMicro.vue";
 import { ReturnItemStates } from "@selldone/core-js/enums/basket/ReturnItemStates";
 import { ReturnOrderReason } from "@selldone/core-js/enums/basket/ReturnOrderReason";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";

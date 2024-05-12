@@ -188,14 +188,14 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
-import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
-import SOrderBasketReturn from "@components/storefront/order/basket/return/SOrderBasketReturn.vue";
-import SOrderDeliveryState from "@components/storefront/order/delivery-state/SOrderDeliveryState.vue";
-import SShopProductFilesList from "@components/storefront/product/file/SShopProductFilesList.vue";
-import SOrderChatBox from "@components/storefront/order/chat/box/SOrderChatBox.vue";
+import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
+import SOrderBasketReturn from "@selldone/components-vue/storefront/order/basket/return/SOrderBasketReturn.vue";
+import SOrderDeliveryState from "@selldone/components-vue/storefront/order/delivery-state/SOrderDeliveryState.vue";
+import SShopProductFilesList from "@selldone/components-vue/storefront/product/file/SShopProductFilesList.vue";
+import SOrderChatBox from "@selldone/components-vue/storefront/order/chat/box/SOrderChatBox.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
-import SShopShareOrderButton from "@components/storefront/order/share-order/SShopShareOrderButton.vue";
+import SShopShareOrderButton from "@selldone/components-vue/storefront/order/share-order/SShopShareOrderButton.vue";
 
 export default {
   name: "StorefrontPageBasketOrderFileDashboard",

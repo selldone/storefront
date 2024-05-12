@@ -202,16 +202,16 @@
 </template>
 
 <script>
-import SStorefrontSearchBox from "@components/storefront/search/SStorefrontSearchBox.vue";
-import SFooterSection from "@components/storefront/footer/section/SFooterSection.vue";
+import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
+import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
 import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
 import { ShopEventsName } from "@selldone/core-js/enums/application/event/ShopEventsName.ts";
 
-import SStorefrontCampaignNotification from "@components/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
-import SContactsPopup from "@components/storefront/contact/popup/SContactsPopup.vue";
-import SStorefrontTopMenu from "@components/storefront/menu/header/SStorefrontTopMenu.vue";
-import SHeaderSection from "@components/storefront/header/section/SHeaderSection.vue";
-import SStorefrontProductInBasketIndicator from "@components/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
+import SStorefrontCampaignNotification from "@selldone/components-vue/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
+import SContactsPopup from "@selldone/components-vue/storefront/contact/popup/SContactsPopup.vue";
+import SStorefrontTopMenu from "@selldone/components-vue/storefront/menu/header/SStorefrontTopMenu.vue";
+import SHeaderSection from "@selldone/components-vue/storefront/header/section/SHeaderSection.vue";
+import SStorefrontProductInBasketIndicator from "@selldone/components-vue/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
 
 export default {
   name: "StorefrontLayout",

@@ -88,17 +88,17 @@
 </template>
 
 <script>
-import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
-import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
+import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
 import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
 import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
 import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
-import { RouteMixin } from "@components/mixin/RouteMixin";
+import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 
 export default {
   name: "StorefrontPageBasketOrder",

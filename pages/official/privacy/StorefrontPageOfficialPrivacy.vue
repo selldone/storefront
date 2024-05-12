@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import SArticleEditor from "@components/article/SArticleEditor.vue";
-import SCookiePreferences from "@components/storefront/cookie/preferences/SCookiePreferences.vue";
+import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
+import SCookiePreferences from "@selldone/components-vue/storefront/cookie/preferences/SCookiePreferences.vue";
 
 export default {
   name: "StorefrontPageOfficialPrivacy",

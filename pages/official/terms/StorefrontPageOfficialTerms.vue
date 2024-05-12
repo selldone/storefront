@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import SArticleEditor from "@components/article/SArticleEditor.vue";
+import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
 
 export default {
   name: "StorefrontPageOfficialTerms",

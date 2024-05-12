@@ -207,7 +207,7 @@
 
 <script>
 import { SetupService } from "@selldone/core-js/server/SetupService";
-import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
+import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
 
 export default {
   name: "StorefrontPageUserProfile",

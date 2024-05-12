@@ -78,9 +78,9 @@
 </template>
 
 <script>
-import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
+import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
-import { RouteMixin } from "@components/mixin/RouteMixin";
+import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 
 export default {
   name: "SStorefrontPOSOrderDetailMasterLayout",

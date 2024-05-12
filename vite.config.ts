@@ -70,16 +70,7 @@ export default ({mode}: any) => {
     resolve: {
       alias: {
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
-        "@components": path.resolve(__dirname, "src/Components/"),
-        "@sdk-storefront": path.resolve(__dirname, "SDKs/storefront/"),
-        "@sdk-backoffice": path.resolve(__dirname, "SDKs/backoffice/"),
-        "@sdk-community": path.resolve(__dirname, "SDKs/community/"),
-        "@sdk-vendor": path.resolve(__dirname, "SDKs/vendor/"),
-
-        "@app-page-builder": path.resolve(
-            __dirname,
-            "src/Applications/PageBuilder/",
-        ),
+        "@app-page-builder": path.resolve(__dirname, "src/Applications/PageBuilder/",),
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -93,6 +84,8 @@ export default ({mode}: any) => {
       port: DEV_PORT as number,
       cors: true, // Enable CORS
       fs: {
+        strict: false, // Load files from nested packages inside node-modules
+
         // Allow all folders under the project root
         allow: [
           // Use path.resolve with an empty string to resolve to the project root directory

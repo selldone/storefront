@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import SInstagramView from "@components/storefront/instagram/SInstagramView.vue";
+import SInstagramView from "@selldone/components-vue/storefront/instagram/SInstagramView.vue";
 
 export default {
   name: "StorefrontPageInstagram",

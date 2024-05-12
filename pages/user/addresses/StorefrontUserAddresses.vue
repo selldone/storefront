@@ -199,9 +199,9 @@
 </template>
 
 <script>
-import UMapViewPin from "@components/ui/map/view/market/UMapViewPin.vue";
-import UTextValueDashed from "@components/ui/text/value-dashed/UTextValueDashed.vue";
-import SWidgetHeader from "@components/ui/widget/header/SWidgetHeader.vue";
+import UMapViewPin from "@selldone/components-vue/ui/map/view/market/UMapViewPin.vue";
+import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
+import SWidgetHeader from "@selldone/components-vue/ui/widget/header/SWidgetHeader.vue";
 
 export default {
   name: "StorefrontUserAddresses",

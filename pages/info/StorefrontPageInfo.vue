@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import SFooterSection from "@components/storefront/footer/section/SFooterSection.vue";
+import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
 
 export default {
   name: "StorefrontPageInfo",

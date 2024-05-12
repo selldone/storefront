@@ -25,13 +25,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="@components/assets/icons/hyper.svg"
+        src="@selldone/components-vue/assets/icons/hyper.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
+        src="@selldone/components-vue/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Not enabled info ................ -->
@@ -132,7 +132,7 @@
         <a href="/Applications/Storefront/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@selldone/components-vue/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -146,9 +146,9 @@
 <script>
 import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 
-import SHyperCart from "@components/storefront/hyper/cart/SHyperCart.vue";
-import SHyperOrders from "@components/storefront/hyper/orders/SHyperOrders.vue";
-import ProductsDenseImagesCircles from "@components/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import SHyperCart from "@selldone/components-vue/storefront/hyper/cart/SHyperCart.vue";
+import SHyperOrders from "@selldone/components-vue/storefront/hyper/orders/SHyperOrders.vue";
+import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 
 export default {
   name: "StorefrontPageHyperCart",

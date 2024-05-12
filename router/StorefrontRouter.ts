@@ -182,32 +182,32 @@ const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
 
 const CLayout = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/layout/CLayout.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/layout/CLayout.vue"
   );
 
 const CommunityHomePage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/home/CommunityHomePage.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/home/CommunityHomePage.vue"
   );
 
 const CommunityCategoryPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/category/CommunityCategoryPage.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/category/CommunityCategoryPage.vue"
   );
 
 const CommunityTopicPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/topic/CommunityTopicPage.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/topic/CommunityTopicPage.vue"
   );
 
 const CommunityFeedPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/feed/CommunityFeedPage.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/feed/CommunityFeedPage.vue"
   );
 
 const CommunityMyCommentsPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@components/community/pages/my-comments/CommunityMyCommentsPage.vue"
+    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/my-comments/CommunityMyCommentsPage.vue"
   );
 
 //――――――――――――――――――――――――― Map ―――――――――――――――――――――――――

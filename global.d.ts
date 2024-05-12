@@ -12,7 +12,7 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { XapiShop } from "@sdk-storefront/shop/XapiShop";
+import { XapiShop } from "@selldone/sdk-storefront/shop/XapiShop";
 import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
 import { Store } from "vuex";
 

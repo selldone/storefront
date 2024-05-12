@@ -18,13 +18,13 @@
       <img
         class="me-1 zoomIn delay_500"
         height="32"
-        src="@components/assets/icons/avocado.svg"
+        src="@selldone/components-vue/assets/icons/avocado.svg"
         width="32"
       />
       <img
         class="flipInX delay_300"
         height="48"
-        src="@components/assets/selldone-logo/selldone-text-draw.png"
+        src="@selldone/components-vue/assets/selldone-logo/selldone-text-draw.png"
       />
 
       <!-- ................ Back to buyer form (If login) ................ -->
@@ -239,7 +239,7 @@
         <a href="/public" target="_blank">
           <img
             height="10"
-            src="@components/assets/selldone-logo/logo-mini-dark.svg"
+            src="@selldone/components-vue/assets/selldone-logo/logo-mini-dark.svg"
             width="10"
           />
           Selldone</a
@@ -258,13 +258,13 @@
 </template>
 
 <script>
-import SShopCustomerReceiverInfoWidget from "@components/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
+import SShopCustomerReceiverInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
-import { GtagEcommerce } from "@components/plugins/gtag/GtagEcommerce";
-import UStamp from "@components/ui/stamp/UStamp.vue";
-import SOrderDeliveryStatusStepper from "@components/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
+import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
+import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
+import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
-import SShopAvocadoCustomerOrderItems from "@components/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
+import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 import { AvocadoItemStatus } from "@selldone/core-js/enums/avocado/AvocadoItemStatus";
 
 export default {

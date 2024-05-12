@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2023. Selldone® Business OS™
+ *
+ * Author: M.Pajuhaan
+ * Web: https://selldone.com
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * All rights reserved. In the weave of time, where traditions and innovations intermingle, this content was crafted.
+ * From the essence of thought, through the corridors of creativity, each word, and sentiment has been molded.
+ * Not just to exist, but to inspire. Like an artist's stroke or a sculptor's chisel, every nuance is deliberate.
+ * Our journey is not just about reaching a destination, but about creating a masterpiece.
+ * Tread carefully, for you're treading on dreams.
+ */
+
+
+/**
+--------------------------------------------------------------------------------------
+Persian
+--------------------------------------------------------------------------------------
+**/
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: 900;
+    src: url('eot/IRANSansWeb(FaNum)_Black.eot');
+    src: url('eot/IRANSansWeb(FaNum)_Black.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum)_Black.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum)_Black.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('eot/IRANSansWeb(FaNum)_Bold.eot');
+    src: url('eot/IRANSansWeb(FaNum)_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('eot/IRANSansWeb(FaNum)_Medium.eot');
+    src: url('eot/IRANSansWeb(FaNum)_Medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum)_Medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('eot/IRANSansWeb(FaNum)_Light.eot');
+    src: url('eot/IRANSansWeb(FaNum)_Light.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum)_Light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('eot/IRANSansWeb(FaNum)_UltraLight.eot');
+    src: url('eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: lang-fa-iransans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('eot/IRANSansWeb(FaNum).eot');
+    src: url('eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('woff2/IRANSansWeb(FaNum).woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('woff/IRANSansWeb(FaNum).woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+    font-display: swap;
+}
+
+

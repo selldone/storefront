@@ -21,7 +21,7 @@
           class="text-uppercase"
         >
           <img
-            :src="require('@components/assets/icons/pos-order-type.svg')"
+            :src="require('@selldone/components-vue/assets/icons/pos-order-type.svg')"
             class="me-1"
             height="20"
             width="20"
@@ -52,8 +52,8 @@
 </template>
 
 <script>
-import SShopCustomerOrderPaymentWidget from "@components/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
-import SShopBasketItemsList from "@components/storefront/order/basket/SShopBasketItemsList.vue";
+import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
+import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
 
 export default {
   name: "StorefrontPagePosOrderDashboard",

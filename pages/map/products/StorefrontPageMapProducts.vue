@@ -185,12 +185,12 @@
 </template>
 
 <script>
-import Mapbox from "@components/ui/map/providers/mapbox/MapBox";
+import Mapbox from "@selldone/components-vue/ui/map/providers/mapbox/MapBox";
 import { SetupService } from "@selldone/core-js/server/SetupService";
-import SProductsListing from "@components/storefront/products/listing/SProductsListing.vue";
-import UMapAddressInput from "@components/ui/map/address/input/UMapAddressInput.vue";
-import UTextCopyBox from "@components/ui/text/copy-box/UTextCopyBox.vue";
-import SShopProductCard from "@components/storefront/product/card/SShopProductCard.vue";
+import SProductsListing from "@selldone/components-vue/storefront/products/listing/SProductsListing.vue";
+import UMapAddressInput from "@selldone/components-vue/ui/map/address/input/UMapAddressInput.vue";
+import UTextCopyBox from "@selldone/components-vue/ui/text/copy-box/UTextCopyBox.vue";
+import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
 import _ from "lodash-es";
 
 export default {

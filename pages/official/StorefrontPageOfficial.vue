@@ -39,7 +39,7 @@
 <script>
 import { HierarchyHelper } from "@selldone/core-js/helper/breadcrumb/HierarchyHelper";
 
-import UBreadcrumb from "@components/ui/breadcrumb/UBreadcrumb.vue";
+import UBreadcrumb from "@selldone/components-vue/ui/breadcrumb/UBreadcrumb.vue";
 
 export default {
   name: "StorefrontPageOfficial",
