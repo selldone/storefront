@@ -20,7 +20,6 @@ import {createApp} from "vue";
 import StorefrontApp from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
-import VueCookies from "vue-cookies";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@selldone/core-js/enums/language/Language";
 import {ShopApplicationInterface} from "@selldone/core-js/enums/application/ShopApplicationInterface";
@@ -119,7 +118,6 @@ window.SetToken = function (
 // ━━━ Global Mixin ━━━
 // @ts-ignore
 app.mixin(StorefrontMixin); // Mixin with global helper methods.
-app.use(VueCookies); // Use Vue Cookies.
 
 // ━━━ Native App Interface ━━━
 //require("@selldone/components-vue/plugins/native/NativeAppInterface");

@@ -50,7 +50,6 @@
     "qrcode": "1",
     "swiper": "11.1.1",
     "vue": "^3.4.27",
-    "vue-cookies": "^1.8.4",
     "vue-i18n": "^9.13.1",
     "vue-json-pretty": "^2.4.0",
     "vue-prism-editor": "^2.0.0-alpha.2",
