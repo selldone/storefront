@@ -58,41 +58,6 @@ echo ""
 
 echo -e "${GREEN_INVERT}Checking and adding submodules...${NC}"
 
-# Check and add the 'core' submodule
-if [ ! -d "core/.git" ]; then
-   echo "Adding 'core' submodule..."
-   git submodule add https://github.com/selldone/core core && echo "'core' submodule added successfully." || echo "Failed to add 'core' submodule."
-fi
-
-# Check and add the 'components' submodule
-if [ ! -d "src/Components/.git" ]; then
-   echo "Adding 'components' submodule..."
-   git submodule add https://github.com/selldone/components src/Components && echo "'components' submodule added successfully." || echo "Failed to add 'components' submodule."
-fi
-
-# Check and add the 'storefront-sdk' submodule
-if [ ! -d "SDKs/storefront/.git" ]; then
-   echo "Adding 'storefront-sdk' submodule..."
-   git submodule add https://github.com/selldone/storefront-sdk SDKs/storefront && echo "'storefront-sdk' submodule added successfully." || echo "Failed to add 'storefront-sdk' submodule."
-fi
-
-# Check and add the 'vendor-sdk' submodule
-if [ ! -d "SDKs/vendor/.git" ]; then
-   echo "Adding 'vendor-sdk' submodule..."
-   git submodule add https://github.com/selldone/vendor-sdk SDKs/vendor && echo "'vendor-sdk' submodule added successfully." || echo "Failed to add 'vendor-sdk' submodule."
-fi
-
-# Check and add the 'community-sdk' submodule
-if [ ! -d "SDKs/community/.git" ]; then
-   echo "Adding 'community-sdk' submodule..."
-   git submodule add https://github.com/selldone/community-sdk SDKs/community && echo "'community-sdk' submodule added successfully." || echo "Failed to add 'community-sdk' submodule."
-fi
-
-# Check and add the 'pagebuilder' submodule
-if [ ! -d "src/Applications/PageBuilder/.git" ]; then
-   echo "Adding 'pagebuilder' submodule..."
-   git submodule add https://github.com/selldone/pagebuilder src/Applications/PageBuilder && echo "'pagebuilder' submodule added successfully." || echo "Failed to add 'pagebuilder' submodule."
-fi
 
 echo ""
 # Display the status of submodules

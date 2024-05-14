@@ -15,6 +15,7 @@
 import { XapiShop } from "@selldone/sdk-storefront/shop/XapiShop";
 import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
 import { Store } from "vuex";
+import {Router} from "vue-router";
 
 declare global {
   interface Window {
@@ -44,5 +45,6 @@ declare global {
     OverrideShopLanguagePacks: { [local: string]: any };
 
     $global_store: Store<any>;
+    $global_router: Router;
   }
 }
