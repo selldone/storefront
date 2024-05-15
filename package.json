@@ -28,12 +28,12 @@
   },
   "homepage": "https://selldone.com",
   "dependencies": {
-    "@selldone/core-js": "^1.0.5",
-    "@selldone/translate": "^1.0.1",
-    "@selldone/sdk-storefront": "^1.0.0",
-    "@selldone/sdk-community": "^1.0.0",
-    "@selldone/components-vue": "^1.0.0",
-    "@selldone/page-builder": "^1.0.0",
+    "@selldone/core-js": "latest",
+    "@selldone/translate": "latest",
+    "@selldone/sdk-storefront": "latest",
+    "@selldone/sdk-community": "latest",
+    "@selldone/components-vue": "latest",
+    "@selldone/page-builder": "latest",
 
 
     "axios": "^1.6.8",
