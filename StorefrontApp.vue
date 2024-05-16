@@ -413,7 +413,7 @@ export default {
     //▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  Blur App ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
     this.EventBus.$on(EventName.BLUR_APP, (blur) => {
-      console.log("🔵 BLUR_APP", blur);
+      // console.log("🔵 BLUR_APP", blur);
       this.blur = blur;
     });
 
