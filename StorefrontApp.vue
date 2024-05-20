@@ -297,12 +297,7 @@ export default {
               _new?.name,
             ));
 
-        console.log(
-          "🔵 Scroll to top",
-          smooth ? "smooth" : "instant",
-          _old?.name,
-          _new?.name,
-        );
+        //console.log("🔵 Scroll to top", smooth ? "smooth" : "instant", _old?.name, _new?.name,);
 
         ScrollHelper.scrollToTop(0, smooth ? "smooth" : "instant");
       });
