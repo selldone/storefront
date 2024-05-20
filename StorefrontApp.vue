@@ -72,10 +72,7 @@
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Private / Restricted Shop ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-access-private-check
-      v-else
-      :shop="shop"
-    ></s-access-private-check>
+    <s-access-private-check v-else :shop="shop"></s-access-private-check>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-social-buttons
@@ -115,9 +112,7 @@
     ></s-pwa-version-check>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-footer-navigation
-      v-if="isMobile"
-    ></s-footer-navigation>
+    <s-footer-navigation v-if="isMobile"></s-footer-navigation>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-popup
@@ -165,6 +160,7 @@ import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/log
 import UMapDialog from "@selldone/components-vue/ui/map/dialog/UMapDialog.vue";
 import SDebugger from "@selldone/components-vue/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
+import { inArray } from "jquery";
 
 export default {
   name: "StorefrontApp",
@@ -237,7 +233,7 @@ export default {
     },
 
     popup() {
-      return  this.shop?.popup;
+      return this.shop?.popup;
     },
 
     // --------------------------------------------------------------------------------
@@ -277,28 +273,38 @@ export default {
     $route(_new, _old) {
       this.blur = false; // Reset blur!
 
+      // Do not scroll if only query parameters have changed
+      if (_old.path === _new.path) return;
+
       if (_new.query["no-scroll"]) return; // Do not scroll if no-scroll query exist!
 
       this.$nextTick(function () {
         /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
         const smooth =
           _old?.name === _new?.name ||
-          (_old?.name === window.$storefront.routes.SHOP_PAGE &&
-            _new?.name === window.$storefront.routes.SHOP_CATEGORY_PAGE);
+          (inArray(
+            [
+              window.$storefront.routes.SHOP_PAGE,
+              window.$storefront.routes.SHOP_CATEGORY_PAGE,
+            ],
+            _old?.name,
+          ) &&
+            inArray(
+              [
+                window.$storefront.routes.SHOP_PAGE,
+                window.$storefront.routes.SHOP_CATEGORY_PAGE,
+              ],
+              _new?.name,
+            ));
+
+        console.log(
+          "🔵 Scroll to top",
+          smooth ? "smooth" : "instant",
+          _old?.name,
+          _new?.name,
+        );
 
         ScrollHelper.scrollToTop(0, smooth ? "smooth" : "instant");
-        /*
-        this.$vuetify.goTo(0, {
-          duration:
-            _old?.name === _new?.name ||
-            (_old?.name === window.$storefront.routes.SHOP_PAGE &&
-              _new?.name ===
-                window.$storefront.routes.SHOP_CATEGORY_PAGE)
-              ? 800
-              : 0, // Can be 800ms,...
-          offset: 0,
-          easing: "easeInOutQuad",
-        });*/
       });
     },
 
