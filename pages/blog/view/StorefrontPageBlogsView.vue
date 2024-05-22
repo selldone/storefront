@@ -57,7 +57,7 @@
       </template>
       <template v-slot:login>
         <!-- Shop Login -->
-        <s-shop-login  class="mt-16 rounded-16px"></s-shop-login>
+        <s-shop-login :shop="shop" class="mt-16 rounded-16px"></s-shop-login>
       </template>
     </article-viewer>
 
@@ -86,6 +86,12 @@ export default {
   data: () => ({
     article_type: ArticleTypes.Blog,
   }),
+
+  computed: {
+    shop() {
+      return this.getShop();
+    },
+  },
 };
 </script>
 

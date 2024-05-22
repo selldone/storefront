@@ -90,7 +90,7 @@
     <s-comparison-button v-if="has_comparison" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-need-login-dialog />
+    <s-storefront-need-login-dialog :shop="shop"  />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <u-notification-side />
