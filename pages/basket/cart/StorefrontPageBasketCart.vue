@@ -367,7 +367,7 @@
                               size="20"
                               @click="goToProduct(prize.product.id)"
                             >
-                              <img
+                              <v-img
                                 :src="getShopImagePath(prize.product.icon)"
                               />
                             </v-avatar>
@@ -393,7 +393,7 @@
                                 force-enable
                                 selected
                               />
-                              <v-icon class="absolute-top-end" dark>
+                              <v-icon class="absolute-top-end" >
                                 arrow_drop_down
                               </v-icon>
                             </div>
@@ -636,6 +636,7 @@
                             "
                             class="me-1 circle-white p-1"
                             width="24px"
+                            height="24px"
                           />
                           <div>
                             <div>
