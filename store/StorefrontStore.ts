@@ -18,7 +18,7 @@ import type {ICurrency} from "@selldone/core-js/enums/payment/Currency";
 import {Currency} from "@selldone/core-js/enums/payment/Currency";
 import {ProductType} from "@selldone/core-js/enums/product/ProductType";
 import {OverrideCustomVariantsName} from "@selldone/core-js/enums/product/ProductVariants";
-import {XapiShop} from "@selldone/sdk-storefront/shop/XapiShop";
+import {XapiShop} from "@selldone/sdk-storefront";
 import type {ProductCompare} from "@selldone/core-js/models/shop/product/product-compare.model";
 import type {Coupon} from "@selldone/core-js/models/shop/incentives/coupon/coupon.model";
 import type {Offer} from "@selldone/core-js/models/shop/incentives/offer/offer.model";

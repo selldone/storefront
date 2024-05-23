@@ -21,7 +21,7 @@ import {NativeInterfaceShop, NativeInterfaceUser,} from "@selldone/components-vu
 import {StorefrontLocalStorages} from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import type {Basket} from "@selldone/core-js/models/shop/order/basket/basket.model";
 import {Club} from "@selldone/core-js/models/shop/club/club.model";
-import {XapiShop} from "@selldone/sdk-storefront/shop/XapiShop";
+import {XapiShop} from "@selldone/sdk-storefront";
 import {Product} from "@selldone/core-js/models/shop/product/product.model";
 import type {ProductVariant} from "@selldone/core-js/models/shop/product/product_variant.model";
 import type {BasketItem} from "@selldone/core-js/models/shop/order/basket/basket_item.model";
