@@ -109,7 +109,7 @@ For npm, use:
 
 ```shell
 npm install
-npm setup
+npm run setup
 ```
 
 #### Step 3: Begin Development
@@ -126,7 +126,7 @@ yarn serve
 With npm:
 
 ```shell
-npm serve 
+npm run serve 
 ```
 
 Open served address: e.g. `http://localhost:8080/`
