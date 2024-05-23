@@ -72,6 +72,14 @@ export default ({mode}: any) => {
         // ━━━━━━━━━━━━ Define fix path for modules ━━━━━━━━━━━━
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
+
+        '@selldone/core-js': path.resolve(__dirname, 'node_modules/@selldone/core-js'),
+        '@selldone/components-vue': path.resolve(__dirname, 'node_modules/@selldone/components-vue'),
+        '@selldone/page-builder': path.resolve(__dirname, 'node_modules/@selldone/page-builder'),
+        '@selldone/translate': path.resolve(__dirname, 'node_modules/@selldone/translate'),
+        '@selldone/sdk-storefront': path.resolve(__dirname, 'node_modules/@selldone/sdk-storefront'),
+        '@selldone/sdk-community': path.resolve(__dirname, 'node_modules/@selldone/sdk-community'),
+
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       },
     },
