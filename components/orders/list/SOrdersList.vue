@@ -19,7 +19,8 @@
       v-model="selected"
       v-model:options="options"
       v-model:page="page"
-      :class="{ 'blurred disabled': busy_fetch && !HIGHLIGHT_ID}"
+      v-model:sort-by="sortBy"
+      :class="{ 'blurred disabled': busy_fetch && !HIGHLIGHT_ID }"
       :header-props="{ sortByText: $t('global.commons.sort_by') }"
       :headers="headers"
       :items="orders"
@@ -35,7 +36,6 @@
           };
         }
       "
-      :sort-by="[{ key: null, order: 'desc' }]"
       class="bg-transparent blur-animate"
       density="compact"
       hide-default-footer
@@ -261,6 +261,7 @@ export default {
       itemsPerPage: 10,
       totalItems: 0,
       options: {},
+      sortBy: [{ key: null, order: "desc" }],
     };
   },
 
