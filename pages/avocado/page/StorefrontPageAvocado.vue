@@ -149,10 +149,9 @@
 </template>
 
 <script>
-import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
-
 import SStorefrontAvocadoCustomerOrderList from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
 import SStorefrontAvocadoCustomerOrderForm from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";
+import { Avocado } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageAvocado",
@@ -177,7 +176,7 @@ export default {
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
   data: () => ({
-    deliveryStates: AvocadoOrderStates,
+    deliveryStates: Avocado.DeliveryStates,
 
     open_avocado: null,
     busy: false,

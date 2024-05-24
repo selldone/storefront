@@ -423,7 +423,7 @@ export default {
 
       busy: false,
 
-      article_type: Article.Type.Product,
+      article_type: Article.Types.Product,
 
       tab_mode: "tab-review",
 

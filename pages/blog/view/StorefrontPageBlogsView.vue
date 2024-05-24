@@ -84,7 +84,7 @@ export default {
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
   data: () => ({
-    article_type: Article.Type.Blog,
+    article_type: Article.Types.Blog,
   }),
 
   computed: {

@@ -263,9 +263,8 @@ import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
-import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
-import { AvocadoItemStatus } from "@selldone/core-js/enums/avocado/AvocadoItemStatus";
+import { Avocado, AvocadoItem } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageAvocadoCart",
@@ -284,7 +283,7 @@ export default {
   },
 
   data: () => ({
-    deliveryStates: AvocadoOrderStates,
+    deliveryStates: Avocado.DeliveryStates,
 
     avocado: null,
     busy: false,
@@ -325,8 +324,8 @@ export default {
 
       const has_pending = this.items.some(
         (it) =>
-          it.status === AvocadoItemStatus.PENDING.code ||
-          (!it.price && it.status === AvocadoItemStatus.ACCEPTED.code),
+          it.status === AvocadoItem.Status.PENDING.code ||
+          (!it.price && it.status === AvocadoItem.Status.ACCEPTED.code),
       ); // Pending or not have price!
 
       return !has_pending;

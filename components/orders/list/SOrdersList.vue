@@ -213,11 +213,11 @@ import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates"
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import SOrderStatusView from "@selldone/components-vue/storefront/order/order-status/SOrderStatusView.vue";
 import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
-import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
 import SOrderReceiverInfoCard from "@selldone/components-vue/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
+import { Avocado } from "@selldone/core-js";
 
 export default {
   name: "SOrdersList",
@@ -401,7 +401,7 @@ export default {
       } else if (this.isPos) {
         return null;
       } else if (this.isAvocado) {
-        return AvocadoOrderStates;
+        return Avocado.DeliveryStates;
       }
       return null;
     },

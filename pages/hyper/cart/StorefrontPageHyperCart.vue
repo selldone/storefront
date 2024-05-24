@@ -144,11 +144,10 @@
 </template>
 
 <script>
-import { AvocadoOrderStates } from "@selldone/core-js/enums/avocado/AvocadoOrderStates";
-
 import SHyperCart from "@selldone/components-vue/storefront/hyper/cart/SHyperCart.vue";
 import SHyperOrders from "@selldone/components-vue/storefront/hyper/orders/SHyperOrders.vue";
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
+import { Avocado } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageHyperCart",
@@ -166,7 +165,7 @@ export default {
   },
 
   data: () => ({
-    deliveryStates: AvocadoOrderStates,
+    deliveryStates: Avocado.DeliveryStates,
 
     open_hyper: null,
     busy: false,
