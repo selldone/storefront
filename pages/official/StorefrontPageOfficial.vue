@@ -37,9 +37,8 @@
 </template>
 
 <script>
-import { HierarchyHelper } from "@selldone/core-js/helper/breadcrumb/HierarchyHelper";
-
 import UBreadcrumb from "@selldone/components-vue/ui/breadcrumb/UBreadcrumb.vue";
+import { SBusinessProfileBreadcrumbsHelper } from "@selldone/components-vue/storefront/business-profile/helper/SBusinessProfileBreadcrumbsHelper";
 
 export default {
   name: "StorefrontPageOfficial",
@@ -69,7 +68,7 @@ export default {
               : "";
     },
     hierarchy_items() {
-      return HierarchyHelper.GeneratePageHierarchy(
+      return SBusinessProfileBreadcrumbsHelper.GeneratePageHierarchy(
         this.$t("global.store"),
         this.page_name,
       );

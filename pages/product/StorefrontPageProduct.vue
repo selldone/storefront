@@ -75,7 +75,10 @@
             tile
             variant="text"
             @click="show_qr = true"
-            ><img src="@selldone/components-vue/assets/icons/qr-code.svg" width="32" />
+            ><img
+              src="@selldone/components-vue/assets/icons/qr-code.svg"
+              width="32"
+            />
             <v-tooltip activator="parent" location="bottom">
               Barcode
             </v-tooltip>
@@ -154,7 +157,8 @@
                   })
                 }}
               </v-list-subheader>
-              <h2 v-if="article"
+              <h2
+                v-if="article"
                 :style="{ color: page_article_title_color }"
                 class="text-h3 line-height-normal font-weight-black"
               >
@@ -325,7 +329,8 @@
             />
             <v-btn
               class="hover-scale-small"
-              icon variant="text"
+              icon
+              variant="text"
               style="position: absolute; top: 10%; left: 10%"
               @click="show_qr = false"
             >
@@ -346,7 +351,6 @@
 import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 
 import SProductOverview from "@selldone/components-vue/storefront/overview/SProductOverview.vue";
-import { HierarchyHelper } from "@selldone/core-js/helper/breadcrumb/HierarchyHelper";
 import UBreadcrumb from "@selldone/components-vue/ui/breadcrumb/UBreadcrumb.vue";
 import BProductSpecTable from "@selldone/components-vue/storefront/product/spec/table/BProductSpecTable.vue";
 import { ArticleTypes } from "@selldone/core-js/enums/article/ArticleTypes";
@@ -376,6 +380,7 @@ import SProductCrossSells from "@selldone/components-vue/storefront/product/cros
 import ProductSection from "@selldone/core-js/enums/product/ProductSection";
 import LPageViewer from "@selldone/page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
+import { SProductBreadcrumbHelper } from "@selldone/components-vue/storefront/products/listing/helper/SProductBreadcrumbHelper";
 
 export default {
   name: "StorefrontPageProduct",
@@ -651,7 +656,7 @@ export default {
       return tabs;
     },
     hierarchy_items() {
-      return HierarchyHelper.GenerateCategoryHierarchyGeneral(
+      return SProductBreadcrumbHelper.GenerateCategoryHierarchyGeneral(
         this.$t("global.store"),
         this.product.category,
         this.shop_name,
