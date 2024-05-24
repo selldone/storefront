@@ -22,7 +22,7 @@ import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@selldone/core-js/enums/language/Language";
-import {ShopApplicationInterface} from "@selldone/core-js/enums/application/ShopApplicationInterface";
+import {ApplicationExecutorStorefront} from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
 import {StorefrontSDK} from "@selldone/sdk-storefront";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 import {CapiCommunity} from "@selldone/sdk-community"; // Register the service worker.
@@ -59,7 +59,7 @@ window.$global_router = router; // Important! used by styler!
 window.$global_vuetify = vuetify; // Important! used by page build dynamic component generator!  USE THIS NOW: vuetify=Vue.prototype.$vuetify
 
 // ━━━ App Interface ━━━
-window.AppInterface = new ShopApplicationInterface();
+window.AppInterface = new ApplicationExecutorStorefront();
 // ━━━ Override language packs ━━━
 window.OverrideShopLanguagePacks = {};
 
@@ -100,7 +100,7 @@ window.SetToken = function (
     token,
     expire_date ? expire_date.toUTCString() : "",
     window.$storefront.prefix_url,
-    null,
+    undefined,
     false,
   );
   window.axios.defaults.headers.common["Authorization"] = "Bearer " + token;

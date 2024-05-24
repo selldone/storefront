@@ -13,7 +13,7 @@
  */
 
 import { XapiShop } from "@selldone/sdk-storefront";
-import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
+import { ApplicationExecutorStorefront } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
 import { Store } from "vuex";
 import {Router} from "vue-router";
 
@@ -38,7 +38,7 @@ declare global {
      * Default location calculated based on user IP. This location receive on {@see XAPI.GET_SHOP_INFO}
      */
     initial_location: XapiShop.ILocation;
-    AppInterface: ShopApplicationInterface;
+    AppInterface: ApplicationExecutorStorefront;
 
     SetToken: (token: string, expire_date: Date | null) => void;
 

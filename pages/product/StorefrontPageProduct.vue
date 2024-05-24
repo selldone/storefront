@@ -353,7 +353,6 @@ import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 import SProductOverview from "@selldone/components-vue/storefront/overview/SProductOverview.vue";
 import UBreadcrumb from "@selldone/components-vue/ui/breadcrumb/UBreadcrumb.vue";
 import BProductSpecTable from "@selldone/components-vue/storefront/product/spec/table/BProductSpecTable.vue";
-import { ArticleTypes } from "@selldone/core-js/enums/article/ArticleTypes";
 import SProductOverviewLoading from "@selldone/components-vue/storefront/overview/loading/SProductOverviewLoading.vue";
 import { SpecHelper } from "@selldone/core-js/helper/product/SpecHelper";
 
@@ -381,6 +380,7 @@ import ProductSection from "@selldone/core-js/enums/product/ProductSection";
 import LPageViewer from "@selldone/page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
 import { SProductBreadcrumbHelper } from "@selldone/components-vue/storefront/products/listing/helper/SProductBreadcrumbHelper";
+import { Article } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageProduct",
@@ -423,7 +423,7 @@ export default {
 
       busy: false,
 
-      article_type: ArticleTypes.Product,
+      article_type: Article.Type.Product,
 
       tab_mode: "tab-review",
 

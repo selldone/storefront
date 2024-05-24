@@ -161,7 +161,10 @@
               :transparent="transparent_header"
               :color="header_color"
               flat
-              :class="{'s--custom-top-menu-transparent':transparent_header || header_mode === 'overlay'}"
+              :class="{
+                's--custom-top-menu-transparent':
+                  transparent_header || header_mode === 'overlay',
+              }"
             ></s-storefront-top-menu>
           </template>
         </component>
@@ -204,8 +207,7 @@
 <script>
 import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
 import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
-import { ShopApplicationInterface } from "@selldone/core-js/enums/application/ShopApplicationInterface";
-import { ShopEventsName } from "@selldone/core-js/enums/application/event/ShopEventsName.ts";
+import { ApplicationExecutorStorefront } from "@selldone/core-js";
 
 import SStorefrontCampaignNotification from "@selldone/components-vue/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
 import SContactsPopup from "@selldone/components-vue/storefront/contact/popup/SContactsPopup.vue";
@@ -420,8 +422,8 @@ export default {
        */
       //  if (this.$ga) this.$ga.page(to);
 
-      ShopApplicationInterface.TriggerEvent(
-        ShopEventsName.ChangePage,
+      ApplicationExecutorStorefront.TriggerEvent(
+        ApplicationExecutorStorefront.EventsName.ChangePage,
         to,
         from,
       );
@@ -595,7 +597,8 @@ a {
     }
   }
 }
-.s--custom-top-menu-transparent{
+
+.s--custom-top-menu-transparent {
   position: absolute;
   z-index: 10;
 }

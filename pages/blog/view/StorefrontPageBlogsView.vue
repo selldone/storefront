@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import { ArticleTypes } from "@selldone/core-js/enums/article/ArticleTypes";
 import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 import SShopLogin from "@selldone/components-vue/storefront/login/SShopLogin.vue";
+import { Article } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageBlogsView",
@@ -84,7 +84,7 @@ export default {
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
   data: () => ({
-    article_type: ArticleTypes.Blog,
+    article_type: Article.Type.Blog,
   }),
 
   computed: {
