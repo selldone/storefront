@@ -204,20 +204,15 @@
 </template>
 
 <script>
-import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import ReturnRequestButtonBadge from "@selldone/components-vue/storefront/order/order-return/ReturnRequestButtonBadge.vue";
-import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
-import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import SOrderStatusView from "@selldone/components-vue/storefront/order/order-status/SOrderStatusView.vue";
-import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
 import SOrderReceiverInfoCard from "@selldone/components-vue/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
-import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
-import { Avocado } from "@selldone/core-js";
+import { Avocado, Basket } from "@selldone/core-js";
 
 export default {
   name: "SOrdersList",
@@ -389,15 +384,15 @@ export default {
     },
     orders_states() {
       if (this.type?.code === ProductType.PHYSICAL.code) {
-        return PhysicalOrderStates;
+        return Basket.PhysicalOrderStates;
       } else if (this.type?.code === ProductType.VIRTUAL.code) {
-        return VirtualOrderStates;
+        return Basket.VirtualOrderStates;
       } else if (this.type?.code === ProductType.FILE.code) {
-        return FileOrderStates;
+        return Basket.FileOrderStates;
       } else if (this.type?.code === ProductType.SERVICE.code) {
-        return ServiceOrderStates;
+        return Basket.ServiceOrderStates;
       } else if (this.type?.code === ProductType.SUBSCRIPTION.code) {
-        return SubscriptionOrderStates;
+        return Basket.SubscriptionOrderStates;
       } else if (this.isPos) {
         return null;
       } else if (this.isAvocado) {

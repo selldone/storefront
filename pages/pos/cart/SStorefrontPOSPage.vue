@@ -83,8 +83,7 @@
                 '': transaction_pending.status === 'RequireAction',
                 'bg-cyan text-white':
                   transaction_pending.status === 'Processing',
-                'bg-red text-white':
-                  transaction_pending.status === 'Canceled',
+                'bg-red text-white': transaction_pending.status === 'Canceled',
               }"
               class="text-start"
             >
@@ -217,11 +216,11 @@
 <script>
 import BPosCartItems from "@selldone/components-vue/storefront/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@selldone/components-vue/storefront/pos/bill-view/SPosBillView.vue";
-import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import UPaymentCard from "@selldone/components-vue/ui/payment/card/UPaymentCard.vue";
 import UPaymentBillingDetails from "@selldone/components-vue/ui/payment/billing-details/UPaymentBillingDetails.vue";
 import UMapCountriesSingle from "@selldone/components-vue/ui/map/countries/single/UMapCountriesSingle.vue";
 import { TransactionStatus } from "@selldone/core-js/enums/payment/TransactionStatus";
+import { Basket } from "@selldone/core-js";
 
 export default {
   name: "SStorefrontPOSPage",
@@ -243,14 +242,14 @@ export default {
       return (
         this.bill &&
         this.basket &&
-        this.basket.status === BasketStatus.Open.code
+        this.basket.status === Basket.Status.Open.code
       );
     },
     show_pending_payment() {
       return (
         this.basket &&
-        (this.basket.status === BasketStatus.Reserved.code ||
-          this.basket.status === BasketStatus.COD.code) &&
+        (this.basket.status === Basket.Status.Reserved.code ||
+          this.basket.status === Basket.Status.COD.code) &&
         this.transactions_pending &&
         this.transactions_pending.length
       );

@@ -259,12 +259,11 @@
 
 <script>
 import SShopCustomerReceiverInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
-import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
-import { Avocado, AvocadoItem } from "@selldone/core-js";
+import { Avocado, AvocadoItem, Basket } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageAvocadoCart",
@@ -335,16 +334,16 @@ export default {
       return this.avocado.items;
     },
     isOpen() {
-      return this.avocado.status === BasketStatus.Open.code;
+      return this.avocado.status === Basket.Status.Open.code;
     },
     isReserved() {
-      return this.avocado.status === BasketStatus.Reserved.code;
+      return this.avocado.status === Basket.Status.Reserved.code;
     },
     isPayed() {
-      return this.avocado.status === BasketStatus.Payed.code;
+      return this.avocado.status === Basket.Status.Payed.code;
     },
     isCanceled() {
-      return this.avocado.status === BasketStatus.Canceled.code;
+      return this.avocado.status === Basket.Status.Canceled.code;
     },
   },
   created() {

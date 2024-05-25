@@ -13,13 +13,13 @@
   -->
 
 <template>
-  <s-orders-list :type="ProductType.VIRTUAL"> </s-orders-list>
+  <s-orders-list :type="ProductType.VIRTUAL"></s-orders-list>
 </template>
 
 <script>
-import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrdersList from "../../../../components/orders/list/SOrdersList.vue";
+import { Basket } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageUserOrdersVirtual",
@@ -29,7 +29,7 @@ export default {
   data: () => ({
     ProductType: ProductType,
 
-    virtualOrderStates: VirtualOrderStates,
+    virtualOrderStates: Basket.VirtualOrderStates,
 
     orders: [],
 

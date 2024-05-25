@@ -79,8 +79,8 @@
 
 <script>
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
+import { Basket } from "@selldone/core-js";
 
 export default {
   name: "SStorefrontPOSOrderDetailMasterLayout",
@@ -127,7 +127,7 @@ export default {
           if (!data.error) {
             this.basket = data.basket;
 
-            if (this.basket.status === BasketStatus.Payed.code)
+            if (this.basket.status === Basket.Status.Payed.code)
               GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             this.showErrorAlert(null, data.error_msg);

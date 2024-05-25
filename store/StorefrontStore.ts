@@ -18,13 +18,13 @@ import type {ICurrency} from "@selldone/core-js/enums/payment/Currency";
 import {Currency} from "@selldone/core-js/enums/payment/Currency";
 import {ProductType} from "@selldone/core-js/enums/product/ProductType";
 import {OverrideCustomVariantsName} from "@selldone/core-js/enums/product/ProductVariants";
-import {XapiShop} from "@selldone/sdk-storefront";
 import type {ProductCompare} from "@selldone/core-js/models/shop/product/product-compare.model";
 import type {Coupon} from "@selldone/core-js/models/shop/incentives/coupon/coupon.model";
 import type {Offer} from "@selldone/core-js/models/shop/incentives/offer/offer.model";
 import {Club} from "@selldone/core-js/models/shop/club/club.model";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import type {Basket} from "@selldone/core-js/models/shop/order/basket/basket.model";
+import {Map} from "@selldone/core-js";
 
 interface State {
   user: any | null;
@@ -61,7 +61,7 @@ interface State {
   /**
    * Set default location calculated based on user IP
    */
-  initial_location: XapiShop.ILocation | null;
+  initial_location: Map.ILocation | null;
 }
 
 export default createStore<State>({
@@ -310,8 +310,8 @@ export default createStore<State>({
     },
     //━━━━━━━External Accounts ━━━━━━━
     /*  getExchangeRates(state) {
-              return state.exchangeRates;
-            },*/
+                  return state.exchangeRates;
+                },*/
 
     //━━━━━━━ 📦 Gifts ━━━━━━━
     getGifts(state) {

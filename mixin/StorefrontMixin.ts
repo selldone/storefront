@@ -817,7 +817,7 @@ const StorefrontMixin = defineComponent({
       code: string /*🥶 Guest*/,
       order: Basket | null,
       type: keyof typeof ProductType,
-      bill: Basket.IBill,
+      bill: Basket.ICalculatedBill,
       prize_selected_variant_id: number | null = null,
       gateway: string | null = null,
       acceptCOD: boolean = false, // Based on delivery methods support COD!
@@ -839,7 +839,7 @@ const StorefrontMixin = defineComponent({
     ShowPaymentDialogSubscription(
       currency: keyof typeof Currency,
       order: Basket | null,
-      bill: Basket.IBill,
+      bill: Basket.ICalculatedBill,
       gateway_codes: String,
       callback: (() => void) | null = null, // Not used yet!
     ) {
@@ -891,7 +891,7 @@ const StorefrontMixin = defineComponent({
     ShowPaymentDialogBill(
       code: string /*🥶 Guest*/,
       order: Basket | null,
-      bill: Basket.IBill,
+      bill: Basket.ICalculatedBill,
       callback: () => void,
     ) {
       this.EventBus.$emit("payment-form-bill", {

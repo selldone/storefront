@@ -73,11 +73,7 @@
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Order > Card ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
-    <v-card
-      class="s--card-window-content"
-      flat
-      style="min-height: 80vh"
-    >
+    <v-card class="s--card-window-content" flat style="min-height: 80vh">
       <router-view
         v-if="basket"
         :basket="basket"
@@ -89,16 +85,11 @@
 
 <script>
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
-import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
-import { PhysicalOrderStates } from "@selldone/core-js/enums/basket/PhysicalOrderStates";
-import { VirtualOrderStates } from "@selldone/core-js/enums/basket/VirtualOrderStates";
-import { FileOrderStates } from "@selldone/core-js/enums/basket/FileOrderStates";
-import { ServiceOrderStates } from "@selldone/core-js/enums/basket/ServiceOrderStates";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
-import { SubscriptionOrderStates } from "@selldone/core-js/enums/basket/SubscriptionOrderStates";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
+import { Basket } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageBasketOrder",
@@ -149,15 +140,15 @@ export default {
       if (!this.type) return null;
 
       if (this.type.code === ProductType.PHYSICAL.code) {
-        return PhysicalOrderStates;
+        return Basket.PhysicalOrderStates;
       } else if (this.type.code === ProductType.VIRTUAL.code) {
-        return VirtualOrderStates;
+        return Basket.VirtualOrderStates;
       } else if (this.type.code === ProductType.FILE.code) {
-        return FileOrderStates;
+        return Basket.FileOrderStates;
       } else if (this.type.code === ProductType.SERVICE.code) {
-        return ServiceOrderStates;
+        return Basket.ServiceOrderStates;
       } else if (this.type.code === ProductType.SUBSCRIPTION.code) {
-        return SubscriptionOrderStates;
+        return Basket.SubscriptionOrderStates;
       }
       return null;
     },
@@ -209,7 +200,7 @@ export default {
           if (!data.error) {
             this.basket = data.basket;
 
-            if (this.basket.status === BasketStatus.Payed.code)
+            if (this.basket.status === Basket.Status.Payed.code)
               GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             this.showErrorAlert(null, data.error_msg);

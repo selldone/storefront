@@ -159,10 +159,10 @@
 </template>
 
 <script>
-import { BasketStatus } from "@selldone/core-js/enums/basket/status/BasketStatus";
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
+import { Basket } from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageHyperOrder",
@@ -206,16 +206,16 @@ export default {
       return this.hyper.items;
     },
     isOpen() {
-      return this.hyper.status === BasketStatus.Open.code;
+      return this.hyper.status === Basket.Status.Open.code;
     },
     isReserved() {
-      return this.hyper.status === BasketStatus.Reserved.code;
+      return this.hyper.status === Basket.Status.Reserved.code;
     },
     isPayed() {
-      return this.hyper.status === BasketStatus.Payed.code;
+      return this.hyper.status === Basket.Status.Payed.code;
     },
     isCanceled() {
-      return this.hyper.status === BasketStatus.Canceled.code;
+      return this.hyper.status === Basket.Status.Canceled.code;
     },
   },
   created() {

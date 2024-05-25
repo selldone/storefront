@@ -12,10 +12,12 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import { XapiShop } from "@selldone/sdk-storefront";
-import { ApplicationExecutorStorefront } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
-import { Store } from "vuex";
+import {
+    ApplicationExecutorStorefront
+} from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
+import {Store} from "vuex";
 import {Router} from "vue-router";
+import {Map} from "@selldone/core-js";
 
 declare global {
   interface Window {
@@ -37,7 +39,7 @@ declare global {
     /**
      * Default location calculated based on user IP. This location receive on {@see XAPI.GET_SHOP_INFO}
      */
-    initial_location: XapiShop.ILocation;
+    initial_location: Map.ILocation;
     AppInterface: ApplicationExecutorStorefront;
 
     SetToken: (token: string, expire_date: Date | null) => void;
