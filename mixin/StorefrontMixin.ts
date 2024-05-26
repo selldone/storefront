@@ -36,6 +36,7 @@ import type {Offer} from "@selldone/core-js/models/shop/incentives/offer/offer.m
 import type {RouteRecord} from "vue-router/types/router";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {defineComponent} from "vue";
+import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";
 
 const StorefrontMixin = defineComponent({
   data() {
@@ -451,6 +452,8 @@ const StorefrontMixin = defineComponent({
             orders_state,
             seen_pops,
           }) => {
+            // 🧿 Auto fix Shop:
+            StorefrontShopHealthCheck.Check(this.$router,shop)
             window.shop = shop;
             this.$store.commit("setShop", shop);
             this.$store.commit("setPendingTransactions", pending_transactions);

@@ -161,6 +161,7 @@ import UMapDialog from "@selldone/components-vue/ui/map/dialog/UMapDialog.vue";
 import SDebugger from "@selldone/components-vue/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
+import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck";
 
 export default {
   name: "StorefrontApp",
@@ -431,6 +432,9 @@ export default {
 
     // Load shop info fast:
     if (window.shop) {
+      // 🧿 Auto fix Shop:
+      StorefrontShopHealthCheck.Check(this.$router,window.shop)
+
       this.$store.commit("setShop", window.shop);
       // 🞧 Header: Language (Important to load content - product article - in selected language) ASAP!
       const local_save_lang =
