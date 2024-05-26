@@ -67,12 +67,11 @@
         <v-btn
           :color="!isSubscribed ? 'primary' : 'success'"
           :loading="busy_subscribe"
-          :variant="isSubscribed && 'text'"
-          variant="flat"
+          :variant="isSubscribed ? 'text' : 'flat'"
           size="x-large"
           @click="toggleSubscribe"
         >
-          <v-icon v-if="isSubscribed" class="me-1" size="small">check</v-icon>
+          <v-icon v-if="isSubscribed" start>check</v-icon>
           {{
             isSubscribed
               ? $t("global.commons.subscribed")
@@ -105,15 +104,18 @@
             {{ $t("user_profile.identity") }}
           </v-list-subheader>
         </template>
-        <div class="text-success">
-          <u-check
-            :value="USER().personal_information_verified"
-            class="me-1"
-          ></u-check>
-          <span v-if="USER().personal_information_verified">
-            {{ $t("user_profile.success_kyc") }}</span
-          >
-        </div>
+        <v-chip
+          v-if="USER().personal_information_verified"
+          color="green"
+          variant="tonal"
+          pill
+          size="small"
+        >
+          {{ $t("user_profile.success_kyc") }}
+        </v-chip>
+        <v-chip v-else color="#333" variant="tonal" pill size="small">
+          {{ $t("user_profile.no_kyc") }}
+        </v-chip>
       </u-text-value-dashed>
 
       <div class="widget-buttons">
@@ -173,8 +175,8 @@
                 $t("user_profile.club_table.free_shipping")
               }}</small>
               <v-icon color="success" size="small"
-                >fa:fas fa-shipping-fast</v-icon
-              >
+                >fa:fas fa-shipping-fast
+              </v-icon>
             </div>
           </div>
         </div>
