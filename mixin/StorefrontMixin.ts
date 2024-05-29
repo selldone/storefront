@@ -358,7 +358,7 @@ const StorefrontMixin = defineComponent({
           expire_date.setUTCSeconds(expires_in);
         }
 
-        window.SetToken(token, expire_date);
+        window.SetToken(token, expire_date,'access_token');
       }
 
       startLogin();

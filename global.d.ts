@@ -42,7 +42,7 @@ declare global {
     initial_location: Map.ILocation;
     AppInterface: ApplicationExecutorStorefront;
 
-    SetToken: (token: string, expire_date: Date | null) => void;
+    SetToken: (token: string, expire_date: Date | null,cookie_key:string='access_token'|'vendor_access_token') => void;
 
     OverrideShopLanguagePacks: { [local: string]: any };
 

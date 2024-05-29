@@ -94,9 +94,13 @@ CapiCommunity.Setup(); // Setup community.
 window.SetToken = function (
   token: string,
   expire_date: Date | null = null,
+  cookie_key:string='access_token'
 ): void {
+  console.log("Set Customer Token!" );
+
+
   window.$cookies.set(
-    "access_token",
+    cookie_key,
     token,
     expire_date ? expire_date.toUTCString() : "",
     window.$storefront.prefix_url,
