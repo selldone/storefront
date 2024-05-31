@@ -46,8 +46,8 @@ import StorefrontPageInfo from "@app-storefront/pages/info/StorefrontPageInfo.vu
 import {ShopOptionsHelper} from "@selldone/core-js/helper/shop/ShopOptionsHelper";
 import {SetupService} from "@selldone/core-js/server/SetupService";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
-import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRoutesName.ts";
-import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName.ts";
+import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRoutesName";
+import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName";
 import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
 import LandingRender from "@selldone/page-builder/LandingRender.vue";
 
