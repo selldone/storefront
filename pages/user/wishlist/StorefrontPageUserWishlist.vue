@@ -157,7 +157,7 @@ export default {
 
       window.$storefront.products
         .optimize(60)
-        .fetchProducts("*", (page - 1) * this.itemsPerPage, this.itemsPerPage, {
+        .list("*", (page - 1) * this.itemsPerPage, this.itemsPerPage, {
           sortBy: sortBy,
           sortDesc: sortDesc,
           search: this.search,

@@ -760,7 +760,7 @@ export default {
 
       window.$storefront.products
         .optimize(60)
-        .getInfo(this.getId(this.$route.params.product_id), {
+        .get(this.getId(this.$route.params.product_id), {
           "augmented-categories": 3, // Return 3 categories in the parent folder of current category
           "augmented-cross-sells": true, // Return max 3 cross-selling items
         })
