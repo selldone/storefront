@@ -786,7 +786,7 @@ const StorefrontMixin = defineComponent({
     ) {
       // ▀▀▀▀▀▀▀▀▀ 🥵 User & 🥶 Guest ▀▀▀▀▀▀▀▀▀
       window.$storefront.basket
-        .removeItem(product_id, variant_id)
+        .deleteItem(product_id, variant_id)
 
         .then(({ basket, bill }) => {
           this.setBasket(basket);
