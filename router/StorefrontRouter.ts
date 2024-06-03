@@ -353,10 +353,20 @@ const routes: IVueRoute[] = [
 
       {
         path: "/@:slug-:vendor_id(\\d+)",
-        component: StorefrontPageProducts,
         name: StorefrontRoutesName.SHOP_VENDOR_PAGE,
+        component: StorefrontPageProducts,
         meta: {
           search: true,
+        },
+      },
+
+      {
+        path: "/vendor/@:slug-:vendor_id(\\d+)",
+        name: StorefrontRoutesName.SHOP_VENDOR_CUSTOM_LANDING_PAGE,
+        component: LandingRender,
+        meta: {
+          fullscreen: true,
+
         },
       },
 
@@ -890,7 +900,7 @@ const routes: IVueRoute[] = [
 
   // will match everything and put it under `route.params.pathMatch`
   { path: "/:pathMatch(.*)*", component: StorefrontPageError404 },
-  //{ name: "AvocadoBuyerFormPage", component: StorefrontPageError404 },
+  { name: "AvocadoBuyerFormPage", component: StorefrontPageError404 },
   { name: "ShopHyperPage", component: StorefrontPageError404 },
 
 
