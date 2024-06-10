@@ -62,7 +62,7 @@
       >
         <v-row dense>
           <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-          <v-col class="px-md-0 px-lg-3" cols="12" lg="8" md="7" sm="6">
+          <v-col class="px-md-0 px-lg-3" cols="12" lg="8" md="7" sm="12">
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
@@ -112,7 +112,7 @@
             cols="12"
             lg="4"
             md="5"
-            sm="6"
+            sm="12"
           >
             <v-sheet
               :class="{
