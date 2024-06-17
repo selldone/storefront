@@ -115,7 +115,7 @@
       scrollable
     >
       <v-card class="text-start position-relative" color="#111" rounded="0">
-        <v-btn class="absolute-top-end" icon @click="share_sheet = false">
+        <v-btn class="absolute-top-end" icon variant="text" @click="share_sheet = false">
           <v-icon>close</v-icon>
         </v-btn>
 
