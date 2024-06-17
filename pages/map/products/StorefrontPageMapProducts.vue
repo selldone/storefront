@@ -124,10 +124,9 @@
       v-model="share_sheet"
       content-class="rounded-t-xl overflow-hidden"
       dark
-      inset
-      max-width="860"
+      max-width="98vw"
+      width="860"
       scrollable
-      width="98%"
     >
       <v-card class="text-start position-relative" color="#111" rounded="0">
         <v-btn class="absolute-top-end" icon @click="share_sheet = false">
