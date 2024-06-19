@@ -393,7 +393,7 @@
                                 force-enable
                                 selected
                               />
-                              <v-icon class="absolute-top-end" >
+                              <v-icon class="absolute-top-end">
                                 arrow_drop_down
                               </v-icon>
                             </div>
@@ -423,7 +423,23 @@
 
                   <!-- ========== Spacer ========== -->
 
-                  <!-- ========== Tax ========== -->
+                  <!-- ========== Wallet (Pay by customer wallet) ========== -->
+
+                  <div v-if="wallet" class="font-weight-medium data-row">
+                    <u-text-value-dashed>
+                      <template v-slot:label>
+                        <v-icon class="me-1">wallet</v-icon>
+                        {{ $t("global.commons.my_wallet") }}
+                      </template>
+                      <u-price
+                        :amount="-wallet"
+                        medium
+                        class="text-success"
+                      ></u-price>
+                    </u-text-value-dashed>
+                  </div>
+
+                  <!-- ========== Net Price ========== -->
 
                   <div class="font-weight-medium data-row">
                     <u-text-value-dashed>
@@ -433,6 +449,8 @@
                       <u-price :amount="net_price" medium></u-price>
                     </u-text-value-dashed>
                   </div>
+
+                  <!-- ========== Tax ========== -->
 
                   <div v-if="bill.tax" class="font-weight-medium data-row">
                     <u-text-value-dashed>
@@ -1135,6 +1153,7 @@
                         }"
                         class="select-address-button"
                         color="#16a085"
+                        variant="elevated"
                         rounded
                         @click.stop="
                           goToPaymentBasket(null, deliverySupportCOD)
@@ -1167,6 +1186,7 @@
                       :loading="busy_submit"
                       class="select-address-button"
                       color="#16a085"
+                      variant="elevated"
                       rounded
                       @click.stop="submitServiceOrder()"
                     >
@@ -1460,6 +1480,10 @@ export default {
        * It needs pricing by the seller after checkout.
        */
       return BasketHelper.IsServiceAndNeedPricing(this.basket);
+    },
+
+    wallet() {
+      return this.bill.wallet;
     },
 
     net_price() {
