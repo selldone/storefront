@@ -16,7 +16,7 @@
   <div>
     <u-loading-progress v-if="busy_fetch"></u-loading-progress>
     <v-data-table-server
-        :mobile="$vuetify.display.xs"
+      :mobile="$vuetify.display.xs"
       v-model="selected"
       v-model:options="options"
       v-model:page="page"
@@ -89,7 +89,7 @@
           <products-dense-images-circles
             :ids="getProductsIDs(item)"
             :raw-images-path="isAvocado"
-            big-scale
+            big-scale border
             style="vertical-align: super; display: inline"
           ></products-dense-images-circles>
         </div>
