@@ -259,6 +259,7 @@
         <LPageViewer
           :augment="augment"
           :initialPageData="page.content"
+          :initial-page-css="page.css"
           :style="page.background"
         />
       </div>
