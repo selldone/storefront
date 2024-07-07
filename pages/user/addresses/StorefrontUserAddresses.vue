@@ -216,7 +216,7 @@ export default {
       map_dialog: false,
       dialog_pre: false,
 
-      center: { lat: 35.715298, lng: 51.404343 },
+      center: { lat: 0, lng: 0 },
       startup_mode_map_dialog: "default", // detail
 
       map_location: {},
