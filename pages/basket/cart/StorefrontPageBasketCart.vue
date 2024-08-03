@@ -529,7 +529,9 @@
                     "
                   >
                     <div class="d-flex align-center my-2">
-                      <small>{{ $t("global.commons.shipping") }}</small>
+                      <span class="small">{{
+                        $t("global.commons.shipping")
+                      }}</span> <v-icon class="flip-rtl">arrow_right</v-icon>
                       <products-dense-images-circles
                         :ids="
                           items
@@ -788,7 +790,7 @@
                               <v-chip
                                 v-bind="props"
                                 color="#0061e0"
-                                variant="flat"
+                                variant="elevated"
                               >
                                 <span>{{ $t(item.raw.name) }}</span>
                               </v-chip>
@@ -831,7 +833,7 @@
                               <v-chip
                                 v-bind="props"
                                 color="#0061e0"
-                                variant="flat"
+                                variant="elevated"
                               >
                                 <img
                                   :src="item.raw.icon"
@@ -846,13 +848,15 @@
                         </template>
 
                         <!-- ━━━━━━━━━━━━━━━━━━ PTA > Custom delivery > Date ━━━━━━━━━━━━━━━━━━ -->
-                        <template v-if="need_ask_shipping_date">
+                        <template
+                          v-if="need_ask_shipping_date && transportation"
+                        >
                           <v-list-subheader> Receive date</v-list-subheader>
 
                           <u-date-input
                             v-model="delivery_info.date"
                             :date-only="
-                              [ETA.date.code].includes(transportation?.eta)
+                              [ETA.date.code].includes(transportation.eta)
                             "
                             :min="
                               new Date().addHours(
@@ -1289,7 +1293,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SShopBasketItems from "@selldone/components-vue/storefront/order/basket/SShopBasketItems.vue";
 import { WeekDays } from "@selldone/core-js/enums/logistic/WeekDays";
 import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans";
@@ -1534,23 +1538,64 @@ export default {
       ); // Only for physical and service!
     },
 
+    /**
+     * Generates a list of day items based on the transportation days.
+     * Each day item corresponds to a day in the WeekDays object.
+     *
+     * @returns {Array} - An array of day items.
+     */
     dayItems() {
-      let out = [];
+      const out = [];
+
+      // If transportation is not defined, return an empty array
       if (!this.transportation) return out;
 
-      this.transportation.days.forEach((day) => {
-        out.push(WeekDays[day]);
+      // Iterate over each item in transportation.days
+      this.transportation.days.forEach((item) => {
+        // Check if the day exists in WeekDays
+        if (WeekDays[item]) {
+          out.push(Object.assign({}, WeekDays[item]));
+        } else {
+          out.push({
+            value: item,
+            name: `Invalid ${item}`,
+            icon: null,
+            props: { disabled: true },
+          });
+        }
       });
+
       return out;
     },
 
+    /**
+     * Generates a list of time items with their properties.
+     * Time items are marked as disabled if they are not included in the transportation time spans.
+     * Additionally, invalid time spans (not in TimeSpans) are marked as disabled.
+     *
+     * @returns {{name,value,icon,props}[]} - An array of time items with properties.
+     */
     timeItems() {
       let out = [];
+
+      // If transportation is not defined, return an empty array
       if (!this.transportation) return out;
 
-      this.transportation.time_spans.forEach((time_span) => {
-        out.push(TimeSpans[time_span]);
+      // Iterate over each item in transportation.time_spans
+      this.transportation.time_spans.forEach((item) => {
+        // Check if the time_span exists in TimeSpans
+        if (TimeSpans[item]) {
+          out.push(Object.assign({}, TimeSpans[item]));
+        } else {
+          out.push({
+            value: item,
+            name: `Invalid ${item}`,
+            icon: null,
+            props: { disabled: true },
+          });
+        }
       });
+
       return out;
     },
 
