@@ -107,7 +107,7 @@
     </v-navigation-drawer>
 
     <!-- =================== Dialog =================== -->
-    <v-bottom-sheet v-model="dialog_faq" inset max-width="800">
+    <v-bottom-sheet v-model="dialog_faq" width="860" max-width="98vw">
       <v-sheet class="p-2">
         <p class="dialog-title">
           <v-icon class="me-1"> fa:fas fa-question</v-icon>
