@@ -60,6 +60,8 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.8.0",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@types/chroma-js": "^2.4.3",
     "@types/d3-sankey": "^0.12.4",
