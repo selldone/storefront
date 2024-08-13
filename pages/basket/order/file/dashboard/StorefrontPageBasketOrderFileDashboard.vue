@@ -50,6 +50,7 @@
       <s-shop-share-order-button
         :basket="basket"
         :shop="shop"
+        class="me-5"
       ></s-shop-share-order-button>
     </v-toolbar>
     <v-container class="px-0">
