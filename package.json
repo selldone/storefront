@@ -36,7 +36,7 @@
     "@selldone/page-builder": "latest",
 
 
-    "axios": "^1.7.3",
+    "axios": "^1.7.4",
     "file-saver": "^2.0.5",
     "firebase": "^10.12.5",
     "jquery": "^3.7.1",
@@ -74,8 +74,8 @@
     "@types/numeral": "^2.0.5",
     "@types/prismjs": "^1.26.3",
     "@types/qrcode": "^1.5.5",
-    "@typescript-eslint/eslint-plugin": "^8.0.1",
-    "@typescript-eslint/parser": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "@typescript-eslint/parser": "^8.1.0",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue/eslint-config-prettier": "^9.0.0",
