@@ -34,18 +34,23 @@
     </v-toolbar>
     <v-container class="px-0">
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery > State ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-      <s-order-delivery-state v-if="basket" :basket="basket" is-avocado />
+      <s-order-delivery-state
+        v-if="basket"
+        :basket="basket"
+        is-avocado
+        class="mb-5"
+      />
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ List > Items ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-widget>
+      <div class="widget mx-0 mx-md-3">
         <s-shop-avocado-customer-order-items
           :avocado="basket"
           :items="basket.items"
           class="max-width-field-large mx-auto w-100"
           view-only
         ></s-shop-avocado-customer-order-items>
-      </s-widget>
+      </div>
 
       <s-shop-customer-order-payment-widget
         v-if="basket"

@@ -82,6 +82,38 @@
           />
           {{ $t("global.commons.auto") }}
         </v-chip>
+
+        <!-- ▂▂▂▂▂▂▂▂ Chat ▂▂▂▂▂▂▂ -->
+        <v-btn
+          v-if="item.chat && item.chat.length"
+          class="ms-1 float-end"
+          color="#111"
+          icon
+          variant="text"
+        >
+          <v-badge
+            :model-value="
+              item.chat[item.chat.length - 1]
+                .officer /*Show dot if admin send last message!*/
+            "
+            color="red"
+            dot
+          >
+            <v-icon>chat</v-icon>
+          </v-badge>
+          <v-tooltip
+            activator="parent"
+            content-class="bg-black"
+            location="bottom"
+            max-width="460"
+          >
+            <s-order-chat-message
+              :basket="item"
+              :message="item.chat[item.chat.length - 1]"
+            >
+            </s-order-chat-message>
+          </v-tooltip>
+        </v-btn>
       </template>
 
       <template v-slot:item.items="{ item }">
@@ -89,7 +121,8 @@
           <products-dense-images-circles
             :ids="getProductsIDs(item)"
             :raw-images-path="isAvocado"
-            big-scale border
+            big-scale
+            border
             style="vertical-align: super; display: inline"
           ></products-dense-images-circles>
         </div>
@@ -214,12 +247,14 @@ import SOrderReceiverInfoCard from "@selldone/components-vue/storefront/order/re
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Avocado, Basket } from "@selldone/core-js";
+import SOrderChatMessage from "@selldone/components-vue/storefront/order/chat/message/SOrderChatMessage.vue";
 
 export default {
   name: "SOrdersList",
   mixins: [RouteMixin],
 
   components: {
+    SOrderChatMessage,
     SOrderReceiverInfoCard,
     SOrderStatusView,
     ProductsDenseImagesCircles,
