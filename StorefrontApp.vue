@@ -162,6 +162,7 @@ import SDebugger from "@selldone/components-vue/storefront/debuger/SDebugger.vue
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck";
+import {computed} from "vue";
 
 export default {
   name: "StorefrontApp",
@@ -182,6 +183,11 @@ export default {
     UNotificationSide,
     SStorefrontNeedLoginDialog,
     SStorefrontMasterPaymentDialog,
+  },
+  provide() {
+    return {
+      $shop: computed(() => this.shop),
+    };
   },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

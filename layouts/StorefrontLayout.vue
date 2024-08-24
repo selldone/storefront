@@ -386,7 +386,7 @@ export default {
     is_light_footer() {
       return (
         this.$route.matched.some((record) => record.meta.light_footer) ||
-        (this.theme && this.theme.light_footer)
+        (this.theme?.light_footer!==false)// Default theme footer is light!
       );
     },
 
