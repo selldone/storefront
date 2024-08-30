@@ -159,7 +159,7 @@
               >
                 <template v-slot:prepend>
                   <v-avatar rounded size="100">
-                    <img
+                    <v-img
                       :alt="article.title"
                       :src="getShopImagePath(article.image, IMAGE_SIZE_BLOG)"
                       style="object-fit: cover"
