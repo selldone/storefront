@@ -16,7 +16,6 @@
   <div class="map-con text-start">
     <div v-if="!$vuetify.display.xs" class="map-items thin-scroll">
       <!-- ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ Products List > Desktop ▂▂▂▂▂▂▂▂▂▂▂▂▂▂ -->
-
       <s-products-listing
         v-if="bounds"
         :location-bounds="bounds"
@@ -242,6 +241,7 @@ export default {
 
   watch: {
     center(center) {
+     // console.log("🗺 Center", center);
       this.zoom = this.map_box.getZoom();
       localStorage.setItem(
         "map:keeper",
@@ -268,6 +268,13 @@ export default {
       if (localStorage.getItem("map:keeper")) {
         try {
           const keeper = JSON.parse(localStorage.getItem("map:keeper"));
+          if (
+            !keeper.center ||
+            Array.isArray(keeper.center) ||
+            !keeper.center.lat ||
+            !keeper.center.lng
+          )
+            throw new Error("Invalid center | " + keeper);
           this.center = keeper.center;
           this.zoom = keeper.zoom;
           if (this.zoom > 20 || this.zoom < 2) this.zoom = 13;
@@ -346,11 +353,15 @@ export default {
         this.bounds = [b._ne.lng, b._ne.lat, b._sw.lng, b._sw.lat];
       });
 
-      this.map_box.on("move", () => {
+      // Define the debounced function
+      const debouncedUpdate = _.debounce(() =>{
         this.center = this.map_box.getCenter();
         const b = this.map_box.getBounds();
         this.bounds = [b._ne.lng, b._ne.lat, b._sw.lng, b._sw.lat];
-      });
+      }, 300); // Adjust the delay as needed (300ms in this example)
+
+      this.map_box.on("move", debouncedUpdate);
+
     },
 
     goToMyLocation() {
@@ -456,11 +467,24 @@ export default {
     // ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ On Hover Product ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
     productHover(product, enter) {
       // 1. find corresponding marker:
-      const marker = this.markers.find((i) => i.map_tag.id === product.map.id);
+      const marker = this.markers.find((i) => i.map_tag.id === product.map?.id);
+
+     // console.log("marker ->", marker, "product ->", product);
+
       if (!marker) return;
       // 2. Set scale:
 
       if (enter) {
+        // 2. Center the map smoothly on the marker location:
+        if (product.map) {
+          this.map_box.flyTo({
+            center: [product.map.lng, product.map.lat],
+          //  zoom: 15, // Optional: Adjust the zoom level if needed
+            speed: 0.8, // Optional: Adjust the speed of the transition (default is 1.2)
+            curve: 1.5, // Optional: Adjust the curve of the animation (default is 1.42)
+          });
+        }
+
         const image = this.getShopImagePath(product.icon, 128);
         marker.setPopup(
           new Mapbox.Popup({ offset: 32, maxWidth: 120 }).setHTML(
