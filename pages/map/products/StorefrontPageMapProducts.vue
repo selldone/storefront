@@ -23,7 +23,7 @@
         :shop="getShop()"
         free-mode
         has-breadcrumb
-        has-filter
+        :has-filter="false"
         has-sort
         load-more
         route-mode
