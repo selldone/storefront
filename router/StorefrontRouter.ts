@@ -948,11 +948,7 @@ router.beforeEach((to, from, next) => {
     const shop = store.getters.getShop;
     const has_guest_checkout = ShopOptionsHelper.HasGuestCheckout(shop);
 
-    // Check for signature and timestamp in the query
-    const hasSignature = to.query.signature && to.query.timestamp;
-
-
-    if (!user && !busy && !has_guest_checkout && !hasSignature) {
+    if (!user && !busy && !has_guest_checkout) {
       next({
         name: StorefrontRoutesName.SHOP_PAGE,
       });
