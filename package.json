@@ -49,7 +49,7 @@
     "pusher-js": "^8.4.0-rc2",
     "qrcode": "^1.5.4",
     "swiper": "11.1.12",
-     "vue": "^3.4.38",
+     "vue": "^3.5.0",
     "vue-i18n": "^9.13.1",
     "vue-json-pretty": "^2.4.0",
     "vue-prism-editor": "^2.0.0-alpha.2",
@@ -92,7 +92,7 @@
     "stylus-loader": "^8.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
-    "vite": "^5.4.1",
+    "vite": "^5.4.3",
     "vite-plugin-pwa": "0.19.8",
     "vite-plugin-require": "^1.1.14",
     "vue-loader": "^17.3.1"

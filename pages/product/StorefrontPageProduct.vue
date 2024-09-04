@@ -381,7 +381,7 @@ import ProductSection from "@selldone/core-js/enums/product/ProductSection";
 import LPageViewer from "@selldone/page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
 import { SProductBreadcrumbHelper } from "@selldone/components-vue/storefront/products/listing/helper/SProductBreadcrumbHelper";
-import { Article } from "@selldone/core-js";
+import {Article, AugmentHelper} from "@selldone/core-js";
 
 export default {
   name: "StorefrontPageProduct",
@@ -495,7 +495,7 @@ export default {
       return this.product?.page;
     },
     augment() {
-      return this.product?.augment;
+      return AugmentHelper.MixAugments(this.product?.augment ,/*Flatten product - smart augment*/  AugmentHelper.ConvertToAugmentArray({product:this.product}));
     },
 
     theme() {
