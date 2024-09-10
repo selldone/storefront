@@ -16,97 +16,70 @@
   <div class="py-10">
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-    <div class="widget-box mb-5">
+    <div class="widget-box -large mb-5">
       <s-widget-header
         :title="$t('addresses_page.title')"
         icon="fmd_good"
+        :add-caption="$t('addresses_page.new_action')"
+        @click:add="showAdd"
+        add-icon="add_location"
       ></s-widget-header>
 
-      <v-list-subheader></v-list-subheader>
+      <v-list-subheader>{{ $t("addresses_page.subtitle") }}</v-list-subheader>
 
       <u-loading-progress v-if="busy"></u-loading-progress>
-      <div class="widget-buttons">
-        <v-btn
-          color="success"
-          variant="flat"
-          size="x-large"
-          @click="dialog_add_to_address_book = true"
-        >
-          <v-icon class="me-1">add_location</v-icon>
-          {{ $t("addresses_page.new_action") }}
-        </v-btn>
-      </div>
-    </div>
 
-    <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Address  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-
-    <v-fade-transition group hide-on-leave>
-      <div
-        v-for="address in addresses"
-        :key="address.id"
-        class="widget-box mb-5 address-card"
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Address  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+      <v-list
+        lines="three"
+        class="border-between-vertical"
+        bg-color="transparent"
       >
-        <s-widget-header
-          :title="address.title"
-          add-text
-          :add-caption="$t('global.actions.edit')"
-          add-icon="edit"
-          @click:add="editAddress(address)"
-        ></s-widget-header>
-        <v-list-subheader></v-list-subheader>
-
-        <u-text-value-dashed>
-          <template v-slot:label>{{ $t("addresses_page.receiver") }}</template>
-          <b class="max-w-300"> {{ address.name }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label>{{ $t("addresses_page.address") }}</template>
-          <b class="max-w-300"> {{ address.address }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label
-            >{{ $t("addresses_page.building_no") }}
-          </template>
-          <b> {{ address.no }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label
-            >{{ $t("addresses_page.building_unit") }}
-          </template>
-          <b> {{ address.unit }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label>{{ $t("addresses_page.postcode") }}</template>
-          <b> {{ address.postal }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label>{{ $t("addresses_page.tel") }}</template>
-          <b> {{ address.phone }}</b>
-        </u-text-value-dashed>
-
-        <u-text-value-dashed>
-          <template v-slot:label
-            >{{ $t("addresses_page.description") }}
-          </template>
-          <b> {{ address.message }}</b>
-        </u-text-value-dashed>
-
-        <div class="position-relative">
-          <div class="position-relative map-circle ma-auto">
-            <img
+        <v-list-item v-for="address in addresses" :key="address.id">
+          <template v-slot:prepend>
+            <u-avatar-folder
+              elevated
+              placeholder-icon="map"
+              side-icon="place"
+              is-gray
               :src="`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${address.location.lng},${address.location.lat},13.96,0,0/200x200?access_token=pk.eyJ1IjoicGFqdWhhYW4iLCJhIjoiY2sxaHNtbnU3MDFjcjNta2V0OTZ0d2ExYiJ9.YKRh0EP7NnhbmuSil7AvSw`"
-              class="map-image"
+            >
+            </u-avatar-folder>
+          </template>
+
+          <v-list-item-title>
+            <flag
+              v-if="address.country"
+              :iso="address.country"
+              :squared="false"
+              class="me-3"
             />
-            <u-map-view-pin class="map-pointer"></u-map-view-pin>
-          </div>
-        </div>
-      </div>
-    </v-fade-transition>
+            <b>{{ address.title }}</b>
+          </v-list-item-title>
+
+          <v-list-item-subtitle class="mt-1">
+            {{ getFullAddress(address) }}
+          </v-list-item-subtitle>
+
+          <v-list-item-subtitle v-if="address.message" class="mt-1">
+            <v-icon class="me-1">textsms</v-icon>
+            {{ address.message }}
+          </v-list-item-subtitle>
+
+          <template v-slot:append>
+            <v-list-item-action end>
+              <v-btn
+                @click="showEdit(address)"
+                prepend-icon="edit"
+                size="small"
+              >
+                {{ $t("global.actions.edit") }}
+              </v-btn>
+            </v-list-item-action>
+          </template>
+        </v-list-item>
+      </v-list>
+    </div>
 
     <!-- Select Address -->
 
@@ -122,7 +95,7 @@
         ref="map_view_dialog"
         v-model="map_location"
         :address-type="$t('addresses_page.map.address_type')"
-        :center="center"
+        v-model:center="center"
         :color="SaminColorDark"
         :confirm-text="$t('addresses_page.map.confirm')"
         :new-address-title="new_address_title"
@@ -179,17 +152,19 @@
               variant="text"
               size="x-large"
               @click="dialog_add_to_address_book = false"
+              prepend-icon="close"
             >
               {{ $t("global.actions.cancel") }}
             </v-btn>
             <v-btn
               :class="{ disabled: !new_address_title }"
               color="primary"
-              variant="flat"
+              variant="elevated"
               size="x-large"
-              @click="addNewLocation()"
+              @click="onSetAddressTitle()"
             >
-              {{ $t("global.actions.accept") }}
+              {{ $t("global.actions.next") }}
+              <v-icon end>{{ $t("icons.chevron_next") }}</v-icon>
             </v-btn>
           </div>
         </v-card-actions>
@@ -198,14 +173,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import UMapViewPin from "@selldone/components-vue/ui/map/view/market/UMapViewPin.vue";
-import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
 import SWidgetHeader from "@selldone/components-vue/ui/widget/header/SWidgetHeader.vue";
+import { MapHelper } from "@selldone/core-js/helper";
+import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { SWidgetHeader, UTextValueDashed, UMapViewPin },
+  components: { UAvatarFolder, SWidgetHeader, UMapViewPin },
   data() {
     return {
       addresses: [],
@@ -221,13 +197,15 @@ export default {
 
       map_location: {},
 
-      isNewAddress: false,
-
       // New address:
       dialog_add_to_address_book: false,
       new_address_title: null,
+      selected_address: null,
+
       selected_address_from_list_id: null,
       selected_address_from_list_title: null,
+
+      busy_save: false,
     };
   },
 
@@ -238,41 +216,8 @@ export default {
   },
 
   methods: {
-    editAddress(address) {
-      this.isNewAddress = false;
-
-      this.selected_address_from_list_id = address.id;
-      this.selected_address_from_list_title = address.title;
-
-      this.map_location = address;
-      this.center.lat = address.location.lat;
-      this.center.lng = address.location.lng;
-
-      this.dialog_pre = false;
-      this.$nextTick(() => {
-        this.dialog_pre = true;
-        this.$nextTick(() => {
-          this.map_dialog = true;
-        });
-      });
-    },
-
-    addNewLocation() {
-      this.isNewAddress = true;
-
-      this.selected_address_from_list_id = null;
-
-      this.dialog_add_to_address_book = false;
-
-      this.map_location = {};
-
-      this.dialog_pre = false;
-      this.$nextTick(() => {
-        this.dialog_pre = true;
-        this.$nextTick(() => {
-          this.map_dialog = true;
-        });
-      });
+    getFullAddress(address) {
+      return MapHelper.GenerateFullAddressFromMapInfo(address);
     },
 
     fetchAddressBook() {
@@ -294,26 +239,153 @@ export default {
         });
     },
 
-    onClickSetLocation() {
-      if (this.isNewAddress) {
-        this.$refs.map_view_dialog.saveCurrentPosition();
+    showAdd() {
+      this.new_address_title = "";
+      this.selected_address = null;
+      this.dialog_add_to_address_book = true;
+    },
+    showEdit(address) {
+      this.new_address_title = address.title;
+      this.selected_address = address;
+      this.dialog_add_to_address_book = true;
+    },
+
+    onSetAddressTitle() {
+      this.dialog_add_to_address_book = false;
+      if (this.selected_address) {
+        this.editAddress(this.selected_address);
       } else {
-        this.$refs.map_view_dialog.updateAddressBook();
+        this.addNewLocation();
       }
-      this.map_dialog = false;
-      this.fetchAddressBook();
+    },
+
+    editAddress(address) {
+      this.selected_address_from_list_id = address.id;
+      this.selected_address_from_list_title = address.title;
+
+      this.map_location = address;
+      this.center.lat = address.location.lat;
+      this.center.lng = address.location.lng;
+
+      this.dialog_pre = false;
+      this.$nextTick(() => {
+        this.dialog_pre = true;
+        this.$nextTick(() => {
+          this.map_dialog = true;
+        });
+      });
+    },
+
+    addNewLocation() {
+      this.selected_address_from_list_id = null;
+
+      this.dialog_add_to_address_book = false;
+
+      this.map_location = {};
+
+      this.dialog_pre = false;
+      this.$nextTick(() => {
+        this.dialog_pre = true;
+        this.$nextTick(() => {
+          this.map_dialog = true;
+        });
+      });
+    },
+
+    onClickSetLocation(address) {
+      if (this.selected_address) {
+        this.updateAddress(address);
+      } else {
+        this.addAddress(address);
+      }
+    },
+
+    addAddress(pack) {
+      this.busy_save = true;
+
+      axios
+        .post(window.ADDRESS_API.POST_ADDRESS(), {
+          title: this.new_address_title,
+
+          country: pack.country,
+          state: pack.state,
+          state_code: pack.state_code,
+          city: pack.city,
+          address: pack.address,
+          location: pack.location,
+          no: pack.no,
+          unit: pack.unit,
+          name: pack.name,
+          phone: pack.phone,
+          message: pack.message,
+          postal: pack.postal,
+        })
+        .then(({ data }) => {
+          if (!data.error) {
+            this.showSuccessAlert(
+              null,
+              this.$t("global.map_view.notifications.save_in_list"),
+            );
+            this.AddOrUpdateItemByID(this.addresses, data.address);
+            this.$emit("update:modelValue", null);
+
+            this.map_dialog = false;
+            this.fetchAddressBook();
+          } else {
+            this.showErrorAlert(null, data.error_msg);
+          }
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+        })
+        .finally(() => {
+          this.busy_save = false;
+        });
+    },
+
+    updateAddress(pack) {
+      this.busy_save = true;
+      axios
+        .put(window.ADDRESS_API.PUT_ADDRESS(this.selected_address.id), {
+          title: this.new_address_title,
+
+          country: pack.country,
+          state: pack.state,
+          state_code: pack.state_code,
+          city: pack.city,
+          address: pack.address,
+          location: pack.location,
+          no: pack.no,
+          unit: pack.unit,
+          name: pack.name,
+          phone: pack.phone,
+          message: pack.message,
+          postal: pack.postal,
+        })
+        .then(({ data }) => {
+          if (!data.error) {
+            this.UpdateItemByID(this.addresses, data.address);
+            this.showSuccessAlert(
+              null,
+              this.$t("global.map_view.notifications.edit_success", {
+                title: data.address.title,
+              }),
+            );
+            this.map_dialog = false;
+            this.fetchAddressBook();
+          } else {
+            this.showErrorAlert(null, data.error_msg);
+          }
+        })
+        .catch((error) => {
+          this.showLaravelError(error);
+        })
+        .finally(() => {
+          this.busy_save = false;
+        });
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.address-card {
-  &:hover {
-    .map-image {
-      transform: rotateX(55deg);
-      box-shadow: 4px 15px 10px #0000001a;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

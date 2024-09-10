@@ -50,6 +50,7 @@ import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRout
 import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName";
 import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
 import LandingRender from "@selldone/page-builder/LandingRender.vue";
+import StorefrontPageUserWallets from "@app-storefront/pages/user/wallets/StorefrontPageUserWallets.vue";
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
@@ -531,6 +532,13 @@ const routes: IVueRoute[] = [
             path: "gift-cards",
             name: StorefrontRoutesName.USER_GIFTCARDS_PAGE,
             component: StorefrontPageUserGiftcards,
+          },
+
+          // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Profile ⬬⬬⬬⬬⬬⬬⬬⬬
+          {
+            path: "wallets",
+            name: StorefrontRoutesName.USER_WALLETS_PAGE,
+            component: StorefrontPageUserWallets,
           },
         ],
       },

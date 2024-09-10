@@ -21,7 +21,7 @@
       >
       </s-widget-header>
 
-      <v-list-subheader></v-list-subheader>
+      <v-list-subheader>{{$t('return_requests.subtitle')}}</v-list-subheader>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-order-return-requests :shop="shop" @select="handleSelected" />

@@ -65,14 +65,15 @@
                     :src="getShopImagePath(comment.product.icon)"
                     class="rounded-18px border"
                     height="136"
+                    cover
                   >
                   </v-img>
 
                   <div class="-ti">
                     <p class="font-weight-bold mt-2 mb-0">
-                      {{ comment.product.title }}
+                      {{ comment.product.title?.limitWords(12) }}
                     </p>
-                    <small>{{ comment.product.title_en }}</small>
+                    <small>{{ comment.product.title_en?.limitWords(24) }}</small>
                   </div>
 
                   <p
@@ -87,9 +88,9 @@
                     {{ getLocalTimeString(comment.created_at) }}
                   </p>
 
-                  <hr class="mx-6" />
-                  <p class="pt-3 text-subtitle-2">
-                    {{ comment.body }}
+                  <hr class="mx-6 my-2" />
+                  <p class="text-subtitle-2">
+                    {{ comment.body?.limitWords(24) }}
                   </p>
                 </div>
               </router-link>
@@ -198,8 +199,9 @@ export default {
   border-radius: 18px;
   padding: 12px;
   cursor: pointer;
-  background-color: #fafafa;
+  background-color: #fff;
   text-align: start;
+
 
   p {
     margin: 2px;

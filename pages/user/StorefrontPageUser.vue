@@ -93,6 +93,16 @@
         icon="card_giftcard"
       />
 
+      <!-- ⦿ Wallets -->
+
+      <u-button-circle
+        v-if="USER()"
+        :auto-disabled-route-name="window.$storefront.routes.USER_WALLETS_PAGE"
+        :to="{ name: window.$storefront.routes.USER_WALLETS_PAGE }"
+        :tooltip="$t('user_page.menu.wallets')"
+        icon="wallet"
+      />
+
       <!-- ⦿ Profile -->
 
       <u-button-circle

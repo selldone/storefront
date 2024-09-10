@@ -59,40 +59,9 @@
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Chat ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <div class="widget shadow my-3 mx-0 mx-md-3 text-start">
-        <template v-if="last_chat">
-          <div class="d-flex align-center py-3 my-3">
-            <v-avatar :size="32" class="avatar-gradient -thin -staff me-2">
-              <v-img
-                v-if="last_chat.user_id"
-                :src="getUserAvatar(last_chat.user_id)"
-              />
-              <v-icon v-else>account_circle</v-icon>
-            </v-avatar>
-            <div class="flex-grow-1">
-              <b>{{ last_chat.user_name }}</b>
-              <small class="d-block"
-                >{{ getFromNowString(last_chat.date) }} ●
-                {{ getLocalDateString(last_chat.date) }}</small
-              >
-            </div>
-          </div>
-          <div class="typo-body my-2">
-            {{ last_chat.body }}
-          </div>
-        </template>
+      <s-order-chat-widget :basket="basket"></s-order-chat-widget>
 
-        <div class="widget-buttons">
-          <v-btn color="primary" size="x-large" @click="dialog_chat = true">
-            <v-icon class="me-1">chat</v-icon>
-            {{
-              last_chat
-                ? $t("global.actions.continue_chat")
-                : $t("global.actions.add_message")
-            }}
-          </v-btn>
-        </div>
-      </div>
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Payment ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-order-payment-widget
         v-if="basket"
@@ -156,35 +125,6 @@
         </v-card>
       </v-dialog>
     </v-container>
-
-    <!-- ██████████████████████ Dialog > Chat ██████████████████████ -->
-    <v-dialog
-      v-model="dialog_chat"
-      fullscreen
-      scrollable
-      transition="dialog-bottom-transition"
-    >
-      <v-card class="text-start">
-        <v-card-title>
-          <v-avatar class="m-2" size="24">
-            <v-img :src="getShopImagePath(shop.icon, IMAGE_SIZE_SMALL)" />
-          </v-avatar>
-
-          {{ $t("global.commons.chat") }}
-        </v-card-title>
-        <v-card-text>
-          <s-order-chat-box :basket="basket" :shop="shop"></s-order-chat-box>
-        </v-card-text>
-        <v-card-actions>
-          <div class="widget-buttons">
-            <v-btn variant="text" size="x-large" @click="dialog_chat = false">
-              <v-icon start>close</v-icon>
-              {{ $t("global.actions.close") }}
-            </v-btn>
-          </div>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
@@ -194,15 +134,15 @@ import SShopBasketItemsList from "@selldone/components-vue/storefront/order/bask
 import SOrderBasketReturn from "@selldone/components-vue/storefront/order/basket/return/SOrderBasketReturn.vue";
 import SOrderDeliveryState from "@selldone/components-vue/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SShopProductFilesList from "@selldone/components-vue/storefront/product/file/SShopProductFilesList.vue";
-import SOrderChatBox from "@selldone/components-vue/storefront/order/chat/box/SOrderChatBox.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SShopShareOrderButton from "@selldone/components-vue/storefront/order/share-order/SShopShareOrderButton.vue";
+import SOrderChatWidget from "@selldone/components-vue/storefront/order/chat/widget/SOrderChatWidget.vue";
 
 export default {
   name: "StorefrontPageBasketOrderFileDashboard",
   components: {
+    SOrderChatWidget,
     SShopShareOrderButton,
-    SOrderChatBox,
     SShopProductFilesList,
     SOrderDeliveryState,
     SOrderBasketReturn,
@@ -222,8 +162,6 @@ export default {
 
       files_show: false,
       selected_item: null,
-
-      dialog_chat: false,
     };
   },
   computed: {
@@ -234,12 +172,6 @@ export default {
 
     shop() {
       return this.getShop();
-    },
-    chat() {
-      return this.basket.chat;
-    },
-    last_chat() {
-      return this.chat && this.chat.length && this.chat[this.chat.length - 1];
     },
   },
   created() {},

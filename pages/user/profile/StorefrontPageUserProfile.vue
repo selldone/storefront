@@ -60,16 +60,17 @@
         <hr class="my-4" />
 
         <s-widget-header
-          :title="'My Buyer Profile'"
+          :title="$t('user_profile.my_profile.title')"
           icon="perm_identity"
           add-icon="edit"
-          :add-caption="'Edit My Profile'"
+          :add-caption="$t('user_profile.my_profile.edit_action')"
           @click:add="showEditProfile"
         >
         </s-widget-header>
 
         <v-list-subheader>
-          It's my customer profile information in the store.
+          {{$t('user_profile.my_profile.subtitle')}}
+
         </v-list-subheader>
 
         <u-text-value-dashed>
@@ -202,14 +203,16 @@
         </template>
 
         <v-btn
-          :color="!isSubscribed ? 'primary' : 'success'"
+          :color="isSubscribed ? 'success' : '#fff'"
           :loading="busy_subscribe"
-          :variant="isSubscribed ? 'elevated' : 'text'"
+          :variant="isSubscribed ? 'elevated' : 'flat'"
           size="small"
           @click="toggleSubscribe"
           class="tnt"
         >
           <v-icon v-if="isSubscribed" start>check_circle</v-icon>
+          <v-icon v-else start color="red">cancel</v-icon>
+
           {{
             isSubscribed
               ? $t("global.commons.subscribed")
@@ -221,8 +224,8 @@
       <v-list-subheader>
         {{
           isSubscribed
-            ? "I will receive the latest news and promotions by email."
-            : "I don't want to receive any news or promotions by email."
+            ?  $t("user_profile.subscribe_status.subscribed")
+              : $t("user_profile.subscribe_status.unsubscribed")
         }}
       </v-list-subheader>
     </div>
@@ -238,7 +241,8 @@
       </s-widget-header>
 
       <v-list-subheader>
-    My club level and benefits.
+        {{$t("user_profile.my_club.subtitle")}}
+
       </v-list-subheader>
       <div class="text-center">
         <img
@@ -298,7 +302,8 @@
       >
       </s-widget-header>
       <v-list-subheader>
-        It's my global identification information.
+        {{$t("user_profile.kyc.subtitle")}}
+
       </v-list-subheader>
 
       <u-text-value-dashed>
@@ -322,6 +327,7 @@
           variant="tonal"
           pill
           size="small"
+          prepend-icon="check_circle"
         >
           {{ $t("user_profile.success_kyc") }}
         </v-chip>
@@ -365,7 +371,7 @@
 
         <v-card-text v-if="clone_customer">
           <div class="widget-box mb-5">
-            <s-widget-header :title="'My Buyer Profile'" icon="perm_identity">
+            <s-widget-header :title="$t('user_profile.my_profile.title')" icon="perm_identity">
             </s-widget-header>
 
             <v-text-field
