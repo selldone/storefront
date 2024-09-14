@@ -276,8 +276,10 @@
                         class="mx-auto mb-1"
                         height="48"
                         width="48"
-                      >
-                      <p class="text-subtitle-2">{{ $t("basket_page.customer_club") }}</p>
+                      />
+                      <p class="text-subtitle-2">
+                        {{ $t("basket_page.customer_club") }}
+                      </p>
                       <p class="small m-0" v-text="club.description"></p>
                     </div>
 
@@ -598,7 +600,9 @@
                         {{
                           isService
                             ? $t("global.receiver_info.service_address")
-                            : $t("global.receiver_info.receiver_address")
+                            : all_is_pickup
+                              ? $t("global.receiver_info.select_billing_address")
+                              : $t("global.receiver_info.receiver_address")
                         }}
 
                         <u-price
@@ -1227,9 +1231,39 @@ export default {
         : this.prize.product.product_variants;
     },
 
+    club() {
+      return this.getClub();
+    },
 
-    club(){
-      return this.getClub()
+    // ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ Address Button (SHipping or Billing) ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
+
+    vendor_shipping_options() {
+      return this.bill?.vendor_shipping_options;
+    },
+    store_shipping_options() {
+      return this.bill?.store_shipping_options;
+    },
+    connect_shipping_options() {
+      return this.bill?.connect_shipping_options;
+    },
+    /**
+     * Check here all shipping methods are pickup!?
+     */
+    all_is_pickup() {
+      if (!this.delivery_info || this.connect_shipping_options?.length/*In connect shipping mode always we ask shipping address*/) return false;
+
+      if (this.vendor_shipping_options?.length) {
+        return this.delivery_info.vendor_shippings.every(
+          (vendor_shipping) =>
+            vendor_shipping.type == ShopTransportations.Pickup.code,
+        );
+      }
+      if (this.store_shipping_options?.length) {
+        return (
+          this.delivery_info.delivery_type == ShopTransportations.Pickup.code
+        );
+      }
+      return false;
     },
 
     // ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ 🎗️ Subscription ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
@@ -1246,9 +1280,6 @@ export default {
         this.subscription_period && BillingPeriod[this.subscription_period]
       );
     },
-
-
-
   },
 
   /**
