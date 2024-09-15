@@ -55,7 +55,7 @@
       raw-images-path
     ></products-dense-images-circles>
     <v-spacer></v-spacer>
-    <span v-if="cost!==null && cost!==undefined" class="text-subtitle-2">
+    <span v-if="cost !== null && cost !== undefined" class="text-subtitle-2">
       <u-price v-if="cost > 0" :amount="cost"></u-price>
 
       <span v-else-if="cost === 0">
@@ -69,62 +69,80 @@
   </div>
   <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Shipping Method (Except Pickup) ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
 
-  <u-smart-select
-    v-if="transportation_exclude_pickup?.length"
-    :background-color="!light_checkout ? SaminColorDark : '#fafafa'"
-    :dark="!light_checkout"
-    :item-image="
-      (item) =>
-        item.logo
-          ? getShopImagePath(item.logo)
-          : getShopTransportationObject(item.type).icon
-    "
-    :item-text="
-      (item) =>
-        item.title
-          ? item.title
-          : $t(getShopTransportationObject(item.type).name)
-    "
-    :items="transportation_exclude_pickup"
-    :model-value="transportation?.type"
-    force-show-all
-    item-description="message"
-    item-value="type"
-    rounded
-    @update:model-value="
-      (_type) => {
-        $emit(
-          'update:transportation',
-          transportation_exclude_pickup.find((x) => x.type === _type),
-        );
-        $nextTick(() => {
-          setBasketConfig();
-        });
-      }
-    "
-    class="mb-2"
-    gray-unselected
-  >
-    <template v-slot:description="{ item }">
-    <v-row no-gutters >
-        <span v-if="item.cod && cod_payment_exists" class="me-4 small"
-        >● {{ $t("global.commons.cod") }}</span
-        >
-      <span v-if="item.sod" class="me-4 small"
-      >● {{ $t("global.commons.sod") }}
-      </span>
+  <template v-if="transportation_exclude_pickup?.length">
+    <div class="font-weight-bold mt-5 mb-2">
+      <v-scroll-y-transition group leave-absolute>
+        <template v-if="transportation?.type && !selectedPickup">
+          <v-icon class="me-1 zoomIn" color="success" size="small"
+            >check_circle
+          </v-icon>
+          {{ $t("global.commons.delivery_selected") }}
+        </template>
+        <template v-else
+          >{{ $t("global.commons.delivery_options") }}
+          <v-icon class="ms-1" size="small">expand_more</v-icon>
+        </template>
+      </v-scroll-y-transition>
+    </div>
 
-      <span v-if="item.free_shipping" class="me-2  small">
-        ● {{ $t("global.commons.free_shipping") }}
-        {{ item.free_shipping_limit ? `${$t('global.commons.for')} + ` : "" }}
-        <u-price
-            :amount="item.free_shipping_limit"
-            :currency="item.currency"
-        ></u-price>
-      </span>
-    </v-row>
-    </template>
-  </u-smart-select>
+    <u-smart-select
+      :background-color="!light_checkout ? SaminColorDark : '#fafafa'"
+      :dark="!light_checkout"
+      :item-image="
+        (item) =>
+          item.logo
+            ? getShopImagePath(item.logo)
+            : getShopTransportationObject(item.type).icon
+      "
+      :item-text="
+        (item) =>
+          item.title
+            ? item.title
+            : $t(getShopTransportationObject(item.type).name)
+      "
+      :items="transportation_exclude_pickup"
+      :model-value="transportation?.type"
+      force-show-all
+      item-description="message"
+      item-value="type"
+      rounded
+      @update:model-value="
+        (_type) => {
+          $emit(
+            'update:transportation',
+            transportation_exclude_pickup.find((x) => x.type === _type),
+          );
+          $nextTick(() => {
+            setBasketConfig();
+          });
+        }
+      "
+      class="mb-2"
+      gray-unselected
+    >
+      <template v-slot:description="{ item }">
+        <v-row no-gutters>
+          <span v-if="item.cod && cod_payment_exists" class="me-4 small"
+            >● {{ $t("global.commons.cod") }}</span
+          >
+          <span v-if="item.sod" class="me-4 small"
+            >● {{ $t("global.commons.sod") }}
+          </span>
+
+          <span v-if="item.free_shipping" class="me-2 small">
+            ● {{ $t("global.commons.free_shipping") }}
+            {{
+              item.free_shipping_limit ? `${$t("global.commons.for")} + ` : ""
+            }}
+            <u-price
+              :amount="item.free_shipping_limit"
+              :currency="item.currency"
+            ></u-price>
+          </span>
+        </v-row>
+      </template>
+    </u-smart-select>
+  </template>
 
   <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Pickup Address ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
 
@@ -132,11 +150,12 @@
     :basket="basket"
     :transportations="transportations"
     @pickupSelected="
-      ({ pickup,transportation }) => {
-        $emit('pickupSelected', { pickup,transportation });
+      ({ pickup, transportation }) => {
+        $emit('pickupSelected', { pickup, transportation });
       }
     "
     :selectedPickup="selectedPickup"
+    :item-bg-color="pickupItemBgColor"
   ></s-cart-shipping-pickups>
 
   <!-- ════════════════════════ Delivery time ════════════════════════ -->
@@ -423,6 +442,8 @@ export default defineComponent({
     },
 
     selectedPickup: {},
+
+    pickupItemBgColor: {},
   },
   data: () => ({
     ETA: ETA,
@@ -433,8 +454,10 @@ export default defineComponent({
   }),
 
   computed: {
-    cod_payment_exists(){
-      return this.shop.gateways?.some(gateway=>gateway.currency===this.basket.currency && gateway.cod)
+    cod_payment_exists() {
+      return this.shop.gateways?.some(
+        (gateway) => gateway.currency === this.basket.currency && gateway.cod,
+      );
     },
     warehouse_address() {
       return MapHelper.GenerateFullAddressFromMapInfo(this.warehouse);
@@ -465,7 +488,11 @@ export default defineComponent({
       if (!this.basket) return 0;
       let max_lead = 0;
       this.basket.items.forEach((item) => {
-        let lead = this.leadProduct(item.product, item.variant,item.vendor_product);
+        let lead = this.leadProduct(
+          item.product,
+          item.variant,
+          item.vendor_product,
+        );
         if (lead) max_lead = Math.max(max_lead, lead);
       });
 
@@ -591,32 +618,28 @@ export default defineComponent({
         }
       });
 
-
       return out;
     },
   },
 
   watch: {
-    timeItems(timeItems){
-
+    timeItems(timeItems) {
       // FIX MISS MATCH ISSUES:  Filter time_spans based on the values in the out array
-      this.deliveryInfo.time_spans = this.deliveryInfo.time_spans?.filter(timeSpan =>
-          timeItems.some(it => it.value === timeSpan)
+      this.deliveryInfo.time_spans = this.deliveryInfo.time_spans?.filter(
+        (timeSpan) => timeItems.some((it) => it.value === timeSpan),
       );
     },
-    dayItems(dayItems){
+    dayItems(dayItems) {
       // FIX MISS MATCH ISSUES:  Filter days based on the values in the out array
-      this.deliveryInfo.days = this.deliveryInfo.days?.filter(day =>
-          dayItems.some(it => it.value === day)
+      this.deliveryInfo.days = this.deliveryInfo.days?.filter((day) =>
+        dayItems.some((it) => it.value === day),
       );
     },
-
 
     transportation(transportation) {
       if (!this.has_delivery) return;
 
       this.deliveryInfo.type = transportation ? transportation.type : null;
-
     },
 
     transportations() {
@@ -650,7 +673,8 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.customDeliveryTimes = this.need_ask_shipping_date || this.deliveryInfo.custom;
+    this.customDeliveryTimes =
+      this.need_ask_shipping_date || this.deliveryInfo.custom;
     this.autoSelectTransportationType();
   },
 

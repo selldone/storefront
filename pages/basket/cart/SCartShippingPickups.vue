@@ -13,23 +13,24 @@
   -->
 
 <template>
-
   <div v-if="has_pickup">
     <div class="font-weight-bold mt-5">
-      <template v-if="selectedPickup?.address">
-        <v-icon class="me-1 zoomIn" color="success" size="small"
-          >check_circle
-        </v-icon>
-        {{$t('global.commons.pickup_selected')}}
-      </template>
-      <template v-else
-        >{{$t('global.commons.pickup_options')}}
-        <v-icon class="ms-1" size="small">expand_more</v-icon>
-      </template>
+      <v-scroll-y-transition group leave-absolute>
+        <template v-if="selectedPickup?.address">
+          <v-icon class="me-1 zoomIn" color="success" size="small"
+            >check_circle
+          </v-icon>
+          {{ $t("global.commons.pickup_selected") }}
+        </template>
+        <template v-else
+          >{{ $t("global.commons.pickup_options") }}
+          <v-icon class="ms-1" size="small">expand_more</v-icon>
+        </template>
+      </v-scroll-y-transition>
     </div>
 
     <v-list
-      class="border-between-vertical bg-transparent overflow-visible"
+      class="border-between-vertical bg-transparent overflow-visible rounded-18px"
       lines="three"
     >
       <v-list-item
@@ -38,12 +39,18 @@
         class="row-hover pp"
         @click="selectPickup(pickup)"
         lines="two"
+        :class="{
+          'rounded-t-18px': i === 0,
+          'rounded-b-18px': i === pickups.length - 1,
+        }"
+        :style="{ backgroundColor: itemBgColor }"
       >
         <template v-slot:prepend>
           <v-list-item-action start>
             <v-icon
               v-if="
-                selectedPickup?.address && selectedPickup?.address === pickup.address
+                selectedPickup?.address &&
+                selectedPickup?.address === pickup.address
               "
               color="info"
               >circle
@@ -61,6 +68,9 @@
             :squared="false"
             class="me-1"
           />
+          <b v-if="pickup.title || pickup.name" class="me-1">{{
+            pickup.title ? pickup.title : pickup.name
+          }}</b>
           {{
             pickup.address
               ? generateFullAddress(pickup)
@@ -94,16 +104,15 @@ export default defineComponent({
       require: true,
       type: Array,
     },
-    selectedPickup:{
+    selectedPickup: {
       type: Object,
-
     },
 
+    itemBgColor: {},
   },
   computed: {
-
     light_checkout() {
-      return  this.$shop.theme?.light_checkout;
+      return this.$shop.theme?.light_checkout;
     },
 
     isPhysical() {
@@ -126,15 +135,17 @@ export default defineComponent({
     has_pickup() {
       return this.pickups && this.pickups.length && this.isPhysical;
     },
-
   },
 
-  methods:{
+  methods: {
     // ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ Pickup ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
     selectPickup(pickup) {
-      this.$emit('pickupSelected', {pickup:pickup,transportation:this.pickup_transportation});
+      this.$emit("pickupSelected", {
+        pickup: pickup,
+        transportation: this.pickup_transportation,
+      });
     },
-  }
+  },
 });
 </script>
 
