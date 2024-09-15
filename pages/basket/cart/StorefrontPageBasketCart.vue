@@ -1118,7 +1118,7 @@ export default {
       if (!this.basket) return 0;
       let max_lead = 0;
       this.basket.items.forEach((item) => {
-        let lead = this.leadProduct(item.product, item.variant);
+        let lead = this.leadProduct(item.product, item.variant,item.vendor_product);
         if (lead) max_lead = Math.max(max_lead, lead);
       });
 

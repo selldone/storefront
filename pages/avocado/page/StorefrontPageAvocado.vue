@@ -83,16 +83,13 @@
             :loading="busy"
             class="mx-auto zoomIn"
             color="success"
-            dark
-            variant="flat"
+            variant="elevated"
             min-height="72"
             style="max-width: 420px"
-            tile
-            width="100%"
             size="x-large"
-            @click="add_mode = true"
+            @click="()=>{add_mode = true;GoToTopPage()}"
           >
-            <v-icon class="me-1">shopping_bag</v-icon>
+            <v-icon start>shopping_bag</v-icon>
             {{ $t("avocado.add_new_order") }}
           </v-btn>
 
@@ -101,11 +98,11 @@
           <v-btn
             v-if="!USER()"
             color="primary"
-            dark
+            variant="elevated"
             size="x-large"
             @click="NeedLogin()"
           >
-            <v-icon class="me-1" size="small">shopping_bag</v-icon>
+            <v-icon start>shopping_bag</v-icon>
             {{ $t("avocado.add_new_order") }}
           </v-btn>
         </div>
@@ -207,13 +204,19 @@ export default {
     user() {
       return this.$store.getters.getUser;
     },
+    busy_user() {
+      return this.$store.getters.getBusyUser;
+    },
     shop_avocado() {
       return this.shop.avocado ? this.shop.avocado : {};
     },
   },
   created() {
-    if (!this.USER()) this.NeedLogin();
-    else this.getOpenAvocado();
+    if (!this.busy_user) {
+      // Check if user is logged in - We should wait for the user to be loaded (prevent show login form in page refresh)
+      if (!this.USER()) this.NeedLogin();
+      else this.getOpenAvocado();
+    }
   },
 
   /**
@@ -224,6 +227,7 @@ export default {
   watch: {
     user(user) {
       if (user) this.getOpenAvocado();
+      else this.NeedLogin();
     },
   },
 

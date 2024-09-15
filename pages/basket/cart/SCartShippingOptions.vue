@@ -143,7 +143,7 @@
   <div v-if="showCustomDeliveryTimeButton" class="font-weight-medium data-row">
     <!-- ━━━━━━━━━━━━━━━━━━ Select preferred arrival time button ━━━━━━━━━━━━━━━━━━ -->
 
-    <u-text-value-dashed>
+    <u-text-value-dashed wrap>
       <template v-slot:label>
         <i class="fas fa-calendar-check me-1" />
         {{ $t("basket_page.receive_time") }}
@@ -153,7 +153,7 @@
           class="ms-1"
           icon
           variant="text"
-          size="small"
+          size="24"
           title="Show package and distance info."
           @click="show_package_info = !show_package_info"
         >
@@ -161,7 +161,7 @@
         </v-btn>
       </template>
 
-      <span v-if="transportation">
+      <span v-if="transportation" class="mx-auto me-0">
         <v-btn
           :color="customDeliveryTimes ? 'primary' : '#fafafa'"
           class="select-time-button mx-1 animated-all-normal tnt"
@@ -244,7 +244,7 @@
             class="small"
             ><i class="fas fa-location-arrow me-1" />
             {{ Math.round(distance) }}
-            {{ $t("global.distance.km") }}
+            {{ distance_unit }}
           </span>
         </div>
       </div>
@@ -453,6 +453,9 @@ export default defineComponent({
     mass_unit() {
       return ShopOptionsHelper.GetMassUnit(this.shop);
     },
+    distance_unit() {
+      return ShopOptionsHelper.GetDistanceUnit(this.shop);
+    },
 
     isService() {
       return this.type === ProductType.SERVICE.code;
@@ -462,7 +465,7 @@ export default defineComponent({
       if (!this.basket) return 0;
       let max_lead = 0;
       this.basket.items.forEach((item) => {
-        let lead = this.leadProduct(item.product, item.variant);
+        let lead = this.leadProduct(item.product, item.variant,item.vendor_product);
         if (lead) max_lead = Math.max(max_lead, lead);
       });
 
