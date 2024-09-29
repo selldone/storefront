@@ -576,7 +576,7 @@ a {
     max-width: 420px;
 
     @media only screen and (min-width: 1720px) {
-      box-shadow: 0 -12px 8px 0px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 -6px 8px 0px rgba(0, 0, 0, 0.03);
     }
 
     //min-width: 320px;
