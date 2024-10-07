@@ -53,13 +53,11 @@
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Show Vendor Info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <s-shop-vendor-header
-        :shop="shop"
         :vendor-id="vendor_id"
       ></s-shop-vendor-header>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <s-products-listing
-        :shop="getShop()"
         :vendor-id="vendor_id"
         has-breadcrumb
         has-filter
@@ -97,9 +95,6 @@ export default {
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
   computed: {
-    shop() {
-      return this.getShop();
-    },
     show_filter_menu() {
       return this.$store.getters.getShowFilterMenu;
     },

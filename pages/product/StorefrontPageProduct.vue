@@ -88,7 +88,6 @@
         <s-product-overview
           v-if="product"
           ref="product_info"
-          :product="product"
           can-buy
           show-cover
         />
@@ -103,8 +102,6 @@
       <div :style="{ order: getOrder('cross') }">
         <s-product-cross-sells
           :current-variant="current_variant"
-          :product="product"
-          :shop="shop"
           class="s--product-section-spec my-16"
         ></s-product-cross-sells>
       </div>
@@ -114,8 +111,6 @@
       <div :style="{ order: getOrder('offer') }">
         <s-product-offers
           :current-variant="current_variant"
-          :product="product"
-          :shop="shop"
           class="s--product-section-spec my-16"
         ></s-product-offers>
       </div>
@@ -139,7 +134,7 @@
         :style="{ order: getOrder('includes') }"
         class="my-16"
       >
-        <s-shop-product-includes :product="product"></s-shop-product-includes>
+        <s-shop-product-includes></s-shop-product-includes>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Article ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
@@ -167,10 +162,7 @@
             </v-col>
 
             <v-col cols="12" md="6">
-              <s-shop-product-pros-cons-table
-                :product="product"
-                :shop="shop"
-              ></s-shop-product-pros-cons-table>
+              <s-shop-product-pros-cons-table></s-shop-product-pros-cons-table>
             </v-col>
           </v-row>
         </v-container>
@@ -184,8 +176,8 @@
           :need-create-new="product.should_add_article && !product.article_pack"
           :owner="product.user_id === USER_ID()"
           :product-id="product.id"
-          :shop="getShop()"
-          :shop-id="shop.id"
+          :shop="$shop"
+          :shop-id="$shop.id"
           :show-author-info="false"
           :show-share-buttons="false"
           :show-user-feedback-buttons="false"
@@ -210,8 +202,6 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Files List ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('files') }">
         <s-product-files-list
-          :product="product"
-          :shop="shop"
           class="s--product-section-header"
         ></s-product-files-list>
       </div>
@@ -219,8 +209,6 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > 🦄 Membership Contents ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('contents') }">
         <s-product-subscription-membership
-          :product="product"
-          :shop="shop"
           class="s--product-section-header"
         ></s-product-subscription-membership>
       </div>
@@ -228,8 +216,6 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Shipping ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('shipping') }">
         <s-product-shipping
-          :product="product"
-          :shop="shop"
           class="s--product-section-header"
         ></s-product-shipping>
       </div>
@@ -238,19 +224,13 @@
 
       <div :style="{ order: getOrder('warranty') }">
         <s-product-warranty
-          :product="product"
-          :shop="shop"
           class="s--product-section-header"
         ></s-product-warranty>
       </div>
 
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ TAB > Guide ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('guide') }">
-        <s-product-guide
-          :product="product"
-          :shop="shop"
-          class="s--product-section-header"
-        ></s-product-guide>
+        <s-product-guide class="s--product-section-header"></s-product-guide>
       </div>
 
       <!-- █████████████████████ Internal Page █████████████████████ -->
@@ -268,25 +248,18 @@
 
       <div :style="{ order: getOrder('comments') }">
         <s-product-comments
-          :product="product"
-          :shop="shop"
           class="s--product-section-header"
         ></s-product-comments>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related products ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div :style="{ order: getOrder('related-products') }">
-        <s-product-related-products :product="product" :shop="shop">
-        </s-product-related-products>
+        <s-product-related-products> </s-product-related-products>
       </div>
 
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Related categories ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
       <div v-if="categories" :style="{ order: getOrder('related-categories') }">
-        <s-product-related-categories
-          :categories="categories"
-          :product="product"
-          :shop="shop"
-        >
+        <s-product-related-categories :categories="categories">
         </s-product-related-categories>
       </div>
 
@@ -295,8 +268,6 @@
         <u-fade-scroll>
           <s-product-section-badges
             :large="$vuetify.display.mdAndUp"
-            :product="product"
-            :shop="shop"
             class="py-16"
           ></s-product-section-badges>
         </u-fade-scroll>
@@ -348,7 +319,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 
 import SProductOverview from "@selldone/components-vue/storefront/overview/SProductOverview.vue";
@@ -368,7 +339,6 @@ import { ColorHelper } from "@selldone/core-js/helper/color/ColorHelper";
 import { ShadeColor } from "@selldone/core-js/helper/color/ColorGenerator";
 import SProductRelatedProducts from "@selldone/components-vue/storefront/product/related-products/SProductRelatedProducts.vue";
 import SProductRelatedCategories from "@selldone/components-vue/storefront/product/related-categories/SProductRelatedCategories.vue";
-import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations";
 import SProductShipping from "@selldone/components-vue/storefront/product/shipping/SProductShipping.vue";
 import SProductWarranty from "@selldone/components-vue/storefront/product/warranty/SProductWarranty.vue";
 import SProductGuide from "@selldone/components-vue/storefront/product/guide/SProductGuide.vue";
@@ -381,15 +351,13 @@ import ProductSection from "@selldone/core-js/enums/product/ProductSection";
 import LPageViewer from "@selldone/page-builder/page/viewer/LPageViewer.vue";
 import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
 import { SProductBreadcrumbHelper } from "@selldone/components-vue/storefront/products/listing/helper/SProductBreadcrumbHelper";
-import {Article, AugmentHelper} from "@selldone/core-js";
+import { Article, AugmentHelper } from "@selldone/core-js";
+import { computed } from "vue";
 
 export default {
   name: "StorefrontPageProduct",
-  props: {
-    shop: {
-      require: true,
-    },
-  },
+  inject: ["$shop"],
+  props: {},
   components: {
     LPageViewer,
     SProductCrossSells,
@@ -414,6 +382,21 @@ export default {
     ArticleViewer,
   },
 
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Provide
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
+  provide() {
+    return {
+      $product: computed(() => this.product),
+    };
+  },
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Data
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
   data: function () {
     return {
       show_article: true, // For refresh article!
@@ -426,11 +409,7 @@ export default {
 
       article_type: Article.Types.Product,
 
-      tab_mode: "tab-review",
-
       comments_count: 0,
-
-      loaded_tab_comments: false,
 
       show_qr: false,
       light_qr: true,
@@ -442,51 +421,15 @@ export default {
       return this.product.type === ProductType.PHYSICAL.code;
     },
 
-    transportations() {
-      return this.shop.transportations;
-    },
-    has_free_shipping() {
-      return this.is_physical && this.transportations_free_shipping?.length;
-    },
-    transportations_free_shipping() {
-      return this.transportations?.filter(
-        (t) => t.free_shipping && t.type !== ShopTransportations.Pickup.code,
-      );
-    },
-    images() {
-      return this.transportations_free_shipping
-        ?.filter((t) => !!t.logo)
-        .map((t) => t.logo)
-        .unique();
-    },
-    transportation_with_min_free_shipping_limit() {
-      return this.transportations_free_shipping?.minByKey(
-        "free_shipping_limit",
-      );
-    },
-
-    pickup_transportation() {
-      return (
-        this.is_physical &&
-        this.transportations?.find(
-          (t) =>
-            t.type === ShopTransportations.Pickup.code && t.pickups?.length > 0,
-        )
-      );
-    },
-    has_pickup() {
-      return this.pickup_transportation?.length;
-    },
-
     admin_url() {
       if (!this.product) return null;
       const can_edit = this.product?.article_pack?.can_edit;
 
       return (
         this.USER() &&
-        (this.USER_ID() === this.shop.user_id || can_edit) &&
+        (this.USER_ID() === this.$shop.user_id || can_edit) &&
         SetupService.MainServiceUrl() +
-          `/shuttle/shop/${this.shop.id}/product/${this.product.id}`
+          `/shuttle/shop/${this.$shop.id}/product/${this.product.id}`
       );
     },
 
@@ -495,12 +438,17 @@ export default {
       return this.product?.page;
     },
     augment() {
-      return AugmentHelper.MixAugments(this.product?.augment ,/*Flatten product - smart augment*/  AugmentHelper.ConvertToAugmentArray({product:this.product}));
+      return AugmentHelper.MixAugments(
+        this.product?.augment,
+        /*Flatten product - smart augment*/ AugmentHelper.ConvertToAugmentArray(
+          { product: this.product },
+        ),
+      );
     },
 
     theme() {
-      return this.shop.theme && !Array.isArray(this.shop.theme)
-        ? this.shop.theme
+      return this.$shop.theme && !Array.isArray(this.$shop.theme)
+        ? this.$shop.theme
         : {};
     },
 
@@ -545,129 +493,16 @@ export default {
       );
     },
 
-    has_comment() {
-      return (
-        this.product &&
-        this.product.article_pack &&
-        this.product.article_pack.article
-      );
-    },
-
-    has_spec() {
-      return (
-        this.product &&
-        this.spec_array &&
-        this.spec_array.length /* || (this.isFile && this.product.files)*/
-      );
-    },
-
     // ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Tabs ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
 
-    tabs() {
-      const tabs = [];
-
-      if (this.warranty_article) {
-        tabs.push({
-          title: this.$t("product.warranty"),
-          value: "tab-warranty",
-          color: "#673AB7",
-          icon: "fa:fas fa-certificate me-2",
-          code: "warranty",
-        });
-      }
-
-      if (this.return_policy_article) {
-        tabs.push({
-          title: this.$t("product.return_policy"),
-          value: "tab-return-policy",
-          color: "#455A64",
-          icon: "fa:fas fa-people-carry me-2",
-          code: "return-policy",
-        });
-      }
-
-      if (this.guide_article) {
-        tabs.push({
-          title: this.$t("product.guide"),
-          value: "tab-guide",
-          color: "#FFA000",
-          icon: "fa:fas fa-life-ring me-2",
-          code: "guide",
-        });
-      }
-
-      if (this.shipping_article) {
-        tabs.push({
-          title: this.$t("product.shipping"),
-          value: "tab-shipping",
-          color: "#3F51B5",
-          icon: "fa:fas fa-shipping-fast me-2",
-          code: "shipping",
-        });
-      }
-
-      if (this.isFile) {
-        tabs.push({
-          title: this.$t("global.commons.files"),
-          value: "tab-files",
-          color: "#F57C00",
-          icon: "fa:fas fa-folder me-2",
-          code: "files",
-        });
-      }
-
-      if (this.isMembershipSubscription) {
-        tabs.push({
-          title: this.$t("global.commons.contents"),
-          value: "tab-content",
-          color: "#212121",
-          icon: "fa:fas fa-folder me-2",
-          code: "contents",
-        });
-      }
-
-      // Try to apply custom order for tabs:
-      try {
-        if (this.theme && this.theme.order) {
-          // Make sure all tabs exist:
-          [
-            "spec",
-            "review",
-            "comments",
-            "warranty",
-            "return-policy",
-            "guide",
-            "shipping",
-            "files",
-            "contents",
-          ].forEach((t) => {
-            if (!this.theme.order.includes(t)) this.theme.order.push(t);
-          });
-
-          tabs.sort(
-            (a, b) =>
-              this.theme.order.indexOf(a.code) -
-              this.theme.order.indexOf(b.code),
-          );
-        }
-      } catch (e) {
-        console.error(e);
-      }
-
-      return tabs;
-    },
     hierarchy_items() {
       return SProductBreadcrumbHelper.GenerateCategoryHierarchyGeneral(
         this.$t("global.store"),
         this.product.category,
-        this.shop_name,
+        this.$shop.name,
         this.product,
         "shopping_bag",
       );
-    },
-
-    isFile() {
-      return this.product && this.product.type === ProductType.FILE.code;
     },
 
     user() {
@@ -693,15 +528,8 @@ export default {
       this.$forceUpdate(); // Notice we have to use a $ here
     },
 
-    tab_mode(tab_mode) {
-      if (tab_mode === "tab-comments") this.loaded_tab_comments = true;
-    },
     user() {
       this.autoBuy();
-    },
-
-    tabs(tabs) {
-      if (tabs.length) this.tab_mode = tabs[0].value;
     },
   },
   created() {
@@ -713,7 +541,7 @@ export default {
       if (!this.theme?.order || !Array.isArray(this.theme?.order)) {
         this.theme.order = Object.values(ProductSection).map((x) => x.code);
       } else {
-        // Make sure all tabs exist:
+        // Add missing sections
         Object.values(ProductSection).forEach((t) => {
           if (!this.theme.order.includes(t)) this.theme.order.push(t);
         });
@@ -744,16 +572,13 @@ export default {
           );
 
         GtagEcommerce.MeasuringViewsOfProductDetails(
-          this.shop,
+          this.$shop,
           product,
           this.GetUserSelectedCurrency().code,
           "product-page",
         );
 
         this.setPageTitle(product.title); // Set Page Title!
-
-        // Set initial tab:
-        this.tab_mode = this.tabs.length ? this.tabs[0].value : null;
 
         // Auto buy (Check query)
         this.autoBuy();
