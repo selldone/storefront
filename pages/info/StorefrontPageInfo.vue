@@ -15,7 +15,6 @@
 <template>
   <s-footer-section
     v-if="isMobile"
-    :shop="shop"
   ></s-footer-section>
 </template>
 
@@ -26,10 +25,7 @@ export default {
   name: "StorefrontPageInfo",
   components: { SFooterSection },
   props: {
-    shop: {
-      type: Object,
-      required: true,
-    },
+
   },
 };
 </script>

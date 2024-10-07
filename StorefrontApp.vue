@@ -62,43 +62,41 @@
     ]"
     class="s--shop blur-animate"
     @keyup.ctrl="SwitchLanguage"
+    :key="unique_key_shop"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <Teleport to="#banners-placeholder">
-      <s-campaign-banner :shop="shop" />
+      <s-campaign-banner />
     </Teleport>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Private / Restricted Shop ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-access-private-check v-else :shop="shop"></s-access-private-check>
+    <s-access-private-check v-else></s-access-private-check>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-social-buttons
       v-if="shop"
-      :shop="shop"
       active-only
       class="social-stick"
       vertical
     ></s-storefront-social-buttons>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-master-payment-dialog v-if="shop" :shop="shop" />
+    <s-storefront-master-payment-dialog v-if="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-comparison-button v-if="has_comparison" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-need-login-dialog :shop="shop"  />
+    <s-storefront-need-login-dialog />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <u-notification-side />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-application-login
-      :shop="shop"
-    ></s-storefront-application-login>
+    <s-storefront-application-login></s-storefront-application-login>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <u-map-dialog></u-map-dialog>
@@ -127,7 +125,6 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-storefront-retrieve-share-order
       v-if="shop"
-      :shop="shop"
     ></s-storefront-retrieve-share-order>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -161,8 +158,8 @@ import UMapDialog from "@selldone/components-vue/ui/map/dialog/UMapDialog.vue";
 import SDebugger from "@selldone/components-vue/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
-import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck";
-import {computed} from "vue";
+import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
+import { computed } from "vue";
 
 export default {
   name: "StorefrontApp",
@@ -211,6 +208,21 @@ export default {
     shop() {
       return this.getShop();
     },
+    /**
+     * We use it to force update entire app.
+     * @return {string}
+     */
+    unique_key_shop() {
+      console.log(
+        "🔵 Update App Global Status",
+        `${this.shop?.id}-${window.$storefront.currency?.code}-${this.language}`,
+      );
+      return `${this.shop?.id}-${window.$storefront.currency?.code}-${this.language}`;
+    },
+    language() {
+      return this.getCurrentLanguage()?.code;
+    },
+
     theme() {
       return this.shop?.theme;
     },
@@ -439,7 +451,7 @@ export default {
     // Load shop info fast:
     if (window.shop) {
       // 🧿 Auto fix Shop:
-      StorefrontShopHealthCheck.Check(this.$router,window.shop)
+      StorefrontShopHealthCheck.Check(this.$router, window.shop);
 
       this.$store.commit("setShop", window.shop);
       // 🞧 Header: Language (Important to load content - product article - in selected language) ASAP!

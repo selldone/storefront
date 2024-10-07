@@ -26,7 +26,7 @@ import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import type {Basket} from "@selldone/core-js/models/shop/order/basket/basket.model";
 import {Map} from "@selldone/core-js";
 
-interface State {
+interface IState {
   user: any | null;
   debug: boolean;
   permissions: any | null;
@@ -62,9 +62,36 @@ interface State {
    * Set default location calculated based on user IP
    */
   initial_location: Map.ILocation | null;
+
+  /**
+   * Storefront header style
+   * Used by elements like landing page to change main header style
+   */
+  globalStyle:{
+    header_color: string;
+    /**
+     * Defines the current mode of the header. Can be 'null', 'normal', 'overlay', or 'hidden'.
+     */
+    header_mode: 'normal'|'overlay'|'hidden'|null;
+    /**
+     * Manages the style of the header when it needs to be dark-themed. Null when not in use.
+     */
+    dark_header: boolean|null;
+    /**
+     * Manages the style of the header when it needs to be transparent. Null when not in use.
+     */
+    transparent_header: boolean|null;
+
+
+    /**
+     * Indicates whether the search mode is active. When true, the component is in search mode.
+     */
+    search_mode:boolean|null;
+  }
+
 }
 
-export default createStore<State>({
+export default createStore<IState>({
   state: {
     user: null,
     debug: false,
@@ -140,6 +167,19 @@ export default createStore<State>({
     shop_main_banner: null,
 
     initial_location: null,
+
+    globalStyle:{
+      //━━━━━━━ Main Header ━━━━━━━
+      header_color: null,
+        header_mode: null,
+        dark_header: null,
+        transparent_header: null,
+
+      //━━━━━━━ Search ━━━━━━━
+      search_mode:null,
+
+    },
+
   },
 
   mutations: {
@@ -281,6 +321,23 @@ export default createStore<State>({
     setInitialLocation(state, initial_location) {
       state.initial_location = initial_location;
     },
+
+
+    //━━━━━━━ Global Style ━━━━━━━
+    /**
+     * Set global style for the shop
+     * @param state
+     * @param style
+     * @example
+     * ``` this.$store.commit("setGlobalStyle", {header_color: "#000000"}); ```
+     */
+    setGlobalStyle(state, style: Partial<GlobalStyle>) {
+      state.globalStyle = {
+        ...state.globalStyle, // Existing values
+        ...style // New values
+      };
+    }
+
   },
   getters: {
     getShop(state) {
@@ -341,7 +398,7 @@ export default createStore<State>({
     },
 
     //━━━━━━━ Products comparison ━━━━━━━
-    getProductsComparison(state: State): ProductCompare[] | null {
+    getProductsComparison(state: IState): ProductCompare[] | null {
       return state.products_comparison;
     },
     //━━━━━━━ Customer Club ━━━━━━━
@@ -419,6 +476,11 @@ export default createStore<State>({
     getInitialLocation(state) {
       return state.initial_location;
     },
+    //━━━━━━━ Main Header ━━━━━━━
+    getGlobalStyle(state) {
+      return state.globalStyle;
+    },
+
   },
 
   actions: {
@@ -426,9 +488,11 @@ export default createStore<State>({
      * Sets the appropriate basket based on the type.
      * @param context - Vuex action context.
      * @param basket - The basket object containing the product type and its data.
+     *
+     * ex. ``` this.$store.dispatch("setBasket", this.basket); ```
      */
 
-    setBasket(context: ActionContext<State, any>, basket: { type: string }) {
+    setBasket(context: ActionContext<IState, any>, basket: { type: string }) {
       basket = basket ? JSON.parse(JSON.stringify(basket)) : null; // Deep clone to force update in all components.
 
       if (basket.type === ProductType.PHYSICAL.code)
@@ -442,5 +506,20 @@ export default createStore<State>({
       else if (basket.type === ProductType.SUBSCRIPTION.code)
         context.commit("setBasketSubscription", basket);
     },
+
+    /**
+     * Reset shop header style
+     * ex. ``` this.$store.dispatch("resetGlobalStyle"); ```
+     */
+    resetGlobalStyle(){
+        this.commit('setGlobalStyle',{
+            header_color: null,
+            header_mode: null,
+            dark_header: null,
+            transparent_header: null,
+        });
+    }
+
+
   },
 });

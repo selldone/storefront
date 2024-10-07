@@ -54,12 +54,10 @@
 
     <s-header-section
       v-if="
-        !header_mode ||
-        header_mode === 'normal' /*Show primary header in top of page!*/
+        !globalStyle.header_mode ||
+        globalStyle.header_mode ===
+          'normal' /*Show primary header in top of page!*/
       "
-      :search-mode="search_mode"
-      :shop="shop"
-      :color="header_color"
     ></s-header-section>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -68,15 +66,14 @@
       <s-storefront-search-box
         v-if="show_search_box && !isMobile"
         ref="search_box"
-        v-model:expand-input="search_mode"
+        v-model:expand-input="globalStyle.search_mode"
         :class="{
           'is-mobile': isMobile,
-          'full-width': search_mode && isMobile,
+          'full-width': globalStyle.search_mode && isMobile,
         }"
         :dark="false"
         :negative-qr-margin="false"
-        :shop-name="shop.name"
-        :title="$t('layout_shop.search_title', { shop_name: shop.title })"
+        :title="$t('layout_shop.search_title', { shop_name: $shop.title })"
         class="s--storefront-layout-search-style me-2"
         color="transparent"
         flat
@@ -107,40 +104,25 @@
       "
     >
       <!-- The 'router-view' will display the content of children components as defined in the Router. -->
-      <router-view v-if="shop" v-slot="{ Component }">
+      <router-view v-if="$shop" v-slot="{ Component }">
         <component
           :is="Component"
           :class="{
             's--shop-card s--shadow-no-padding -hide1720 mb-16 bg-white position-relative':
               is_view_card_mode,
           }"
-          :shop="shop"
+          :shop="$shop"
           :style="{ 'padding-bottom': bottom_padding_container }"
-          @update:menu-transparent="
-            (val) => (transparent_header = val) /*Update on custome pages*/
-          "
-          @update:menu-dark="
-            (val) => (dark_header = val) /*Update on custome pages*/
-          "
-          @update:header-mode="
-            (val) => (header_mode = val) /*Update on custome pages*/
-          "
-          @update:header-color="
-            (val) => (header_color = val) /*Update on header color*/
-          "
         >
           <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Content Header ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
           <!-- This header appears at the top of the content view in the storefront, such as on product listing pages, individual product pages, and other similar sections. -->
           <template v-slot:header="{ center }">
             <s-header-section
               v-if="
-                header_mode ===
+                globalStyle.header_mode ===
                 'overlay' /*Show primary header with overlay effect (used in landing pages)!*/
               "
-              :color="header_color"
-              :overlay-dark="!!dark_header"
-              :search-mode="search_mode"
-              :shop="shop"
+              :overlay-dark="!!globalStyle.dark_header"
               overlay
             ></s-header-section>
 
@@ -148,22 +130,22 @@
             <s-storefront-top-menu
               v-if="top_menu && !header_disabled"
               :center="center"
-              :force-dark="dark_header"
+              :force-dark="globalStyle.dark_header"
               :fullscreen="is_fullscreen"
-              :shop="shop"
               :style="{
                 marginTop:
-                  header_mode === 'hidden'
+                  globalStyle.header_mode === 'hidden'
                     ? '64px'
                     : 0 /*Cover -64px of main view of shop*/,
               }"
               :tabs="top_menu.menu"
-              :transparent="transparent_header"
-              :color="header_color"
+              :transparent="globalStyle.transparent_header"
+              :color="globalStyle.header_color"
               flat
               :class="{
                 's--custom-top-menu-transparent':
-                  transparent_header || header_mode === 'overlay',
+                  globalStyle.transparent_header ||
+                  globalStyle.header_mode === 'overlay',
               }"
             ></s-storefront-top-menu>
           </template>
@@ -174,9 +156,8 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- Primary footer of the storefront. -->
     <s-footer-section
-      v-if="!isMobile && !is_standalone && !isNative && shop && has_footer"
+      v-if="!isMobile && !is_standalone && !isNative && $shop && has_footer"
       :dark="!is_light_footer"
-      :shop="shop"
       class="m-0"
     />
 
@@ -198,7 +179,6 @@
     <s-contacts-popup
       v-if="show_support_chat && has_support"
       :bottom="isMobile ? 96 : 12"
-      :shop="shop"
       class="zoomIn"
     ></s-contacts-popup>
   </div>
@@ -226,13 +206,8 @@ export default {
     SFooterSection,
     SStorefrontSearchBox,
   },
-
-  props: {
-    shop: {
-      required: true,
-      type: Object,
-    },
-  },
+  inject: ["$shop"],
+  props: {},
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -252,31 +227,9 @@ export default {
     show_notification_previously: false,
 
     /**
-     * @property {boolean} search_mode - Indicates whether the search mode is active. When true, the component is in search mode.
-     */
-    search_mode: false,
-
-    /**
      * @property {boolean} elapsed_support_delay - Flag to indicate if a certain delay has passed, typically used for support-related functionalities.
      */
     elapsed_support_delay: false,
-
-    /**
-     * @property {string|null} transparent_header - Manages the style of the header when it needs to be transparent. Null when not in use.
-     */
-    transparent_header: null,
-
-    /**
-     * @property {string|null} dark_header - Manages the style of the header when it needs to be dark-themed. Null when not in use.
-     */
-    dark_header: null,
-
-    /**
-     * @property {string|null} header_mode - Defines the current mode of the header. Can be 'null', 'normal', 'overlay', or 'hidden'.
-     */
-    header_mode: null,
-
-    header_color: null,
   }),
 
   /**
@@ -298,7 +251,7 @@ export default {
      * @return {*|null}
      */
     campaign() {
-      return this.shop ? this.shop.campaign : null;
+      return this.$shop?.campaign;
     },
     /**
      * Get notification from campaign.
@@ -326,7 +279,7 @@ export default {
 
     show_search_box() {
       return (
-        this.shop && this.$route.matched.some((record) => record.meta.search)
+        this.$shop && this.$route.matched.some((record) => record.meta.search)
       );
     },
 
@@ -350,20 +303,13 @@ export default {
     },
 
     show_support_chat() {
-      return (
-        this.shop &&
-        this.shop.support &&
-        this.shop.support.popup &&
-        this.elapsed_support_delay
-      );
+      return this.$shop?.support?.popup && this.elapsed_support_delay;
     },
 
     top_menu() {
       return (
         this.$vuetify.display.mdAndUp &&
-        this.shop &&
-        this.shop.menus &&
-        this.shop.menus.find((it) => it.type === "HEADER")
+        this.$shop?.menus?.find((it) => it.type === "HEADER")
       );
     },
     header_disabled() {
@@ -379,14 +325,13 @@ export default {
     },
 
     theme() {
-      if (!this.shop) return null;
-      return this.shop.theme;
+      return this.$shop?.theme;
     },
 
     is_light_footer() {
       return (
         this.$route.matched.some((record) => record.meta.light_footer) ||
-        (this.theme?.light_footer!==false)// Default theme footer is light!
+        this.theme?.light_footer !== false // Default theme footer is light!
       );
     },
 
@@ -408,6 +353,10 @@ export default {
       } else {
         return "1720px";
       }
+    },
+
+    globalStyle() {
+      return this.$store.getters.getGlobalStyle;
     },
   },
   /**
@@ -435,10 +384,7 @@ export default {
         this.$route.name !== "CustomHomePage" &&
         this.$route.name !== window.$storefront?.routes.INCLUDE_PAGE_RENDER
       ) {
-        this.transparent_header = null;
-        this.dark_header = null; // Default value is null!
-        this.header_mode = null;
-        this.header_color = null;
+        this.$store.dispatch("resetGlobalStyle");
       }
     },
 
@@ -456,7 +402,9 @@ export default {
      * @param show_search_box
      */
     show_search_box(show_search_box) {
-      if (!show_search_box) this.search_mode = false;
+      if (!show_search_box) {
+        this.$store.commit("setGlobalStyle", { search_mode: false });
+      }
     },
   },
 
@@ -487,7 +435,7 @@ export default {
     onSearch(event) {
       this.$router.push({
         name: window.$storefront.routes.SHOP_PAGE,
-        params: { shop_name: this.shop.shop_name },
+        params: { shop_name: this.$shop.name },
         query: { search: event.search, search_type: event.search_type },
       });
     },
@@ -503,7 +451,7 @@ export default {
         //Only in shop page clear => show all products!
         this.$router.push({
           name: window.$storefront.routes.SHOP_PAGE,
-          params: { shop_name: this.shop.shop_name },
+          params: { shop_name: this.$shop.name },
         });
     },
   },

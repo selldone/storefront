@@ -131,10 +131,14 @@ const StorefrontMixin = defineComponent({
       // Set a global language object for temporary use, e.g., by a language selector component.
       window.$language = Language[locale];
 
+
+      const IS_CHANGED_LANGUAGE = window.axios.defaults.headers.common["X-Localization"] !== window.$language.locale;
+
+
       // 🞧 Header: Language
       // Set the X-Localization header for all axios requests to the current language.
-      window.axios.defaults.headers.common["X-Localization"] =
-        window.$language.locale;
+      window.axios.defaults.headers.common["X-Localization"] = window.$language.locale;
+
 
       // Load the language pack asynchronously.
       await loadLanguageAsyncShop(locale, () => {
@@ -156,6 +160,10 @@ const StorefrontMixin = defineComponent({
         // Update lang-x class in the body:
         this.setBodyLanguageClass()
       });
+
+
+
+
 
       // Attempt to apply any language pack overrides.
       try {
@@ -189,6 +197,13 @@ const StorefrontMixin = defineComponent({
       } catch (e) {
         console.error(e);
       }
+
+      if(IS_CHANGED_LANGUAGE){
+        console.log('🌐 SwitchLanguage | 🟠 IS_CHANGED_LANGUAGE:',IS_CHANGED_LANGUAGE , 'So we need to fetch shop data again to get the new language data. (translation of object)')
+        // We need to fetch shop data again to get the new language data. (translation of object)
+        await  this.fetchBasketAndShop();
+      }
+
     },
 
     //―――――――――――――――――――――― Shop Address (Base URl) ――――――――――――――――――――
@@ -440,7 +455,7 @@ const StorefrontMixin = defineComponent({
     fetchBasketAndShop() {
       this.$store.commit("setBusyShop", true);
 
-      window.$storefront.shop
+    return   window.$storefront.shop
         .fetchShop()
         .then(
           ({
@@ -595,6 +610,7 @@ const StorefrontMixin = defineComponent({
           this.showLaravelError(error);
         });
     },
+
     //―――――――――――――――――――――― Bill ――――――――――――――――――――
     /**
      * Update basket prices
