@@ -96,7 +96,6 @@ import SOrderBasketReturn from "@selldone/components-vue/storefront/order/basket
 import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopCustomerDeliveryInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerDeliveryInfoWidget.vue";
 
-import SOrderChatBox from "@selldone/components-vue/storefront/order/chat/box/SOrderChatBox.vue";
 import SShopShareOrderButton from "@selldone/components-vue/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderChatWidget from "@selldone/components-vue/storefront/order/chat/widget/SOrderChatWidget.vue";
@@ -106,7 +105,6 @@ export default {
   components: {
     SOrderChatWidget,
     SShopShareOrderButton,
-    SOrderChatBox,
     SShopCustomerDeliveryInfoWidget,
     SShopCustomerOrderPaymentWidget,
     SOrderBasketReturn,
