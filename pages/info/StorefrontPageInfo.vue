@@ -13,20 +13,19 @@
   -->
 
 <template>
-  <s-footer-section
-    v-if="isMobile"
-  ></s-footer-section>
+  <s-footer-section v-if="isMobile"></s-footer-section>
 </template>
 
-<script>
+<script lang="ts">
 import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontPageInfo",
   components: { SFooterSection },
-  props: {
+  mixins: [TemplateMixin],
 
-  },
+  props: {},
 };
 </script>
 

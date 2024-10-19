@@ -66,13 +66,12 @@
             <div
               class="widget-box -large mb-5 mt-2 min-height-50vh d-flex flex-column"
             >
-              <s-shop-basket-items :items="items" :shop="shop" />
+              <s-shop-basket-items :items="items" />
 
               <v-spacer></v-spacer>
               <!-- Share order - Secure link generator -->
               <s-shop-share-order-button
                 :basket="basket"
-                :shop="shop"
                 class="mt-3 text-end"
               ></s-shop-share-order-button>
             </div>
@@ -514,7 +513,6 @@
 
                   <s-shop-connect-shipping-options
                     :basket="basket"
-                    :shop="shop"
                     @change="
                       (connect_shippings) => {
                         delivery_info.connect_shippings = connect_shippings;
@@ -525,7 +523,6 @@
 
                   <!-- ════════════════════════ 🍇 Vendors Shipping Options ════════════════════════ -->
                   <s-order-shipping-vendors-options
-                    :shop="shop"
                     :basket="basket"
                     :deliveryInfo="delivery_info"
                     @set-basket-config="setBasketConfig"
@@ -534,7 +531,6 @@
                   <!-- ════════════════════════ 🥬 Store Shipping Options (Multi Warehouse - soon) ════════════════════════ -->
 
                   <s-order-shipping-stores-options
-                    :shop="shop"
                     :basket="basket"
                     :delivery-info="delivery_info"
                     @set-basket-config="setBasketConfig"
@@ -601,7 +597,9 @@
                           isService
                             ? $t("global.receiver_info.service_address")
                             : all_is_pickup
-                              ? $t("global.receiver_info.select_billing_address")
+                              ? $t(
+                                  "global.receiver_info.select_billing_address",
+                                )
                               : $t("global.receiver_info.receiver_address")
                         }}
 
@@ -831,7 +829,7 @@
         v-model:center="center"
         :address-type="$t('global.receiver_info.map.address_type')"
         :availableCountries="
-          shop.countries?.length ? shop.countries : undefined
+          $shop.countries?.length ? $shop.countries : undefined
         "
         :color="SaminColorDark"
         :confirm-text="$t('global.receiver_info.map.confirm')"
@@ -880,6 +878,7 @@ import SOrderShippingVendorsOptions from "@selldone/components-vue/storefront/or
 import SOrderShippingStoresOptions from "@selldone/components-vue/storefront/order/shipping/store/SOrderShippingStoresOptions.vue";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import { Basket } from "@selldone/core-js/models";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontPageBasketCart",
@@ -901,16 +900,15 @@ export default {
     SDiscountCodeInput,
     SShopBasketItems,
   },
+  mixins: [TemplateMixin],
+
+  inject: ["$shop"],
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Props
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
-  props: {
-    shop: {
-      require: true,
-    },
-  },
+  props: {},
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Data
@@ -966,7 +964,7 @@ export default {
       return this.basket.receiver_info;
     },
     theme() {
-      return this.shop.theme;
+      return this.$shop.theme;
     },
     busy_shop() {
       return this.$store.getters.getBusyShop;
@@ -977,18 +975,18 @@ export default {
     },
 
     checkout() {
-      return ShopOptionsHelper.GetCheckout(this.shop);
+      return ShopOptionsHelper.GetCheckout(this.$shop);
     },
     no_map() {
-      return !ShopOptionsHelper.HasMap(this.shop);
+      return !ShopOptionsHelper.HasMap(this.$shop);
     },
 
     size_unit() {
-      return ShopOptionsHelper.GetSizeUnit(this.shop);
+      return ShopOptionsHelper.GetSizeUnit(this.$shop);
     },
 
     mass_unit() {
-      return ShopOptionsHelper.GetMassUnit(this.shop);
+      return ShopOptionsHelper.GetMassUnit(this.$shop);
     },
 
     bottom_nav_show() {
@@ -996,7 +994,7 @@ export default {
     },
 
     light_checkout() {
-      return this.shop.theme && this.shop.theme.light_checkout;
+      return this.$shop.theme?.light_checkout;
     },
     //-------------- Lottery Prize ---------------
     prize() {
@@ -1091,7 +1089,7 @@ export default {
     can_pay_cod() {
       return (
         this.deliverySupportCOD &&
-        this.shop.gateways?.some(
+        this.$shop.gateways?.some(
           (gateway) => gateway.currency === this.basket.currency && gateway.cod,
         )
       );
@@ -1118,7 +1116,11 @@ export default {
       if (!this.basket) return 0;
       let max_lead = 0;
       this.basket.items.forEach((item) => {
-        let lead = this.leadProduct(item.product, item.variant,item.vendor_product);
+        let lead = this.leadProduct(
+          item.product,
+          item.variant,
+          item.vendor_product,
+        );
         if (lead) max_lead = Math.max(max_lead, lead);
       });
 
@@ -1189,7 +1191,7 @@ export default {
     },
 
     has_delivery() {
-      return ShopOptionsHelper.AskShippingAddress(this.shop, this.type);
+      return ShopOptionsHelper.AskShippingAddress(this.$shop, this.type);
     },
 
     showCustomDeliveryTimeButton() {
@@ -1250,7 +1252,12 @@ export default {
      * Check here all shipping methods are pickup!?
      */
     all_is_pickup() {
-      if (!this.delivery_info || this.connect_shipping_options?.length/*In connect shipping mode always we ask shipping address*/) return false;
+      if (
+        !this.delivery_info ||
+        this.connect_shipping_options
+          ?.length /*In connect shipping mode always we ask shipping address*/
+      )
+        return false;
 
       if (this.vendor_shipping_options?.length) {
         return this.delivery_info.vendor_shippings.every(
@@ -1337,7 +1344,7 @@ export default {
   },
   mounted() {
     if (
-      ShopOptionsHelper.HasMap(this.shop) &&
+      ShopOptionsHelper.HasMap(this.$shop) &&
       (!this.basket ||
         !this.basket.receiver_info ||
         !this.basket.receiver_info.location)
@@ -1431,7 +1438,7 @@ export default {
       this.busy_bill = true;
 
       axios
-        .get(window.XAPI.GET_BASKET_BILL(this.shop_name, this.type))
+        .get(window.XAPI.GET_BASKET_BILL(this.$shop.name, this.type))
         .then(({ data }) => {
           if (!data.error) {
             this.setBasketBill(this.basket, data.bill);
@@ -1461,7 +1468,7 @@ export default {
 
         axios
           .put(
-            window.XAPI.PUT_SET_BASKET_CONFIG(this.shop_name, this.basket.id),
+            window.XAPI.PUT_SET_BASKET_CONFIG(this.$shop.name, this.basket.id),
             {
               // currency:this.GetUserSelectedCurrency().code, // Not important! currency set in change currency api call! Guest + User
               receiver_info: this.receiver_info,
@@ -1609,7 +1616,7 @@ export default {
 
       axios
         .post(
-          window.XAPI.POST_SUBMIT_SERVICE_BASKET(this.shop_name, this.type),
+          window.XAPI.POST_SUBMIT_SERVICE_BASKET(this.$shop.name, this.type),
           {
             currency: this.GetUserSelectedCurrency().code,
             selected_variant_id: this.lottery_win_selected_variant

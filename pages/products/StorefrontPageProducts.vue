@@ -52,9 +52,7 @@
       </div>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Show Vendor Info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-      <s-shop-vendor-header
-        :vendor-id="vendor_id"
-      ></s-shop-vendor-header>
+      <s-shop-vendor-header :vendor-id="vendor_id"></s-shop-vendor-header>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <s-products-listing
@@ -71,9 +69,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SProductsListing from "@selldone/components-vue/storefront/products/listing/SProductsListing.vue";
 import SShopVendorHeader from "@selldone/components-vue/storefront/vendor/SShopVendorHeader.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontPageProducts",
@@ -81,6 +80,8 @@ export default {
     SShopVendorHeader,
     SProductsListing,
   },
+  mixins: [TemplateMixin],
+
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Data

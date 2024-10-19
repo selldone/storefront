@@ -124,7 +124,9 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+
 export default {
   name: "StorefrontPageUser",
   props: {
@@ -132,6 +134,8 @@ export default {
       require: true,
     },
   },
+  mixins: [TemplateMixin],
+
   components: {},
   data: () => ({
     mode: "",

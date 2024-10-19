@@ -416,11 +416,9 @@ export default defineComponent({
     ProductsDenseImagesCircles,
     UTextValueDashed,
   },
+  inject: ["$shop"],
   emits: ["update:transportation", "set-basket-config", "pickupSelected"],
   props: {
-    shop: {
-      require: true,
-    },
     basket: {
       require: true,
     },
@@ -455,7 +453,7 @@ export default defineComponent({
 
   computed: {
     cod_payment_exists() {
-      return this.shop.gateways?.some(
+      return this.$shop.gateways?.some(
         (gateway) => gateway.currency === this.basket.currency && gateway.cod,
       );
     },
@@ -466,18 +464,18 @@ export default defineComponent({
     //delivery_info->deliveryInfo
 
     no_map() {
-      return !ShopOptionsHelper.HasMap(this.shop);
+      return !ShopOptionsHelper.HasMap(this.$shop);
     },
 
     size_unit() {
-      return ShopOptionsHelper.GetSizeUnit(this.shop);
+      return ShopOptionsHelper.GetSizeUnit(this.$shop);
     },
 
     mass_unit() {
-      return ShopOptionsHelper.GetMassUnit(this.shop);
+      return ShopOptionsHelper.GetMassUnit(this.$shop);
     },
     distance_unit() {
-      return ShopOptionsHelper.GetDistanceUnit(this.shop);
+      return ShopOptionsHelper.GetDistanceUnit(this.$shop);
     },
 
     isService() {
@@ -500,7 +498,7 @@ export default defineComponent({
     },
 
     light_checkout() {
-      return this.shop.theme && this.shop.theme.light_checkout;
+      return this.$shop.theme && this.$shop.theme.light_checkout;
     },
 
     receiver_info() {
@@ -508,7 +506,7 @@ export default defineComponent({
     },
 
     has_delivery() {
-      return ShopOptionsHelper.AskShippingAddress(this.shop, this.basket.type);
+      return ShopOptionsHelper.AskShippingAddress(this.$shop, this.basket.type);
       /*
       if (this.isPhysical || this.isService) {
         return true;

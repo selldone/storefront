@@ -50,10 +50,10 @@
     :style="[
       {
         /* Global theme variable of the storefront */
-        '--theme-dark': SaminColorDark,
-        '--theme-light': SaminColorLight,
-        '--theme-deep-dark': SaminColorDarkDeep,
-        '--theme-info': SaminInfoColor,
+        '--theme-dark': ThemeColorDark,
+        '--theme-light': ThemeColorLight,
+        '--theme-deep-dark': ThemeColorDeepDark,
+        '--theme-info': ThemeColorInfo,
         '--theme-btn-color': color_buy_button,
 
         '--background': page_background_color,
@@ -83,7 +83,7 @@
     ></s-storefront-social-buttons>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-master-payment-dialog  />
+    <s-storefront-master-payment-dialog />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-comparison-button v-if="has_comparison" />
@@ -112,25 +112,20 @@
     <s-footer-navigation v-if="isMobile"></s-footer-navigation>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-popup
-      v-if="popup && show_popup"
-      :popup="popup"
-      @close="show_popup = false"
-    ></s-storefront-popup>
+    <s-storefront-popup></s-storefront-popup>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Open fullscreen images ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-fullscreen-view-animator></s-fullscreen-view-animator>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-retrieve-share-order
-    ></s-storefront-retrieve-share-order>
+    <s-storefront-retrieve-share-order></s-storefront-retrieve-share-order>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-debugger></s-debugger>
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import _ from "lodash-es";
 import SStorefrontMasterPaymentDialog from "@selldone/components-vue/storefront/payment/SStorefrontMasterPaymentDialog.vue";
 import { FirebaseNotificationCategories } from "@selldone/core-js/enums/push-notification/FirebaseNotificationCategories";
@@ -158,9 +153,11 @@ import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
 import { computed } from "vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin";
 
 export default {
   name: "StorefrontApp",
+  mixins: [TemplateMixin],
   components: {
     SDebugger,
     UMapDialog,
@@ -197,7 +194,6 @@ export default {
   data: () => ({
     IconFontsLoaded: false,
 
-    show_popup: false,
 
     blur: false,
   }),
@@ -211,6 +207,11 @@ export default {
     shop() {
       return this.getShop();
     },
+
+    isMobile() {
+      return this.$vuetify.display.smAndDown;
+    },
+
     /**
      * We use it to force update entire app.
      * @return {string}
@@ -254,9 +255,7 @@ export default {
       );
     },
 
-    popup() {
-      return this.shop?.popup;
-    },
+
 
     // --------------------------------------------------------------------------------
 
@@ -325,24 +324,7 @@ export default {
       });
     },
 
-    popup(popup) {
-      if (!popup) {
-        console.style("<b>🛸 Popup : None! </b>");
-        return;
-      }
 
-      console.style("<b>🛸 You have a popup! </b>");
-
-      setTimeout(() => {
-        this.show_popup = true;
-
-        // Auto hide:
-        if (popup.hide)
-          setTimeout(() => {
-            this.show_popup = false;
-          }, popup.hide * 1000);
-      }, popup.delay * 1000);
-    },
   },
 
   /**
@@ -403,7 +385,7 @@ export default {
           const category =
             FirebaseNotificationCategories[payload.notification.tag];
           let icon = category ? category.icon : "done";
-          let color = category ? category.color : this.SaminColorDark;
+          let color = category ? category.color : this.TemplateColorDark;
           const img = payload.notification ? payload.notification.icon : null;
 
           this.showNotificationAlert(

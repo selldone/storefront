@@ -184,7 +184,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
 import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
 import { ApplicationExecutorStorefront } from "@selldone/core-js";
@@ -194,6 +194,7 @@ import SContactsPopup from "@selldone/components-vue/storefront/contact/popup/SC
 import SStorefrontTopMenu from "@selldone/components-vue/storefront/menu/header/SStorefrontTopMenu.vue";
 import SHeaderSection from "@selldone/components-vue/storefront/header/section/SHeaderSection.vue";
 import SStorefrontProductInBasketIndicator from "@selldone/components-vue/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontLayout",
@@ -206,6 +207,8 @@ export default {
     SFooterSection,
     SStorefrontSearchBox,
   },
+  mixins: [TemplateMixin],
+
   inject: ["$shop"],
   props: {},
 
