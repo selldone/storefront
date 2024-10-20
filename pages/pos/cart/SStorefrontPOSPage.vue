@@ -213,7 +213,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import BPosCartItems from "@selldone/components-vue/storefront/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@selldone/components-vue/storefront/pos/bill-view/SPosBillView.vue";
 import UPaymentCard from "@selldone/components-vue/ui/payment/card/UPaymentCard.vue";
@@ -231,7 +231,7 @@ export default {
     SPosBillView,
     BPosCartItems,
   },
-
+  inject: ["$shop"],
   data: () => ({
     busy: false,
     basket: null,
@@ -306,7 +306,7 @@ export default {
       axios
         .get(
           window.XAPI.GET_ORDER_POS_BASKET_INFO(
-            this.shop_name,
+            this.$shop.name,
             this.$route.params.basket_id,
           ),
           {

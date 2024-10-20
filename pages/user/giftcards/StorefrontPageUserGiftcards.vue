@@ -104,7 +104,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import SGiftcardView from "@selldone/components-vue/storefront/giftcard/view/SGiftcardView.vue";
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import SGiftcardAdd from "@selldone/components-vue/storefront/giftcard/add/SGiftcardAdd.vue";
@@ -117,6 +117,7 @@ export default {
     SDataIteratorToolbar,
     SGiftcardView,
   },
+  inject: ["$shop"],
   data: () => ({
     giftcards: [],
     balances: [],
@@ -176,7 +177,7 @@ export default {
       this.busy_fetch = true;
 
       axios
-        .get(window.XAPI.GET_MY_GIFT_CARDS(this.shop_name), {
+        .get(window.XAPI.GET_MY_GIFT_CARDS(this.$shop.name), {
           params: {
             offset: (page - 1) * this.itemsPerPage,
             limit: this.itemsPerPage,

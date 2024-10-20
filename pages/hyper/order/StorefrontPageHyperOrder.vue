@@ -158,7 +158,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
@@ -168,6 +168,7 @@ export default {
   name: "StorefrontPageHyperOrder",
   components: { SShopRowCustomerPendingPayment, SHyperCartItems, UStamp },
 
+  inject: ["$shop"],
   props: {
     shop: {
       require: true,
@@ -229,7 +230,7 @@ export default {
       axios
         .get(
           window.XAPI.GET_CUSTOMER_INFO_FOR_HYPER(
-            this.shop_name,
+            this.$shop.name,
             this.$route.params.basket_id,
           ),
         )

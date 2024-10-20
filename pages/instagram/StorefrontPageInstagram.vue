@@ -17,7 +17,6 @@
     <s-instagram-view
       v-if="instagram"
       :instagram="instagram"
-      :shop="shop"
     ></s-instagram-view>
     <v-container v-else> Not exist!</v-container>
   </div>

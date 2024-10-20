@@ -69,7 +69,7 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Basket } from "@selldone/core-js";
@@ -77,7 +77,7 @@ import { Basket } from "@selldone/core-js";
 export default {
   name: "StorefrontPageAvocadoOrder",
   mixins: [RouteMixin],
-
+  inject: ["$shop"],
   components: {},
 
   props: {},
@@ -99,12 +99,14 @@ export default {
   },
   methods: {
     fetchOrderInfo() {
-      const shop_name = this.shop_name;
-      const basket_id = this.$route.params.basket_id;
-
       this.busy = true;
       axios
-        .get(window.XAPI.GET_ORDER_AVOCADO_BASKET_INFO(shop_name, basket_id))
+        .get(
+          window.XAPI.GET_ORDER_AVOCADO_BASKET_INFO(
+            this.$shop.name,
+            this.$route.params.basket_id,
+          ),
+        )
         .then(({ data }) => {
           if (!data.error) {
             this.basket = data.basket;

@@ -554,7 +554,7 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import SBlogCard from "@selldone/components-vue/storefront/blog/card/SBlogCard.vue";
 import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 import _ from "lodash-es";
@@ -568,6 +568,8 @@ export default {
     SBlogCardAuthorCategory,
     SBlogCard,
   },
+
+  inject: ["$shop"],
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -777,7 +779,7 @@ export default {
 
       //const t = this;
       axios
-        .get(window.XAPI.GET_SHOP_BLOGS(this.shop_name), {
+        .get(window.XAPI.GET_SHOP_BLOGS(this.$shop.name), {
           params: {
             extra: need_extra, // Load full data (latest, popular & ...)
 

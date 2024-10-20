@@ -69,8 +69,7 @@
         </s-widget-header>
 
         <v-list-subheader>
-          {{$t('user_profile.my_profile.subtitle')}}
-
+          {{ $t("user_profile.my_profile.subtitle") }}
         </v-list-subheader>
 
         <u-text-value-dashed>
@@ -224,25 +223,19 @@
       <v-list-subheader>
         {{
           isSubscribed
-            ?  $t("user_profile.subscribe_status.subscribed")
-              : $t("user_profile.subscribe_status.unsubscribed")
+            ? $t("user_profile.subscribe_status.subscribed")
+            : $t("user_profile.subscribe_status.unsubscribed")
         }}
       </v-list-subheader>
     </div>
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Club ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div v-if="club" class="widget-box mb-5">
-
-      <s-widget-header
-          :title="$t('global.commons.club')"
-          icon="groups"
-
-      >
+      <s-widget-header :title="$t('global.commons.club')" icon="groups">
       </s-widget-header>
 
       <v-list-subheader>
-        {{$t("user_profile.my_club.subtitle")}}
-
+        {{ $t("user_profile.my_club.subtitle") }}
       </v-list-subheader>
       <div class="text-center">
         <img
@@ -271,16 +264,13 @@
             <small class="d-block">{{
               $t("user_profile.club_table.limit")
             }}</small>
-            <u-price
-              :amount="club.limit"
-              :currency="club.currency"
-            ></u-price>
+            <u-price :amount="club.limit" :currency="club.currency"></u-price>
           </div>
 
           <div v-if="club.free_shipping" class="flex-grow-1">
             <small class="d-block">{{
-                $t("user_profile.club_table.free_shipping")
-              }}</small>
+              $t("user_profile.club_table.free_shipping")
+            }}</small>
             <v-icon color="success" size="small"
               >fa:fas fa-shipping-fast
             </v-icon>
@@ -302,8 +292,7 @@
       >
       </s-widget-header>
       <v-list-subheader>
-        {{$t("user_profile.kyc.subtitle")}}
-
+        {{ $t("user_profile.kyc.subtitle") }}
       </v-list-subheader>
 
       <u-text-value-dashed>
@@ -340,7 +329,6 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Leave ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5" style="border-top: red solid 4px">
-
       <p class="text-start text-subtitle-2">
         <v-icon class="me-1">report_problem</v-icon>
         {{ $t("user_profile.leave_shop") }}
@@ -371,7 +359,10 @@
 
         <v-card-text v-if="clone_customer">
           <div class="widget-box mb-5">
-            <s-widget-header :title="$t('user_profile.my_profile.title')" icon="perm_identity">
+            <s-widget-header
+              :title="$t('user_profile.my_profile.title')"
+              icon="perm_identity"
+            >
             </s-widget-header>
 
             <v-text-field
@@ -481,7 +472,6 @@ import SWidgetHeader from "@selldone/components-vue/ui/widget/header/SWidgetHead
 import UDateInput from "@selldone/components-vue/ui/date/input/UDateInput.vue";
 import UCurrencyInput from "@selldone/components-vue/ui/currency/input/UCurrencyInput.vue";
 import SCountrySelect from "@selldone/components-vue/ui/country/select/SCountrySelect.vue";
-import UTelInput from "@selldone/components-vue/ui/tel-input/UTelInput.vue";
 
 export default {
   name: "StorefrontPageUserProfile",
@@ -493,6 +483,7 @@ export default {
     UCurrencyInput,
     SCountrySelect,
   },
+  inject: ["$shop"],
   props: {
     shop: {
       require: true,
@@ -523,9 +514,9 @@ export default {
       return this.USER().customer;
     },
 
-    club(){
-      return this.getClub()
-    }
+    club() {
+      return this.getClub();
+    },
   },
   methods: {
     showEditProfile() {
@@ -540,7 +531,7 @@ export default {
         this.$t("user_profile.leave_dialog.action"),
         () => {
           axios
-            .post(window.XAPI.POST_LEAVE_SHOP(this.shop_name))
+            .post(window.XAPI.POST_LEAVE_SHOP(this.$shop.name))
             .then(({ data }) => {
               if (!data.error) {
                 this.showSuccessAlert(
@@ -563,7 +554,7 @@ export default {
       this.busy_subscribe = true;
       let subscribe = !this.isSubscribed;
       axios
-        .post(window.XAPI.POST_SUBSCRIBE(this.shop_name), {
+        .post(window.XAPI.POST_SUBSCRIBE(this.$shop.name), {
           subscribe: subscribe,
         })
         .then(({ data }) => {
@@ -593,7 +584,7 @@ export default {
 
       axios
         .post(
-          window.XAPI.POST_SAVE_MY_CUSTOMER_PROFILE(this.shop_name),
+          window.XAPI.POST_SAVE_MY_CUSTOMER_PROFILE(this.$shop.name),
           this.clone_customer,
         )
         .then(({ data }) => {

@@ -21,27 +21,22 @@
       >
       </s-widget-header>
 
-      <v-list-subheader>{{$t('return_requests.subtitle')}}</v-list-subheader>
+      <v-list-subheader>{{ $t("return_requests.subtitle") }}</v-list-subheader>
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Return requests  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
-      <s-order-return-requests :shop="shop" @select="handleSelected" />
+      <s-order-return-requests @select="handleSelected" />
     </div>
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import SOrderReturnRequests from "@app-storefront/components/orders/return-request/SOrderReturnRequests.vue";
 
 export default {
   name: "StorefrontPageUserReturns",
   components: { SOrderReturnRequests },
 
-  props: {
-    shop: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: {},
 
   data: function () {
     return {};

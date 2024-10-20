@@ -61,7 +61,6 @@
       page_bg,
     ]"
     class="s--shop blur-animate"
-    @keyup.ctrl="SwitchLanguage"
     :key="unique_key_shop"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -380,7 +379,7 @@ export default {
 
     this.EventBus.$on(EventName.FIREBASE_RECEIVE_MESSAGE, (payload) => {
       // Show only if user is being in shop:
-      if (payload.data.shop && payload.data.shop.name === this.shop_name) {
+      if (payload.data.shop && payload.data.shop.name === this.shop.name) {
         if (payload.notification) {
           const category =
             FirebaseNotificationCategories[payload.notification.tag];

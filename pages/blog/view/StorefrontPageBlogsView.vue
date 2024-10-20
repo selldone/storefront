@@ -31,8 +31,6 @@
 
     <article-viewer
       :article-type="article_type.code"
-      :shop="getShop()"
-      :shop-id="getShop().id"
       :target-id="$route.params.blog_id"
       auto-page-title
       class="blog-container p-3"
@@ -65,7 +63,7 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 import SShopLogin from "@selldone/components-vue/storefront/login/SShopLogin.vue";
 import { Article } from "@selldone/core-js";

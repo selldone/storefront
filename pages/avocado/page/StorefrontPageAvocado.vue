@@ -87,7 +87,12 @@
             min-height="72"
             style="max-width: 420px"
             size="x-large"
-            @click="()=>{add_mode = true;GoToTopPage()}"
+            @click="
+              () => {
+                add_mode = true;
+                GoToTopPage();
+              }
+            "
           >
             <v-icon start>shopping_bag</v-icon>
             {{ $t("avocado.add_new_order") }}
@@ -113,7 +118,6 @@
       <s-storefront-avocado-customer-order-form
         v-if="add_mode && open_avocado"
         :avocado="open_avocado"
-        :shop="shop"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
         @add="
@@ -145,7 +149,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SStorefrontAvocadoCustomerOrderList from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
 import SStorefrontAvocadoCustomerOrderForm from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";
 import { Avocado } from "@selldone/core-js";
@@ -156,6 +160,7 @@ export default {
     SStorefrontAvocadoCustomerOrderForm,
     SStorefrontAvocadoCustomerOrderList,
   },
+  inject: ["$shop"],
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Props Section
@@ -247,7 +252,7 @@ export default {
     getOpenAvocado() {
       this.busy = true;
       axios
-        .get(window.XAPI.GET_CUSTOMER_OPEN_AVOCADO(this.shop_name), {
+        .get(window.XAPI.GET_CUSTOMER_OPEN_AVOCADO(this.$shop.name), {
           params: { currency: this.GetUserSelectedCurrency().code },
         })
         .then(({ data }) => {
@@ -271,7 +276,7 @@ export default {
     fetchOrders() {
       this.busy_fetch = true;
       axios
-        .get(window.XAPI.GET_CUSTOMER_HISTORY_AVOCADOS(this.shop_name), {
+        .get(window.XAPI.GET_CUSTOMER_HISTORY_AVOCADOS(this.$shop.name), {
           params: {
             sortDesc: true,
             offset: (this.page - 1) * 5,

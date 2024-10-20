@@ -20,7 +20,6 @@
       <s-storefront-product-vendors-list
         v-if="bounds"
         :location-bounds="bounds"
-        :shop="shop"
         @fetch-vendors="onfetchVendors"
         @vendor-hover:enter="(p) => vendorHover(p, true)"
         @vendor-hover:leave="(p) => vendorHover(p, false)"
@@ -97,7 +96,6 @@
           <s-storefront-product-vendors-list
             v-if="bounds"
             :location-bounds="bounds"
-            :shop="shop"
             @fetch-vendors="onfetchVendors"
           ></s-storefront-product-vendors-list>
         </v-card-text>

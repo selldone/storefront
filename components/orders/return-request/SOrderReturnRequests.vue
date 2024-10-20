@@ -16,7 +16,7 @@
   <div>
     <u-loading-progress v-if="busy_fetch"></u-loading-progress>
     <v-data-table-server
-        :mobile="$vuetify.display.xs"
+      :mobile="$vuetify.display.xs"
       v-model:options="options"
       v-model:page="page"
       v-model:sort-by="sortBy"
@@ -143,7 +143,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VariantItemViewMicro from "@selldone/components-vue/storefront/product/variant/VariantItemViewMicro.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import { BasketItemReturn } from "@selldone/core-js";
@@ -151,13 +151,9 @@ import { BasketItemReturn } from "@selldone/core-js";
 export default {
   name: "SOrderReturnRequests",
   components: { VariantItemViewMicro },
+  inject: ["$shop"],
   emits: ["select"],
-  props: {
-    shop: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: {},
 
   data: function () {
     return {
@@ -248,7 +244,7 @@ export default {
       this.busy_fetch = true;
 
       axios
-        .get(this.window.XAPI.GET_MY_BASKET_ITEM_RETURNS(this.shop.name), {
+        .get(this.window.XAPI.GET_MY_BASKET_ITEM_RETURNS(this.$shop.name), {
           params: {
             offset: (page - 1) * this.itemsPerPage,
             limit: this.itemsPerPage,

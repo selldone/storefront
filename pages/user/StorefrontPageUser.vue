@@ -116,11 +116,7 @@
     </v-toolbar>
 
     <!-- ======================= Container ======================= -->
-    <router-view
-      :shop="shop"
-      class="overflow-hidden"
-      style="min-height: 60vh"
-    />
+    <router-view class="overflow-hidden" style="min-height: 60vh" />
   </v-card>
 </template>
 
@@ -129,11 +125,7 @@ import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin
 
 export default {
   name: "StorefrontPageUser",
-  props: {
-    shop: {
-      require: true,
-    },
-  },
+  props: {},
   mixins: [TemplateMixin],
 
   components: {},

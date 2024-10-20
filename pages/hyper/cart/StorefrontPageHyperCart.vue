@@ -113,7 +113,6 @@
       <s-hyper-cart
         v-if="add_mode && open_hyper"
         v-model:hyper="open_hyper"
-        :shop="shop"
         class="mx-auto my-16 fadeIn"
         style="max-width: 420px"
         @add="
@@ -143,7 +142,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SHyperCart from "@selldone/components-vue/storefront/hyper/cart/SHyperCart.vue";
 import SHyperOrders from "@selldone/components-vue/storefront/hyper/orders/SHyperOrders.vue";
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
@@ -156,7 +155,7 @@ export default {
     SHyperOrders,
     SHyperCart,
   },
-
+  inject: ["$shop"],
   props: {
     shop: {
       require: true,
@@ -217,7 +216,7 @@ export default {
       // console.log("*******************************************");
       this.busy = true;
       axios
-        .get(window.XAPI.GET_CUSTOMER_OPEN_HYPER(this.shop_name), {
+        .get(window.XAPI.GET_CUSTOMER_OPEN_HYPER(this.$shop.name), {
           params: { currency: this.GetUserSelectedCurrency().code },
         })
         .then(({ data }) => {

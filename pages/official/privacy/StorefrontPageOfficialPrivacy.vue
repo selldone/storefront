@@ -32,20 +32,20 @@
       </div>
 
       <s-cookie-preferences
-        :shop="shop"
         class="s--shadow-no-padding text-start my-16"
       ></s-cookie-preferences>
     </v-container>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
 import SCookiePreferences from "@selldone/components-vue/storefront/cookie/preferences/SCookiePreferences.vue";
 
 export default {
   name: "StorefrontPageOfficialPrivacy",
   components: { SCookiePreferences, SArticleEditor },
+  inject: ["$shop"],
   data: () => ({
     state: "editing",
     profile: null,
@@ -67,7 +67,7 @@ export default {
       this.busy = true;
 
       axios
-        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "privacy"))
+        .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "privacy"))
         .then(({ data }) => {
           if (data.error) return this.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;

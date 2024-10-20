@@ -34,12 +34,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
 
 export default {
   name: "StorefrontPageOfficialTerms",
   components: { SArticleEditor },
+  inject: ["$shop"],
   data: () => ({
     state: "editing",
     profile: null,
@@ -55,7 +56,7 @@ export default {
     fetchProfile() {
       this.busy = true;
       axios
-        .get(window.XAPI.GET_SHOP_PROFILE(this.shop_name, "terms"))
+        .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "terms"))
         .then(({ data }) => {
           if (data.error) return this.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;

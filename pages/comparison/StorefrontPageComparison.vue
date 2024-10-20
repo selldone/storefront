@@ -23,12 +23,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SComparisonList from "@selldone/components-vue/storefront/comparison/list/SComparisonList.vue";
 
 export default {
   name: "StorefrontPageComparison",
   components: { SComparisonList },
+
+  inject: ["$shop"],
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -118,7 +120,7 @@ export default {
       this.busy = true;
 
       axios
-        .get(window.XAPI.GET_PRODUCTS_LIST(this.shop_name), {
+        .get(window.XAPI.GET_PRODUCTS_LIST(this.$shop.name), {
           params: {
             list: product_ids,
           },

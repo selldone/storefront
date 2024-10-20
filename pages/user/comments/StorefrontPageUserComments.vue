@@ -73,7 +73,9 @@
                     <p class="font-weight-bold mt-2 mb-0">
                       {{ comment.product.title?.limitWords(12) }}
                     </p>
-                    <small>{{ comment.product.title_en?.limitWords(24) }}</small>
+                    <small>{{
+                      comment.product.title_en?.limitWords(24)
+                    }}</small>
                   </div>
 
                   <p
@@ -108,13 +110,15 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
 
 export default {
   name: "StorefrontPageUserComments",
   components: { SDataIteratorToolbar },
+
+  inject: ["$shop"],
   data: () => ({
     comments: [],
 
@@ -169,7 +173,7 @@ export default {
       this.busy_fetch = true;
 
       axios
-        .get(window.XAPI.GET_MY_COMMENTS(this.shop_name), {
+        .get(window.XAPI.GET_MY_COMMENTS(this.$shop.name), {
           params: {
             offset: (page - 1) * this.itemsPerPage,
             limit: this.itemsPerPage,
@@ -201,7 +205,6 @@ export default {
   cursor: pointer;
   background-color: #fff;
   text-align: start;
-
 
   p {
     margin: 2px;

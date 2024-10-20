@@ -63,7 +63,7 @@
                 :to="{
                   name: window.$storefront.routes.PRODUCT_PAGE,
                   params: {
-                    shop_name: shop_name,
+                    shop_name: $shop.name,
                     product_id: product.id,
                   },
                 }"
@@ -83,7 +83,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import _ from "lodash-es";
@@ -91,6 +91,7 @@ import _ from "lodash-es";
 export default {
   name: "StorefrontPageUserWishlist",
   components: { SDataIteratorToolbar, SShopProductCard },
+  inject: ["$shop"],
   data: () => ({
     products: [],
 

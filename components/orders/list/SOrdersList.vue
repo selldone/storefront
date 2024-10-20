@@ -261,6 +261,7 @@ export default {
     ReturnRequestButtonBadge,
     SOrderDeliveryStatusStepper,
   },
+  inject: ["$shop"],
   props: {
     type: {
       // Object (Basket) or String (POS)
@@ -463,7 +464,7 @@ export default {
       this.$router.push({
         name: this.order_detail_page,
         params: {
-          shop_name: this.shop_name,
+          shop_name: this.$shop.name,
           basket_id: selected.id,
         },
       });
@@ -474,7 +475,7 @@ export default {
       axios
         .get(
           window.XAPI.GET_MY_ORDERS_HISTORY_PHYSICAL(
-            this.shop_name,
+            this.$shop.name,
             this.isAvocado ? "AVO" : this.isPos ? "POS" : this.type.code,
           ),
           {

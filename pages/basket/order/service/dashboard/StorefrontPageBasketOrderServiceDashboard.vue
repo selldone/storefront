@@ -49,7 +49,6 @@
       <!-- Share order - Secure link generator -->
       <s-shop-share-order-button
         :basket="basket"
-        :shop="shop"
         class="me-5"
       ></s-shop-share-order-button>
     </v-toolbar>

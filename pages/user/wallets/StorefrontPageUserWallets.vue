@@ -43,7 +43,7 @@
           ></u-price>
         </template>
         <template v-slot:subtitle>
-          <div class="mt-1">{{$t('wallet_input.my_wallet_balance')}}</div>
+          <div class="mt-1">{{ $t("wallet_input.my_wallet_balance") }}</div>
         </template>
         <template v-slot:append>
           <u-currency-icon
@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ULoadingProgress from "@selldone/components-vue/ui/loading/progress/ULoadingProgress.vue";
 import UCurrencyIcon from "@selldone/components-vue/ui/currency/icon/UCurrencyIcon.vue";
 import UPrice from "@selldone/components-vue/ui/price/UPrice.vue";
@@ -69,6 +69,7 @@ export default {
 
     ULoadingProgress,
   },
+  inject: ["$shop"],
   props: {},
   data: () => ({
     wallets: [],
@@ -105,7 +106,7 @@ export default {
       this.busy_fetch = true;
 
       axios
-        .get(window.XAPI.GET_MY_WALLETS(this.shop_name))
+        .get(window.XAPI.GET_MY_WALLETS(this.$shop.name))
         .then(({ data }) => {
           if (data.error) {
             return this.showErrorAlert(null, data.error_msg);

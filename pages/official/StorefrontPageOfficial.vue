@@ -32,11 +32,11 @@
     </v-toolbar>
 
     <!-- ======================= Container ======================= -->
-    <router-view :shop="shop" class="mt-3" />
+    <router-view class="mt-3" />
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import UBreadcrumb from "@selldone/components-vue/ui/breadcrumb/UBreadcrumb.vue";
 import { SBusinessProfileBreadcrumbsHelper } from "@selldone/components-vue/storefront/business-profile/helper/SBusinessProfileBreadcrumbsHelper";
 
@@ -44,11 +44,7 @@ export default {
   name: "StorefrontPageOfficial",
   components: { UBreadcrumb },
 
-  props: {
-    shop: {
-      require: true,
-    },
-  },
+  props: {},
 
   data: function () {
     return {};
