@@ -33,24 +33,22 @@
     </v-app-bar>
 
     <v-container class="faq-container">
-      <s-widget-header :title="$t('global.faq.title')"></s-widget-header>
+      <s-widget-header
+        :title="$t('global.faq.title')"
+        :disabled="!USER()"
+        disabled-reason="Login to add a question"
+        :add-caption="$t('global.faq.add_question_action')"
+        @click:add="dialog_faq = true"
+      ></s-widget-header>
       <v-list-subheader>
         {{ $t("global.faq.message") }}
       </v-list-subheader>
 
-      <v-btn
-        v-if="USER()"
-        color="#8BC34A"
-        dark
-        variant="flat"
-        rounded
-        @click="dialog_faq = true"
-        @click.stop
-      >
-        {{ $t("global.faq.add_question_action") }}
-      </v-btn>
-
-      <u-loading-ellipsis v-if="!faqs.length && busy_fetch" css-mode light></u-loading-ellipsis>
+      <u-loading-ellipsis
+        v-if="!faqs.length && busy_fetch"
+        css-mode
+        light
+      ></u-loading-ellipsis>
 
       <v-fade-transition
         :class="{ blurred: busy_fetch }"
@@ -107,34 +105,42 @@
     </v-navigation-drawer>
 
     <!-- =================== Dialog =================== -->
-    <v-bottom-sheet v-model="dialog_faq" width="860" max-width="98vw">
-      <v-sheet class="p-2">
-        <p class="dialog-title">
-          <v-icon class="me-1"> fa:fas fa-question</v-icon>
+    <v-bottom-sheet
+      v-model="dialog_faq"
+      width="860"
+      max-width="98vw"
+      content-class="rounded-t-xl"
+    >
+      <v-card rounded="t-xl" class="text-start">
+        <v-card-title>
+          <v-icon class="me-2"> fa:fas fa-question</v-icon>
           {{ $t("global.faq.add_new") }}
-        </p>
-        <div class="p-2">
-          <v-text-field
+        </v-card-title>
+        <v-card-text>
+          <v-textarea
             v-model="question"
             :label="$t('global.faq.question_input')"
             :placeholder="$t('global.faq.question_input_placeholder')"
-            variant="filled"
-            rounded
+            variant="underlined"
+            auto-grow
           />
-
-          <v-btn
-            :class="{ disabled: !question }"
-            :loading="busy"
-            color="success"
-            dark
-            variant="flat"
-            size="large"
-            @click="sendFAQ"
-          >
-            {{ $t("global.actions.confirm") }}
-          </v-btn>
-        </div>
-      </v-sheet>
+        </v-card-text>
+        <v-card-actions>
+          <div class="widget-buttons">
+            <v-btn
+              :class="{ disabled: !question }"
+              :loading="busy"
+              color="primary"
+              size="x-large"
+              variant="elevated"
+              @click="sendFAQ"
+              prepend-icon="check"
+            >
+              {{ $t("global.actions.confirm") }}
+            </v-btn>
+          </div>
+        </v-card-actions>
+      </v-card>
     </v-bottom-sheet>
   </v-card>
 </template>

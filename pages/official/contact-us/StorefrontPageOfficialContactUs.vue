@@ -54,7 +54,7 @@
           icon="contact_mail"
         ></s-widget-header>
 
-        <div v-if="USER()" class="text-start d-flex my-4 align-items-center">
+        <div v-if="USER()" class="text-start d-flex mb-8 mt-5 align-items-center">
           <v-avatar
             v-if="USER().id"
             class="flex-grow-0 me-4 avatar-gradient -thin -user"
@@ -73,7 +73,8 @@
             v-model="name"
             :label="$t('contact_us_form.name')"
             :placeholder="$t('global.placeholders.name')"
-            class="max-width-field"
+            class="max-width-field mt-5" variant="outlined" persistent-placeholder
+
           />
 
           <v-text-field
@@ -82,7 +83,7 @@
             :placeholder="$t('global.placeholders.email')"
             :rules="[GlobalRules.required(), GlobalRules.email()]"
             class="max-width-field english-field"
-            prepend-inner-icon="email"
+            prepend-inner-icon="email" variant="outlined" persistent-placeholder
           />
 
           <v-text-field
@@ -90,7 +91,7 @@
             :label="$t('contact_us_form.phone')"
             :placeholder="$t('global.placeholders.phone')"
             class="max-width-field english-field"
-            prepend-inner-icon="phone"
+            prepend-inner-icon="phone" variant="outlined" persistent-placeholder
           />
         </div>
 
@@ -98,7 +99,7 @@
           v-model="message"
           :label="$t('contact_us_form.message')"
           :rules="[GlobalRules.required()]"
-          auto-grow
+          auto-grow variant="outlined" persistent-placeholder
         />
 
         <div class="widget-buttons">
@@ -126,11 +127,9 @@ import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue"
 export default {
   name: "StorefrontPageOfficialContactUs",
   components: { SArticleEditor },
+  inject: ["$shop"],
   props: {
-    shop: {
-      require: true,
-      type: Object,
-    },
+
   },
 
   data: () => ({
@@ -170,7 +169,7 @@ export default {
       this.busy = true;
 
       axios
-        .get(window.XAPI.GET_SHOP_PROFILE(this.shop.name, "contact-us"))
+        .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "contact-us"))
         .then(({ data }) => {
           if (data.error) return this.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;
@@ -190,7 +189,7 @@ export default {
       this.busy_send = true;
 
       axios
-        .post(window.XAPI.POST_CONTACT_US_FORM(this.shop.name), {
+        .post(window.XAPI.POST_CONTACT_US_FORM(this.$shop.name), {
           name: this.name,
           email: this.email,
           phone: this.phone,
