@@ -59,14 +59,14 @@
       <template v-if="customer">
         <hr class="my-4" />
 
-        <s-widget-header
+        <u-widget-header
           :title="$t('user_profile.my_profile.title')"
           icon="perm_identity"
           add-icon="edit"
           :add-caption="$t('user_profile.my_profile.edit_action')"
           @click:add="showEditProfile"
         >
-        </s-widget-header>
+        </u-widget-header>
 
         <v-list-subheader>
           {{ $t("user_profile.my_profile.subtitle") }}
@@ -231,8 +231,8 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Club ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div v-if="club" class="widget-box mb-5">
-      <s-widget-header :title="$t('global.commons.club')" icon="groups">
-      </s-widget-header>
+      <u-widget-header :title="$t('global.commons.club')" icon="groups">
+      </u-widget-header>
 
       <v-list-subheader>
         {{ $t("user_profile.my_club.subtitle") }}
@@ -282,7 +282,7 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ KYC ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box mb-5">
-      <s-widget-header
+      <u-widget-header
         :title="$t('user_profile.title')"
         icon="fingerprint"
         :href="kyc_url"
@@ -290,7 +290,7 @@
         :add-caption="$t('user_profile.edit_personal_info')"
         add-text
       >
-      </s-widget-header>
+      </u-widget-header>
       <v-list-subheader>
         {{ $t("user_profile.kyc.subtitle") }}
       </v-list-subheader>
@@ -359,11 +359,11 @@
 
         <v-card-text v-if="clone_customer">
           <div class="widget-box mb-5">
-            <s-widget-header
+            <u-widget-header
               :title="$t('user_profile.my_profile.title')"
               icon="perm_identity"
             >
-            </s-widget-header>
+            </u-widget-header>
 
             <v-text-field
               prepend-inner-icon="badge"
@@ -468,7 +468,7 @@ import { SetupService } from "@selldone/core-js/server/SetupService";
 import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
 import { MapHelper } from "@selldone/core-js";
 import UCurrencyIcon from "@selldone/components-vue/ui/currency/icon/UCurrencyIcon.vue";
-import SWidgetHeader from "@selldone/components-vue/ui/widget/header/SWidgetHeader.vue";
+import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHeader.vue";
 import UDateInput from "@selldone/components-vue/ui/date/input/UDateInput.vue";
 import UCurrencyInput from "@selldone/components-vue/ui/currency/input/UCurrencyInput.vue";
 import SCountrySelect from "@selldone/components-vue/ui/country/select/SCountrySelect.vue";
@@ -479,7 +479,7 @@ export default {
     UDateInput,
     UTextValueDashed,
     UCurrencyIcon,
-    SWidgetHeader,
+    UWidgetHeader,
     UCurrencyInput,
     SCountrySelect,
   },

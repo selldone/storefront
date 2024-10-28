@@ -17,13 +17,13 @@
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Add  ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
     <div class="widget-box -large mb-5">
-      <s-widget-header
+      <u-widget-header
         :title="$t('addresses_page.title')"
         icon="fmd_good"
         :add-caption="$t('addresses_page.new_action')"
         @click:add="showAdd"
         add-icon="add_location"
-      ></s-widget-header>
+      ></u-widget-header>
 
       <v-list-subheader>{{ $t("addresses_page.subtitle") }}</v-list-subheader>
 
@@ -175,13 +175,13 @@
 
 <script lang="ts">
 import UMapViewPin from "@selldone/components-vue/ui/map/view/market/UMapViewPin.vue";
-import SWidgetHeader from "@selldone/components-vue/ui/widget/header/SWidgetHeader.vue";
+import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHeader.vue";
 import { MapHelper } from "@selldone/core-js/helper";
 import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { UAvatarFolder, SWidgetHeader, UMapViewPin },
+  components: { UAvatarFolder, UWidgetHeader, UMapViewPin },
   data() {
     return {
       addresses: [],

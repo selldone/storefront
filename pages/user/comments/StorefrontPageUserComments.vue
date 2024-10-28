@@ -15,8 +15,8 @@
 <template>
   <v-container fluid>
     <div class="widget-box -x-large min-height-60vh">
-      <s-widget-header :title="$t('user_comments.title')" icon="chat_bubble">
-      </s-widget-header>
+      <u-widget-header :title="$t('user_comments.title')" icon="chat_bubble">
+      </u-widget-header>
 
       <u-loading-progress v-if="busy_fetch"></u-loading-progress>
 

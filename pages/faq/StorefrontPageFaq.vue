@@ -33,13 +33,13 @@
     </v-app-bar>
 
     <v-container class="faq-container">
-      <s-widget-header
+      <u-widget-header
         :title="$t('global.faq.title')"
         :disabled="!USER()"
         disabled-reason="Login to add a question"
         :add-caption="$t('global.faq.add_question_action')"
         @click:add="dialog_faq = true"
-      ></s-widget-header>
+      ></u-widget-header>
       <v-list-subheader>
         {{ $t("global.faq.message") }}
       </v-list-subheader>

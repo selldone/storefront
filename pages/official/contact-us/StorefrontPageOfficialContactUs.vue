@@ -49,10 +49,10 @@
         </div>
       </div>
       <div v-else>
-        <s-widget-header
+        <u-widget-header
           :title="$t('contact_us_form.title')"
           icon="contact_mail"
-        ></s-widget-header>
+        ></u-widget-header>
 
         <div v-if="USER()" class="text-start d-flex mb-8 mt-5 align-items-center">
           <v-avatar

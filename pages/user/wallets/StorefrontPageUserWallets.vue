@@ -15,10 +15,10 @@
 <template>
   <div v-bind="$attrs" class="py-10">
     <div class="widget-box -large mb-5 min-height-50vh">
-      <s-widget-header
+      <u-widget-header
         icon="wallet"
         :title="$t('user_wallets.title')"
-      ></s-widget-header>
+      ></u-widget-header>
       <v-list-subheader>
         {{ $t("user_wallets.subtitle") }}
       </v-list-subheader>
