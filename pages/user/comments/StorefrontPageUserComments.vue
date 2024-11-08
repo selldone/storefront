@@ -112,7 +112,7 @@
 
 <script lang="ts">
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
 
 export default {
   name: "StorefrontPageUserComments",
@@ -158,7 +158,7 @@ export default {
       deep: true,
     },
 
-    search: _.throttle(function () {
+    search: throttle(function () {
       const { sortBy, sortDesc } = this.options;
       this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order === "desc");
     }, window.SERACH_THROTTLE),

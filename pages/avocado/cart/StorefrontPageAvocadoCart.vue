@@ -264,10 +264,12 @@ import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 import { Avocado, AvocadoItem, Basket } from "@selldone/core-js";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageAvocadoCart",
   components: {
+    ULoadingEllipsis,
     SShopAvocadoCustomerOrderItems,
     SOrderDeliveryStatusStepper,
     UStamp,

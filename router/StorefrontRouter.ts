@@ -15,160 +15,189 @@
 
 import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import store from "../store/StorefrontStore";
-import StorefrontLayout from "../layouts/StorefrontLayout.vue";
 
-//――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
-import StorefrontPageProducts from "../pages/products/StorefrontPageProducts.vue";
-
-import StorefrontPageProduct from "../pages/product/StorefrontPageProduct.vue";
-
-//――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
-import StorefrontPageBasketCart from "@app-storefront/pages/basket/cart/StorefrontPageBasketCart.vue";
-//――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
-import StorefrontPageLoginRedirect from "../pages/login/redirect/StorefrontPageLoginRedirect.vue";
-import StorefrontPageComparison from "../pages/comparison/StorefrontPageComparison.vue";
-import StorefrontPageUser from "@app-storefront/pages/user/StorefrontPageUser.vue";
-import StorefrontPageUserProfile from "../pages/user/profile/StorefrontPageUserProfile.vue";
-import StorefrontUserAddresses from "@app-storefront/pages/user/addresses/StorefrontUserAddresses.vue";
-import StorefrontPageUserWishlist from "@app-storefront/pages/user/wishlist/StorefrontPageUserWishlist.vue";
-import StorefrontPageUserComments from "@app-storefront/pages/user/comments/StorefrontPageUserComments.vue";
-import StorefrontPageUserGiftcards from "@app-storefront/pages/user/giftcards/StorefrontPageUserGiftcards.vue";
-import StorefrontPageOfficialAboutUs from "@app-storefront/pages/official/about-us/StorefrontPageOfficialAboutUs.vue";
-import StorefrontPageOfficialTerms from "../pages/official/terms/StorefrontPageOfficialTerms.vue";
-import StorefrontPageOfficialPrivacy from "../pages/official/privacy/StorefrontPageOfficialPrivacy.vue";
-import StorefrontPageOfficial from "../pages/official/StorefrontPageOfficial.vue";
-import StorefrontPageBlogsView from "../pages/blog/view/StorefrontPageBlogsView.vue";
-import StorefrontPageBlogsList from "../pages/blog/list/StorefrontPageBlogsList.vue";
-import StorefrontPageFaq from "@app-storefront/pages/faq/StorefrontPageFaq.vue";
-import StorefrontPageOfficialContactUs from "@app-storefront/pages/official/contact-us/StorefrontPageOfficialContactUs.vue";
-
-import StorefrontPageInfo from "@app-storefront/pages/info/StorefrontPageInfo.vue";
 import {ShopOptionsHelper} from "@selldone/core-js/helper/shop/ShopOptionsHelper";
 import {SetupService} from "@selldone/core-js/server/SetupService";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRoutesName";
 import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName";
-import StorefrontPageError404 from "@app-storefront/pages/errors/404/StorefrontPageError404.vue";
-import LandingRender from "@selldone/page-builder/LandingRender.vue";
-import StorefrontPageUserWallets from "@app-storefront/pages/user/wallets/StorefrontPageUserWallets.vue";
+
+//――――――――――――――――――――――――― Layout ―――――――――――――――――――――――――
+
+import StorefrontLayout from "../layouts/StorefrontLayout.vue";
+const StorefrontPageLanding = () =>
+    import( "@app-storefront/pages/landing/StorefrontPageLanding.vue");
+//――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
+const StorefrontPageProducts = () =>
+    import( "../pages/products/StorefrontPageProducts.vue");
+
+const StorefrontPageProduct = () =>
+    import( "../pages/product/StorefrontPageProduct.vue");
+
+//――――――――――――――――――――――――― Basket ―――――――――――――――――――――――――
+const StorefrontPageBasketCart = () =>
+    import( "@app-storefront/pages/basket/cart/StorefrontPageBasketCart.vue");
+
+//――――――――――――――――――――――――― Article ―――――――――――――――――――――――――
+const StorefrontPageLoginRedirect = () =>
+    import( "../pages/login/redirect/StorefrontPageLoginRedirect.vue");
+const StorefrontPageComparison = () =>
+    import( "../pages/comparison/StorefrontPageComparison.vue");
+const StorefrontPageUser = () =>
+    import( "@app-storefront/pages/user/StorefrontPageUser.vue");
+const StorefrontPageUserProfile = () =>
+    import( "../pages/user/profile/StorefrontPageUserProfile.vue");
+const StorefrontUserAddresses = () =>
+    import( "@app-storefront/pages/user/addresses/StorefrontUserAddresses.vue");
+const StorefrontPageUserWishlist = () =>
+    import( "@app-storefront/pages/user/wishlist/StorefrontPageUserWishlist.vue");
+const StorefrontPageUserComments = () =>
+    import( "@app-storefront/pages/user/comments/StorefrontPageUserComments.vue");
+const StorefrontPageUserGiftcards = () =>
+    import( "@app-storefront/pages/user/giftcards/StorefrontPageUserGiftcards.vue");
+const StorefrontPageOfficialAboutUs = () =>
+    import( "@app-storefront/pages/official/about-us/StorefrontPageOfficialAboutUs.vue");
+const StorefrontPageOfficialTerms = () =>
+    import( "../pages/official/terms/StorefrontPageOfficialTerms.vue");
+const StorefrontPageOfficialPrivacy = () =>
+    import( "../pages/official/privacy/StorefrontPageOfficialPrivacy.vue");
+const StorefrontPageOfficial = () =>
+    import( "../pages/official/StorefrontPageOfficial.vue");
+const StorefrontPageBlogsView = () =>
+    import( "../pages/blog/view/StorefrontPageBlogsView.vue");
+const StorefrontPageBlogsList = () =>
+    import( "../pages/blog/list/StorefrontPageBlogsList.vue");
+const StorefrontPageFaq = () =>
+    import("@app-storefront/pages/faq/StorefrontPageFaq.vue");
+const StorefrontPageOfficialContactUs = () =>
+    import( "@app-storefront/pages/official/contact-us/StorefrontPageOfficialContactUs.vue");
+
+const StorefrontPageInfo = () =>
+    import( "@app-storefront/pages/info/StorefrontPageInfo.vue");
+const StorefrontPageError404 = () =>
+    import( "@app-storefront/pages/errors/404/StorefrontPageError404.vue");
+
+const StorefrontPageUserWallets = () =>
+    import( "@app-storefront/pages/user/wallets/StorefrontPageUserWallets.vue");
+
 
 //――――――――――――――――――――――――― Orders ―――――――――――――――――――――――――
 
 const StorefrontPageUserOrders = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/user/orders/StorefrontPageUserOrders.vue"
+    "../pages/user/orders/StorefrontPageUserOrders.vue"
   );
 const StorefrontPageBasketOrderPhysicalDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/physical/dashbaord/StorefrontPageBasketOrderPhysicalDashboard.vue"
+    "@app-storefront/pages/basket/order/physical/dashbaord/StorefrontPageBasketOrderPhysicalDashboard.vue"
   );
 const StorefrontPageBasketOrderVirtualDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/virtual/dashboard/StorefrontPageBasketOrderVirtualDashboard.vue"
+    "@app-storefront/pages/basket/order/virtual/dashboard/StorefrontPageBasketOrderVirtualDashboard.vue"
   );
 const StorefrontPageAvocadoOrderDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/avocado/order/dashboard/StorefrontPageAvocadoOrderDashboard.vue"
+    "../pages/avocado/order/dashboard/StorefrontPageAvocadoOrderDashboard.vue"
   );
 const StorefrontPageAvocadoOrder = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/avocado/order/StorefrontPageAvocadoOrder.vue"
+    "@app-storefront/pages/avocado/order/StorefrontPageAvocadoOrder.vue"
   );
 const StorefrontPageBasketOrderServiceDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/service/dashboard/StorefrontPageBasketOrderServiceDashboard.vue"
+    "@app-storefront/pages/basket/order/service/dashboard/StorefrontPageBasketOrderServiceDashboard.vue"
   );
 const StorefrontPageBasketOrderSubscriptionDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "../pages/basket/order/subscription/dashboard/StorefrontPageBasketOrderSubscriptionDashboard.vue"
+    "../pages/basket/order/subscription/dashboard/StorefrontPageBasketOrderSubscriptionDashboard.vue"
   );
 
 const StorefrontPagePosOrderDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/pos/order/dashboard/StorefrontPagePosOrderDashboard.vue"
+    "@app-storefront/pages/pos/order/dashboard/StorefrontPagePosOrderDashboard.vue"
   );
 const SStorefrontPOSOrderDetailMasterLayout = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/pos/order/StorefrontPagePosOrder.vue"
+    "@app-storefront/pages/pos/order/StorefrontPagePosOrder.vue"
   );
 const StorefrontPageBasketOrderFileDashboard = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/file/dashboard/StorefrontPageBasketOrderFileDashboard.vue"
+    "@app-storefront/pages/basket/order/file/dashboard/StorefrontPageBasketOrderFileDashboard.vue"
   );
 const StorefrontPageBasketOrder = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/basket/order/StorefrontPageBasketOrder.vue"
+    "@app-storefront/pages/basket/order/StorefrontPageBasketOrder.vue"
   );
 const StorefrontPageUserOrdersAvocado = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/avocado/StorefrontPageUserOrdersAvocado.vue"
+    "@app-storefront/pages/user/orders/avocado/StorefrontPageUserOrdersAvocado.vue"
   );
 const StorefrontPageUserOrdersPhysical = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/physical/StorefrontPageUserOrdersPhysical.vue"
+    "@app-storefront/pages/user/orders/physical/StorefrontPageUserOrdersPhysical.vue"
   );
 const StorefrontPageUserOrdersVirtual = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/virtual/StorefrontPageUserOrdersVirtual.vue"
+    "@app-storefront/pages/user/orders/virtual/StorefrontPageUserOrdersVirtual.vue"
   );
 const StorefrontPageUserOrdersFile = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/file/StorefrontPageUserOrdersFile.vue"
+    "@app-storefront/pages/user/orders/file/StorefrontPageUserOrdersFile.vue"
   );
 const StorefrontPageUserOrdersService = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/service/StorefrontPageUserOrdersService.vue"
+    "@app-storefront/pages/user/orders/service/StorefrontPageUserOrdersService.vue"
   );
 
 const StorefrontPageUserOrdersSubscription = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/subscription/StorefrontPageUserOrdersSubscription.vue"
+    "@app-storefront/pages/user/orders/subscription/StorefrontPageUserOrdersSubscription.vue"
   );
 
 const StorefrontPageUserOrdersPos = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/orders/pos/StorefrontPageUserOrdersPos.vue"
+    "@app-storefront/pages/user/orders/pos/StorefrontPageUserOrdersPos.vue"
   );
 
 const StorefrontPageUserReturns = () =>
   import(
-    /* webpackChunkName: "shop-profile" */ "@app-storefront/pages/user/returns/StorefrontPageUserReturns.vue"
+    "@app-storefront/pages/user/returns/StorefrontPageUserReturns.vue"
   );
 
 //――――――――――――――――――――――――― Insta ―――――――――――――――――――――――――
 
 const StorefrontPageInstagram = () =>
   import(
-    /* webpackChunkName: "shop-insta" */ "../pages/instagram/StorefrontPageInstagram.vue"
+     "../pages/instagram/StorefrontPageInstagram.vue"
   );
 
 //――――――――――――――――――――――――― Avocado ―――――――――――――――――――――――――
 
 const StorefrontPageAvocadoCart = () =>
   import(
-    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/cart/StorefrontPageAvocadoCart.vue"
+     "../pages/avocado/cart/StorefrontPageAvocadoCart.vue"
   );
 const StorefrontPageAvocado = () =>
   import(
-    /* webpackChunkName: "shop-avocado" */ "../pages/avocado/page/StorefrontPageAvocado.vue"
+     "../pages/avocado/page/StorefrontPageAvocado.vue"
   );
 
 //――――――――――――――――――――――――― Hyper ―――――――――――――――――――――――――
 
 const StorefrontPageHyperOrder = () =>
   import(
-    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/order/StorefrontPageHyperOrder.vue"
+     "../pages/hyper/order/StorefrontPageHyperOrder.vue"
   );
 const StorefrontPageHyperCart = () =>
   import(
-    /* webpackChunkName: "shop-hyper" */ "../pages/hyper/cart/StorefrontPageHyperCart.vue"
+     "../pages/hyper/cart/StorefrontPageHyperCart.vue"
   );
 
 //――――――――――――――――――――――――― POS ―――――――――――――――――――――――――
 
 const SStorefrontPOSPage = () =>
   import(
-    /* webpackChunkName: "shop-pos" */ "../pages/pos/cart/SStorefrontPOSPage.vue"
+     "../pages/pos/cart/SStorefrontPOSPage.vue"
   );
 
 //――――――――――――――――――――――――― Custom Home Page ―――――――――――――――――――――――――
@@ -183,42 +212,42 @@ const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
 
 const CLayout = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/layout/CLayout.vue"
+     "@selldone/components-vue/community/layout/CLayout.vue"
   );
 
 const CommunityHomePage = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/home/CommunityHomePage.vue"
+     "@selldone/components-vue/community/pages/home/CommunityHomePage.vue"
   );
 
 const CommunityCategoryPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/category/CommunityCategoryPage.vue"
+     "@selldone/components-vue/community/pages/category/CommunityCategoryPage.vue"
   );
 
 const CommunityTopicPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/topic/CommunityTopicPage.vue"
+     "@selldone/components-vue/community/pages/topic/CommunityTopicPage.vue"
   );
 
 const CommunityFeedPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/feed/CommunityFeedPage.vue"
+     "@selldone/components-vue/community/pages/feed/CommunityFeedPage.vue"
   );
 
 const CommunityMyCommentsPage = () =>
   import(
-    /* webpackChunkName: "community" */ "@selldone/components-vue/community/pages/my-comments/CommunityMyCommentsPage.vue"
+     "@selldone/components-vue/community/pages/my-comments/CommunityMyCommentsPage.vue"
   );
 
 //――――――――――――――――――――――――― Map ―――――――――――――――――――――――――
 const StorefrontPageMapProducts = () =>
   import(
-    /* webpackChunkName: "shop-map" */ "../pages/map/products/StorefrontPageMapProducts.vue"
+     "../pages/map/products/StorefrontPageMapProducts.vue"
   );
 const StorefrontPageMapVendors = () =>
   import(
-    /* webpackChunkName: "shop-map" */ "../pages/map/vendors/StorefrontPageMapVendors.vue"
+     "../pages/map/vendors/StorefrontPageMapVendors.vue"
   );
 
 function getRouteForHome(): IVueRoute {
@@ -290,7 +319,7 @@ function getRouteForHome(): IVueRoute {
         return {
           path: "",
           name: StorefrontRoutesName.CUSTOM_HOME_PAGE, // Landing page loader!
-          component: LandingRender,
+          component: StorefrontPageLanding,
           meta: {
             fullscreen: true,
           },
@@ -364,7 +393,7 @@ const routes: IVueRoute[] = [
       {
         path: "/vendor/@:slug-:vendor_id(\\d+)",
         name: StorefrontRoutesName.SHOP_VENDOR_CUSTOM_LANDING_PAGE,
-        component: LandingRender,
+        component: StorefrontPageLanding,
         meta: {
           fullscreen: true,
 
@@ -376,7 +405,7 @@ const routes: IVueRoute[] = [
       {
         path: "pages/:page_name",
         name: StorefrontRoutesName.PAGE_RENDER,
-        component: LandingRender,
+        component: StorefrontPageLanding,
         meta: {
           fullscreen: true,
         },
@@ -387,7 +416,7 @@ const routes: IVueRoute[] = [
       {
         path: "in/:path-:include_id(\\d+)",
         name: StorefrontRoutesName.INCLUDE_PAGE_RENDER,
-        component: LandingRender,
+        component: StorefrontPageLanding,
         meta: {
           fullscreen: true,
         },

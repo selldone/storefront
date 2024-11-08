@@ -174,14 +174,13 @@
 </template>
 
 <script lang="ts">
-import UMapViewPin from "@selldone/components-vue/ui/map/view/market/UMapViewPin.vue";
 import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHeader.vue";
 import { MapHelper } from "@selldone/core-js/helper";
 import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { UAvatarFolder, UWidgetHeader, UMapViewPin },
+  components: { UAvatarFolder, UWidgetHeader },
   data() {
     return {
       addresses: [],

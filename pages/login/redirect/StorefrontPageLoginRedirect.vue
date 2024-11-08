@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import _ from "lodash-es";
+import { delay } from "lodash-es";
 
 export default {
   name: "StorefrontPageLoginRedirect",
@@ -54,7 +54,7 @@ export default {
 
     let path = sessionStorage.getItem("after-login-path");
 
-    _.delay(() => {
+    delay(() => {
       if (path) {
         sessionStorage.removeItem("after-login-path");
         this.$router.push({ path: path });

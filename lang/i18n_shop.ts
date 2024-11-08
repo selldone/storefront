@@ -31,10 +31,15 @@ export const i18n = createI18n({
   messages, // Locale messages
   silentTranslationWarn: true, // Suppress warnings when falling back to either fallbackLocale or root
   returnNull: true, // Configuration to allow null values as valid translations
+
+  missingWarn: false, // Disable missing key warnings
+  fallbackWarn: false, // Disable fallback warnings
+  warnHtmlMessage: false, // Disable warnings for translations containing HTML (Make sure to sanitize translations)
 });
 
 // Extend the window object with a global translation function for convenience
 window.$t = i18n.global.t;
+window.$tm = i18n.global.tm;
 
 // ---------------- Async Language Loading ----------------
 

@@ -187,11 +187,13 @@ import SProductsListing from "@selldone/components-vue/storefront/products/listi
 import UMapAddressInput from "@selldone/components-vue/ui/map/address/input/UMapAddressInput.vue";
 import UTextCopyBox from "@selldone/components-vue/ui/text/copy-box/UTextCopyBox.vue";
 import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
-import _ from "lodash-es";
+import { debounce, delay } from "lodash-es";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageMapProducts",
   components: {
+    ULoadingEllipsis,
     SShopProductCard,
     UTextCopyBox,
     UMapAddressInput,
@@ -256,7 +258,7 @@ export default {
 
   mounted() {
     // Make sure all animation ends:
-    _.delay(() => {
+    delay(() => {
       this.initialize();
     }, 1000);
   },
@@ -354,7 +356,7 @@ export default {
       });
 
       // Define the debounced function
-      const debouncedUpdate = _.debounce(() => {
+      const debouncedUpdate = debounce(() => {
         this.center = this.map_box.getCenter();
         const b = this.map_box.getBounds();
         this.bounds = [b._ne.lng, b._ne.lat, b._sw.lng, b._sw.lat];

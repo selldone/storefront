@@ -248,12 +248,14 @@ import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Avocado, Basket } from "@selldone/core-js";
 import SOrderChatMessage from "@selldone/components-vue/storefront/order/chat/message/SOrderChatMessage.vue";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "SOrdersList",
   mixins: [RouteMixin],
 
   components: {
+    ULoadingEllipsis,
     SOrderChatMessage,
     SOrderReceiverInfoCard,
     SOrderStatusView,

@@ -557,7 +557,7 @@
 <script lang="ts">
 import SBlogCard from "@selldone/components-vue/storefront/blog/card/SBlogCard.vue";
 import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import SBlogRow from "@app-storefront/components/blog/row/SBlogRow.vue";
 
@@ -741,7 +741,7 @@ export default {
       );
     },
 
-    search: _.throttle(function () {
+    search: throttle(function () {
       this.fetchBlogs(1, false);
     }, window.SERACH_THROTTLE),
   },

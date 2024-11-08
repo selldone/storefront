@@ -90,12 +90,13 @@ import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/ord
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Basket } from "@selldone/core-js";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageBasketOrder",
   mixins: [RouteMixin],
 
-  components: { SOrderDeliveryStatusStepper },
+  components: {ULoadingEllipsis, SOrderDeliveryStatusStepper },
   inject: ["$shop"],
   props: {},
 

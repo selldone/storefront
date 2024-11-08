@@ -871,7 +871,7 @@ import BillingPeriod from "@selldone/core-js/enums/subscription/BillingPeriod";
 import SShopConnectShippingOptions from "@selldone/components-vue/storefront/order/shipping/connect/SShopConnectShippingOptions.vue";
 import { ETA } from "@selldone/core-js/enums/logistic/ETA";
 import { ShadeColor } from "@selldone/core-js/helper/color/ColorGenerator";
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
 import UPaymentStripeSplit from "@selldone/components-vue/ui/payment/stripe/split/UPaymentStripeSplit.vue";
 import { BasketHelper } from "@selldone/core-js/helper/shop/BasketHelper";
 import SOrderShippingVendorsOptions from "@selldone/components-vue/storefront/order/shipping/vendor/SOrderShippingVendorsOptions.vue";
@@ -1459,7 +1459,7 @@ export default {
       this.PENDING_UPDATE = true;
       this.setBasketConfigThrottle();
     },
-    setBasketConfigThrottle: _.throttle(
+    setBasketConfigThrottle: throttle(
       function setBasketConfig() {
         this.PENDING_UPDATE = false;
 

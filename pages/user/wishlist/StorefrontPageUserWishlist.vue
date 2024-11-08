@@ -86,7 +86,7 @@
 <script lang="ts">
 import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
 
 export default {
   name: "StorefrontPageUserWishlist",
@@ -135,7 +135,7 @@ export default {
       deep: true,
     },
 
-    search: _.throttle(function () {
+    search: throttle(function () {
       //   console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
       this.fetchData(1, sortBy[0]?.key, sortBy[0]?.order === "desc");

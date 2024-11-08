@@ -146,11 +146,12 @@
 </template>
 
 <script>
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageFaq",
-  components: {},
+  components: {ULoadingEllipsis},
   props: {
     shop: {
       require: true,
@@ -191,7 +192,7 @@ export default {
       this.offset = 0;
       this.fetchFAQData();
     },
-    search: _.throttle(function (newVal) {
+    search: throttle(function (newVal) {
       this.page = 1;
       this.fetchFAQData(newVal);
     }, window.SERACH_THROTTLE),

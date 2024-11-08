@@ -113,7 +113,12 @@
       scrollable
     >
       <v-card class="text-start position-relative" color="#111" rounded="0">
-        <v-btn class="absolute-top-end" icon variant="text" @click="share_sheet = false">
+        <v-btn
+          class="absolute-top-end"
+          icon
+          variant="text"
+          @click="share_sheet = false"
+        >
           <v-icon>close</v-icon>
         </v-btn>
 
@@ -183,11 +188,12 @@ import { SetupService } from "@selldone/core-js/server/SetupService";
 import UMapAddressInput from "@selldone/components-vue/ui/map/address/input/UMapAddressInput.vue";
 import UTextCopyBox from "@selldone/components-vue/ui/text/copy-box/UTextCopyBox.vue";
 import SStorefrontProductVendorsList from "@selldone/components-vue/storefront/product/vendors/SStorefrontProductVendorsList.vue";
-import _ from "lodash-es";
+import { delay } from "lodash-es";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageMapVendors",
-  components: { SStorefrontProductVendorsList, UTextCopyBox, UMapAddressInput },
+  components: {ULoadingEllipsis, SStorefrontProductVendorsList, UTextCopyBox, UMapAddressInput },
 
   data() {
     return {
@@ -244,7 +250,7 @@ export default {
 
   mounted() {
     // Make sure all animation ends:
-    _.delay(() => {
+    delay(() => {
       this.initialize();
     }, 1000);
   },

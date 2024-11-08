@@ -16,13 +16,15 @@
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 import "@selldone/core-js/utils/service-worker/registerServiceWorker"; // Register service worker:
-import {createApp} from "vue";
+import {createApp, ref} from "vue";
 import StorefrontApp from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@selldone/core-js/enums/language/Language";
-import {ApplicationExecutorStorefront} from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
+import {
+  ApplicationExecutorStorefront
+} from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
 import {StorefrontSDK} from "@selldone/sdk-storefront";
 import StorefrontMixin from "./mixin/StorefrontMixin";
 import {CapiCommunity} from "@selldone/sdk-community"; // Register the service worker.
@@ -31,15 +33,12 @@ import {VuetifyInstance} from "@selldone/components-vue/plugins/vuetify/vuetify"
 //―――――――――――― Selldone® Components ――――――――――――
 //█████████████████████████████████████████████████████████████
 import {createComponents} from "@selldone/components-vue/components";
-import {SetupPageBuilder} from "@selldone/page-builder";
-
-const vuetify = VuetifyInstance(i18n);
 // Load fonts:
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
 import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
 import "./style/fonts/lang-fa/lang-fa-iransans.css"; // Add custom font
 
-
+const vuetify = VuetifyInstance(i18n);
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
@@ -94,10 +93,9 @@ CapiCommunity.Setup(); // Setup community.
 window.SetToken = function (
   token: string,
   expire_date: Date | null = null,
-  cookie_key:string='access_token'
+  cookie_key: string = "access_token",
 ): void {
-  console.log("Set Customer Token!" );
-
+  console.log("Set Customer Token!");
 
   window.$cookies.set(
     cookie_key,
@@ -133,10 +131,19 @@ app.use(router);
 app.use(store);
 app.use(vuetify);
 
+
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
-SetupPageBuilder(app, { mode: "view" });
+app.config.globalProperties.$isBuilderInstalled = ref(false); // Set a global property
+async function initializePageBuilder(app) {
+  console.log("Initializing Page Builder...");
+
+  const { SetupPageBuilder } = await import("@selldone/page-builder");
+  SetupPageBuilder(app, { mode: "view" });
+}
 
 
 // Mount the application
 const storefrontVueApp = app.mount("#app");
+
+initializePageBuilder(app);
 

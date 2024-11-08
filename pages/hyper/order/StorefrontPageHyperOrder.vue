@@ -163,10 +163,11 @@ import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 import { Basket } from "@selldone/core-js";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageHyperOrder",
-  components: { SShopRowCustomerPendingPayment, SHyperCartItems, UStamp },
+  components: {ULoadingEllipsis, SShopRowCustomerPendingPayment, SHyperCartItems, UStamp },
 
   inject: ["$shop"],
   props: {

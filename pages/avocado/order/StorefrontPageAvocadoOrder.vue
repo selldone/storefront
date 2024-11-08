@@ -73,12 +73,13 @@
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Basket } from "@selldone/core-js";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageAvocadoOrder",
   mixins: [RouteMixin],
   inject: ["$shop"],
-  components: {},
+  components: {ULoadingEllipsis},
 
   props: {},
 

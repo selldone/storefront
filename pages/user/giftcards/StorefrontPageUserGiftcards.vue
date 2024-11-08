@@ -108,11 +108,13 @@
 import SGiftcardView from "@selldone/components-vue/storefront/giftcard/view/SGiftcardView.vue";
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import SGiftcardAdd from "@selldone/components-vue/storefront/giftcard/add/SGiftcardAdd.vue";
-import _ from "lodash-es";
+import { throttle } from "lodash-es";
+import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 
 export default {
   name: "StorefrontPageUserGiftcards",
   components: {
+    ULoadingEllipsis,
     SGiftcardAdd,
     SDataIteratorToolbar,
     SGiftcardView,
@@ -161,7 +163,7 @@ export default {
       deep: true,
     },
 
-    search: _.throttle(function () {
+    search: throttle(function () {
       //  console.log("search", newVal);
       const { sortBy, sortDesc } = this.options;
       this.fetchCards(1, sortBy[0]?.key, sortBy[0]?.order === "desc");

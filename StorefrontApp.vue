@@ -125,55 +125,81 @@
 </template>
 
 <script lang="ts">
-import _ from "lodash-es";
-import SStorefrontMasterPaymentDialog from "@selldone/components-vue/storefront/payment/SStorefrontMasterPaymentDialog.vue";
+import { debounce } from "lodash-es";
 import { FirebaseNotificationCategories } from "@selldone/core-js/enums/push-notification/FirebaseNotificationCategories";
-import SStorefrontNeedLoginDialog from "@selldone/components-vue/storefront/login/SStorefrontNeedLoginDialog.vue";
-import UNotificationSide from "@selldone/components-vue/ui/notification/side/UNotificationSide.vue";
 import { Language } from "@selldone/core-js/enums/language/Language";
-import SCookieConsent from "@selldone/components-vue/storefront/cookie/consent/SCookieConsent.vue";
-import SPwaVersionCheck from "@selldone/components-vue/system/pwa/version-check/SPwaVersionCheck.vue";
-import SFooterNavigation from "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue";
 import { SetupService } from "@selldone/core-js/server/SetupService";
-import SStorefrontPopup from "@selldone/components-vue/storefront/popup/SStorefrontPopup.vue";
 import { FontHelper } from "@selldone/core-js/helper/font/FontHelper";
 import SFullscreenViewAnimator from "@selldone/components-vue/ui/image/SFullscreenViewAnimator.vue";
-import SStorefrontSocialButtons from "@selldone/components-vue/storefront/social/SStorefrontSocialButtons.vue";
-import SCampaignBanner from "@selldone/components-vue/storefront/campaign/banner/SCampaignBanner.vue";
 import { ShopRestriction } from "@selldone/core-js/enums/shop/options/ShopRestriction";
 import SAccessPrivateCheck from "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue";
 import SStorefrontRetrieveShareOrder from "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
 import SComparisonButton from "@selldone/components-vue/storefront/comparison/button/SComparisonButton.vue";
 import { EventName } from "@selldone/core-js/events/EventBus";
-import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue";
-import UMapDialog from "@selldone/components-vue/ui/map/dialog/UMapDialog.vue";
-import SDebugger from "@selldone/components-vue/storefront/debuger/SDebugger.vue";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
-import { computed } from "vue";
+import { computed, defineAsyncComponent } from "vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin";
+import UNotificationSide from "@selldone/components-vue/ui/notification/side/UNotificationSide.vue";
+import SStorefrontNeedLoginDialog from "@selldone/components-vue/storefront/login/SStorefrontNeedLoginDialog.vue";
+import SCookieConsent from "@selldone/components-vue/storefront/cookie/consent/SCookieConsent.vue";
+import SFooterNavigation from "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue";
+import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue";
 
 export default {
   name: "StorefrontApp",
   mixins: [TemplateMixin],
   components: {
-    SDebugger,
-    UMapDialog,
-    SStorefrontApplicationLogin,
     SComparisonButton,
     SStorefrontRetrieveShareOrder,
     SAccessPrivateCheck,
-    SCampaignBanner,
-    SStorefrontSocialButtons,
     SFullscreenViewAnimator,
-    SStorefrontPopup,
-    SFooterNavigation,
-    SPwaVersionCheck,
-    SCookieConsent,
     UNotificationSide,
     SStorefrontNeedLoginDialog,
-    SStorefrontMasterPaymentDialog,
+    SCookieConsent,
+    SFooterNavigation,
+    SStorefrontApplicationLogin,
+
+    SDebugger: defineAsyncComponent(
+      () => import("@selldone/components-vue/storefront/debuger/SDebugger.vue"),
+    ),
+    UMapDialog: defineAsyncComponent(
+      () => import("@selldone/components-vue/ui/map/dialog/UMapDialog.vue"),
+    ),
+
+    SCampaignBanner: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/campaign/banner/SCampaignBanner.vue"
+        ),
+    ),
+    SStorefrontSocialButtons: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/social/SStorefrontSocialButtons.vue"
+        ),
+    ),
+    SStorefrontPopup: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/popup/SStorefrontPopup.vue"
+        ),
+    ),
+
+    SStorefrontMasterPaymentDialog: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/payment/SStorefrontMasterPaymentDialog.vue"
+        ),
+    ),
+
+    SPwaVersionCheck: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/system/pwa/version-check/SPwaVersionCheck.vue"
+        ),
+    ),
   },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -192,7 +218,6 @@ export default {
    */
   data: () => ({
     IconFontsLoaded: false,
-
 
     blur: false,
   }),
@@ -253,8 +278,6 @@ export default {
         this.shop.options.some((e) => e.code === "gdpr" && e.value === true)
       );
     },
-
-
 
     // --------------------------------------------------------------------------------
 
@@ -322,8 +345,6 @@ export default {
         ScrollHelper.scrollToTop(0, smooth ? "smooth" : "instant");
       });
     },
-
-
   },
 
   /**
@@ -401,7 +422,7 @@ export default {
     this.EventBus.$on(EventName.FIREBASE_GET_TOKEN, (token) => {
       if (!window.axios.defaults.headers.common["Authorization"]) return; // User not authorized! FCM added only for authorized users.
 
-      const fun = _.debounce((token) => {
+      const fun = debounce((token) => {
         // Debounce: Speed up first load!
         window.$storefront.user
           .setFcmToken(token)

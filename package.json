@@ -55,7 +55,7 @@
     "vue-prism-editor": "^2.0.0-alpha.2",
     "vue-router": "^4.4.5",
     "vuedraggable": "^4.1.0",
-    "vuetify": "^3.7.3",
+    "vuetify": "^3.7.4",
     "vuex": "^4.1.0",
     "webfontloader": "^1.6.28"
   },
