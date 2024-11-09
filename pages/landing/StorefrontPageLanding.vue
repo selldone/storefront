@@ -13,7 +13,7 @@
   -->
 
 <template>
-  <landing-render v-if="isBuilderInstalled">
+  <landing-render >
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
     <template v-slot:header>
       <slot name="header"></slot>
@@ -30,9 +30,7 @@ export default {
   components: { LandingRender },
 
   computed: {
-    isBuilderInstalled() {
-      return this.$isBuilderInstalled?.value; // Access the global property
-    },
+
   },
   watch: {},
   created() {},

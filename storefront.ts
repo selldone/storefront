@@ -16,14 +16,14 @@
 //―――――――――――――――― Imports ――――――――――――――――
 //█████████████████████████████████████████████████████████████
 import "@selldone/core-js/utils/service-worker/registerServiceWorker"; // Register service worker:
-import {createApp, ref} from "vue";
+import {createApp} from "vue";
 import StorefrontApp from "./StorefrontApp.vue";
 import router from "./router/StorefrontRouter";
 import store from "./store/StorefrontStore";
 import {i18n} from "./lang/i18n_shop";
 import {Language} from "@selldone/core-js/enums/language/Language";
 import {
-  ApplicationExecutorStorefront
+    ApplicationExecutorStorefront
 } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
 import {StorefrontSDK} from "@selldone/sdk-storefront";
 import StorefrontMixin from "./mixin/StorefrontMixin";
@@ -36,7 +36,8 @@ import {createComponents} from "@selldone/components-vue/components";
 // Load fonts:
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
 import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
-import "./style/fonts/lang-fa/lang-fa-iransans.css"; // Add custom font
+import "./style/fonts/lang-fa/lang-fa-iransans.css";
+import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 
 const vuetify = VuetifyInstance(i18n);
 
@@ -131,19 +132,9 @@ app.use(router);
 app.use(store);
 app.use(vuetify);
 
-
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
-app.config.globalProperties.$isBuilderInstalled = ref(false); // Set a global property
-async function initializePageBuilder(app) {
-  console.log("Initializing Page Builder...");
 
-  const { SetupPageBuilder } = await import("@selldone/page-builder");
-  SetupPageBuilder(app, { mode: "view" });
-}
-
+PageHyper(app, { mode: "view" });
 
 // Mount the application
 const storefrontVueApp = app.mount("#app");
-
-initializePageBuilder(app);
-
