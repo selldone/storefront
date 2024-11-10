@@ -879,10 +879,12 @@ import SOrderShippingStoresOptions from "@selldone/components-vue/storefront/ord
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import { Basket } from "@selldone/core-js/models";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
 
 export default {
   name: "StorefrontPageBasketCart",
   components: {
+    UMapView,
     ULoadingEllipsis,
     SOrderShippingStoresOptions,
     SOrderShippingVendorsOptions,

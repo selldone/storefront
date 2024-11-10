@@ -177,10 +177,11 @@
 import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHeader.vue";
 import { MapHelper } from "@selldone/core-js/helper";
 import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
+import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
 
 export default {
   name: "StorefrontUserAddresses",
-  components: { UAvatarFolder, UWidgetHeader },
+  components: { UMapView, UAvatarFolder, UWidgetHeader },
   data() {
     return {
       addresses: [],
