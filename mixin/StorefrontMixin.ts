@@ -46,9 +46,6 @@ const StorefrontMixin = defineComponent({
     };
   },
   computed: {
-    isNative() {
-      return this.$store.getters.getIsNative;
-    },
 
     current_product_type_in_basket() {
       // Or appropriate type for the product type

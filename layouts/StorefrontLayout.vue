@@ -156,7 +156,7 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- Primary footer of the storefront. -->
     <s-footer-section
-      v-if="!isMobile && !is_standalone && !isNative && $shop && has_footer"
+      v-if="!isMobile && !is_standalone  && $shop && has_footer"
       :dark="!is_light_footer"
       class="m-0"
     />
