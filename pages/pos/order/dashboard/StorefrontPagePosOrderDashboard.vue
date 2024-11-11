@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
 

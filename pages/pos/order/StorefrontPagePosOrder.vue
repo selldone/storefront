@@ -15,12 +15,12 @@
 <template>
   <v-card
     class="s--shop-card s--shadow-no-padding pb-4 mb-16"
-    :color="SaminColorDarkDeep"
+    :color="ThemeColorDeepDark"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Order > Toolbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
     <v-toolbar
-      :color="SaminColorDarkDeep"
+      :color="ThemeColorDeepDark"
       dark
       extended
       extension-height="64px"
@@ -82,12 +82,14 @@ import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommer
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import {EventBus} from "@selldone/core-js/events/EventBus.ts";
 
 export default {
   name: "SStorefrontPOSOrderDetailMasterLayout",
-  mixins: [RouteMixin],
+  mixins: [RouteMixin, TemplateMixin],
 
-  components: {ULoadingEllipsis},
+  components: { ULoadingEllipsis },
   inject: ["$shop"],
   props: {},
 
@@ -107,13 +109,13 @@ export default {
     this.fetchOrderInfo();
   },
   mounted() {
-    this.EventBus.$on("on-payment-completed", ({ order_type, order_id }) => {
+    EventBus.$on("on-payment-completed", ({ order_type, order_id }) => {
       console.log("on-payment-completed", order_type, order_id);
       if (this.basket && this.basket.id === order_id) this.fetchOrderInfo();
     });
   },
   beforeUnmount() {
-    this.EventBus.$off("on-payment-completed");
+    EventBus.$off("on-payment-completed");
   },
 
   methods: {

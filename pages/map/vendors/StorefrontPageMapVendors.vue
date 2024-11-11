@@ -182,7 +182,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Mapbox from "@selldone/components-vue/ui/map/providers/mapbox/MapBox";
 import { SetupService } from "@selldone/core-js/server/SetupService";
 import UMapAddressInput from "@selldone/components-vue/ui/map/address/input/UMapAddressInput.vue";

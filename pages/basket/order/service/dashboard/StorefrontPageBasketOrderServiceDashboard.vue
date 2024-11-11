@@ -91,7 +91,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderDeliveryState from "@selldone/components-vue/storefront/order/delivery-state/SOrderDeliveryState.vue";
 import SOrderBasketReturn from "@selldone/components-vue/storefront/order/basket/return/SOrderBasketReturn.vue";
@@ -125,6 +125,8 @@ export default {
 
   data: function () {
     return {
+      ProductType: ProductType,
+
       orderType: ProductType.SERVICE,
     };
   },

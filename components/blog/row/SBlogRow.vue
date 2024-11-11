@@ -68,7 +68,7 @@
     </v-list-item-subtitle>
   </v-list-item>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 

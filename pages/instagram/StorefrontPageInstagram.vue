@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SInstagramView from "@selldone/components-vue/storefront/instagram/SInstagramView.vue";
 
 export default {

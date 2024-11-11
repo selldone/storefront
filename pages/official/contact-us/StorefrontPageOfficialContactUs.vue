@@ -121,7 +121,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
 
 export default {

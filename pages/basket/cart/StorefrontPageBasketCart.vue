@@ -15,9 +15,9 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div
     :style="{
-      '--color-bg-1': theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
+      '--color-bg-1': theme?.color_bill ? theme.color_bill : ThemeColorDeepDark,
       '--color-bg-2': ShadeColor(
-        theme?.color_bill ? theme.color_bill : SaminColorDarkDeep,
+        theme?.color_bill ? theme.color_bill : ThemeColorDeepDark,
         -30,
       ),
     }"
@@ -831,7 +831,7 @@
         :availableCountries="
           $shop.countries?.length ? $shop.countries : undefined
         "
-        :color="SaminColorDark"
+        :color="ThemeColorDark"
         :confirm-text="$t('global.receiver_info.map.confirm')"
         :delay-load="1000"
         :hide="!map_dialog"
@@ -883,6 +883,8 @@ import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
 
 export default {
   name: "StorefrontPageBasketCart",
+  mixins: [TemplateMixin],
+
   components: {
     UMapView,
     ULoadingEllipsis,
@@ -902,7 +904,6 @@ export default {
     SDiscountCodeInput,
     SShopBasketItems,
   },
-  mixins: [TemplateMixin],
 
   inject: ["$shop"],
   /**

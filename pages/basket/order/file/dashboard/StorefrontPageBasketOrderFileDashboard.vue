@@ -127,7 +127,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
 import SOrderBasketReturn from "@selldone/components-vue/storefront/order/basket/return/SOrderBasketReturn.vue";
@@ -157,6 +157,8 @@ export default {
   },
   data: function () {
     return {
+      ProductType: ProductType,
+
       orderType: ProductType.FILE,
 
       files_show: false,

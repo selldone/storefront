@@ -15,7 +15,7 @@
 
 import {ProductType} from "@selldone/core-js/enums/product/ProductType";
 import {i18n, loadLanguageAsyncShop} from "./../lang/i18n_shop";
-import {type ILanguage, Language} from "@selldone/core-js/enums/language/Language";
+import {type ILanguage, Language,} from "@selldone/core-js/enums/language/Language";
 import merge from "lodash-es/merge";
 import {NativeInterfaceShop, NativeInterfaceUser,} from "@selldone/components-vue/plugins/native/NativeAppInterface";
 import {StorefrontLocalStorages} from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
@@ -37,6 +37,7 @@ import type {RouteRecord} from "vue-router/types/router";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {defineComponent} from "vue";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";
+import {EventBus} from "@selldone/core-js/events/EventBus.ts";
 
 const StorefrontMixin = defineComponent({
   data() {
@@ -46,7 +47,6 @@ const StorefrontMixin = defineComponent({
     };
   },
   computed: {
-
     current_product_type_in_basket() {
       // Or appropriate type for the product type
       const baskets = this.getBaskets();
@@ -128,14 +128,14 @@ const StorefrontMixin = defineComponent({
       // Set a global language object for temporary use, e.g., by a language selector component.
       window.$language = Language[locale];
 
-
-      const IS_CHANGED_LANGUAGE = window.axios.defaults.headers.common["X-Localization"] !== window.$language.locale;
-
+      const IS_CHANGED_LANGUAGE =
+        window.axios.defaults.headers.common["X-Localization"] !==
+        window.$language.locale;
 
       // 🞧 Header: Language
       // Set the X-Localization header for all axios requests to the current language.
-      window.axios.defaults.headers.common["X-Localization"] = window.$language.locale;
-
+      window.axios.defaults.headers.common["X-Localization"] =
+        window.$language.locale;
 
       // Load the language pack asynchronously.
       await loadLanguageAsyncShop(locale, () => {
@@ -155,12 +155,8 @@ const StorefrontMixin = defineComponent({
          */
 
         // Update lang-x class in the body:
-        this.setBodyLanguageClass()
+        this.setBodyLanguageClass();
       });
-
-
-
-
 
       // Attempt to apply any language pack overrides.
       try {
@@ -195,12 +191,15 @@ const StorefrontMixin = defineComponent({
         console.error(e);
       }
 
-      if(IS_CHANGED_LANGUAGE){
-        console.log('🌐 SwitchLanguage | 🟠 IS_CHANGED_LANGUAGE:',IS_CHANGED_LANGUAGE , 'So we need to fetch shop data again to get the new language data. (translation of object)')
+      if (IS_CHANGED_LANGUAGE) {
+        console.log(
+          "🌐 SwitchLanguage | 🟠 IS_CHANGED_LANGUAGE:",
+          IS_CHANGED_LANGUAGE,
+          "So we need to fetch shop data again to get the new language data. (translation of object)",
+        );
         // We need to fetch shop data again to get the new language data. (translation of object)
-        await  this.fetchBasketAndShop();
+        await this.fetchBasketAndShop();
       }
-
     },
 
     //―――――――――――――――――――――― Shop Address (Base URl) ――――――――――――――――――――
@@ -228,7 +227,7 @@ const StorefrontMixin = defineComponent({
             this.fetchOffers();
             this.fetchLotteryPrizes(); // Only for user!
 
-            this.EventBus.$emit("get-me:success", user);
+            EventBus.$emit("get-me:success", user);
 
             this.$store.commit("setBusyUser", false);
           },
@@ -249,7 +248,7 @@ const StorefrontMixin = defineComponent({
             this.fetchCoupons();
             this.fetchOffers();
 
-            this.EventBus.$emit("get-me:error", error);
+            EventBus.$emit("get-me:error", error);
 
             this.$store.commit("setBusyUser", false);
           },
@@ -370,7 +369,7 @@ const StorefrontMixin = defineComponent({
           expire_date.setUTCSeconds(expires_in);
         }
 
-        window.SetToken(token, expire_date,'access_token');
+        window.SetToken(token, expire_date, "access_token");
       }
 
       startLogin();
@@ -452,7 +451,7 @@ const StorefrontMixin = defineComponent({
     fetchBasketAndShop() {
       this.$store.commit("setBusyShop", true);
 
-    return   window.$storefront.shop
+      return window.$storefront.shop
         .fetchShop()
         .then(
           ({
@@ -465,7 +464,7 @@ const StorefrontMixin = defineComponent({
             seen_pops,
           }) => {
             // 🧿 Auto fix Shop:
-            StorefrontShopHealthCheck.Check(this.$router,shop)
+            StorefrontShopHealthCheck.Check(this.$router, shop);
             window.shop = shop;
             this.$store.commit("setShop", shop);
             this.$store.commit("setPendingTransactions", pending_transactions);
@@ -839,7 +838,7 @@ const StorefrontMixin = defineComponent({
       acceptCOD: boolean = false, // Based on delivery methods support COD!
       callback: (() => void) | null = null, // Not used yet!
     ) {
-      this.EventBus.$emit("payment-form-basket", {
+      EventBus.$emit("payment-form-basket", {
         code: code,
         order: order,
         type: type,
@@ -859,7 +858,7 @@ const StorefrontMixin = defineComponent({
       gateway_codes: String,
       callback: (() => void) | null = null, // Not used yet!
     ) {
-      this.EventBus.$emit("payment-form-subscription", {
+      EventBus.$emit("payment-form-subscription", {
         currency: currency,
         bill: bill,
         gateway_codes: gateway_codes,
@@ -890,7 +889,7 @@ const StorefrontMixin = defineComponent({
         force_reset_payment ? "🆕 Reset payment" : "🆔 Retrieve payment",
       );
 
-      this.EventBus.$emit("try-to-pay", {
+      EventBus.$emit("try-to-pay", {
         gateway: gateway,
         transaction_id: transaction_id,
         order_id: order_id,
@@ -898,7 +897,7 @@ const StorefrontMixin = defineComponent({
       });
     },
     OnPaymentCompleted(order_type: keyof typeof ProductType, order_id: number) {
-      this.EventBus.$emit("on-payment-completed", {
+      EventBus.$emit("on-payment-completed", {
         order_type: order_type,
         order_id: order_id,
       });
@@ -910,7 +909,7 @@ const StorefrontMixin = defineComponent({
       bill: Basket.ICalculatedBill,
       callback: () => void,
     ) {
-      this.EventBus.$emit("payment-form-bill", {
+      EventBus.$emit("payment-form-bill", {
         code: code,
         bill: bill,
         callback: callback,
@@ -919,14 +918,14 @@ const StorefrontMixin = defineComponent({
     },
 
     ShowPaymentDialogAvocado(avocado: Avocado, callback: () => void) {
-      this.EventBus.$emit("payment-form-avocado", {
+      EventBus.$emit("payment-form-avocado", {
         avocado: avocado,
         callback: callback,
       });
     },
 
     ShowPaymentDialogHyper(hyper: Hyper, callback: () => void) {
-      this.EventBus.$emit("payment-form-hyper", {
+      EventBus.$emit("payment-form-hyper", {
         hyper: hyper,
         callback: callback,
       });
@@ -939,7 +938,7 @@ const StorefrontMixin = defineComponent({
      * @constructor
      */
     OpenCartSideMenu(open: boolean, type: keyof typeof ProductType) {
-      this.EventBus.$emit("side-cart-menu-open", { type, open });
+      EventBus.$emit("side-cart-menu-open", { type, open });
     },
 
     //―――――――――――――――――――――― Product Comparison ――――――――――――――――――――

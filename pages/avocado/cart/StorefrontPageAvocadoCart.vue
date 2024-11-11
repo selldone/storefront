@@ -257,7 +257,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SShopCustomerReceiverInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";

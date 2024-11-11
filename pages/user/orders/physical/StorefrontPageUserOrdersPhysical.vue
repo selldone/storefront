@@ -17,7 +17,7 @@
   </s-orders-list>
 </template>
 
-<script>
+<script lang="ts">
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrdersList from "../../../../components/orders/list/SOrdersList.vue";
 

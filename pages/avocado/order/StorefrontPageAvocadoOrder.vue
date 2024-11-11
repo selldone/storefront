@@ -15,12 +15,12 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <v-card
     class="s--shop-card s--shadow-no-padding pb-4 mb-16"
-    :color="SaminColorDarkDeep"
+    :color="ThemeColorDeepDark"
   >
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Order > Toolbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
 
     <v-toolbar
-      :color="SaminColorDarkDeep"
+      :color="ThemeColorDeepDark"
       dark
       extended
       extension-height="64px"
@@ -74,12 +74,13 @@ import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommer
 import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontPageAvocadoOrder",
-  mixins: [RouteMixin],
+  mixins: [RouteMixin, TemplateMixin],
   inject: ["$shop"],
-  components: {ULoadingEllipsis},
+  components: { ULoadingEllipsis },
 
   props: {},
 

@@ -86,7 +86,7 @@
     </div>
 
     <u-smart-select
-      :background-color="!light_checkout ? SaminColorDark : '#fafafa'"
+      :background-color="!light_checkout ? ThemeColorDark : '#fafafa'"
       :dark="!light_checkout"
       :item-image="
         (item) =>
@@ -406,9 +406,12 @@ import { ProductType } from "@selldone/core-js/enums/product/ProductType.ts";
 import { WeekDays } from "@selldone/core-js/enums/logistic/WeekDays.ts";
 import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans.ts";
 import SCartShippingPickups from "@app-storefront/pages/basket/cart/SCartShippingPickups.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default defineComponent({
   name: "SCartShippingOptions",
+  mixins: [TemplateMixin],
+
   components: {
     SCartShippingPickups,
     USmartSelect,

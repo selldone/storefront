@@ -135,7 +135,7 @@ import { ShopRestriction } from "@selldone/core-js/enums/shop/options/ShopRestri
 import SAccessPrivateCheck from "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue";
 import SStorefrontRetrieveShareOrder from "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
 import SComparisonButton from "@selldone/components-vue/storefront/comparison/button/SComparisonButton.vue";
-import { EventName } from "@selldone/core-js/events/EventBus";
+import {EventBus, EventName} from "@selldone/core-js/events/EventBus";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
@@ -398,7 +398,7 @@ export default {
     //――――――――――――――――――――――――― Event Bus ―――――――――――――――――――――――――
     //█████████████████████████████████████████████████████████████
 
-    this.EventBus.$on(EventName.FIREBASE_RECEIVE_MESSAGE, (payload) => {
+    EventBus.$on(EventName.FIREBASE_RECEIVE_MESSAGE, (payload) => {
       // Show only if user is being in shop:
       if (payload.data.shop && payload.data.shop.name === this.shop.name) {
         if (payload.notification) {
@@ -419,7 +419,7 @@ export default {
       }
     });
 
-    this.EventBus.$on(EventName.FIREBASE_GET_TOKEN, (token) => {
+    EventBus.$on(EventName.FIREBASE_GET_TOKEN, (token) => {
       if (!window.axios.defaults.headers.common["Authorization"]) return; // User not authorized! FCM added only for authorized users.
 
       const fun = debounce((token) => {
@@ -437,7 +437,7 @@ export default {
 
     //▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  Blur App ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
-    this.EventBus.$on(EventName.BLUR_APP, (blur) => {
+    EventBus.$on(EventName.BLUR_APP, (blur) => {
       // console.log("🔵 BLUR_APP", blur);
       this.blur = blur;
     });
@@ -489,9 +489,9 @@ export default {
   },
 
   beforeUnmount() {
-    this.EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
-    this.EventBus.$off(EventName.FIREBASE_GET_TOKEN);
-    this.EventBus.$off(EventName.BLUR_APP);
+    EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
+    EventBus.$off(EventName.FIREBASE_GET_TOKEN);
+    EventBus.$off(EventName.BLUR_APP);
 
     if (this.update_exchange_rates_interval)
       clearInterval(this.update_exchange_rates_interval);

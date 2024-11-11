@@ -145,7 +145,7 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import { throttle } from "lodash-es";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 

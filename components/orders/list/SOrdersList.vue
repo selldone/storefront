@@ -237,7 +237,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import ReturnRequestButtonBadge from "@selldone/components-vue/storefront/order/order-return/ReturnRequestButtonBadge.vue";
@@ -281,6 +281,8 @@ export default {
 
   data: function () {
     return {
+      ProductType: ProductType,
+
       activator: null,
       activator_item: null,
 

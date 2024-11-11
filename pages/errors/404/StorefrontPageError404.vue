@@ -46,7 +46,7 @@
     </template>
   </v-empty-state>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import SWidgetButtons from "@selldone/components-vue/ui/widget/buttons/SWidgetButtons.vue";
 

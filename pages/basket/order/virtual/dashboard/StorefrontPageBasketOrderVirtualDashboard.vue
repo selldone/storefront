@@ -95,7 +95,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VirtualItemInfo from "@selldone/components-vue/storefront/product/virtual/VirtualItemInfo.vue";
 import SShopCustomerOrderPaymentWidget from "@selldone/components-vue/storefront/order/payment/SShopCustomerOrderPaymentWidget.vue";
 import SShopBasketItemsList from "@selldone/components-vue/storefront/order/basket/SShopBasketItemsList.vue";
@@ -126,6 +126,8 @@ export default {
 
   data: function () {
     return {
+      ProductType: ProductType,
+
       orderType: ProductType.VIRTUAL,
     };
   },

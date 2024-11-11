@@ -96,7 +96,7 @@
         v-model="map_location"
         :address-type="$t('addresses_page.map.address_type')"
         v-model:center="center"
-        :color="SaminColorDark"
+        :color="ThemeColorDark"
         :confirm-text="$t('addresses_page.map.confirm')"
         :new-address-title="new_address_title"
         :receptor-type="$t('addresses_page.map.receptor_type')"
@@ -130,7 +130,6 @@
         <v-card-text>
           <v-text-field
             v-model="new_address_title"
-            :color="SaminColorLight"
             :label="$t('addresses_page.add_dialog.address_name_input')"
             class="text-right mx-2"
             prepend-inner-icon="fa:fas fa-tag"
@@ -178,9 +177,12 @@ import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHead
 import { MapHelper } from "@selldone/core-js/helper";
 import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
 import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
+import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 
 export default {
   name: "StorefrontUserAddresses",
+  mixins: [TemplateMixin],
+
   components: { UMapView, UAvatarFolder, UWidgetHeader },
   data() {
     return {
