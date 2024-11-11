@@ -31,7 +31,7 @@
       <img
         class="flipInX delay_300"
         height="48"
-        src="@selldone/components-vue/assets/selldone-logo/selldone-text-draw.png"
+        src="@selldone/components-vue/assets/selldone-logo/logo-box.svg"
       />
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Not enabled info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
