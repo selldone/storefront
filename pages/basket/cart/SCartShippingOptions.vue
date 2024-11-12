@@ -408,10 +408,11 @@ import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans.ts";
 import SCartShippingPickups from "@app-storefront/pages/basket/cart/SCartShippingPickups.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 
 export default defineComponent({
   name: "SCartShippingOptions",
-  mixins: [TemplateMixin, ProductMixin],
+  mixins: [TemplateMixin, ProductMixin, MapMixin],
 
   components: {
     SCartShippingPickups,

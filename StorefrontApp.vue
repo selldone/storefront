@@ -135,7 +135,7 @@ import { ShopRestriction } from "@selldone/core-js/enums/shop/options/ShopRestri
 import SAccessPrivateCheck from "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue";
 import SStorefrontRetrieveShareOrder from "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
 import SComparisonButton from "@selldone/components-vue/storefront/comparison/button/SComparisonButton.vue";
-import {EventBus, EventName} from "@selldone/core-js/events/EventBus";
+import { EventBus, EventName } from "@selldone/core-js/events/EventBus";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { inArray } from "jquery";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
@@ -146,10 +146,11 @@ import SStorefrontNeedLoginDialog from "@selldone/components-vue/storefront/logi
 import SCookieConsent from "@selldone/components-vue/storefront/cookie/consent/SCookieConsent.vue";
 import SFooterNavigation from "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue";
 import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue";
+import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 
 export default {
   name: "StorefrontApp",
-  mixins: [TemplateMixin],
+  mixins: [TemplateMixin, AuthMixin],
   components: {
     SComparisonButton,
     SStorefrontRetrieveShareOrder,

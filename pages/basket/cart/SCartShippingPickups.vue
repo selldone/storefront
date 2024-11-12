@@ -90,9 +90,11 @@
 import { defineComponent } from "vue";
 import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations.ts";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 
 export default defineComponent({
   name: "SCartShippingPickups",
+  mixins: [MapMixin],
   emits: ["pickupSelected"],
   inject: ["$shop"],
   props: {

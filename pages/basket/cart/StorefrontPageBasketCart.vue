@@ -882,10 +882,12 @@ import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin
 import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
+import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 
 export default {
   name: "StorefrontPageBasketCart",
-  mixins: [TemplateMixin, CurrencyMixin, ProductMixin],
+  mixins: [TemplateMixin, CurrencyMixin, ProductMixin, MapMixin, AuthMixin],
 
   components: {
     UMapView,

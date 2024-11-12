@@ -178,10 +178,11 @@ import { MapHelper } from "@selldone/core-js/helper";
 import UAvatarFolder from "@selldone/components-vue/ui/avatar/folder/UAvatarFolder.vue";
 import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 
 export default {
   name: "StorefrontUserAddresses",
-  mixins: [TemplateMixin],
+  mixins: [TemplateMixin, MapMixin],
 
   components: { UMapView, UAvatarFolder, UWidgetHeader },
   data() {

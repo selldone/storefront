@@ -473,10 +473,11 @@ import UDateInput from "@selldone/components-vue/ui/date/input/UDateInput.vue";
 import UCurrencyInput from "@selldone/components-vue/ui/currency/input/UCurrencyInput.vue";
 import SCountrySelect from "@selldone/components-vue/ui/country/select/SCountrySelect.vue";
 import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 
 export default {
   name: "StorefrontPageUserProfile",
-  mixins: [DateMixin],
+  mixins: [DateMixin, MapMixin],
 
   components: {
     UDateInput,

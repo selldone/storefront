@@ -266,10 +266,11 @@ import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/
 import { Avocado, AvocadoItem, Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
+import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 
 export default {
   name: "StorefrontPageAvocadoCart",
-  mixins: [DateMixin],
+  mixins: [DateMixin, MapMixin],
 
   components: {
     ULoadingEllipsis,
@@ -293,7 +294,7 @@ export default {
     busy: false,
     //-----------------------
     startup_mode_map_dialog: "default",
-    center: { lat: 0, lng:0 },
+    center: { lat: 0, lng: 0 },
     map_location: {},
     //-----------------------
     busy_save: false,

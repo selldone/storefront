@@ -222,10 +222,11 @@ import UMapCountriesSingle from "@selldone/components-vue/ui/map/countries/singl
 import { TransactionStatus } from "@selldone/core-js/enums/payment/TransactionStatus";
 import { Basket } from "@selldone/core-js";
 import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
+import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 
 export default {
   name: "SStorefrontPOSPage",
-  mixins: [DateMixin],
+  mixins: [DateMixin, AuthMixin],
 
   components: {
     UMapCountriesSingle,
