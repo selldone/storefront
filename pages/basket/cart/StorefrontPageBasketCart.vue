@@ -880,10 +880,12 @@ import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoad
 import { Basket } from "@selldone/core-js/models";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import UMapView from "@selldone/components-vue/ui/map/view/UMapView.vue";
+import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
+import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts";
 
 export default {
   name: "StorefrontPageBasketCart",
-  mixins: [TemplateMixin],
+  mixins: [TemplateMixin, CurrencyMixin, ProductMixin],
 
   components: {
     UMapView,

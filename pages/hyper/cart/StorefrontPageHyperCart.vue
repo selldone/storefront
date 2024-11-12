@@ -147,9 +147,12 @@ import SHyperCart from "@selldone/components-vue/storefront/hyper/cart/SHyperCar
 import SHyperOrders from "@selldone/components-vue/storefront/hyper/orders/SHyperOrders.vue";
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";
 import { Avocado } from "@selldone/core-js";
+import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 
 export default {
   name: "StorefrontPageHyperCart",
+  mixins: [CurrencyMixin],
+
   components: {
     ProductsDenseImagesCircles,
     SHyperOrders,

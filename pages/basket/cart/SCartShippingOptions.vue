@@ -407,10 +407,11 @@ import { WeekDays } from "@selldone/core-js/enums/logistic/WeekDays.ts";
 import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans.ts";
 import SCartShippingPickups from "@app-storefront/pages/basket/cart/SCartShippingPickups.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts";
 
 export default defineComponent({
   name: "SCartShippingOptions",
-  mixins: [TemplateMixin],
+  mixins: [TemplateMixin, ProductMixin],
 
   components: {
     SCartShippingPickups,

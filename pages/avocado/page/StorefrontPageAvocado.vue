@@ -153,9 +153,12 @@
 import SStorefrontAvocadoCustomerOrderList from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
 import SStorefrontAvocadoCustomerOrderForm from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";
 import { Avocado } from "@selldone/core-js";
+import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 
 export default {
   name: "StorefrontPageAvocado",
+  mixins: [CurrencyMixin],
+
   components: {
     SStorefrontAvocadoCustomerOrderForm,
     SStorefrontAvocadoCustomerOrderList,

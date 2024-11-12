@@ -220,9 +220,12 @@ import SProductSpec from "@selldone/components-vue/storefront/product/spec/SProd
 import SProductArticle from "@selldone/components-vue/storefront/product/article/SProductArticle.vue";
 import { XapiProductGetTypes } from "@selldone/sdk-storefront/product";
 import SProductLanding from "@selldone/components-vue/storefront/product/landing/SProductLanding.vue";
+import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 
 export default {
   name: "StorefrontPageProduct",
+  mixins: [CurrencyMixin],
+
   inject: ["$shop"],
   props: {},
   components: {
