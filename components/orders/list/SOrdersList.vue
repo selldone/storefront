@@ -249,10 +249,11 @@ import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
 import { Avocado, Basket } from "@selldone/core-js";
 import SOrderChatMessage from "@selldone/components-vue/storefront/order/chat/message/SOrderChatMessage.vue";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "SOrdersList",
-  mixins: [RouteMixin],
+  mixins: [RouteMixin, DateMixin],
 
   components: {
     ULoadingEllipsis,

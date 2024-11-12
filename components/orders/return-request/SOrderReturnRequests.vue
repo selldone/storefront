@@ -147,9 +147,12 @@
 import VariantItemViewMicro from "@selldone/components-vue/storefront/product/variant/VariantItemViewMicro.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import { BasketItemReturn } from "@selldone/core-js";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "SOrderReturnRequests",
+  mixins: [DateMixin],
+
   components: { VariantItemViewMicro },
   inject: ["$shop"],
   emits: ["select"],

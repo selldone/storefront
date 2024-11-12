@@ -472,9 +472,12 @@ import UWidgetHeader from "@selldone/components-vue/ui/widget/header/UWidgetHead
 import UDateInput from "@selldone/components-vue/ui/date/input/UDateInput.vue";
 import UCurrencyInput from "@selldone/components-vue/ui/currency/input/UCurrencyInput.vue";
 import SCountrySelect from "@selldone/components-vue/ui/country/select/SCountrySelect.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "StorefrontPageUserProfile",
+  mixins: [DateMixin],
+
   components: {
     UDateInput,
     UTextValueDashed,

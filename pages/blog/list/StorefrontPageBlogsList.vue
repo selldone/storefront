@@ -560,9 +560,12 @@ import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/ca
 import { throttle } from "lodash-es";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import SBlogRow from "@app-storefront/components/blog/row/SBlogRow.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "StorefrontPageBlogsList",
+  mixins: [DateMixin],
+
   components: {
     SBlogRow,
     SBlogCardAuthorCategory,

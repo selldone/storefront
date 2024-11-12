@@ -113,9 +113,12 @@
 <script lang="ts">
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import { throttle } from "lodash-es";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "StorefrontPageUserComments",
+  mixins: [DateMixin],
+
   components: { SDataIteratorToolbar },
 
   inject: ["$shop"],

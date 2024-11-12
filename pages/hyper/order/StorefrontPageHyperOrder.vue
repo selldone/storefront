@@ -164,10 +164,18 @@ import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/item
 import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
 import { Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "StorefrontPageHyperOrder",
-  components: {ULoadingEllipsis, SShopRowCustomerPendingPayment, SHyperCartItems, UStamp },
+  mixins: [DateMixin],
+
+  components: {
+    ULoadingEllipsis,
+    SShopRowCustomerPendingPayment,
+    SHyperCartItems,
+    UStamp,
+  },
 
   inject: ["$shop"],
   props: {

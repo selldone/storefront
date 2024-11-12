@@ -221,9 +221,12 @@ import UPaymentBillingDetails from "@selldone/components-vue/ui/payment/billing-
 import UMapCountriesSingle from "@selldone/components-vue/ui/map/countries/single/UMapCountriesSingle.vue";
 import { TransactionStatus } from "@selldone/core-js/enums/payment/TransactionStatus";
 import { Basket } from "@selldone/core-js";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "SStorefrontPOSPage",
+  mixins: [DateMixin],
+
   components: {
     UMapCountriesSingle,
     UPaymentBillingDetails,

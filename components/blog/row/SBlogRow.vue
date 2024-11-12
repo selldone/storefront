@@ -71,9 +71,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default defineComponent({
   name: "SBlogRow",
+  mixins: [DateMixin],
+
   components: { SBlogCardAuthorCategory },
   props: {
     article: {

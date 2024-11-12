@@ -265,9 +265,12 @@ import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/ord
 import SShopAvocadoCustomerOrderItems from "@selldone/components-vue/storefront/order/avocado/SShopAvocadoCustomerOrderItems.vue";
 import { Avocado, AvocadoItem, Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 
 export default {
   name: "StorefrontPageAvocadoCart",
+  mixins: [DateMixin],
+
   components: {
     ULoadingEllipsis,
     SShopAvocadoCustomerOrderItems,
