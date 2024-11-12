@@ -38,6 +38,7 @@ import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {defineComponent} from "vue";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";
 import {EventBus} from "@selldone/core-js/events/EventBus.ts";
+import {CurrencyHelper} from "@selldone/core-js/helper";
 
 const StorefrontMixin = defineComponent({
   data() {
@@ -594,7 +595,7 @@ const StorefrontMixin = defineComponent({
      */
     setUserShopCurrency() {
       // if (!this.USER()) return;
-      const currency_obj = this.GetUserSelectedCurrency();
+      const currency_obj = CurrencyHelper.GetUserSelectedCurrency(this.$localstorage_base_path());
       if (!currency_obj) return;
 
       window.$storefront.user
@@ -623,7 +624,7 @@ const StorefrontMixin = defineComponent({
     //―――――――――――――――――――――― Coupons ――――――――――――――――――――
 
     fetchCoupons() {
-      const currency_obj = this.GetUserSelectedCurrency();
+      const currency_obj = CurrencyHelper.GetUserSelectedCurrency(this.$localstorage_base_path());
       if (!currency_obj) return;
 
       window.$storefront.coupon
@@ -652,7 +653,7 @@ const StorefrontMixin = defineComponent({
     //―――――――――――――――――――――― Offers ――――――――――――――――――――
 
     fetchOffers() {
-      const currency_obj = this.GetUserSelectedCurrency();
+      const currency_obj = CurrencyHelper.GetUserSelectedCurrency(this.$localstorage_base_path());
       if (!currency_obj) return;
 
       window.$storefront.offer

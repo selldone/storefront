@@ -245,15 +245,16 @@ import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/prod
 import SOrderStatusView from "@selldone/components-vue/storefront/order/order-status/SOrderStatusView.vue";
 import SOrderReceiverInfoCard from "@selldone/components-vue/storefront/order/receiver-info/card/SOrderReceiverInfoCard.vue";
 import { StorefrontLocalStorages } from "@selldone/core-js/helper/local-storage/StorefrontLocalStorages";
-import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
+import { RouteMixin } from "@selldone/components-vue/mixin/route/RouteMixin.ts";
 import { Avocado, Basket } from "@selldone/core-js";
 import SOrderChatMessage from "@selldone/components-vue/storefront/order/chat/message/SOrderChatMessage.vue";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
+import OrderMixin from "@selldone/components-vue/mixin/order/OrderMixin.ts";
 
 export default {
   name: "SOrdersList",
-  mixins: [RouteMixin, DateMixin],
+  mixins: [RouteMixin, DateMixin, OrderMixin],
 
   components: {
     ULoadingEllipsis,

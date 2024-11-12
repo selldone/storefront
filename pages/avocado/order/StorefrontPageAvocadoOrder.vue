@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
-import { RouteMixin } from "@selldone/components-vue/mixin/RouteMixin";
+import { RouteMixin } from "@selldone/components-vue/mixin/route/RouteMixin.ts";
 import { Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
