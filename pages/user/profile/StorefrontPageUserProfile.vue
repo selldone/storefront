@@ -476,10 +476,11 @@ import UCurrencyInput from "@selldone/components-vue/ui/currency/input/UCurrency
 import SCountrySelect from "@selldone/components-vue/ui/country/select/SCountrySelect.vue";
 import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
+import ClubMixin from "@selldone/components-vue/mixin/club/ClubMixin.ts";
 
 export default {
   name: "StorefrontPageUserProfile",
-  mixins: [DateMixin, MapMixin],
+  mixins: [DateMixin, MapMixin,ClubMixin],
 
   components: {
     UDateInput,

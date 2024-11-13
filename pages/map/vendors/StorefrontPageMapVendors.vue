@@ -142,7 +142,7 @@
                   :to="{
                     name: window.$storefront.routes.SHOP_VENDOR_PAGE,
                     params: {
-                      slug: slugify(vendor.name),
+                      slug: Slugify.apply(vendor.name),
                       vendor_id: vendor.id,
                     },
                   }"
@@ -191,6 +191,7 @@ import SStorefrontProductVendorsList from "@selldone/components-vue/storefront/p
 import { delay } from "lodash-es";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import { ShopURLs } from "@selldone/core-js/helper";
+import { Slugify } from "@selldone/core-js/utils/slugify/slugify.ts";
 
 export default {
   name: "StorefrontPageMapVendors",
@@ -203,6 +204,8 @@ export default {
 
   data() {
     return {
+      Slugify: Slugify,
+
       map_box: null,
       map_id: Math.round(Math.random() * 999999),
 
