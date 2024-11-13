@@ -191,6 +191,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SProductOverview from "@selldone/components-vue/storefront/product/overview/SProductOverview.vue";
 import SProductOverviewLoading from "@selldone/components-vue/storefront/product/overview/loading/SProductOverviewLoading.vue";
 

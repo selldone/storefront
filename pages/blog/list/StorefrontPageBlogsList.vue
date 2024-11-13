@@ -555,6 +555,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SBlogCard from "@selldone/components-vue/storefront/blog/card/SBlogCard.vue";
 import SBlogCardAuthorCategory from "@selldone/components-vue/storefront/blog/card/author-category/SBlogCardAuthorCategory.vue";
 import { throttle } from "lodash-es";

@@ -214,6 +214,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import BPosCartItems from "@selldone/components-vue/storefront/pos/cart-items/BPosCartItems.vue";
 import SPosBillView from "@selldone/components-vue/storefront/pos/bill-view/SPosBillView.vue";
 import UPaymentCard from "@selldone/components-vue/ui/payment/card/UPaymentCard.vue";

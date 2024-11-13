@@ -39,6 +39,7 @@ import {defineComponent} from "vue";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";
 import {EventBus} from "@selldone/core-js/events/EventBus.ts";
 import {CurrencyHelper} from "@selldone/core-js/helper";
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
 const StorefrontMixin = defineComponent({
   data() {

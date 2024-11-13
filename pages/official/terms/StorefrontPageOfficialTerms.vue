@@ -35,6 +35,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
 
 export default {

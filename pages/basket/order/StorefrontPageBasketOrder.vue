@@ -84,6 +84,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderDeliveryStatusStepper from "@selldone/components-vue/storefront/order/shipping/stepper/SOrderDeliveryStatusStepper.vue";

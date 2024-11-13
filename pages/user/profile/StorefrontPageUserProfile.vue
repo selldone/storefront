@@ -464,6 +464,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import { SetupService } from "@selldone/core-js/server/SetupService";
 import UTextValueDashed from "@selldone/components-vue/ui/text/value-dashed/UTextValueDashed.vue";
 import { MapHelper } from "@selldone/core-js";

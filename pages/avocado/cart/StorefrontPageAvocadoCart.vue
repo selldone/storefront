@@ -258,6 +258,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SShopCustomerReceiverInfoWidget from "@selldone/components-vue/storefront/order/delivery/SShopCustomerReceiverInfoWidget.vue";
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";

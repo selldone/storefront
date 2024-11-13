@@ -78,6 +78,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 import { RouteMixin } from "@selldone/components-vue/mixin/route/RouteMixin.ts";
 import { Basket } from "@selldone/core-js";

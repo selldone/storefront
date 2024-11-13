@@ -84,6 +84,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
 import SDataIteratorToolbar from "@selldone/components-vue/ui/toolbar/SDataIteratorToolbar.vue";
 import { throttle } from "lodash-es";

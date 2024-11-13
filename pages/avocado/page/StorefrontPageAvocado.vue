@@ -150,6 +150,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SStorefrontAvocadoCustomerOrderList from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderList.vue";
 import SStorefrontAvocadoCustomerOrderForm from "@selldone/components-vue/storefront/order/avocado/SStorefrontAvocadoCustomerOrderForm.vue";
 import { Avocado } from "@selldone/core-js";

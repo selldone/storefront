@@ -143,6 +143,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import SHyperCart from "@selldone/components-vue/storefront/hyper/cart/SHyperCart.vue";
 import SHyperOrders from "@selldone/components-vue/storefront/hyper/orders/SHyperOrders.vue";
 import ProductsDenseImagesCircles from "@selldone/components-vue/storefront/product/products-dense-images-circles/ProductsDenseImagesCircles.vue";

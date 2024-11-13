@@ -144,6 +144,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import VariantItemViewMicro from "@selldone/components-vue/storefront/product/variant/VariantItemViewMicro.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import { BasketItemReturn } from "@selldone/core-js";

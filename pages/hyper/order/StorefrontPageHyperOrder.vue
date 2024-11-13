@@ -159,6 +159,8 @@
 </template>
 
 <script lang="ts">
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+
 import UStamp from "@selldone/components-vue/ui/stamp/UStamp.vue";
 import SHyperCartItems from "@selldone/components-vue/storefront/hyper/cart/items/SHyperCartItems.vue";
 import SShopRowCustomerPendingPayment from "@selldone/components-vue/storefront/order/payment/rows/SShopRowCustomerPendingPayment.vue";
