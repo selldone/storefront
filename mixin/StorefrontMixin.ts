@@ -435,7 +435,7 @@ const StorefrontMixin = defineComponent({
           this.getShop().shop_exchange_rates = data.rates;
           // this.$store.commit("setExchangeRates", data.rates);
           if (show_success)
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               "Update exchange rates",
               "Exchange rates were updated.",
             );
@@ -780,7 +780,7 @@ const StorefrontMixin = defineComponent({
 
           // There is an error in adding item to basket, but the correct basket with bill returned from backend.
           if (error) {
-            this.showErrorAlert(null, error_msg);
+            NotificationService.showErrorAlert(null, error_msg);
             if (callbackError) callbackError(error_msg!);
           }
 

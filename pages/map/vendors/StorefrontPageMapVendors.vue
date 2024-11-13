@@ -190,10 +190,16 @@ import UTextCopyBox from "@selldone/components-vue/ui/text/copy-box/UTextCopyBox
 import SStorefrontProductVendorsList from "@selldone/components-vue/storefront/product/vendors/SStorefrontProductVendorsList.vue";
 import { delay } from "lodash-es";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import { ShopURLs } from "@selldone/core-js/helper";
 
 export default {
   name: "StorefrontPageMapVendors",
-  components: {ULoadingEllipsis, SStorefrontProductVendorsList, UTextCopyBox, UMapAddressInput },
+  components: {
+    ULoadingEllipsis,
+    SStorefrontProductVendorsList,
+    UTextCopyBox,
+    UMapAddressInput,
+  },
 
   data() {
     return {
@@ -500,7 +506,7 @@ export default {
       )}`;
       this.share_vendors = this.vendors?.filter((p) => p.map_id === map_tag.id);
       this.share_url =
-        this.getShopMainUrl(this.shop) +
+        ShopURLs.MainShopUrl(this.shop) +
         `/map?lat=${map_tag.lat}&lng=${map_tag.lng}`;
       this.share_sheet = true;
     },

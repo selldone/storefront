@@ -371,7 +371,7 @@ export default {
         .cache(handleSuccessResponse)
         .then(handleSuccessResponse)
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;
@@ -414,7 +414,7 @@ export default {
           this.avocado.receiver_info = avocado.receiver_info;
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_save = false;

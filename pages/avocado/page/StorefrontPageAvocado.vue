@@ -155,6 +155,7 @@ import SStorefrontAvocadoCustomerOrderForm from "@selldone/components-vue/storef
 import { Avocado } from "@selldone/core-js";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
+import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper.ts";
 
 export default {
   name: "StorefrontPageAvocado",
@@ -266,11 +267,11 @@ export default {
             this.total_orders = data.total;
             this.page = 1;
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;
@@ -292,15 +293,24 @@ export default {
             this.orders = data.orders;
             this.total_orders = data.total;
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_fetch = false;
         });
+    },
+
+    //―――――――――――――――――――――― Page Scroll Helper ――――――――――――――――――――
+    GoToTopPage() {
+      this.$nextTick(() => {
+        this.$nextTick(() => {
+          ScrollHelper.scrollToTop(0, "smooth");
+        });
+      });
     },
   },
 };

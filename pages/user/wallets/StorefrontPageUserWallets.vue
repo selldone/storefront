@@ -109,13 +109,13 @@ export default {
         .get(window.XAPI.GET_MY_WALLETS(this.$shop.name))
         .then(({ data }) => {
           if (data.error) {
-            return this.showErrorAlert(null, data.error_msg);
+            return NotificationService.showErrorAlert(null, data.error_msg);
           }
 
           this.wallets = data.wallets;
         })
         .catch((e) => {
-          this.showLaravelError(e);
+          NotificationService.showLaravelError(e);
         })
         .finally(() => {
           this.busy_fetch = false;

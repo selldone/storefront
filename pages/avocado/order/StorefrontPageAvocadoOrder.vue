@@ -116,11 +116,11 @@ export default {
             if (this.basket.status === Basket.Status.Payed.code)
               GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;

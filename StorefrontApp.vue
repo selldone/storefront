@@ -147,6 +147,7 @@ import SCookieConsent from "@selldone/components-vue/storefront/cookie/consent/S
 import SFooterNavigation from "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue";
 import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue";
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
 export default {
   name: "StorefrontApp",
@@ -409,7 +410,7 @@ export default {
           let color = category ? category.color : this.TemplateColorDark;
           const img = payload.notification ? payload.notification.icon : null;
 
-          this.showNotificationAlert(
+          NotificationService.showNotificationAlert(
             payload.notification.title,
             payload.notification.body,
             icon,
@@ -473,7 +474,7 @@ export default {
   },
   mounted() {
     //――――――――――――――――――――――  Server Message ――――――――――――――――――――
-    if (window.server_message) this.showMessage(null, window.server_message);
+    if (window.server_message) NotificationService.showMessage(null, window.server_message);
 
     //――――――――――――――――――――――  Global key listener ――――――――――――――――――――
 

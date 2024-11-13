@@ -231,11 +231,11 @@ export default {
           if (!response.data.error) {
             this.addresses = response.data.addresses;
           } else {
-            this.showErrorAlert(null, response.data.error_msg);
+            NotificationService.showErrorAlert(null, response.data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;
@@ -325,7 +325,7 @@ export default {
         })
         .then(({ data }) => {
           if (!data.error) {
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               null,
               this.$t("global.map_view.notifications.save_in_list"),
             );
@@ -335,11 +335,11 @@ export default {
             this.map_dialog = false;
             this.fetchAddressBook();
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_save = false;
@@ -368,7 +368,7 @@ export default {
         .then(({ data }) => {
           if (!data.error) {
             this.UpdateItemByID(this.addresses, data.address);
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               null,
               this.$t("global.map_view.notifications.edit_success", {
                 title: data.address.title,
@@ -377,11 +377,11 @@ export default {
             this.map_dialog = false;
             this.fetchAddressBook();
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_save = false;

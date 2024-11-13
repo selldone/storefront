@@ -329,11 +329,11 @@ export default {
             localStorage.removeItem("POS-LAST-SCAN-SIGNATURE");
           } else {
             this.basket = null;
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => (this.busy = false));
     },

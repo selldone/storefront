@@ -1450,11 +1450,11 @@ export default {
           if (!data.error) {
             this.setBasketBill(this.basket, data.bill);
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_bill = false;
@@ -1503,11 +1503,11 @@ export default {
                 ? data.billing
                 : {}; // Solve return array!
             } else {
-              this.showErrorAlert(null, data.error_msg);
+              NotificationService.showErrorAlert(null, data.error_msg);
             }
           })
           .catch((error) => {
-            this.showLaravelError(error);
+            NotificationService.showLaravelError(error);
           })
           .finally(() => {
             this.busy_save = false;
@@ -1646,7 +1646,7 @@ export default {
             }
 
             this.fetchBasketAndShop();
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               "Order submitted",
               "Your order has been submitted successfully. We will send bill to you.",
             );
@@ -1655,11 +1655,11 @@ export default {
               params: { basket_id: data.basket_id },
             });
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_submit = false;

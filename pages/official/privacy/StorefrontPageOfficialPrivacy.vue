@@ -69,11 +69,11 @@ export default {
       axios
         .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "privacy"))
         .then(({ data }) => {
-          if (data.error) return this.showErrorAlert(null, data.error_msg);
+          if (data.error) return NotificationService.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;

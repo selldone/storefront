@@ -529,7 +529,7 @@ export default {
     },
 
     LeaveShop() {
-      this.openDangerAlert(
+      NotificationService.openDangerAlert(
         this.$t("user_profile.leave_dialog.title"),
         this.$t("user_profile.leave_dialog.message"),
         this.$t("user_profile.leave_dialog.action"),
@@ -538,17 +538,17 @@ export default {
             .post(window.XAPI.POST_LEAVE_SHOP(this.$shop.name))
             .then(({ data }) => {
               if (!data.error) {
-                this.showSuccessAlert(
+                NotificationService.showSuccessAlert(
                   null,
                   this.$t("user_profile.notifications.leave_success"),
                 );
                 this.LogoutProcess();
               } else {
-                this.showErrorAlert(null, data.error_msg);
+                NotificationService.showErrorAlert(null, data.error_msg);
               }
             })
             .catch((error) => {
-              this.showLaravelError(error);
+              NotificationService.showLaravelError(error);
             });
         },
       );
@@ -565,18 +565,18 @@ export default {
           if (!data.error) {
             this.USER().subscribed = data.subscribed;
 
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               null,
               subscribe
                 ? "Subscribe successfully."
                 : "Unsubscribe successfully.",
             );
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_subscribe = false;
@@ -596,13 +596,13 @@ export default {
             this.USER().customer = data.customer;
             this.dialog_profile = false;
 
-            this.showSuccessAlert(null, "My profile updated successfully.");
+            NotificationService.showSuccessAlert(null, "My profile updated successfully.");
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_save = false;

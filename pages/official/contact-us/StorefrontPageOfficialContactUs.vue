@@ -171,11 +171,11 @@ export default {
       axios
         .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "contact-us"))
         .then(({ data }) => {
-          if (data.error) return this.showErrorAlert(null, data.error_msg);
+          if (data.error) return NotificationService.showErrorAlert(null, data.error_msg);
           this.profile = data.profile;
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;
@@ -207,16 +207,16 @@ export default {
 
             this.submitted = true;
 
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               null,
               this.$t("contact_us_form.notifications.success"),
             );
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_send = false;

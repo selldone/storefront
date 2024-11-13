@@ -129,7 +129,7 @@ export default {
           if (!data.error) {
             this.products = data.products;
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .finally(() => {

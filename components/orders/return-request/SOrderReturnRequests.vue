@@ -257,13 +257,13 @@ export default {
         })
         .then(({ data }) => {
           if (data.error) {
-            return this.showErrorAlert(null.error_msg);
+            return NotificationService.showErrorAlert(null.error_msg);
           }
           this.return_requests = data.return_requests;
           this.totalItems = data.total;
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy_fetch = false;

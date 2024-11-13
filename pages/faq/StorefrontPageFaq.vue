@@ -241,10 +241,10 @@ export default {
         })
         .then(({ data }) => {
           if (data.error) {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           } else {
             this.question = null;
-            this.showSuccessAlert(
+            NotificationService.showSuccessAlert(
               null,
               this.$t("global.faq.notifications.success_add"),
             );
@@ -252,7 +252,7 @@ export default {
           }
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
         .finally(() => {
           this.busy = false;

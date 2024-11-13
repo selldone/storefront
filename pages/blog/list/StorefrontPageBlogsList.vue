@@ -801,7 +801,7 @@ export default {
         })
         .then(({ data }) => {
           if (data.error) {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
             return;
           }
           this.loaded_data = true;
@@ -819,7 +819,7 @@ export default {
           this.totalItems = data.total;
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
 
         .finally(() => {

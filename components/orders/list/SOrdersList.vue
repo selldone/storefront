@@ -505,11 +505,11 @@ export default {
             this.orders = data.orders;
             this.totalItems = data.total;
           } else {
-            this.showErrorAlert(null, data.error_msg);
+            NotificationService.showErrorAlert(null, data.error_msg);
           }
         })
         .catch((e) => {
-          this.showLaravelError(e);
+          NotificationService.showLaravelError(e);
         })
         .finally(() => {
           this.busy_fetch = false;
