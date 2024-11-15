@@ -25,8 +25,8 @@ import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutes
 //――――――――――――――――――――――――― Layout ―――――――――――――――――――――――――
 
 import StorefrontLayout from "../layouts/StorefrontLayout.vue";
-const StorefrontPageLanding = () =>
-    import( "@app-storefront/pages/landing/StorefrontPageLanding.vue");
+//const StorefrontPageLanding = () => import( "@app-storefront/pages/landing/StorefrontPageLanding.vue");
+import StorefrontPageLanding from "@app-storefront/pages/landing/StorefrontPageLanding.vue";
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
 const StorefrontPageProducts = () =>
     import( "../pages/products/StorefrontPageProducts.vue");

@@ -130,22 +130,14 @@ import { FirebaseNotificationCategories } from "@selldone/core-js/enums/push-not
 import { Language } from "@selldone/core-js/enums/language/Language";
 import { SetupService } from "@selldone/core-js/server/SetupService";
 import { FontHelper } from "@selldone/core-js/helper/font/FontHelper";
-import SFullscreenViewAnimator from "@selldone/components-vue/ui/image/SFullscreenViewAnimator.vue";
 import { ShopRestriction } from "@selldone/core-js/enums/shop/options/ShopRestriction";
-import SAccessPrivateCheck from "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue";
-import SStorefrontRetrieveShareOrder from "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue";
-import SComparisonButton from "@selldone/components-vue/storefront/comparison/button/SComparisonButton.vue";
+
 import { EventBus, EventName } from "@selldone/core-js/events/EventBus";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
-import { inArray } from "jquery";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
 import { computed, defineAsyncComponent } from "vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin";
-import UNotificationSide from "@selldone/components-vue/ui/notification/side/UNotificationSide.vue";
-import SStorefrontNeedLoginDialog from "@selldone/components-vue/storefront/login/SStorefrontNeedLoginDialog.vue";
-import SCookieConsent from "@selldone/components-vue/storefront/cookie/consent/SCookieConsent.vue";
-import SFooterNavigation from "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue";
-import SStorefrontApplicationLogin from "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue";
+
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
@@ -153,15 +145,59 @@ export default {
   name: "StorefrontApp",
   mixins: [TemplateMixin, AuthMixin],
   components: {
-    SComparisonButton,
-    SStorefrontRetrieveShareOrder,
-    SAccessPrivateCheck,
-    SFullscreenViewAnimator,
-    UNotificationSide,
-    SStorefrontNeedLoginDialog,
-    SCookieConsent,
-    SFooterNavigation,
-    SStorefrontApplicationLogin,
+    SStorefrontRetrieveShareOrder: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue"
+        ),
+    ),
+    SAccessPrivateCheck: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue"
+        ),
+    ),
+    SFullscreenViewAnimator: defineAsyncComponent(
+      () =>
+        import("@selldone/components-vue/ui/image/SFullscreenViewAnimator.vue"),
+    ),
+    UNotificationSide: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/ui/notification/side/UNotificationSide.vue"
+        ),
+    ),
+    SStorefrontNeedLoginDialog: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/login/SStorefrontNeedLoginDialog.vue"
+        ),
+    ),
+    SCookieConsent: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/cookie/consent/SCookieConsent.vue"
+        ),
+    ),
+    SFooterNavigation: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/footer/navigarion/SFooterNavigation.vue"
+        ),
+    ),
+    SStorefrontApplicationLogin: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/login/SStorefrontApplicationLogin.vue"
+        ),
+    ),
+
+    SComparisonButton: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/comparison/button/SComparisonButton.vue"
+        ),
+    ),
 
     SDebugger: defineAsyncComponent(
       () => import("@selldone/components-vue/storefront/debuger/SDebugger.vue"),
@@ -233,11 +269,9 @@ export default {
     shop() {
       return this.getShop();
     },
-
     isMobile() {
       return this.$vuetify.display.smAndDown;
     },
-
     /**
      * We use it to force update entire app.
      * @return {string}
@@ -252,14 +286,12 @@ export default {
     language() {
       return this.getCurrentLanguage()?.code;
     },
-
     theme() {
       return this.shop?.theme;
     },
     color_buy_button() {
       return this.theme?.color_buy ? this.theme.color_buy : "#0061e0";
     },
-
     is_private() {
       return (
         this.shop && this.shop.restriction === ShopRestriction.PRIVATE.code
@@ -271,7 +303,6 @@ export default {
     customer_has_access() {
       return this.user && this.user.access;
     },
-
     has_gdpr() {
       return (
         SetupService.GetGDPREnable() &&
@@ -280,13 +311,11 @@ export default {
         this.shop.options.some((e) => e.code === "gdpr" && e.value === true)
       );
     },
-
     // --------------------------------------------------------------------------------
 
     has_comparison() {
       return this.$route.matched.some((record) => record.meta.comparison);
     },
-
     // --------------------------------------------------------------------------------
 
     page_background_color() {
@@ -296,7 +325,6 @@ export default {
       if (custom_bg_meta) return custom_bg_meta.meta.bg_color;
       return "#fff";
     },
-
     page_bg() {
       const meta_bg = this.$route.matched.find(
         (record) => record.meta.page_background,
@@ -308,7 +336,6 @@ export default {
       return "";
     },
   },
-
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Watch Section
@@ -327,14 +354,14 @@ export default {
         /*First shop page is not category page! but same elements so we do not want to suddenly jump up!*/
         const smooth =
           _old?.name === _new?.name ||
-          (inArray(
+          (Array.isArray(
             [
               window.$storefront.routes.SHOP_PAGE,
               window.$storefront.routes.SHOP_CATEGORY_PAGE,
             ],
             _old?.name,
           ) &&
-            inArray(
+              Array.isArray(
               [
                 window.$storefront.routes.SHOP_PAGE,
                 window.$storefront.routes.SHOP_CATEGORY_PAGE,
@@ -348,7 +375,6 @@ export default {
       });
     },
   },
-
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Component Lifecycle
@@ -372,7 +398,6 @@ export default {
     const event = new Event("selldone-app-loaded");
     document.dispatchEvent(event); // Dispatch the event.
   },
-
   created() {
     // Set initial language by meta tags: (Better user experience)
     if (
@@ -474,7 +499,8 @@ export default {
   },
   mounted() {
     //――――――――――――――――――――――  Server Message ――――――――――――――――――――
-    if (window.server_message) NotificationService.showMessage(null, window.server_message);
+    if (window.server_message)
+      NotificationService.showMessage(null, window.server_message);
 
     //――――――――――――――――――――――  Global key listener ――――――――――――――――――――
 
@@ -489,7 +515,6 @@ export default {
       this.UpdateExchangeRates();
     }, 5 * 60000); // every 5 minutes
   },
-
   beforeUnmount() {
     EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
     EventBus.$off(EventName.FIREBASE_GET_TOKEN);
@@ -498,7 +523,6 @@ export default {
     if (this.update_exchange_rates_interval)
       clearInterval(this.update_exchange_rates_interval);
   },
-
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
    *  🔷 Component Methods

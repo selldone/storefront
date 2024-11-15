@@ -156,7 +156,7 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- Primary footer of the storefront. -->
     <s-footer-section
-      v-if="!isMobile && !isStandalone  && $shop && has_footer"
+      v-if="!isMobile && !isStandalone && $shop && has_footer"
       :dark="!is_light_footer"
       class="m-0"
     />
@@ -186,25 +186,43 @@
 
 <script lang="ts">
 import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
-import SFooterSection from "@selldone/components-vue/storefront/footer/section/SFooterSection.vue";
-import { ApplicationExecutorStorefront } from "@selldone/core-js";
-
-import SStorefrontCampaignNotification from "@selldone/components-vue/storefront/campaign/notification/SStorefrontCampaignNotification.vue";
-import SContactsPopup from "@selldone/components-vue/storefront/contact/popup/SContactsPopup.vue";
 import SStorefrontTopMenu from "@selldone/components-vue/storefront/menu/header/SStorefrontTopMenu.vue";
 import SHeaderSection from "@selldone/components-vue/storefront/header/section/SHeaderSection.vue";
-import SStorefrontProductInBasketIndicator from "@selldone/components-vue/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import { defineAsyncComponent } from "vue";
+import { ApplicationExecutorStorefront } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
 
 export default {
   name: "StorefrontLayout",
   components: {
-    SStorefrontProductInBasketIndicator,
+    SStorefrontProductInBasketIndicator: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/product/in-basket/SStorefrontProductInBasketIndicator.vue"
+        ),
+    ),
+    SContactsPopup: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/contact/popup/SContactsPopup.vue"
+        ),
+    ),
+    SStorefrontCampaignNotification: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/campaign/notification/SStorefrontCampaignNotification.vue"
+        ),
+    ),
+    SFooterSection: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/footer/section/SFooterSection.vue"
+        ),
+    ),
+
     SHeaderSection,
     SStorefrontTopMenu,
-    SContactsPopup,
-    SStorefrontCampaignNotification,
-    SFooterSection,
+
     SStorefrontSearchBox,
   },
   mixins: [TemplateMixin],
@@ -342,9 +360,6 @@ export default {
       return this.$route.matched.some((record) => record.meta.fullscreen);
     },
 
-    shop_main_banner() {
-      return this.$store.getters.getShopMainBanner;
-    },
 
     /**
      * Establish a maximum width for the content displayed in the storefront.

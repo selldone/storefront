@@ -73,7 +73,7 @@
           }}</b>
           {{
             pickup.address
-              ? generateFullAddress(pickup)
+              ? MapHelper.GenerateFullAddressFromMapInfo(pickup)
               : $t("global.commons.empty")
           }}
         </v-list-item-title>
@@ -91,6 +91,7 @@ import { defineComponent } from "vue";
 import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations.ts";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType.ts";
 import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
+import {MapHelper} from "@selldone/core-js/helper";
 
 export default defineComponent({
   name: "SCartShippingPickups",
@@ -113,6 +114,9 @@ export default defineComponent({
     itemBgColor: {},
   },
   computed: {
+    MapHelper() {
+      return MapHelper
+    },
     light_checkout() {
       return this.$shop.theme?.light_checkout;
     },

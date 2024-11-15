@@ -38,6 +38,7 @@ import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is ca
 import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
 import "./style/fonts/lang-fa/lang-fa-iransans.css";
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
+import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
 
 const vuetify = VuetifyInstance(i18n);
 
@@ -133,8 +134,9 @@ app.use(store);
 app.use(vuetify);
 
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
-
-PageHyper(app, { mode: "view" });
+const $PageHyper=PageHyper(app, { mode: "view" });
+SetupPageBuilder(app, { mode: "view" });
+$PageHyper.isInitialized.value = true;
 
 // Mount the application
 const storefrontVueApp = app.mount("#app");
