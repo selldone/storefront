@@ -243,7 +243,7 @@ const StorefrontMixin = defineComponent({
               null,
             );
 
-            this.showLaravelError(error);
+            NotificationService.showLaravelError(error);
 
             NativeInterfaceUser(null);
 
@@ -391,7 +391,7 @@ const StorefrontMixin = defineComponent({
           if (callback) callback("success");
         })
         .catch((e) => {
-          this.showLaravelError(e);
+          NotificationService.showLaravelError(e);
           if (callback) callback("failed");
         })
         .finally(() => {});
@@ -443,7 +443,7 @@ const StorefrontMixin = defineComponent({
           if (callback) callback();
         },
         (error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         },
       );
     },
@@ -574,7 +574,7 @@ const StorefrontMixin = defineComponent({
           },
         )
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         })
 
         .finally(() => {
@@ -605,7 +605,7 @@ const StorefrontMixin = defineComponent({
           this.fetchBasketAndShop(); // Need refresh baskets...
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         });
     },
 
@@ -634,7 +634,7 @@ const StorefrontMixin = defineComponent({
           this.$store.commit("setCoupons", coupons);
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         });
     },
 
@@ -647,7 +647,7 @@ const StorefrontMixin = defineComponent({
           this.$store.commit("setLotteryPrizes", prizes);
         })
         .catch(() => {
-          // this.showLaravelError(error); Prevent show error on restricted shops!
+          // NotificationService.showLaravelError(error); Prevent show error on restricted shops!
         });
     },
 
@@ -663,7 +663,7 @@ const StorefrontMixin = defineComponent({
           this.$store.commit("setOffers", offers);
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
         });
     },
 
@@ -788,7 +788,7 @@ const StorefrontMixin = defineComponent({
           if (refresh) this.fetchBasketAndShop(); // Important! Fetch data from server. (Ex. Remove item automatically from basket)
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
           if (callbackError) callbackError(error);
         });
     },
@@ -808,7 +808,7 @@ const StorefrontMixin = defineComponent({
           if (callbackSuccess) callbackSuccess(basket);
         })
         .catch((error) => {
-          this.showLaravelError(error);
+          NotificationService.showLaravelError(error);
           if (callbackError) callbackError(error);
         });
     },
