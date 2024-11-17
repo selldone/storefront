@@ -20,7 +20,7 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 
 const manifest = require("./manifest.json");
 
-import vuetify from 'vite-plugin-vuetify'
+//import vuetify from 'vite-plugin-vuetify'
 /**
  * Storefront layout version. This unique identifier is used for naming each app version published on Selldone.
  * @type {string}
@@ -60,11 +60,7 @@ export default ({mode}: any) => {
 
     plugins: [
       vue(),
-      vuetify(
-          {
-            autoImport: { labs: true } // Include labs components
-          }
-      ),
+   //   vuetify({ autoImport: true }), tree shaking problem in dynamic components in page builder (vSheet works but v-sheet not!)
 
       //@ts-ignore
       vitePluginRequire.default(),
