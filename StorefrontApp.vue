@@ -63,69 +63,71 @@
     class="s--shop blur-animate"
     :key="unique_key_shop"
   >
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <Teleport to="#banners-placeholder">
-      <s-campaign-banner />
-    </Teleport>
-
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main router view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <router-view v-if="!is_private || customer_has_access" :shop="shop" />
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Private / Restricted Shop ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <s-access-private-check v-else></s-access-private-check>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-social-buttons
-      active-only
-      class="social-stick"
-      vertical
-    ></s-storefront-social-buttons>
+    <template v-if="delay_loaded">
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Campaign banner ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <Teleport to="#banners-placeholder">
+        <s-campaign-banner />
+      </Teleport>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-master-payment-dialog />
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Social links (Floating) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-social-buttons
+        active-only
+        class="social-stick"
+        vertical
+      ></s-storefront-social-buttons>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-comparison-button v-if="has_comparison" />
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Payment ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-master-payment-dialog />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-need-login-dialog />
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Comparison ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-comparison-button v-if="has_comparison" />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <u-notification-side />
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Need Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-need-login-dialog />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-application-login></s-storefront-application-login>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications (Small bottom-Right) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <u-notification-side />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <u-map-dialog></u-map-dialog>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Application Shop Login ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-application-login></s-storefront-application-login>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Cookie Agreement ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-cookie-consent v-if="has_gdpr"></s-cookie-consent>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Select Address ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <u-map-dialog></u-map-dialog>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-pwa-version-check
-      :style="$vuetify.display.smAndDown ? 'margin-top:-42px' : ''"
-    ></s-pwa-version-check>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Cookie Agreement ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-cookie-consent v-if="has_gdpr"></s-cookie-consent>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-footer-navigation v-if="isMobile"></s-footer-navigation>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ PWA Update Snackbar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-pwa-version-check
+        :style="$vuetify.display.smAndDown ? 'margin-top:-42px' : ''"
+      ></s-pwa-version-check>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-popup></s-storefront-popup>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Bottom navigation bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-footer-navigation v-if="isMobile"></s-footer-navigation>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Open fullscreen images ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-fullscreen-view-animator></s-fullscreen-view-animator>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Popup ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-popup></s-storefront-popup>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-storefront-retrieve-share-order></s-storefront-retrieve-share-order>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Open fullscreen images ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-fullscreen-view-animator></s-fullscreen-view-animator>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <s-debugger></s-debugger>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Retrieve basket from secure links ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-storefront-retrieve-share-order></s-storefront-retrieve-share-order>
+
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Webapp debug view ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <s-debugger></s-debugger>
+    </template>
   </v-app>
 </template>
 
 <script lang="ts">
-import { debounce } from "lodash-es";
+import { debounce, delay } from "lodash-es";
 import { FirebaseNotificationCategories } from "@selldone/core-js/enums/push-notification/FirebaseNotificationCategories";
 import { Language } from "@selldone/core-js/enums/language/Language";
 import { SetupService } from "@selldone/core-js/server/SetupService";
@@ -140,23 +142,20 @@ import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin
 
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+import SAccessPrivateCheck from "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue";
 
 export default {
   name: "StorefrontApp",
   mixins: [TemplateMixin, AuthMixin],
   components: {
+    SAccessPrivateCheck,
     SStorefrontRetrieveShareOrder: defineAsyncComponent(
       () =>
         import(
           "@selldone/components-vue/storefront/order/share-order/SStorefrontRetrieveShareOrder.vue"
         ),
     ),
-    SAccessPrivateCheck: defineAsyncComponent(
-      () =>
-        import(
-          "@selldone/components-vue/storefront/access/private/check/SAccessPrivateCheck.vue"
-        ),
-    ),
+
     SFullscreenViewAnimator: defineAsyncComponent(
       () =>
         import("@selldone/components-vue/ui/image/SFullscreenViewAnimator.vue"),
@@ -258,6 +257,7 @@ export default {
     IconFontsLoaded: false,
 
     blur: false,
+    delay_loaded: false,
   }),
 
   /**
@@ -361,7 +361,7 @@ export default {
             ],
             _old?.name,
           ) &&
-              Array.isArray(
+            Array.isArray(
               [
                 window.$storefront.routes.SHOP_PAGE,
                 window.$storefront.routes.SHOP_CATEGORY_PAGE,
@@ -514,6 +514,12 @@ export default {
     this.update_exchange_rates_interval = setInterval(() => {
       this.UpdateExchangeRates();
     }, 5 * 60000); // every 5 minutes
+
+    delay(() => {
+      this.$nextTick(() => {
+        this.delay_loaded = true;
+      });
+    }, 1000);
   },
   beforeUnmount() {
     EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);

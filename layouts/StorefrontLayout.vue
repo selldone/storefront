@@ -153,34 +153,36 @@
       </router-view>
     </v-main>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <!-- Primary footer of the storefront. -->
-    <s-footer-section
-      v-if="!isMobile && !isStandalone && $shop && has_footer"
-      :dark="!is_light_footer"
-      class="m-0"
-    />
+    <template v-if="delay_loaded">
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Primary Footer ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <!-- Primary footer of the storefront. -->
+      <s-footer-section
+        v-if="!isMobile && !isStandalone && $shop && has_footer"
+        :dark="!is_light_footer"
+        class="m-0"
+      />
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Basket Indicator ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <!-- Display a green stripe at the bottom of product pages to indicate that the product has been added to the basket. -->
-    <s-storefront-product-in-basket-indicator></s-storefront-product-in-basket-indicator>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Basket Indicator ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <!-- Display a green stripe at the bottom of product pages to indicate that the product has been added to the basket. -->
+      <s-storefront-product-in-basket-indicator></s-storefront-product-in-basket-indicator>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <!-- Show notifications to user. -->
-    <s-storefront-campaign-notification
-      v-if="notification"
-      v-model="show_notification"
-      :notification="notification"
-      :page-name="banner ? banner.page_name : null"
-    ></s-storefront-campaign-notification>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Notifications ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <!-- Show notifications to user. -->
+      <s-storefront-campaign-notification
+        v-if="notification"
+        v-model="show_notification"
+        :notification="notification"
+        :page-name="banner ? banner.page_name : null"
+      ></s-storefront-campaign-notification>
 
-    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Customer support ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
-    <!-- Storefront chat box. -->
-    <s-contacts-popup
-      v-if="show_support_chat && has_support"
-      :bottom="isMobile ? 96 : 12"
-      class="zoomIn"
-    ></s-contacts-popup>
+      <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Customer support ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+      <!-- Storefront chat box. -->
+      <s-contacts-popup
+        v-if="show_support_chat && has_support"
+        :bottom="isMobile ? 96 : 12"
+        class="zoomIn"
+      ></s-contacts-popup>
+    </template>
   </div>
 </template>
 
@@ -237,6 +239,8 @@ export default {
    */
 
   data: () => ({
+    delay_loaded:false,
+
     /**
      * @property {boolean} show_notification - Controls the visibility of notifications. When true, notifications are shown.
      */
@@ -436,6 +440,21 @@ export default {
     setTimeout(() => {
       this.elapsed_support_delay = true;
     }, 10000);
+  },
+  /**
+   * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   *  🔷 Component Lifecycle
+   * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   */
+  mounted() {
+    // Delay load after 3 cycles!
+    this.$nextTick(() => {
+      this.$nextTick(() => {
+        this.$nextTick(() => {
+          this.delay_loaded = true;
+        });
+      });
+    });
   },
 
   /**

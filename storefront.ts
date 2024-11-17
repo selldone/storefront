@@ -39,6 +39,8 @@ import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensu
 import "./style/fonts/lang-fa/lang-fa-iransans.css";
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
+import {SetupService} from "@selldone/core-js/server";
+import {Shop} from "@selldone/core-js/models";
 
 const vuetify = VuetifyInstance(i18n);
 
@@ -135,8 +137,19 @@ app.use(vuetify);
 
 //――――――――――――――――――――――――― Page Builder ―――――――――――――――――――――――――
 const $PageHyper=PageHyper(app, { mode: "view" });
-SetupPageBuilder(app, { mode: "view" });
-$PageHyper.isInitialized.value = true;
+
+function isNumericNumber(value) {
+  return typeof value === "string" && /^\d+$/.test(value.trim());
+}
+
+const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
+
+if(CUSTOM_HOME && isNumericNumber(CUSTOM_HOME) && !window.location.pathname?.includes("/product/")/*Fast load product page!*/){
+  SetupPageBuilder(app, { mode: "view" });
+  $PageHyper.isInitialized.value = true;
+  console.log("⚡ Turbo loading landing page.")
+}
+
 
 // Mount the application
 const storefrontVueApp = app.mount("#app");

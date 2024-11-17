@@ -36,6 +36,7 @@
             class="hide-on-small-600"
             exact
             icon
+            aria-label="Go Back"
           >
             <v-icon>{{ $t("icons.arrow_back") }}</v-icon>
           </v-btn>
@@ -344,8 +345,6 @@ export default {
     },
 
     getProduct() {
-      this.busy = true;
-
       const handleSuccessResponse = ({
         product,
       }: XapiProductGetTypes.IResponse) => {
@@ -360,6 +359,14 @@ export default {
 
         this.setPageTitle(product.title); // Set Page Title!
       };
+
+      if (window.PRE_LOADED_DATA.PRODUCT_PACK) {
+        console.log("⚡ Turbo load product.");
+        handleSuccessResponse(window.PRE_LOADED_DATA.PRODUCT_PACK);
+        window.PRE_LOADED_DATA.PRODUCT_PACK = null; // Clear!
+      } else {
+        this.busy = true; // Do not show loading!
+      }
 
       window.$storefront.products
         .optimize(60)
