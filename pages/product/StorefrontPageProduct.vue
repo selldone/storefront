@@ -314,8 +314,8 @@ export default {
 
     has_pros_cons() {
       return (
-        (this.product?.pros && Object.keys(this.product.pros).length) ||
-        (this.product?.cons && Object.keys(this.product.cons).length)
+        (this.product?.pros && Object.keys(this.product.pros).length >0) ||
+        (this.product?.cons && Object.keys(this.product.cons).length >0)
       );
     },
   },
@@ -360,10 +360,10 @@ export default {
         this.setPageTitle(product.title); // Set Page Title!
       };
 
-      if (window.PRE_LOADED_DATA.PRODUCT_PACK) {
+      if (window.PRE_LOADED_DATA?.PRODUCT_PACK) {
         console.log("⚡ Turbo load product.");
         handleSuccessResponse(window.PRE_LOADED_DATA.PRODUCT_PACK);
-        window.PRE_LOADED_DATA.PRODUCT_PACK = null; // Clear!
+        window.PRE_LOADED_DATA = null; // Clear!
       } else {
         this.busy = true; // Do not show loading!
       }
