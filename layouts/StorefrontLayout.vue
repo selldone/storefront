@@ -193,6 +193,7 @@ import SHeaderSection from "@selldone/components-vue/storefront/header/section/S
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import { defineAsyncComponent } from "vue";
 import { ApplicationExecutorStorefront } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
+import {delay} from "lodash-es";
 
 export default {
   name: "StorefrontLayout",
@@ -451,7 +452,9 @@ export default {
     this.$nextTick(() => {
       this.$nextTick(() => {
         this.$nextTick(() => {
-          this.delay_loaded = true;
+          delay(() => {
+            this.delay_loaded = true;
+          }, 3000);
         });
       });
     });

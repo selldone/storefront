@@ -519,7 +519,7 @@ export default {
       this.$nextTick(() => {
         this.delay_loaded = true;
       });
-    }, 1000);
+    }, 3000);
   },
   beforeUnmount() {
     EventBus.$off(EventName.FIREBASE_RECEIVE_MESSAGE);
