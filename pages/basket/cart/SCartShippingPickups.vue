@@ -43,7 +43,9 @@
           'rounded-t-18px': i === 0,
           'rounded-b-18px': i === pickups.length - 1,
         }"
-        :style="{ backgroundColor: itemBgColor }"
+        :style="{'--hover-bg-color': ShadeColor(itemBgColor,20)}"
+        :base-color="itemBgColor"
+        variant="flat"
       >
         <template v-slot:prepend>
           <v-list-item-action start>
@@ -55,7 +57,7 @@
               color="info"
               >circle
             </v-icon>
-            <v-icon v-else :color="light_checkout ? '#333' : '#fafafa'"
+            <v-icon v-else
               >radio_button_unchecked
             </v-icon>
           </v-list-item-action>
@@ -91,7 +93,7 @@ import { defineComponent } from "vue";
 import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransportations.ts";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType.ts";
 import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
-import {MapHelper} from "@selldone/core-js/helper";
+import {MapHelper, ShadeColor} from "@selldone/core-js/helper";
 
 export default defineComponent({
   name: "SCartShippingPickups",
@@ -144,6 +146,7 @@ export default defineComponent({
   },
 
   methods: {
+    ShadeColor,
     // ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ Pickup ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
     selectPickup(pickup) {
       this.$emit("pickupSelected", {

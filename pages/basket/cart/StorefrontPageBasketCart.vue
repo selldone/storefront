@@ -481,9 +481,8 @@
                   <!-- ====================================== TOTAL PRICE ================================= -->
 
                   <div class="total-price-after-discount">
-                    <p class="label m-0">
+                    <p class="label m-0 text-uppercase">
                       {{ $t("basket_page.final_price") }}
-                      :
                     </p>
                     <p class="value font-weight-black">
                       <u-loading-ellipsis
@@ -499,8 +498,6 @@
                       >
                     </p>
                   </div>
-
-                  <div v-if="has_delivery" class="spacer-line my-3" />
                 </div>
                 <!-- END OF PRICES -->
                 <div v-else class="text-h4 text-center p-3">
@@ -519,6 +516,7 @@
                         setBasketConfig();
                       }
                     "
+                    :start-package-index="0"
                   ></s-shop-connect-shipping-options>
 
                   <!-- ════════════════════════ 🍇 Vendors Shipping Options ════════════════════════ -->
@@ -526,6 +524,9 @@
                     :basket="basket"
                     :deliveryInfo="delivery_info"
                     @set-basket-config="setBasketConfig"
+                    :start-package-index="
+                      bill?.connect_shipping_options?.length
+                    "
                   ></s-order-shipping-vendors-options>
 
                   <!-- ════════════════════════ 🥬 Store Shipping Options (Multi Warehouse - soon) ════════════════════════ -->
@@ -534,6 +535,10 @@
                     :basket="basket"
                     :delivery-info="delivery_info"
                     @set-basket-config="setBasketConfig"
+                    :start-package-index="
+                      bill?.connect_shipping_options?.length +
+                      bill?.vendor_shipping_options?.length
+                    "
                   ></s-order-shipping-stores-options>
 
                   <!-- ════════════════════════ 🥕 Drop Shipping delivery ════════════════════════ -->
@@ -571,6 +576,8 @@
 
                 <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Receiver Address ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
                 <div v-if="has_delivery">
+                  <div class="spacer-line my-3" :caption="$t('global.commons.receiver')" />
+
                   <div
                     v-intersect="
                       (isIntersecting, entries, observer) => {
@@ -890,7 +897,14 @@ import ClubMixin from "@selldone/components-vue/mixin/club/ClubMixin.ts";
 
 export default {
   name: "StorefrontPageBasketCart",
-  mixins: [TemplateMixin, CurrencyMixin, ProductMixin, MapMixin, AuthMixin,ClubMixin],
+  mixins: [
+    TemplateMixin,
+    CurrencyMixin,
+    ProductMixin,
+    MapMixin,
+    AuthMixin,
+    ClubMixin,
+  ],
 
   components: {
     UMapView,
@@ -1705,6 +1719,46 @@ export default {
     }
   }
 
+
+
+  //-----------------------------------------------------------
+
+  --spacer-border-color: #333; /* Default border color */
+  --spacer-bg-color: #333; /* Default background color */
+  --spacer-text-color: #fff; /* Default text color */
+
+  &.dark {
+    --spacer-border-color: #fff; /* Dark mode border color */
+    --spacer-bg-color: #fff; /* Dark mode background color */
+    --spacer-text-color: #000; /* Dark mode text color */
+  }
+
+
+  ::v-deep(.spacer-line) {
+    display: block;
+    border-bottom: thick double var(--spacer-border-color); /* Variable border color */
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+
+    &::before {
+      content: attr(caption); /* Get text from the caption attribute */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 4px;
+      transform: translate(-50%, -40%);
+      background: var(--spacer-bg-color); /* Variable background color */
+      padding: 0 10px;
+      font-size: 12px; /* Adjust font size as needed */
+      font-weight: 600;
+      color: var(--spacer-text-color); /* Variable text color */
+      white-space: nowrap; /* Prevent text wrapping */
+    }
+  }
+  //-----------------------------------------------------------
+
+
   .text-success {
     color: #2ab27b !important;
   }
@@ -1745,19 +1799,8 @@ export default {
       color: #2ab27b;
     }
 
-    ::v-deep(.spacer-line-dotted) {
-      display: block;
-      border-bottom: 2px dotted rgba(255, 255, 255, 0.18);
-      width: 60%;
-      margin: 0 auto;
-    }
 
-    ::v-deep(.spacer-line) {
-      display: block;
-      border-bottom: thick double #eee;
-      width: 80%;
-      margin: 0 auto;
-    }
+
 
     .total-price-after-discount {
       margin-top: 14px;
