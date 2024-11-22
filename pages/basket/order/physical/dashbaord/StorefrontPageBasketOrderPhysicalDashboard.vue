@@ -67,6 +67,16 @@
         :order="basket"
         @request:refresh="$emit('request:refresh')"
       ></s-shop-customer-order-payment-widget>
+
+
+      <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Vendor Orders (In marketplace with direct shipping mode) ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
+      <s-basket-vendor-orders
+          v-if="basket"
+          :basket="basket"
+      ></s-basket-vendor-orders>
+
+
+
       <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Delivery ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
       <s-shop-customer-delivery-info-widget
@@ -98,10 +108,12 @@ import SShopCustomerDeliveryInfoWidget from "@selldone/components-vue/storefront
 import SShopShareOrderButton from "@selldone/components-vue/storefront/order/share-order/SShopShareOrderButton.vue";
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderChatWidget from "@selldone/components-vue/storefront/order/chat/widget/SOrderChatWidget.vue";
+import SBasketVendorOrders from "@selldone/components-vue/storefront/order/vendor-order/SBasketVendorOrders.vue";
 
 export default {
   name: "StorefrontPageBasketOrderPhysicalDashboard",
   components: {
+    SBasketVendorOrders: SBasketVendorOrders,
     SOrderChatWidget,
     SShopShareOrderButton,
     SShopCustomerDeliveryInfoWidget,
