@@ -88,12 +88,10 @@
     <v-main
       :style="{
         'max-width': max_width,
-        'margin-top':
-          top_margin_content /*The 's-storefront-primary-header' comes with a default height of 128px, and the use of negative margin contributes to creating an overlay effect on the storefront's main view. */,
+        '--v-layout-bottom': 0, // Remove Vuetify bottom layout (by v-bottom-navigation)
+        //  'margin-top': top_margin_content /*The 's-storefront-primary-header' comes with a default height of 128px, and the use of negative margin contributes to creating an overlay effect on the storefront's main view. */,
       }"
       class="d-block"
-      fill-height
-      fluid
       style="
         z-index: 0;
         width: 100%;
@@ -132,12 +130,7 @@
               :center="center"
               :force-dark="globalStyle.dark_header"
               :fullscreen="is_fullscreen"
-              :style="{
-                marginTop:
-                  globalStyle.header_mode === 'hidden'
-                    ? '64px'
-                    : 0 /*Cover -64px of main view of shop*/,
-              }"
+
               :tabs="top_menu.menu"
               :transparent="globalStyle.transparent_header"
               :color="globalStyle.header_color"
@@ -193,7 +186,7 @@ import SHeaderSection from "@selldone/components-vue/storefront/header/section/S
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import { defineAsyncComponent } from "vue";
 import { ApplicationExecutorStorefront } from "@selldone/core-js/models/application/executor/storefront/ApplicationExecutorStorefront.ts";
-import {delay} from "lodash-es";
+import { delay } from "lodash-es";
 
 export default {
   name: "StorefrontLayout",
@@ -240,7 +233,7 @@ export default {
    */
 
   data: () => ({
-    delay_loaded:false,
+    delay_loaded: false,
 
     /**
      * @property {boolean} show_notification - Controls the visibility of notifications. When true, notifications are shown.
@@ -364,7 +357,6 @@ export default {
     is_fullscreen() {
       return this.$route.matched.some((record) => record.meta.fullscreen);
     },
-
 
     /**
      * Establish a maximum width for the content displayed in the storefront.

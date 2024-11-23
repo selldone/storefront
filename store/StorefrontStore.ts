@@ -67,28 +67,27 @@ interface IState {
    * Storefront header style
    * Used by elements like landing page to change main header style
    */
-  globalStyle:{
-    header_color: string;
+  globalStyle: {
+    header_color: string | null;
+    header_filter: Record<string, any> | null; // Backdrop filter for header
     /**
      * Defines the current mode of the header. Can be 'null', 'normal', 'overlay', or 'hidden'.
      */
-    header_mode: 'normal'|'overlay'|'hidden'|null;
+    header_mode: "normal" | "overlay" | "hidden" | null;
     /**
      * Manages the style of the header when it needs to be dark-themed. Null when not in use.
      */
-    dark_header: boolean|null;
+    dark_header: boolean | null;
     /**
      * Manages the style of the header when it needs to be transparent. Null when not in use.
      */
-    transparent_header: boolean|null;
-
+    transparent_header: boolean | null;
 
     /**
      * Indicates whether the search mode is active. When true, the component is in search mode.
      */
-    search_mode:boolean|null;
-  }
-
+    search_mode: boolean | null;
+  };
 }
 
 export default createStore<IState>({
@@ -168,18 +167,17 @@ export default createStore<IState>({
 
     initial_location: null,
 
-    globalStyle:{
+    globalStyle: {
       //━━━━━━━ Main Header ━━━━━━━
       header_color: null,
-        header_mode: null,
-        dark_header: null,
-        transparent_header: null,
+      header_filter: null,
+      header_mode: null,
+      dark_header: null,
+      transparent_header: null,
 
       //━━━━━━━ Search ━━━━━━━
-      search_mode:null,
-
+      search_mode: null,
     },
-
   },
 
   mutations: {
@@ -322,7 +320,6 @@ export default createStore<IState>({
       state.initial_location = initial_location;
     },
 
-
     //━━━━━━━ Global Style ━━━━━━━
     /**
      * Set global style for the shop
@@ -334,10 +331,9 @@ export default createStore<IState>({
     setGlobalStyle(state, style: Partial<GlobalStyle>) {
       state.globalStyle = {
         ...state.globalStyle, // Existing values
-        ...style // New values
+        ...style, // New values
       };
-    }
-
+    },
   },
   getters: {
     getShop(state) {
@@ -367,8 +363,8 @@ export default createStore<IState>({
     },
     //━━━━━━━External Accounts ━━━━━━━
     /*  getExchangeRates(state) {
-                  return state.exchangeRates;
-                },*/
+                      return state.exchangeRates;
+                    },*/
 
     //━━━━━━━ 📦 Gifts ━━━━━━━
     getGifts(state) {
@@ -480,7 +476,6 @@ export default createStore<IState>({
     getGlobalStyle(state) {
       return state.globalStyle;
     },
-
   },
 
   actions: {
@@ -511,15 +506,14 @@ export default createStore<IState>({
      * Reset shop header style
      * ex. ``` this.$store.dispatch("resetGlobalStyle"); ```
      */
-    resetGlobalStyle(){
-        this.commit('setGlobalStyle',{
-            header_color: null,
-            header_mode: null,
-            dark_header: null,
-            transparent_header: null,
-        });
-    }
-
-
+    resetGlobalStyle() {
+      this.commit("setGlobalStyle", {
+        header_color: null,
+        header_filter: null,
+        header_mode: null,
+        dark_header: null,
+        transparent_header: null,
+      });
+    },
   },
 });

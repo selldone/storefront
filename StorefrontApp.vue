@@ -57,6 +57,8 @@
         '--theme-btn-color': color_buy_button,
 
         '--background': page_background_color,
+
+
       },
       page_bg,
     ]"
