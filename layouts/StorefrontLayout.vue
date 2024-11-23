@@ -122,6 +122,7 @@
               "
               :overlay-dark="!!globalStyle.dark_header"
               overlay
+              border
             ></s-header-section>
 
             <!-- The storefront menu customized and set up by the merchant. -->
@@ -135,6 +136,7 @@
               :transparent="globalStyle.transparent_header"
               :color="globalStyle.header_color"
               flat
+              :border="in_product_page"
               :class="{
                 's--custom-top-menu-transparent':
                   globalStyle.transparent_header ||
@@ -373,6 +375,10 @@ export default {
     globalStyle() {
       return this.$store.getters.getGlobalStyle;
     },
+
+    in_product_page(){
+      return this.$route.name === window.$storefront.routes.PRODUCT_PAGE;
+    }
   },
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
