@@ -179,14 +179,14 @@
       </div>
 
       <!-- ▁▁▁▁▁▁ 🞇 Badges 🞇 ▁▁▁▁▁▁ -->
-      <div :style="{ order: getOrder('badges') }">
-        <u-fade-scroll>
-          <s-product-section-badges
-            :large="$vuetify.display.mdAndUp"
-            class="py-16"
-          ></s-product-section-badges>
-        </u-fade-scroll>
-      </div>
+      <!--  <div :style="{ order: getOrder('badges') }">
+          <u-fade-scroll>
+            <s-product-section-badges
+              :large="$vuetify.display.mdAndUp"
+              class="py-16"
+            ></s-product-section-badges>
+          </u-fade-scroll>
+        </div>-->
     </template>
   </div>
 </template>
@@ -200,7 +200,6 @@ import SProductOverviewLoading from "@selldone/components-vue/storefront/product
 import { GtagEcommerce } from "@selldone/components-vue/plugins/gtag/GtagEcommerce";
 
 import SProductProsCons from "@selldone/components-vue/storefront/product/pros-cons/SProductProsCons.vue";
-import UFadeScroll from "@selldone/components-vue/ui/fade-scroll/UFadeScroll.vue";
 import SProductIncludes from "@selldone/components-vue/storefront/product/includes/SProductIncludes.vue";
 import SProductRelatedProducts from "@selldone/components-vue/storefront/product/related-products/SProductRelatedProducts.vue";
 import SProductRelatedCategories from "@selldone/components-vue/storefront/product/related-categories/SProductRelatedCategories.vue";
@@ -213,7 +212,6 @@ import SProductSubscriptionMembership from "@selldone/components-vue/storefront/
 import SProductOffers from "@selldone/components-vue/storefront/product/offers/SProductOffers.vue";
 import SProductCrossSells from "@selldone/components-vue/storefront/product/cross-sells/SProductCrossSells.vue";
 import ProductSection from "@selldone/core-js/enums/product/ProductSection";
-import SProductSectionBadges from "@selldone/components-vue/storefront/product/section/badges/SProductSectionBadges.vue";
 import { Article } from "@selldone/core-js";
 import { computed } from "vue";
 import SProductBreadcrumb from "@selldone/components-vue/storefront/product/breadcrumb/SProductBreadcrumb.vue";
@@ -246,11 +244,9 @@ export default {
     SProductGuide,
     SProductWarranty,
     SProductShipping,
-    SProductSectionBadges,
     SProductRelatedCategories,
     SProductRelatedProducts,
     SProductIncludes,
-    UFadeScroll,
     SProductProsCons,
 
     SProductOverviewLoading,
@@ -314,8 +310,8 @@ export default {
 
     has_pros_cons() {
       return (
-        (this.product?.pros && Object.keys(this.product.pros).length >0) ||
-        (this.product?.cons && Object.keys(this.product.cons).length >0)
+        (this.product?.pros && Object.keys(this.product.pros).length > 0) ||
+        (this.product?.cons && Object.keys(this.product.cons).length > 0)
       );
     },
   },
