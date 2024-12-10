@@ -78,6 +78,7 @@
         color="transparent"
         flat
         variant="solo"
+        persistent-placeholder
         @onClear="onClear"
         @onSearch="onSearch"
       />
