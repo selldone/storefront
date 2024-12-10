@@ -35,8 +35,8 @@ import {VuetifyInstance} from "@selldone/components-vue/plugins/vuetify/vuetify"
 import {createComponents} from "@selldone/components-vue/components";
 // Load fonts:
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
-import "./style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
-import "./style/fonts/lang-fa/lang-fa-iransans.css";
+import "@selldone/components-vue/style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
+import "@selldone/components-vue/style/fonts/lang/fa/lang-fa-iransans.css";
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
 import {SetupService} from "@selldone/core-js/server";
