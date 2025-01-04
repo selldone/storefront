@@ -663,6 +663,17 @@
                   ></s-shop-billing-address-form>
                 </div>
 
+
+                <!-- ============== Custom Checkout Form ============== -->
+
+                <s-order-checkout-form v-model="form" class="my-5"
+                                       @changed="setBasketConfig"
+                                       :key="'socf-'+basket?.id /*Force update*/"
+
+
+                ></s-order-checkout-form>
+
+
                 <!-- ============== User messages (by server) ============== -->
 
                 <div
@@ -894,6 +905,7 @@ import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts
 import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 import ClubMixin from "@selldone/components-vue/mixin/club/ClubMixin.ts";
+import SOrderCheckoutForm from "@selldone/components-vue/storefront/order/checkout/SOrderCheckoutForm.vue";
 
 export default {
   name: "StorefrontPageBasketCart",
@@ -907,6 +919,7 @@ export default {
   ],
 
   components: {
+    SOrderCheckoutForm,
     UMapView,
     ULoadingEllipsis,
     SOrderShippingStoresOptions,
@@ -967,6 +980,8 @@ export default {
 
     busy_save: false,
 
+
+    form:null,
     //-------------- Billing Info -------------
 
     refreshing_price: false,
@@ -1450,6 +1465,9 @@ export default {
         };
       }
 
+
+      this.form=Object.assign({},this.basket.form);
+
       if (!this.bill) {
         // Fetch if not loaded!
         this.fetchBill();
@@ -1498,6 +1516,7 @@ export default {
               receiver_info: this.receiver_info,
               delivery_info: this.delivery_info,
               billing: this.billing,
+              form: this.form,
             },
           )
           .then(({ data }) => {
@@ -1519,6 +1538,8 @@ export default {
               this.basket.billing = this.isObject(data.billing)
                 ? data.billing
                 : {}; // Solve return array!
+
+              this.basket.form = data.form;
             } else {
               NotificationService.showErrorAlert(null, data.error_msg);
             }
