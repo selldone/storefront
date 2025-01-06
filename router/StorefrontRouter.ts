@@ -27,6 +27,8 @@ import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutes
 import StorefrontLayout from "../layouts/StorefrontLayout.vue";
 //const StorefrontPageLanding = () => import( "@app-storefront/pages/landing/StorefrontPageLanding.vue");
 import StorefrontPageLanding from "@app-storefront/pages/landing/StorefrontPageLanding.vue";
+
+import StorefrontPageLogin from "@app-storefront/pages/login/StorefrontPageLogin.vue";
 //――――――――――――――――――――――――― Shop ―――――――――――――――――――――――――
 const StorefrontPageProducts = () =>
     import( "../pages/products/StorefrontPageProducts.vue");
@@ -353,6 +355,14 @@ const routes: IVueRoute[] = [
       // Important: This route selection must be first!
       // + Add new pages on shop.js > getCustomHomePage & GetDomainHomeIcon & GetDomainHomeName
       getRouteForHome(),
+
+      // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ Login ⬬⬬⬬⬬⬬⬬⬬⬬
+      {
+        path: "welcome",
+        name: StorefrontRoutesName.SHOP_LOGIN_PAGE,
+        component: StorefrontPageLogin,
+      },
+
 
       // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ Shop Page ⬬⬬⬬⬬⬬⬬⬬⬬
       {
