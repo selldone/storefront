@@ -468,9 +468,7 @@ const routes: IVueRoute[] = [
         path: "user",
         component: StorefrontPageUser,
 
-        meta: {
-          requiresAuth: true,
-        },
+
 
         children: [
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ My Orders Page (Virtual, Physical ...) ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -533,6 +531,9 @@ const routes: IVueRoute[] = [
             path: "profile",
             name: StorefrontRoutesName.USER_PROFILE_PAGE,
             component: StorefrontPageUserProfile,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Addresses ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -540,6 +541,9 @@ const routes: IVueRoute[] = [
             path: "addresses",
             name: StorefrontRoutesName.USER_ADDRESSES_PAGE,
             component: StorefrontUserAddresses,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User order returns ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -547,6 +551,9 @@ const routes: IVueRoute[] = [
             path: "orders-return",
             name: StorefrontRoutesName.USER_RETURN_REQUESTS,
             component: StorefrontPageUserReturns,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Favorites ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -554,6 +561,9 @@ const routes: IVueRoute[] = [
             path: "favorites",
             name: StorefrontRoutesName.USER_FAVORITES_PAGE,
             component: StorefrontPageUserWishlist,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Comments ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -561,6 +571,9 @@ const routes: IVueRoute[] = [
             path: "comments",
             name: StorefrontRoutesName.USER_COMMENTS_PAGE,
             component: StorefrontPageUserComments,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User gift cards ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -568,6 +581,9 @@ const routes: IVueRoute[] = [
             path: "gift-cards",
             name: StorefrontRoutesName.USER_GIFTCARDS_PAGE,
             component: StorefrontPageUserGiftcards,
+            meta: {
+              requiresAuth: true,
+            },
           },
 
           // ▶ ▶ ⬬⬬⬬⬬⬬⬬⬬⬬ User Profile ⬬⬬⬬⬬⬬⬬⬬⬬
@@ -575,6 +591,9 @@ const routes: IVueRoute[] = [
             path: "wallets",
             name: StorefrontRoutesName.USER_WALLETS_PAGE,
             component: StorefrontPageUserWallets,
+            meta: {
+              requiresAuth: true,
+            },
           },
         ],
       },

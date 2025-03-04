@@ -106,6 +106,7 @@
       <!-- ⦿ Profile -->
 
       <u-button-circle
+          v-if="USER()"
         :auto-disabled-route-name="window.$storefront.routes.USER_PROFILE_PAGE"
         :to="{ name: window.$storefront.routes.USER_PROFILE_PAGE }"
         :tooltip="$t('user_page.menu.profile')"
