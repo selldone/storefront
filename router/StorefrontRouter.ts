@@ -689,9 +689,6 @@ const routes: IVueRoute[] = [
       {
         path: "orders",
         component: StorefrontPageBasketOrder,
-        meta: {
-          requiresAuth: true,
-        },
 
         children: [
           // ⬬⬬⬬⬬⬬⬬⬬⬬ Order info ▶ Physical ⬬⬬⬬⬬⬬⬬⬬⬬
