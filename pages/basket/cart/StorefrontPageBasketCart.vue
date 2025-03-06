@@ -1614,6 +1614,9 @@ export default {
 
       this.form = Object.assign({}, this.basket.form);
 
+      this.guest_email=this.basket.guest_email;
+
+
       if (!this.bill) {
         // Fetch if not loaded!
         this.fetchBill();
@@ -1687,6 +1690,8 @@ export default {
                 : {}; // Solve return array!
 
               this.basket.form = data.form;
+
+              this.basket.guest_email=data.guest_email
             } else {
               NotificationService.showErrorAlert(null, data.error_msg);
             }
