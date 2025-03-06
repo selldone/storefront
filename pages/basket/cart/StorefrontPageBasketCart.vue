@@ -576,7 +576,10 @@
 
                 <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Select Receiver Address ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
                 <div v-if="has_delivery">
-                  <div class="spacer-line my-3" :caption="$t('global.commons.receiver')" />
+                  <div
+                    class="spacer-line my-3"
+                    :caption="$t('global.commons.receiver')"
+                  />
 
                   <div
                     v-intersect="
@@ -653,8 +656,130 @@
                   {{ $t("basket_page.select_location_error") }}
                 </p>
 
-                <!-- ============== Billing Info ============== -->
-                <div v-if="canPayAndComplete" class="mt-5">
+                <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Collect Email ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
+
+                  <div
+                    class="spacer-line mt-6 mb-3"
+                    :caption="$t('global.commons.user')"
+                  />
+                  <template v-if="user">
+                    <div class="d-flex align-center py-1 text-start">
+                      <v-avatar
+                        :size="42"
+                        class="hover-scale m-2 avatar-gradient -thin"
+                      >
+                        <v-img :src="getUserAvatar(user.id)" />
+                      </v-avatar>
+
+                      <div class="flex-grow-1">
+                        <b class="single-line"
+                          >{{ user.name }}
+                          <v-icon
+                            v-if="user.verified"
+                            class="ms-1"
+                            color="blue"
+                            size="small"
+                            >verified
+                          </v-icon>
+                          <v-icon
+                            v-if="user.ban"
+                            :title="`User banned for ${user.ban}`"
+                            class="ms-1"
+                            color="red"
+                            >block
+                          </v-icon>
+                          <v-icon
+                            v-if="user.block_at"
+                            :title="`Blocked by system at ${getFromNowString(
+                              user.block_at,
+                            )} for ${user.block_hours} hours!`"
+                            class="ms-1"
+                            color="red"
+                          >
+                            crisis_alert
+                          </v-icon>
+                        </b>
+
+                        <v-row
+                          v-if="user.email || user.phone"
+                          :class="{ 'my-1': !small }"
+                          class="small"
+                          no-gutters
+                        >
+                          <div class="flex-grow-1">
+                            <span  class="py-1">{{
+                              user.email
+                            }}</span>
+                          </div>
+                          <div v-if="user.phone" class="flex-grow-1">
+                            <span class="py-1" >{{
+                              user.phone
+                            }}</span>
+                          </div>
+                        </v-row>
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else-if="has_guest_payment">
+                    <v-text-field
+                      v-model="guest_email"
+                      variant="solo"
+                      prepend-inner-icon="email"
+                      class="mt-5 mx-auto"
+                      placeholder="john@gmail.com"
+                      :label="$t('global.commons.email')"
+                      persistent-placeholder
+                      max-width="500"
+                      :rules="[GlobalRules.required(), GlobalRules.email()]"
+                      rounded="lg"
+                      @blur="setBasketConfig"
+                      messages=" "
+                    >
+                      <template v-slot:append-inner>
+                        <v-icon
+                          v-if="enter_guest_email_error"
+                          color="red"
+                          class="blink-me-linear"
+                          >warning</v-icon
+                        >
+                      </template>
+
+                      <template v-slot:message>
+                        <div class="small d-flex align-center">
+                          {{ $t("global.commons.or") }}
+                          <v-btn
+                            variant="text"
+                            slim
+                            color="primary"
+                            class="tnt mx-1"
+                            @click="NeedLogin"
+                            prepend-icon="login"
+                            ><b>{{ $t("global.actions.login") }}</b></v-btn
+                          >
+                        </div>
+                      </template>
+                    </v-text-field>
+                  </template>
+
+                <div v-else class="widget-buttons">
+                  <v-btn
+                      variant="text"
+                      color="primary"
+                      size="x-large"
+                      @click="NeedLogin"
+                      prepend-icon="login"
+                  ><b>{{ $t("global.actions.login") }}</b></v-btn
+                  >
+                </div>
+
+                <!-- ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃ Billing Info ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃  -->
+
+                <div v-if="canPayAndComplete" class="mt-3">
+                  <div
+                    class="spacer-line my-3"
+                    :caption="$t('global.commons.billing')"
+                  />
+
                   <s-shop-billing-address-form
                     v-model="billing"
                     :dark="!light_checkout"
@@ -663,16 +788,14 @@
                   ></s-shop-billing-address-form>
                 </div>
 
-
                 <!-- ============== Custom Checkout Form ============== -->
 
-                <s-order-checkout-form v-model="form" class="my-5"
-                                       @changed="setBasketConfig"
-                                       :key="'socf-'+basket?.id /*Force update*/"
-
-
+                <s-order-checkout-form
+                  v-model="form"
+                  class="my-5"
+                  @changed="setBasketConfig"
+                  :key="'socf-' + basket?.id /*Force update*/"
                 ></s-order-checkout-form>
-
 
                 <!-- ============== User messages (by server) ============== -->
 
@@ -720,6 +843,7 @@
                       color="#16a085"
                       variant="elevated"
                       rounded
+                      :disabled="enter_guest_email_error"
                       @click.stop="goToPaymentBasket(null)"
                     >
                       <span
@@ -751,6 +875,9 @@
                           ></v-progress-circular>
                         </v-fab-transition>
                       </span>
+                      <small v-if="enter_guest_email_error" class="ms-1">
+                        <v-icon>warning</v-icon>
+                        {{$t('global.commons.enter_email')}}!</small>
                     </v-btn>
 
                     <!-- Checkout without payment (Service) -->
@@ -771,6 +898,7 @@
                       color="#16a085"
                       variant="elevated"
                       rounded
+                      :disabled="enter_guest_email_error"
                       @click.stop="submitServiceOrder()"
                     >
                       <v-icon class="me-2"> check_circle</v-icon>
@@ -782,6 +910,11 @@
                         :currency="basket.currency"
                         class="ms-3 ps-3 border-start"
                       ></u-price>
+
+
+                      <small v-if="enter_guest_email_error" class="ms-1">
+                        <v-icon>warning</v-icon>
+                        {{$t('global.commons.enter_email')}}!</small>
                     </v-btn>
                   </div>
                 </div>
@@ -906,6 +1039,7 @@ import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 import ClubMixin from "@selldone/components-vue/mixin/club/ClubMixin.ts";
 import SOrderCheckoutForm from "@selldone/components-vue/storefront/order/checkout/SOrderCheckoutForm.vue";
+import UButtonWhatsapp from "@selldone/components-vue/ui/button/whatsapp/UButtonWhatsapp.vue";
 
 export default {
   name: "StorefrontPageBasketCart",
@@ -919,6 +1053,7 @@ export default {
   ],
 
   components: {
+    UButtonWhatsapp,
     SOrderCheckoutForm,
     UMapView,
     ULoadingEllipsis,
@@ -980,8 +1115,9 @@ export default {
 
     busy_save: false,
 
+    guest_email: null,
 
-    form:null,
+    form: null,
     //-------------- Billing Info -------------
 
     refreshing_price: false,
@@ -1326,6 +1462,17 @@ export default {
         this.subscription_period && BillingPeriod[this.subscription_period]
       );
     },
+
+    // ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ Checkout Flow ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
+    user() {
+      return this.USER();
+    },
+    has_guest_payment() {
+      return ShopOptionsHelper.HasGuestPayment(this.$shop);
+    },
+    enter_guest_email_error(){
+      return   !this.user &&  this.has_guest_payment && !this.guest_email // Guest email is required!
+    }
   },
 
   /**
@@ -1465,8 +1612,7 @@ export default {
         };
       }
 
-
-      this.form=Object.assign({},this.basket.form);
+      this.form = Object.assign({}, this.basket.form);
 
       if (!this.bill) {
         // Fetch if not loaded!
@@ -1517,6 +1663,7 @@ export default {
               delivery_info: this.delivery_info,
               billing: this.billing,
               form: this.form,
+              guest_email: this.guest_email,
             },
           )
           .then(({ data }) => {
@@ -1740,8 +1887,6 @@ export default {
     }
   }
 
-
-
   //-----------------------------------------------------------
 
   --spacer-border-color: #333; /* Default border color */
@@ -1753,7 +1898,6 @@ export default {
     --spacer-bg-color: #fff; /* Dark mode background color */
     --spacer-text-color: #000; /* Dark mode text color */
   }
-
 
   ::v-deep(.spacer-line) {
     display: block;
@@ -1778,7 +1922,6 @@ export default {
     }
   }
   //-----------------------------------------------------------
-
 
   .text-success {
     color: #2ab27b !important;
@@ -1819,9 +1962,6 @@ export default {
       font-weight: 400;
       color: #2ab27b;
     }
-
-
-
 
     .total-price-after-discount {
       margin-top: 14px;
