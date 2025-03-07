@@ -94,7 +94,7 @@ import { RouteMixin } from "@selldone/components-vue/mixin/route/RouteMixin.ts";
 import { Basket } from "@selldone/core-js";
 import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
-import {EventBus} from "@selldone/core-js/events/EventBus.ts";
+import {EventBus} from "@selldone/components-vue/utils/events/EventBus.ts";
 
 export default {
   name: "StorefrontPageBasketOrder",

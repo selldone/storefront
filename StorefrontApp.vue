@@ -136,7 +136,7 @@ import { SetupService } from "@selldone/core-js/server/SetupService";
 import { FontHelper } from "@selldone/core-js/helper/font/FontHelper";
 import { ShopRestriction } from "@selldone/core-js/enums/shop/options/ShopRestriction";
 
-import { EventBus, EventName } from "@selldone/core-js/events/EventBus";
+import { EventBus, EventName } from "@selldone/components-vue/utils/events/EventBus.ts";
 import ScrollHelper from "@selldone/core-js/utils/scroll/ScrollHelper";
 import { StorefrontShopHealthCheck } from "@app-storefront/helpers/StorefrontShopHealthCheck";
 import { computed, defineAsyncComponent } from "vue";

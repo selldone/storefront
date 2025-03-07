@@ -37,7 +37,7 @@ import type {RouteRecord} from "vue-router/types/router";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {defineComponent} from "vue";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";
-import {EventBus} from "@selldone/core-js/events/EventBus.ts";
+import {EventBus} from "@selldone/components-vue/utils/events/EventBus.ts";
 import {CurrencyHelper} from "@selldone/core-js/helper";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
