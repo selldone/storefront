@@ -223,7 +223,7 @@ export default {
           if (!data.error) {
             this.basket = data.basket;
 
-            if (this.basket.status === Basket.Status.Payed.code)
+            if (this.basket.status === Basket.Status.Payed.code || this.basket.status === Basket.Status.COD.code)
               GtagEcommerce.MeasuringPurchasesBasket(this.basket);
           } else {
             NotificationService.showErrorAlert(null, data.error_msg);
