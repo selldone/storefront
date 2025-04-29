@@ -64,7 +64,7 @@
     <!-- This is the main search bar for the shop. -->
     <v-slide-y-reverse-transition leave-absolute>
       <s-storefront-search-box
-        v-if="show_search_box && !isMobile"
+        v-if="show_search_box && !isMobile && !custom_header_code"
         ref="search_box"
         v-model:expand-input="globalStyle.search_mode"
         :class="{
@@ -348,6 +348,10 @@ export default {
 
     theme() {
       return this.$shop?.theme;
+    },
+
+    custom_header_code(){
+      return this.theme.custom_header_code
     },
 
     is_light_footer() {
