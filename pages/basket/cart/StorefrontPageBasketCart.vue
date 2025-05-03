@@ -792,6 +792,7 @@
 
                 <s-order-checkout-form
                   v-model="form"
+                  :country="receiver_info?.country?receiver_info.country:billing?.country"
                   class="my-5"
                   @changed="setBasketConfig"
                   :key="'socf-' + basket?.id /*Force update*/"
