@@ -48,7 +48,7 @@
         }"
         style="transition: all 400ms ease"
       >
-        <slot name="header"></slot>
+        <slot name="header" :center="true"></slot>
       </div>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Show Vendor Info ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->

@@ -67,10 +67,7 @@
         v-if="show_search_box && !isMobile && !custom_header_code"
         ref="search_box"
         v-model:expand-input="globalStyle.search_mode"
-        :class="{
-          'is-mobile': isMobile,
-          'full-width': globalStyle.search_mode && isMobile,
-        }"
+
         :dark="false"
         :negative-qr-margin="false"
         :title="$t('layout_shop.search_title', { shop_name: $shop.title })"
@@ -81,6 +78,8 @@
         persistent-placeholder
         @onClear="onClear"
         @onSearch="onSearch"
+        no-qr
+
       />
     </v-slide-y-reverse-transition>
 
@@ -565,6 +564,13 @@ a {
     align-items: center;
     width: 100%;
     max-width: 420px;
+
+    @media only screen and (max-width: 1280px) {
+      position:relative;
+      top:0;
+      left: 0;
+      transform: none;
+    }
 
     @media only screen and (min-width: 1720px) {
       box-shadow: 0 -6px 8px 0px rgba(0, 0, 0, 0.03);

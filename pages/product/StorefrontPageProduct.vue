@@ -19,7 +19,7 @@
     <div style="order: 0">
       <div class="s--product-section-info">
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Shop Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
-        <slot :center="false" name="header"></slot>
+        <slot name="header" :center="true"></slot>
         <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
 
         <v-toolbar color="transparent" flat>
