@@ -292,7 +292,7 @@ export default {
       return this.shop?.theme;
     },
     color_buy_button() {
-      return this.theme?.color_buy ? this.theme.color_buy : "#0061e0";
+      return this.theme?.color_buy ? this.theme?.color_buy : "#0061e0";
     },
     is_private() {
       return (

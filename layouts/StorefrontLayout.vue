@@ -350,7 +350,7 @@ export default {
     },
 
     custom_header_code(){
-      return this.theme.custom_header_code
+      return this.theme?.custom_header_code
     },
 
     is_light_footer() {
