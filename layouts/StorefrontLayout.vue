@@ -63,24 +63,29 @@
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Search Box ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
     <!-- This is the main search bar for the shop. -->
     <v-slide-y-reverse-transition leave-absolute>
-      <s-storefront-search-box
-        v-if="show_search_box && !isMobile && !custom_header_code"
-        ref="search_box"
-        v-model:expand-input="globalStyle.search_mode"
+      <div      v-if="show_search_box && !isMobile && !custom_header_code" class="s--storefront-layout-search-style me-2">
+        <s-storefront-search-box
 
-        :dark="false"
-        :negative-qr-margin="false"
-        :title="$t('layout_shop.search_title', { shop_name: $shop.title })"
-        class="s--storefront-layout-search-style me-2"
-        color="transparent"
-        flat
-        variant="solo"
-        persistent-placeholder
-        @onClear="onClear"
-        @onSearch="onSearch"
-        no-qr
+          ref="search_box"
+          v-model:expand-input="globalStyle.search_mode"
 
-      />
+          :dark="false"
+          :negative-qr-margin="false"
+          :title="$t('layout_shop.search_title', { shop_name: $shop.title })"
+
+          flat
+          variant="outlined"
+          rounded="lg"
+          persistent-placeholder
+          @onClear="onClear"
+          @onSearch="onSearch"
+          no-qr
+          class="flex-grow-1 mt-2"
+          color="#000"
+
+        />
+      </div>
+
     </v-slide-y-reverse-transition>
 
     <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Main ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -557,19 +562,20 @@ a {
     left: 50%;
     transform: translateX(-50%);
 
-    padding: 0 14px;
+    padding: 0 8px;
     background: #fff;
-    border-radius: 12px 12px 0 0;
+    border-radius: 10px 10px 0 0;
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 420px;
+    max-width: 640px;
 
     @media only screen and (max-width: 1280px) {
       position:relative;
       top:0;
       left: 0;
       transform: none;
+      max-width: 100%;
     }
 
     @media only screen and (min-width: 1720px) {
