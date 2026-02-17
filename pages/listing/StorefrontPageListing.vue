@@ -4,7 +4,7 @@
       <slot name="header" :center="true"></slot>
     </div>
 
-    <div class="pa-4">
+    <div class="pa-4" >
       <u-loading-progress v-if="busy_info" />
 
       <v-alert
@@ -27,6 +27,7 @@
       </div>
 
       <s-storefront-listing-categories
+
         v-model="selected_category_id"
         class="mb-4"
         @update:modelValue="onCategoryChanged"
