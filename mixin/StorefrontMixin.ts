@@ -40,6 +40,7 @@ import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopH
 import {EventBus} from "@selldone/components-vue/utils/events/EventBus.ts";
 import {CurrencyHelper} from "@selldone/core-js/helper";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+import { ListingCompareStore } from "@selldone/components-vue/storefront/listing/compare/ListingCompareStore.ts";
 
 const StorefrontMixin = defineComponent({
   data() {
@@ -1136,6 +1137,22 @@ const StorefrontMixin = defineComponent({
       console.error("Push notification not supported for the shop!");
       // PushNotification.AskForPermission();
     },
+
+
+    //―――――――――――――――――――――― Listing ――――――――――――――――――――
+    ListingCompareAdd(item: any) {
+      const shopName = String((this as any).$shop?.name || "").trim();
+      if (!shopName) return;
+      ListingCompareStore.add(shopName, item, 4);
+    },
+
+    ListingCompareToggle(item: any) {
+      const shopName = String((this as any).$shop?.name || "").trim();
+      if (!shopName) return;
+      ListingCompareStore.toggle(shopName, item, 4);
+    },
+
+
   },
 });
 export default StorefrontMixin;

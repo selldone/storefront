@@ -249,6 +249,21 @@ const StorefrontPageMapVendors = () =>
      "../pages/map/vendors/StorefrontPageMapVendors.vue"
   );
 
+
+
+
+
+
+//――――――――――――――――――――――――― Listing ―――――――――――――――――――――――――
+const StorefrontPageListing = () => import("../pages/listing/StorefrontPageListing.vue");
+const StorefrontPageListingItem = () => import("../pages/listing/item/StorefrontPageListingItem.vue");
+
+const StorefrontPageListingCompare = () => import("../pages/listing/compare/StorefrontPageListingCompare.vue");
+
+
+
+
+
 function getRouteForHome(): IVueRoute {
   switch (CUSTOM_HOME) {
     /*▃▃▃▃▃▃▃▃▃▃▃ Home ➤ Blog ▃▃▃▃▃▃▃▃▃▃▃*/
@@ -958,10 +973,85 @@ const routes: IVueRoute[] = [
     ],
   },
 
+
+
+  //█████████████████████████████████████████████████████████████
+  //――――――――――――――――― Listing  ―――――――――――――――
+  //█████████████████████████████████████████████████████████████
+
+  {
+    path: "/listing",
+    component: StorefrontLayout,
+    meta: {
+      card: false,
+      search: false,
+
+    },
+    children: [
+      {
+        path: "",
+        name: "StorefrontListingPage",
+        component: StorefrontPageListing,
+
+      },
+
+      {
+        path: "/listing/compare",
+        name: "StorefrontListingCompare",
+        component:StorefrontPageListingCompare,
+      },
+
+
+// Listing home + category (one optional segment)
+      {
+        path: ":category?",
+        name: "StorefrontListing",
+        component: StorefrontPageListing,
+
+      },
+
+
+
+
+// Listing item profile (two segments after listing)
+      {
+        path: ":category/:item",
+        name: "StorefrontListingItemProfile",
+        component: StorefrontPageListingItem,
+
+      },
+
+
+
+    ],
+  },
+
+
+
+
+
+
+
+
+
+
+
+
   // will match everything and put it under `route.params.pathMatch`
   { path: "/:pathMatch(.*)*", component: StorefrontPageError404 },
   { name: "AvocadoBuyerFormPage", component: StorefrontPageError404 },
   { name: "ShopHyperPage", component: StorefrontPageError404 },
+
+
+
+
+
+
+
+
+
+
+
 
 
 ];

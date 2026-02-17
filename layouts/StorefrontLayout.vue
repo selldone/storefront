@@ -183,6 +183,10 @@
         class="zoomIn"
       ></s-contacts-popup>
     </template>
+
+    <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Listing Compare Bar ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
+    <s-storefront-listing-compare-bar />
+
   </div>
 </template>
 
@@ -227,6 +231,15 @@ export default {
     SStorefrontTopMenu,
 
     SStorefrontSearchBox,
+
+    SStorefrontListingCompareBar: defineAsyncComponent(
+      () =>
+        import(
+          "@selldone/components-vue/storefront/listing/compare/bar/SStorefrontListingCompareBar.vue"
+          ),
+    ),
+
+
   },
   mixins: [TemplateMixin],
 
