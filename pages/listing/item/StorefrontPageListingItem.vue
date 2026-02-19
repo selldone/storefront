@@ -1,21 +1,21 @@
 <template>
-  <div>
+  <div class="text-start">
     <div style="transition: all 400ms ease">
       <slot name="header" :center="true"></slot>
     </div>
 
-    <div class="pa-4">
+    <v-container >
       <v-btn
         variant="text"
         prepend-icon="arrow_back"
-        class="mb-3"
+        class="mb-3 tnt"
         :to="backToCategory"
       >
         Back
       </v-btn>
 
       <s-storefront-listing-item-profile :item-id="itemId" />
-    </div>
+    </v-container>
   </div>
 </template>
 
