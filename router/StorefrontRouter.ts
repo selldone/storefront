@@ -1013,13 +1013,13 @@ const routes: IVueRoute[] = [
 
 
 
-// Listing item profile (two segments after listing)
+      // Listing item profile (two segments after listing)
+// item MUST be "slug-id" (or just "id")
       {
-        path: ":category/:item",
+        path: ":category/:item(.*-\\d+|\\d+)",
         name: "StorefrontListingItemProfile",
         component: StorefrontPageListingItem,
-
-      },
+      }
 
 
 
