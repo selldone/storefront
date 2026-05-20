@@ -15,6 +15,7 @@
 import {defineConfig, loadEnv} from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
+import fs from "fs";
 import vitePluginRequire from "vite-plugin-require";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 
@@ -31,6 +32,17 @@ let IS_PRODUCTION: boolean;
 let DEV_HOST: string;
 let DEV_PORT: number;
 let IS_HTTPS: boolean;
+
+const MODULES_ROOT = path.resolve(__dirname, "modules");
+
+function resolveSelldoneModule(packageName: string, gitFolderName: string) {
+  const gitModulePath = path.resolve(MODULES_ROOT, gitFolderName);
+  if (fs.existsSync(gitModulePath)) {
+    return gitModulePath;
+  }
+
+  return path.resolve(__dirname, `node_modules/${packageName}`);
+}
 
 // ▃▃▃▃▃▃▃▃▃▃▃▃ Storefront Web App ▃▃▃▃▃▃▃▃▃▃▃▃
 export default ({mode}: any) => {
@@ -76,12 +88,12 @@ export default ({mode}: any) => {
         "@app-storefront": path.resolve(__dirname, ""),
         "@app-vendor": path.resolve(__dirname, "src/Applications/Vendor/"),
 
-        '@selldone/core-js': path.resolve(__dirname, 'node_modules/@selldone/core-js'),
-        '@selldone/components-vue': path.resolve(__dirname, 'node_modules/@selldone/components-vue'),
-        '@selldone/page-builder': path.resolve(__dirname, 'node_modules/@selldone/page-builder'),
-        '@selldone/translate': path.resolve(__dirname, 'node_modules/@selldone/translate'),
-        '@selldone/sdk-storefront': path.resolve(__dirname, 'node_modules/@selldone/sdk-storefront'),
-        '@selldone/sdk-community': path.resolve(__dirname, 'node_modules/@selldone/sdk-community'),
+        '@selldone/core-js': resolveSelldoneModule('@selldone/core-js', 'core'),
+        '@selldone/components-vue': resolveSelldoneModule('@selldone/components-vue', 'components'),
+        '@selldone/page-builder': resolveSelldoneModule('@selldone/page-builder', 'pagebuilder'),
+        '@selldone/translate': resolveSelldoneModule('@selldone/translate', 'translate'),
+        '@selldone/sdk-storefront': resolveSelldoneModule('@selldone/sdk-storefront', 'storefront-sdk'),
+        '@selldone/sdk-community': resolveSelldoneModule('@selldone/sdk-community', 'community-sdk'),
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       },
@@ -100,6 +112,7 @@ export default ({mode}: any) => {
         allow: [
           // Use path.resolve with an empty string to resolve to the project root directory
           path.resolve(""),
+          MODULES_ROOT,
         ],
       },
     },

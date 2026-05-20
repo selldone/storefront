@@ -96,20 +96,20 @@ gh repo clone selldone/storefront
 
 #### Step 2: Install Necessary Packages
 
-Next, install all the required packages. You can use either Yarn or npm as your package manager.
+First, fetch Selldone modules directly from GitHub (submodules), then install remaining packages.
 
 If you're using Yarn, run:
 
 ```shell
-yarn install
 yarn setup
+yarn install
 ```
 
 For npm, use:
 
 ```shell
-npm install
 npm run setup
+npm install
 ```
 
 #### Step 3: Begin Development
@@ -223,7 +223,7 @@ designed for influencers and offer their LAYOUT for a monthly subscription fee o
 | [Community SDK](https://github.com/selldone/community-sdk)      | Community-driven SDK with additional tools and integrations.                                    |
 | [Selldone Pagebuilder](https://github.com/selldone/pagebuilder) | Tool for building and customizing pages within the Selldone platform.                           |
 
-Command to update modules (fetch from git) : `git submodule update --remote --merge`
+Command to update modules (fetch from git): `git submodule update --init --recursive --remote`
 
 ### Native app login
 

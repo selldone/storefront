@@ -38,6 +38,54 @@
       ],
       "@app-storefront/*": [
         "*"
+      ],
+      "@selldone/core-js": [
+        "modules/core",
+        "node_modules/@selldone/core-js"
+      ],
+      "@selldone/core-js/*": [
+        "modules/core/*",
+        "node_modules/@selldone/core-js/*"
+      ],
+      "@selldone/components-vue": [
+        "modules/components",
+        "node_modules/@selldone/components-vue"
+      ],
+      "@selldone/components-vue/*": [
+        "modules/components/*",
+        "node_modules/@selldone/components-vue/*"
+      ],
+      "@selldone/page-builder": [
+        "modules/pagebuilder",
+        "node_modules/@selldone/page-builder"
+      ],
+      "@selldone/page-builder/*": [
+        "modules/pagebuilder/*",
+        "node_modules/@selldone/page-builder/*"
+      ],
+      "@selldone/translate": [
+        "modules/translate",
+        "node_modules/@selldone/translate"
+      ],
+      "@selldone/translate/*": [
+        "modules/translate/*",
+        "node_modules/@selldone/translate/*"
+      ],
+      "@selldone/sdk-storefront": [
+        "modules/storefront-sdk",
+        "node_modules/@selldone/sdk-storefront"
+      ],
+      "@selldone/sdk-storefront/*": [
+        "modules/storefront-sdk/*",
+        "node_modules/@selldone/sdk-storefront/*"
+      ],
+      "@selldone/sdk-community": [
+        "modules/community-sdk",
+        "node_modules/@selldone/sdk-community"
+      ],
+      "@selldone/sdk-community/*": [
+        "modules/community-sdk/*",
+        "node_modules/@selldone/sdk-community/*"
       ]
     },
     "lib": [

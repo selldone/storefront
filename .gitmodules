@@ -1,0 +1,25 @@
+[submodule "modules/core"]
+	path = modules/core
+	url = https://github.com/selldone/core.git
+	branch = main
+[submodule "modules/translate"]
+	path = modules/translate
+	url = https://github.com/selldone/translate.git
+	branch = main
+[submodule "modules/storefront-sdk"]
+	path = modules/storefront-sdk
+	url = https://github.com/selldone/storefront-sdk.git
+	branch = main
+[submodule "modules/community-sdk"]
+	path = modules/community-sdk
+	url = https://github.com/selldone/community-sdk.git
+	branch = main
+[submodule "modules/components"]
+	path = modules/components
+	url = https://github.com/selldone/components.git
+	branch = main
+[submodule "modules/pagebuilder"]
+	path = modules/pagebuilder
+	url = https://github.com/selldone/pagebuilder.git
+	branch = main
+

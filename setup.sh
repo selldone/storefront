@@ -59,6 +59,11 @@ echo ""
 echo -e "${GREEN_INVERT}Checking and adding submodules...${NC}"
 
 
+# Sync and pull all git submodules (latest from tracked branch)
+git submodule sync --recursive
+git submodule update --init --recursive --remote
+
+
 echo ""
 # Display the status of submodules
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

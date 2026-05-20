@@ -1,6 +1,6 @@
 {
   "name": "selldone",
-  "version": "0.2024.08.18",
+  "version": "0.2026.05.20",
   "private": false,
   "license": "Selldone®",
   "type": "module",
@@ -28,13 +28,6 @@
   },
   "homepage": "https://selldone.com",
   "dependencies": {
-    "@selldone/core-js": "latest",
-    "@selldone/translate": "latest",
-    "@selldone/sdk-storefront": "latest",
-    "@selldone/sdk-community": "latest",
-    "@selldone/components-vue": "latest",
-    "@selldone/page-builder": "latest",
-
 
     "axios": "^1.13.4",
     "file-saver": "^2.0.5",
