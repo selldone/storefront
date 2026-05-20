@@ -8,7 +8,7 @@
   "scripts": {
     "serve": "vite --force",
     "build-production": "vite build",
-    "setup": "sh ./setup.sh"
+    "setup": "node ./setup.mjs"
   },
   "repository": {
     "type": "git",
