@@ -14,7 +14,7 @@
  * Tread carefully, for you're treading on dreams.
  */
 
-import {existsSync, renameSync} from "node:fs";
+import {existsSync, readFileSync, renameSync} from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import {spawnSync} from "node:child_process";
@@ -35,6 +35,60 @@ function run(command, args) {
   }
 }
 
+function runCapture(command, args) {
+  const result = spawnSync(command, args, {
+    encoding: "utf8",
+    shell: process.platform === "win32",
+  });
+
+  if (result.error) {
+    console.error(result.error.message);
+    process.exit(1);
+  }
+
+  return {
+    status: result.status ?? 1,
+    stdout: (result.stdout || "").trim(),
+    stderr: (result.stderr || "").trim(),
+  };
+}
+
+function parseGitmodules(filePath) {
+  if (!existsSync(filePath)) {
+    return [];
+  }
+
+  const text = readFileSync(filePath, "utf8");
+  const blocks = text
+    .split(/\n(?=\[submodule ")/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  return blocks
+    .map((block) => {
+      const name = block.match(/\[submodule "([^"]+)"\]/)?.[1];
+      const modulePath = block.match(/^\s*path\s*=\s*(.+)$/m)?.[1]?.trim();
+      const url = block.match(/^\s*url\s*=\s*(.+)$/m)?.[1]?.trim();
+      const branch = block.match(/^\s*branch\s*=\s*(.+)$/m)?.[1]?.trim() || "main";
+
+      if (!name || !modulePath || !url) {
+        return null;
+      }
+
+      return {name, path: modulePath, url, branch};
+    })
+    .filter(Boolean);
+}
+
+function isSubmoduleRegistered(modulePath) {
+  const probe = runCapture("git", ["ls-files", "--stage", "--", modulePath]);
+  if (probe.status !== 0 || !probe.stdout) {
+    return false;
+  }
+
+  return probe.stdout.split("\n").some((line) => line.startsWith("160000 "));
+}
+
 console.log("");
 console.log("███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗");
 console.log("██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝");
@@ -51,6 +105,30 @@ console.log("▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆�
 console.log("");
 
 console.log("Checking and adding submodules...");
+
+const repoProbe = runCapture("git", ["rev-parse", "--is-inside-work-tree"]);
+if (repoProbe.status !== 0 || repoProbe.stdout !== "true") {
+  console.error("This directory is not a git repository. Clone with git (not zip download).");
+  process.exit(1);
+}
+
+const modules = parseGitmodules(path.resolve(process.cwd(), ".gitmodules"));
+for (const moduleInfo of modules) {
+  if (isSubmoduleRegistered(moduleInfo.path)) {
+    continue;
+  }
+
+  console.log(`Registering missing submodule: ${moduleInfo.path}`);
+  run("git", [
+    "submodule",
+    "add",
+    "--force",
+    "-b",
+    moduleInfo.branch,
+    moduleInfo.url,
+    moduleInfo.path,
+  ]);
+}
 
 run("git", ["submodule", "sync", "--recursive"]);
 run("git", ["submodule", "update", "--init", "--recursive", "--remote"]);
