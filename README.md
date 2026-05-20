@@ -102,14 +102,14 @@ If you're using Yarn, run:
 
 ```shell
 yarn setup
-yarn install
+yarn install --force
 ```
 
 For npm, use:
 
 ```shell
 npm run setup
-npm install
+npm install --force
 ```
 
 #### Step 3: Begin Development
