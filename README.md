@@ -4,6 +4,7 @@
 ![Storefront Layout](https://img.shields.io/badge/Layout-Vue?style=flat&label=Official&labelColor=%23673AB7&color=%23000)
 ![Vue3](https://img.shields.io/badge/version-Vue-8BC34A?style=flat&label=3&labelColor=%238BC34A&color=%2300796B)
 ![License](https://img.shields.io/github/license/selldone/storefront.svg?v=1)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-selldone%2Fstorefront-181717?style=flat&logo=github&logoColor=white)](https://github.com/selldone/storefront)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ede7c7fdeac4daa9136fd040672ac22)](https://app.codacy.com/gh/selldone/storefront/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 ## Selldone ⮕ Storefront Official
