@@ -1,29 +1,101 @@
 ---
 name: storefront-builder
-description: Design, rebuild, implement, or audit a complete Selldone storefront from zero in any UI design or frontend framework while preserving the full commerce functionality contract: shop bootstrap, catalog, products, variants, vendors, search, filtering, sorting, listings, map browsing, baskets, checkout, shipping, pickup, payments, order history, customer account, addresses, wishlist, comments, returns, wallets, gift cards, coupons, offers, subscriptions, digital goods, services, POS, avocado/hyper flows, blog, pages, community, localization, currency, PWA, private shops, campaigns, popups, GDPR, and mobile storefront behavior.
+description: >-
+  Customize the official Selldone Vue 3 Storefront into a business-specific
+  web app that can be published as a Selldone Layout. Use when an AI agent must
+  discover a merchant's business goals, audience, brand, content, page scope,
+  and design references; translate that brief into any visual direction within
+  the existing Storefront architecture; preserve the complete Selldone
+  commerce behavior; and optionally build, validate, package, deploy, and
+  verify the Layout through the documented release workflow.
 ---
 
-# Storefront Builder
+# Selldone Storefront Builder Skill
 
-Use this skill to create a new storefront experience without copying the current Vue UI. The visual design, component library, routing implementation, and framework are flexible. The commerce behavior is not flexible.
+Use the official Vue 3/Vite Storefront in this repository as the working
+product baseline. This is a general, design-agnostic customization skill, not
+a fixed theme and not a prompt to rebuild the commerce application from
+scratch. The merchant may request any visual style, information architecture,
+or brand expression, but the implementation must adapt the existing routes,
+state, SDK integrations, components, and commerce flows. A framework migration
+or parallel storefront is outside this skill's default scope and must be
+handled as a separate explicit project with equivalent contract validation.
+
+## Repository operations and deployment
+
+When the task involves cloning the official base, creating a GitHub repository,
+synchronizing Selldone updates, building a Layout artifact, authenticating, or
+deploying, read and follow `AGENTS.md` and `AI_WORKFLOW.md` completely. Those
+files define the Git authority model, interactive approvals, secret handling,
+manifest identity rules, artifact contract, and required post-deploy checks.
+Never invent an OAuth scope or client; authentication belongs to the official
+Selldone CLI `/developers/login` flow.
+
+A design or implementation task may stop after planning, coding, preview, or a
+local build. Do not package, authenticate, deploy, or publish merely because
+this skill was invoked; those actions must be explicitly requested.
 
 ## Core rule
 
-Build a complete storefront, not a landing page. Every feature below must be implemented, intentionally hidden by shop configuration, or documented as unsupported with a clear reason.
+Preserve and adapt the complete standard Storefront; do not reduce it to a
+landing page, replacement shell, or collection of display-only mocks. A custom
+visual design may change composition, navigation, styling, content hierarchy,
+and interaction patterns, but it must not break or bypass the existing
+Selldone data, authentication, catalog, basket, checkout, payment, account,
+localization, SEO, or feature-flag contracts.
 
-Do not remove a feature because it is inconvenient for the selected design. Hide inactive features from users based on shop data, permissions, route metadata, product type, gateway support, country, language, currency, or store options.
+Do not remove a feature because it is inconvenient for the selected design.
+Hide inactive features based on shop data, permissions, route metadata,
+product type, gateway support, country, language, currency, or store options.
 
-## First decisions
+## Business and design intake
 
-1. Choose the rendering model: SPA, SSR, SSG with client hydration, mobile webview, or hybrid.
-2. Choose the frontend framework freely: Vue, React, Next, Nuxt, Svelte, Solid, Astro, Flutter web, native shell, or custom.
-3. Create a thin Storefront API adapter before building UI. Keep all backend and SDK details behind this adapter.
-4. Make routes, state, checkout, and payment independent from presentation components.
-5. Preserve SEO-safe URLs for products, categories, blog posts, vendor pages, listings, and order links.
+Before visual changes, inspect the repository and current storefront behavior,
+then collect only material information not already supplied. Cover:
 
-## Required platform bootstrap
+- Business: store name, industry, catalog and product types, value proposition,
+  goals, and primary conversion actions.
+- Audience: customer segments, markets, languages, currencies, devices, and
+  accessibility or regional requirements.
+- Brand: logo and assets, colors, typography, tone, imagery direction, brand
+  rules, and anything that must not change.
+- Experience scope: priority pages and routes, navigation, homepage sections,
+  content hierarchy, required features, integrations, and out-of-scope areas.
+- Design direction: reference URLs, screenshots, design files, moodboards, and
+  specific likes or dislikes about each reference.
+- Content and data: approved copy and media, live shop data, and whether
+  reversible placeholders are acceptable for missing material.
+- Delivery: target devices, preview or test shop, release scope, and whether the
+  request ends at design, implementation, local build, or published Layout.
 
-Read environment and hosting configuration from meta tags or equivalent runtime config:
+Do not ask again for facts already present in the request, repository, or
+provided assets. Do not invent business claims, brand assets, or legal copy.
+When optional information is missing, state a reasonable, reversible assumption.
+Ask a compact grouped question only when an ambiguity would materially change
+the result.
+
+Summarize the intake as a short implementation brief containing the business
+objective, audience, visual direction, page map, design tokens, reusable
+components, preserved commerce flows, content dependencies, acceptance
+criteria, and explicit assumptions.
+
+## Customization boundaries
+
+1. Inspect the existing Vue 3/Vite app, routes, stores, SDK integrations,
+   layouts, components, and current build behavior before editing.
+2. Map the approved business and design brief onto existing pages and
+   components; replace presentation where needed without duplicating commerce
+   state or backend logic.
+3. Reuse the current router, state architecture, official SDKs, platform
+   components, live shop data, and feature flags.
+4. Keep checkout, payment, authentication, basket, and account behavior
+   independent from purely visual components and styling changes.
+5. Preserve SEO-safe public URLs for products, categories, blog posts, vendor
+   pages, listings, and order links.
+
+## Preserve the required platform bootstrap
+
+Inspect and retain the existing environment and hosting configuration reads:
 
 - `shop-name`
 - `shop-prefix-address`
@@ -39,10 +111,10 @@ Read environment and hosting configuration from meta tags or equivalent runtime 
 - theme colors: light, dark, deep dark, info, buy button
 - PWA and service worker settings
 
-Initialize:
+Preserve initialization of:
 
-- Storefront SDK or a compatible API adapter
-- Community SDK or compatible community adapter
+- Existing official Storefront SDK integrations and request adapters
+- Existing official Community SDK integration
 - i18n and language packs
 - global shop state
 - router
@@ -50,7 +122,7 @@ Initialize:
 - service worker and PWA update handling
 - app shell, notification layer, modal layer, payment layer, map dialog, full-screen image viewer
 
-Emit or support a storefront loaded event so external hosting scripts can hide preloaders.
+Preserve the storefront loaded event so external hosting scripts can hide preloaders.
 
 ## Global state contract
 
@@ -90,11 +162,13 @@ Keep these state domains available in the app architecture:
 - `globalStyle.transparent_header`
 - `globalStyle.search_mode`
 
-State may live in Vuex, Pinia, Redux, Zustand, Signals, React Context, server cache, or another store. The names can change, but the data responsibilities must remain.
+Keep the current project state architecture and responsibilities. Refactor it
+only when the approved customization requires a verified architectural change;
+do not introduce a parallel store for data already managed by the app.
 
-## API adapter contract
+## Existing SDK and data contract
 
-Provide methods or hooks for these capabilities:
+Preserve or extend the current SDK/API methods for these capabilities:
 
 - Fetch shop, settings, theme, languages, currencies, exchange rates, banners, popups, social links, policies, pages, and feature flags.
 - Fetch current user, permissions, customer profile, club status, addresses, wallets, gift cards, comments, wishlist, returns, and order counts.
@@ -118,7 +192,9 @@ Provide methods or hooks for these capabilities:
 - Register FCM or push notification token where supported.
 - Logout and clear auth-dependent state.
 
-If the official SDK is available, prefer it. If using another framework, wrap the SDK instead of leaking SDK objects into UI components.
+Preserve the official SDK integrations already used by this app. Extend their
+existing abstractions when required instead of duplicating endpoints or leaking
+transport details into visual components.
 
 ## Identity and access
 
@@ -128,7 +204,7 @@ Support both guest and authenticated shoppers:
 - Store access token in the correct cookie scope for the shop prefix.
 - Set the authorization header after login.
 - Fetch user after token changes.
-- Support direct OAuth login, popup login where safe, social login parameters, registration redirects, and callback route handling.
+- Support direct OAuth login, popup login where safe, social login parameters, registration redirects, and callback route handling for shopper authentication only; this does not override the CLI-only Layout authentication rule above.
 - Save the pre-login path and return the user after successful login.
 - Clear token, pending transactions, baskets, gifts, and user state on logout.
 - Respect private or restricted shops. If the shop is private and the customer has no access, show an access check view instead of storefront content.
@@ -242,7 +318,7 @@ Use route metadata or equivalent layout state for:
 
 ## App shell requirements
 
-Build a responsive shell with:
+Redesign the responsive shell as requested while preserving:
 
 - Main router outlet.
 - Private shop access fallback.
@@ -642,18 +718,32 @@ Every implementation must include:
 
 ## Implementation workflow for an AI agent
 
-1. Build the API adapter and state model first.
-2. Implement app bootstrap, config loading, auth, language, currency, and shop fetch.
-3. Implement routes and layout metadata.
-4. Implement catalog, product page, search, filters, sorting, and comparison.
-5. Implement baskets for all product types.
-6. Implement checkout and payment for all order types.
-7. Implement account, order history, and order detail pages.
-8. Implement content pages, blog, community, map, listing, and special channels.
-9. Add mobile, PWA, native, notification, privacy, and accessibility layers.
-10. Verify every acceptance item below.
+1. Inspect Git state and establish the current app and production-build baseline.
+2. Convert the approved brief into a page map, component plan, design tokens,
+   content plan, and regression checklist.
+3. Customize the existing Storefront incrementally. Reuse platform components
+   and live shop data; never replace working commerce state with visual mocks.
+4. Apply the design consistently across the app shell and scoped pages,
+   including responsive, RTL/LTR, loading, empty, error, focus, and
+   accessibility states.
+5. Verify affected routes and complete journeys touched by the change,
+   especially product discovery, product selection, basket, checkout, payment,
+   account, localization, and mobile behavior.
+6. Run the safe project checks that exist for the changed scope. Do not run
+   destructive or raw TypeScript build/clean commands prohibited by repository
+   instructions.
+7. If setup, packaging, authentication, or publication is requested, read
+   `AGENTS.md` and `AI_WORKFLOW.md` completely and follow their guarded release
+   path. Bump `manifest.version` before the final production build, publish the
+   exact reviewed source commit, deploy only with explicit approval, and verify
+   the developer-panel record and versioned CDN assets before reporting success.
 
 ## Acceptance checklist
+
+Treat this checklist as a regression contract for the standard Storefront, not
+a mandate to reimplement every feature. For a scoped redesign, verify affected
+flows plus release-critical smoke tests; keep untouched capabilities connected
+to their existing implementation.
 
 - Shop loads from runtime config and fetches current shop data.
 - Private shop blocks unauthorized shoppers.

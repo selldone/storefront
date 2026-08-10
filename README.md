@@ -68,6 +68,28 @@ Selldone is a **fully independent web application** that operates seamlessly on 
 designed to be **fully customizable** and is **open source**, offering a more robust and flexible solution for
 e-commerce needs.
 
+## Build a custom Storefront Layout with an AI agent
+
+This repository is the standard Selldone Vue 3/Vite Storefront and the starting
+point for business-specific Layouts. The AI agent kit in
+[`.ai-agent`](.ai-agent/README.md) is general and design-agnostic: it first turns
+the merchant's business goals, audience, brand, page requirements, content, and
+design references into an implementation brief, then customizes this existing
+web app in any requested visual direction while preserving Selldone commerce
+behavior.
+
+Start with the repository [AI agent entry point](AGENTS.md) and the
+[Storefront Builder skill](.ai-agent/SKILL.md). They guide discovery, design
+planning, implementation, and regression checks against the existing
+Storefront. This is not a greenfield application or framework-migration
+specification; visual design is flexible, while the Vue application and its
+commerce contracts are the baseline.
+
+When the requested scope also includes GitHub setup, dependency synchronization,
+a production build, packaging, authentication, or publication as a Selldone
+Layout, follow the guarded [AI workflow](.ai-agent/AI_WORKFLOW.md). Deployment
+is optional, must be explicitly requested, and must be independently verified.
+
 ## How to start
 
 _Guide to Getting Started with Storefront Project (Vue Framework) for Selldone_
