@@ -188,19 +188,17 @@ export default {
   methods: {
     fetchOrderInfo() {
       this.busy = true;
+      const basket_id = this.$route.params.basket_id;
+      const signature = this.$route.query.signature;
+      const guest_code = !this.USER()
+        ? StorefrontLocalStorages.GetShopHistoryGuestCodeOfOrder(basket_id)
+        : undefined;
       axios
         .get(
-          window.XAPI.GET_ORDER_BASKET_INFO(
-            this.$shop.name,
-            this.$route.params.basket_id,
-          ),
+          window.XAPI.GET_ORDER_BASKET_INFO(this.$shop.name, basket_id),
           {
             params: {
-              code: !this.USER()
-                ? StorefrontLocalStorages.GetShopHistoryGuestCodeOfOrder(
-                    this.$route.params.basket_id,
-                  ) /*🥶 Guest*/
-                : undefined,
+              code: guest_code /*🥶 Guest*/,
               /**
                    This property holds the signature from the URL query parameters.
                    The signature is a cryptographic hash that ensures the integrity and authenticity
@@ -208,7 +206,7 @@ export default {
                    secure, time-limited URLs to display order details.
                    */
 
-              signature: this.$route.query.signature,
+              signature: signature,
               /**
                    This property holds the timestamp from the URL query parameters.
                    The timestamp indicates when the URL was created and is used to ensure the URL's validity
@@ -222,6 +220,10 @@ export default {
         .then(({ data }) => {
           if (!data.error) {
             this.basket = data.basket;
+
+            // Keep this order's guest access for downloads after the active basket code rotates.
+            if (guest_code && !signature)
+              this.basket.code ??= guest_code;
 
             if (this.basket.status === Basket.Status.Payed.code || this.basket.status === Basket.Status.COD.code)
               GtagEcommerce.MeasuringPurchasesBasket(this.basket);
