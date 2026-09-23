@@ -45,6 +45,21 @@
         <b>{{ getBasketOrderCode(basket) }}</b>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn
+        :aria-label="$t('global.commons.invoice')"
+        :loading="busy_invoice"
+        class="me-2"
+        prepend-icon="download"
+        variant="text"
+        @click="downloadInvoice"
+      >
+        <span class="d-none d-sm-inline">
+          {{ $t("global.commons.invoice") }}
+        </span>
+        <v-tooltip activator="parent">
+          {{ $t("global.commons.download") }}
+        </v-tooltip>
+      </v-btn>
       <!-- Share order - Secure link generator -->
       <s-shop-share-order-button
         :basket="basket"
@@ -109,6 +124,7 @@ import SShopShareOrderButton from "@selldone/components-vue/storefront/order/sha
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import SOrderChatWidget from "@selldone/components-vue/storefront/order/chat/widget/SOrderChatWidget.vue";
 import SBasketVendorOrders from "@selldone/components-vue/storefront/order/vendor-order/SBasketVendorOrders.vue";
+import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
 export default {
   name: "StorefrontPageBasketOrderPhysicalDashboard",
@@ -135,6 +151,7 @@ export default {
       ProductType: ProductType,
 
       orderType: ProductType.PHYSICAL,
+      busy_invoice: false,
     };
   },
   computed: {
@@ -143,7 +160,48 @@ export default {
     },
   },
   created() {},
-  methods: {},
+  methods: {
+    downloadInvoice() {
+      this.busy_invoice = true;
+
+      axios
+        .get(
+          window.XAPI.GET_ORDER_BASKET_RECEIPT(
+            this.shop.name,
+            this.basket.id,
+          ),
+          {
+            params: {
+              code: this.basket.code || undefined,
+              signature: this.$route.query.signature,
+              timestamp: this.$route.query.timestamp,
+            },
+            responseType: "blob",
+          },
+        )
+        .then(({ data }) => {
+          const download_url = window.URL.createObjectURL(
+            new Blob([data], { type: "application/pdf" }),
+          );
+          const link = document.createElement("a");
+          link.href = download_url;
+          link.download = `${this.getBasketOrderCode(this.basket)}.pdf`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          window.setTimeout(
+            () => window.URL.revokeObjectURL(download_url),
+            0,
+          );
+        })
+        .catch((error) => {
+          NotificationService.showLaravelError(error);
+        })
+        .finally(() => {
+          this.busy_invoice = false;
+        });
+    },
+  },
 };
 </script>
 
