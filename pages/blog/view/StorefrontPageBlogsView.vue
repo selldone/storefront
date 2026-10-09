@@ -36,7 +36,7 @@
       class="blog-container p-3"
       show-comments
       show-user-feedback-buttons
-      @update-article="updateArticleTitle"
+      @update-article="updateArticleSeo"
     >
       <template v-slot:tags="{ article }">
         <v-btn
@@ -101,13 +101,8 @@ export default {
   },
 
   methods: {
-    updateArticleTitle(article) {
-      if (article.title) {
-        StorefrontSeo.setTitle(
-          article.page_title || article.title,
-          this.seoNavigation,
-        );
-      }
+    updateArticleSeo(article) {
+      StorefrontSeo.updateArticle(article, this.shop, this.seoNavigation);
     },
   },
 };

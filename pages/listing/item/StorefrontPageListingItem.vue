@@ -14,7 +14,11 @@
         Back
       </v-btn>
 
-      <s-storefront-listing-item-profile :item-id="itemId" />
+      <s-storefront-listing-item-profile
+        :key="$route.fullPath"
+        :item-id="itemId"
+        @loaded="updateItemSeo"
+      />
     </v-container>
   </div>
 </template>
@@ -22,6 +26,7 @@
 <script lang="ts">
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import SStorefrontListingItemProfile from "@selldone/components-vue/storefront/listing/item/SStorefrontListingItemProfile.vue";
+import {StorefrontSeo} from "../../../helpers/StorefrontSeo";
 
 export default {
   name: "StorefrontPageListingItem",
@@ -32,6 +37,19 @@ export default {
   },
 
   inject: ["$shop"],
+  data: () => ({
+    seoNavigation: StorefrontSeo.captureNavigation(),
+  }),
+  watch: {
+    "$route.fullPath"() {
+      this.seoNavigation = StorefrontSeo.captureNavigation();
+    },
+  },
+  methods: {
+    updateItemSeo(item) {
+      StorefrontSeo.updateListingItem(item, this.$shop, this.seoNavigation);
+    },
+  },
 
   computed: {
     backToCategory() {

@@ -27,10 +27,11 @@
       </div>
 
       <s-storefront-listing-categories
-
+        :key="$route.fullPath"
         v-model="selected_category_id"
         class="mb-4"
         @update:modelValue="onCategoryChanged"
+        @update:category="updateCategorySeo"
       />
 
       <s-storefront-listing-items
@@ -44,6 +45,7 @@
 <script lang="ts">
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
+import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 
 import SStorefrontListingCategories from "@selldone/components-vue/storefront/listing/categories/SStorefrontListingCategories.vue";
 import SStorefrontListingItems from "@selldone/components-vue/storefront/listing/items/SStorefrontListingItems.vue";
@@ -65,6 +67,8 @@ export default {
     error_text: "",
 
     selected_category_id: null as number | null,
+    seoCategory: null as any | null,
+    seoNavigation: StorefrontSeo.captureNavigation(),
 
     _syncing_from_route: false,
   }),
@@ -75,6 +79,11 @@ export default {
   },
 
   watch: {
+    "$route.fullPath"() {
+      this.seoNavigation = StorefrontSeo.captureNavigation();
+      this.seoCategory = null;
+      StorefrontSeo.updateListing(this.listing, this.$shop, this.seoNavigation);
+    },
     "$route.params.category"() {
       this.syncCategoryFromRoute();
     },
@@ -88,15 +97,23 @@ export default {
       axios
         .get(window.XAPI.GET_SHOP_LISTING_INFO(this.$shop.name))
         .then(({ data }) => {
+          if (this.$?.isUnmounted) return;
           if (data?.error) {
             this.error_text = data.error_msg || "Listing is not available.";
             this.listing = null;
             return;
           }
           this.listing = data.listing || null;
+          // Configuration is shop-wide; combine it with the current mounted category.
+          StorefrontSeo.updateListing(this.listing, this.$shop, this.seoNavigation, this.seoCategory);
         })
         .catch((error) => NotificationService.showLaravelError(error))
         .finally(() => (this.busy_info = false));
+    },
+
+    updateCategorySeo(category) {
+      this.seoCategory = category;
+      StorefrontSeo.updateListing(this.listing, this.$shop, this.seoNavigation, category);
     },
 
     /**

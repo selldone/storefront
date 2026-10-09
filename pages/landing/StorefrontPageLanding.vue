@@ -13,7 +13,7 @@
   -->
 
 <template>
-  <landing-render >
+  <landing-render :key="$route.fullPath" @onFetch:data="updatePageSeo">
     <!-- ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ Top Menu ⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬⬬ -->
     <template v-slot:header>
       <slot name="header"></slot>
@@ -24,16 +24,25 @@
 
 <script lang="ts">
 import LandingRender from "@selldone/page-builder/LandingRender.vue";
+import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 
 export default {
   name: "StorefrontPageLanding",
   components: { LandingRender },
-
-  computed: {
-
+  inject: ["$shop"],
+  data: () => ({
+    seoNavigation: StorefrontSeo.captureNavigation(),
+  }),
+  watch: {
+    "$route.fullPath"() {
+      this.seoNavigation = StorefrontSeo.captureNavigation();
+    },
   },
-  watch: {},
-  created() {},
+  methods: {
+    updatePageSeo(data) {
+      StorefrontSeo.updatePage(data.page, this.$shop, this.seoNavigation, data);
+    },
+  },
 };
 </script>
 

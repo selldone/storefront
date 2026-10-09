@@ -1063,16 +1063,6 @@ const router = createRouter({
   routes: routes as RouteRecordRaw[],
 });
 
-//―――――――――――――――――――――― Prototypes ――――――――――――――――――――
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function ToPageName(str: string | any) {
-  if (!str || !(typeof str === "string" || str instanceof String)) return str;
-  return capitalizeFirstLetter(str.replace(/-/g, " "));
-}
-
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const user = store.getters.getUser;
@@ -1097,15 +1087,11 @@ router.afterEach((to, from, failure) => {
   // Initial resolution (including redirects) and failed navigations preserve SSR SEO.
   if (!StorefrontSeo.onNavigation(to, from, failure)) return;
 
-  if (to.meta && to.meta.title) {
-    let title = window.$i18n_global.t(to.meta.title);
-    if (title) {
-      Object.keys(to.params).forEach((key) => {
-        title = title.replace(`{${key}}`, ToPageName(to.params[key]));
-      });
-      StorefrontSeo.setTitle(title.replace(/{[^}]*}/g, ""));
-    }
-  }
+  StorefrontSeo.updateRoute(
+    store.getters.getShop,
+    to.meta.title ? window.$i18n_global.t(to.meta.title) : undefined,
+    to.params,
+  );
 });
 
 

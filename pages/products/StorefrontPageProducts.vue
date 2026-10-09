@@ -64,7 +64,7 @@
         load-more
         route-mode
         update-route
-        @update:title="updateListingTitle"
+        @fetch-products="updateProductsSeo"
       ></s-products-listing>
     </v-card>
   </div>
@@ -131,10 +131,8 @@ export default {
     this.setPageTitle(); // Set Page Title!
   },
   methods: {
-    updateListingTitle(title) {
-      if (StorefrontSeo.canUpdate(this.seoNavigation)) {
-        this.setPageTitle(title);
-      }
+    updateProductsSeo(data) {
+      StorefrontSeo.updateProducts(data, this.getShop(), this.seoNavigation);
     },
   },
 };

@@ -356,9 +356,12 @@ export default {
         );
 
         // Reject initial-load and superseded responses, including SDK cache callbacks.
-        if (StorefrontSeo.canUpdate(seoNavigation)) {
-          this.setPageTitle(product.title); // Set Page Title!
-        }
+        StorefrontSeo.updateProduct(
+          product,
+          this.$shop,
+          seoNavigation,
+          this.GetUserSelectedCurrency().code,
+        );
       };
 
       if (window.PRE_LOADED_DATA?.PRODUCT_PACK) {
