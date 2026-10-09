@@ -222,6 +222,7 @@ import SProductArticle from "@selldone/components-vue/storefront/product/article
 import { XapiProductGetTypes } from "@selldone/sdk-storefront/product";
 import SProductLanding from "@selldone/components-vue/storefront/product/landing/SProductLanding.vue";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
+import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 
 export default {
   name: "StorefrontPageProduct",
@@ -341,6 +342,7 @@ export default {
     },
 
     getProduct() {
+      const seoNavigation = StorefrontSeo.captureNavigation();
       const handleSuccessResponse = ({
         product,
       }: XapiProductGetTypes.IResponse) => {
@@ -353,7 +355,10 @@ export default {
           "product-page",
         );
 
-        this.setPageTitle(product.title); // Set Page Title!
+        // Reject initial-load and superseded responses, including SDK cache callbacks.
+        if (StorefrontSeo.canUpdate(seoNavigation)) {
+          this.setPageTitle(product.title); // Set Page Title!
+        }
       };
 
       if (window.PRE_LOADED_DATA?.PRODUCT_PACK) {

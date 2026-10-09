@@ -41,6 +41,7 @@ import {EventBus} from "@selldone/components-vue/utils/events/EventBus.ts";
 import {CurrencyHelper} from "@selldone/core-js/helper";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 import { ListingCompareStore } from "@selldone/components-vue/storefront/listing/compare/ListingCompareStore.ts";
+import {StorefrontSeo} from "../helpers/StorefrontSeo";
 
 const StorefrontMixin = defineComponent({
   data() {
@@ -82,10 +83,12 @@ const StorefrontMixin = defineComponent({
 
   methods: {
     setPageTitle(title: string): void {
-      if (this.getShop().title)
-        document.title = title
+      if (this.$?.isUnmounted || !this.getShop().title) return;
+      StorefrontSeo.setTitle(
+        title
           ? `${this.getShop().title} | ${title}`
-          : this.getShop().title;
+          : this.getShop().title,
+      );
     },
 
     /**

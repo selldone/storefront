@@ -21,6 +21,7 @@ import {SetupService} from "@selldone/core-js/server/SetupService";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {StorefrontRoutesName} from "@selldone/core-js/enums/route/StorefrontRoutesName";
 import {CommunityRoutesName} from "@selldone/core-js/enums/route/CommunityRoutesName";
+import {StorefrontSeo} from "../helpers/StorefrontSeo";
 
 //――――――――――――――――――――――――― Layout ―――――――――――――――――――――――――
 
@@ -1062,7 +1063,6 @@ const router = createRouter({
   routes: routes as RouteRecordRaw[],
 });
 
-let FIRST_LOAD = true; // Detect first load of app to solve multi-language page title problem! (Because of async load)
 //―――――――――――――――――――――― Prototypes ――――――――――――――――――――
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -1074,24 +1074,6 @@ function ToPageName(str: string | any) {
 }
 
 router.beforeEach((to, from, next) => {
-  //---------------- Set Title ----------------
-  if (to.meta && to.meta.title && !FIRST_LOAD) {
-    let title = window.$i18n_global.t(to.meta.title);
-    //console.log('to:',to,'title:',title)
-    if (title) {
-      if (to.params) {
-        Object.keys(to.params).forEach((key) => {
-          title = title.replace(`{${key}}`, ToPageName(to.params[key]));
-        });
-      }
-
-      title = title.replace(/{[^}]*}/g, "");
-      document.title = title;
-    }
-  }
-  FIRST_LOAD = false;
-  //-------------------------------------------
-
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const user = store.getters.getUser;
     const busy = store.getters.getBusyUser;
@@ -1108,9 +1090,22 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach((/*to: Route, from: Route*/) => {
+router.afterEach((to, from, failure) => {
   // Update the current location in header:
   window.axios.defaults.headers.common["S-Location"] = window.location.href;
+
+  // Initial resolution (including redirects) and failed navigations preserve SSR SEO.
+  if (!StorefrontSeo.onNavigation(to, from, failure)) return;
+
+  if (to.meta && to.meta.title) {
+    let title = window.$i18n_global.t(to.meta.title);
+    if (title) {
+      Object.keys(to.params).forEach((key) => {
+        title = title.replace(`{${key}}`, ToPageName(to.params[key]));
+      });
+      StorefrontSeo.setTitle(title.replace(/{[^}]*}/g, ""));
+    }
+  }
 });
 
 

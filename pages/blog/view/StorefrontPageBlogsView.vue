@@ -30,12 +30,13 @@
     </v-toolbar>
 
     <article-viewer
+      :key="$route.fullPath"
       :article-type="article_type.code"
       :target-id="$route.params.blog_id"
-      auto-page-title
       class="blog-container p-3"
       show-comments
       show-user-feedback-buttons
+      @update-article="updateArticleTitle"
     >
       <template v-slot:tags="{ article }">
         <v-btn
@@ -67,6 +68,7 @@
 import ArticleViewer from "@selldone/components-vue/article/ArticleViewer.vue";
 import SShopLogin from "@selldone/components-vue/storefront/login/SShopLogin.vue";
 import { Article } from "@selldone/core-js";
+import {StorefrontSeo} from "../../../helpers/StorefrontSeo";
 
 export default {
   name: "StorefrontPageBlogsView",
@@ -83,11 +85,29 @@ export default {
    */
   data: () => ({
     article_type: Article.Types.Blog,
+    seoNavigation: StorefrontSeo.captureNavigation(),
   }),
 
   computed: {
     shop() {
       return this.getShop();
+    },
+  },
+
+  watch: {
+    "$route.fullPath"() {
+      this.seoNavigation = StorefrontSeo.captureNavigation();
+    },
+  },
+
+  methods: {
+    updateArticleTitle(article) {
+      if (article.title) {
+        StorefrontSeo.setTitle(
+          article.page_title || article.title,
+          this.seoNavigation,
+        );
+      }
     },
   },
 };

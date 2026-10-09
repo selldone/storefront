@@ -56,6 +56,7 @@
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
       <s-products-listing
+        :key="$route.path"
         :vendor-id="vendor_id"
         has-breadcrumb
         has-filter
@@ -63,7 +64,7 @@
         load-more
         route-mode
         update-route
-        @update:title="setPageTitle"
+        @update:title="updateListingTitle"
       ></s-products-listing>
     </v-card>
   </div>
@@ -73,6 +74,7 @@
 import SProductsListing from "@selldone/components-vue/storefront/products/listing/SProductsListing.vue";
 import SShopVendorHeader from "@selldone/components-vue/storefront/vendor/SShopVendorHeader.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
+import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 
 export default {
   name: "StorefrontPageProducts",
@@ -89,6 +91,7 @@ export default {
    */
   data: () => ({
     vendor_id: null /*Show only for this vendor! */,
+    seoNavigation: StorefrontSeo.captureNavigation(),
   }),
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -106,7 +109,11 @@ export default {
    *  🔷 Watch Section
    * ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
    */
-  watch: {},
+  watch: {
+    "$route.path"() {
+      this.seoNavigation = StorefrontSeo.captureNavigation();
+    },
+  },
 
   /**
    * ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -123,7 +130,13 @@ export default {
 
     this.setPageTitle(); // Set Page Title!
   },
-  methods: {},
+  methods: {
+    updateListingTitle(title) {
+      if (StorefrontSeo.canUpdate(this.seoNavigation)) {
+        this.setPageTitle(title);
+      }
+    },
+  },
 };
 </script>
 
