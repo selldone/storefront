@@ -1039,6 +1039,7 @@ import ProductMixin from "@selldone/components-vue/mixin/product/ProductMixin.ts
 import MapMixin from "@selldone/components-vue/mixin/map/MapMixin.ts";
 import AuthMixin from "@selldone/components-vue/mixin/auth/AuthMixin.ts";
 import ClubMixin from "@selldone/components-vue/mixin/club/ClubMixin.ts";
+import DateMixin from "@selldone/components-vue/mixin/date/DateMixin.ts";
 import SOrderCheckoutForm from "@selldone/components-vue/storefront/order/checkout/SOrderCheckoutForm.vue";
 import UButtonWhatsapp from "@selldone/components-vue/ui/button/whatsapp/UButtonWhatsapp.vue";
 
@@ -1051,6 +1052,7 @@ export default {
     MapMixin,
     AuthMixin,
     ClubMixin,
+    DateMixin,
   ],
 
   components: {
