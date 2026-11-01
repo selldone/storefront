@@ -56,8 +56,7 @@
 
       <v-container
         v-if="basket && basket.items && basket.items.length"
-        :class="{ blurred: busy_shop }"
-        class="mt-4 blur-animate"
+        class="mt-4"
         style="max-width: 100%; overflow: hidden"
       >
         <v-row dense>
@@ -941,8 +940,7 @@
 
       <div
         v-else
-        :class="{ blurred: busy_shop }"
-        class="blur-animate text-center"
+        class="text-center"
         style="min-height: 60vh; padding-top: 15vh"
       >
         <img

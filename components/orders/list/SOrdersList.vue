@@ -13,7 +13,7 @@
   -->
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-  <div>
+  <div class="s-table-loading" :aria-busy="busy_fetch">
     <u-loading-progress v-if="busy_fetch"></u-loading-progress>
     <v-data-table-server
       :mobile="$vuetify.display.xs"
@@ -21,7 +21,7 @@
       v-model:options="options"
       v-model:page="page"
       v-model:sort-by="sortBy"
-      :class="{ 'blurred disabled': busy_fetch && !HIGHLIGHT_ID }"
+      :class="{ 'disabled-no-filter': busy_fetch && !HIGHLIGHT_ID }"
       :header-props="{ sortByText: $t('global.commons.sort_by') }"
       :headers="headers"
       :items="orders"
@@ -37,7 +37,7 @@
           };
         }
       "
-      class="bg-transparent blur-animate"
+      class="bg-transparent"
       density="compact"
       hide-default-footer
       item-key="id"

@@ -32,7 +32,7 @@
       <v-spacer />
     </v-app-bar>
 
-    <v-container class="faq-container">
+    <v-container class="faq-container s-table-loading" :aria-busy="busy_fetch">
       <u-widget-header
         :title="$t('global.faq.title')"
         :disabled="!USER()"
@@ -44,15 +44,10 @@
         {{ $t("global.faq.message") }}
       </v-list-subheader>
 
-      <u-loading-ellipsis
-        v-if="!faqs.length && busy_fetch"
-        css-mode
-        light
-      ></u-loading-ellipsis>
+      <u-loading-progress v-if="busy_fetch"></u-loading-progress>
 
       <v-fade-transition
-        :class="{ blurred: busy_fetch }"
-        class="border-between-vertical blur-animate"
+        class="border-between-vertical"
         group
         hide-on-leave
         tag="div"
@@ -149,11 +144,11 @@
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
 import { throttle } from "lodash-es";
-import ULoadingEllipsis from "@selldone/components-vue/ui/loading/ellipsis/ULoadingEllipsis.vue";
+import ULoadingProgress from "@selldone/components-vue/ui/loading/progress/ULoadingProgress.vue";
 
 export default {
   name: "StorefrontPageFaq",
-  components: {ULoadingEllipsis},
+  components: {ULoadingProgress},
   props: {
     shop: {
       require: true,
