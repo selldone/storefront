@@ -141,7 +141,7 @@ export default createStore<IState>({
     lottery_prizes: [],
 
     //━━━━━━━ Sales Channel Entry ━━━━━━━
-    channel_entry: null, // Can be : instagram,..
+    channel_entry: null, // Storefront attribution channel.
 
     //━━━━━━━ Community Configuration ━━━━━━━
     community_config: {

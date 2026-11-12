@@ -167,13 +167,6 @@ const StorefrontPageUserReturns = () =>
     "@app-storefront/pages/user/returns/StorefrontPageUserReturns.vue"
   );
 
-//――――――――――――――――――――――――― Insta ―――――――――――――――――――――――――
-
-const StorefrontPageInstagram = () =>
-  import(
-     "../pages/instagram/StorefrontPageInstagram.vue"
-  );
-
 //――――――――――――――――――――――――― Avocado ―――――――――――――――――――――――――
 
 const StorefrontPageAvocadoCart = () =>
@@ -206,7 +199,7 @@ const SStorefrontPOSPage = () =>
 //――――――――――――――――――――――――― Custom Home Page ―――――――――――――――――――――――――
 
 const SHOP_PREFIX_ADDRESS = SetupService.GetMetaValue("shop-prefix-address", "",);
-const CUSTOM_HOME = SetupService.GetMetaValue("custom-home") as Shop.Home;
+const CUSTOM_HOME = (SetupService.GetMetaValue("custom-home") || Shop.Home.SHOP) as Shop.Home;
 
 //――――――――――――――――――――――――― Social network ―――――――――――――――――――――――――
 
@@ -825,15 +818,6 @@ const routes: IVueRoute[] = [
     },
 
     children: [
-      //―――――――――――――― Instagram ――――――――――――――
-      {
-        path: "instagram",
-        name: "InstagramPage",
-        component: StorefrontPageInstagram,
-        meta: {
-          channel: "instagram", // To save channel entry
-        },
-      },
     ],
   },
 
@@ -1124,6 +1108,6 @@ type IRouteMeta = {
   light_header?: boolean;
   page_background?: string;
   transparent_header?: boolean;
-  channel?: string; // Force to set channel entry e,g: instagram (override auto-detection from previous url)
+  channel?: string; // Force the channel entry instead of auto-detection from the previous URL
   card?: boolean; // Show card mode
 };
