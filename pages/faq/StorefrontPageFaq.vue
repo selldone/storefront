@@ -177,7 +177,7 @@ export default {
   },
   computed: {
     current_tag() {
-      return this.$route.params.tag;
+      return this.$route.params.tag ?? "";
     },
     pageCount() {
       return Math.ceil(this.total / 10);
@@ -217,7 +217,7 @@ export default {
           params: {
             offset: (this.page - 1) * 10,
             limit: 10,
-            tag: this.$route.params.tag,
+            tag: this.current_tag,
             search: this.search,
           },
         })
