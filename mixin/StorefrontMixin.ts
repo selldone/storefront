@@ -33,7 +33,7 @@ import type {ProductCompare} from "@selldone/core-js/models/shop/product/product
 import {SetupService} from "@selldone/core-js/server/SetupService";
 import type {Coupon} from "@selldone/core-js/models/shop/incentives/coupon/coupon.model";
 import type {Offer} from "@selldone/core-js/models/shop/incentives/offer/offer.model";
-import type {RouteRecord} from "vue-router/types/router";
+import type {RouteRecord} from "vue-router";
 import {Shop} from "@selldone/core-js/models/shop/shop.model";
 import {defineComponent} from "vue";
 import {StorefrontShopHealthCheck} from "@app-storefront/helpers/StorefrontShopHealthCheck.ts";

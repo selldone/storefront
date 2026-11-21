@@ -1047,7 +1047,7 @@ const router = createRouter({
   routes: routes as RouteRecordRaw[],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const user = store.getters.getUser;
     const busy = store.getters.getBusyUser;
@@ -1055,13 +1055,11 @@ router.beforeEach((to, from, next) => {
     const has_guest_checkout = ShopOptionsHelper.HasGuestCheckout(shop);
 
     if (!user && !busy && !has_guest_checkout) {
-      next({
+      return {
         name: StorefrontRoutesName.SHOP_PAGE,
-      });
+      };
     }
   }
-
-  next();
 });
 
 router.afterEach((to, from, failure) => {

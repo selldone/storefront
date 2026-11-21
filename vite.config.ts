@@ -18,10 +18,10 @@ import path from "path";
 import fs from "fs";
 import vitePluginRequire from "vite-plugin-require";
 import basicSsl from "@vitejs/plugin-basic-ssl";
+import vuetify from "vite-plugin-vuetify";
 
 const manifest = require("./manifest.json");
 
-//import vuetify from 'vite-plugin-vuetify'
 /**
  * Storefront layout version. This unique identifier is used for naming each app version published on Selldone.
  * @type {string}
@@ -72,7 +72,16 @@ export default ({mode}: any) => {
 
     plugins: [
       vue(),
-   //   vuetify({ autoImport: true }), tree shaking problem in dynamic components in page builder (vSheet works but v-sheet not!)
+      vuetify({
+        // Page Builder resolves Vuetify components dynamically.
+        autoImport: false,
+        styles: {
+          configFile: path.join(
+            resolveSelldoneModule("@selldone/components-vue", "components"),
+            "plugins/vuetify/vuetify-settings.scss",
+          ),
+        },
+      }),
 
       //@ts-ignore
       vitePluginRequire.default(),

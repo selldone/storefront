@@ -313,7 +313,7 @@
             variant="outlined"
             @update:model-value="setBasketConfig"
           >
-            <template v-slot:chip="{ item, props }">
+            <template v-slot:chip="{ internalItem: item, props }">
               <v-chip v-bind="props" color="#0061e0" variant="elevated">
                 <span>{{ $t(item.raw.name) }}</span>
               </v-chip>
@@ -350,7 +350,7 @@
             variant="outlined"
             @update:model-value="setBasketConfig"
           >
-            <template v-slot:chip="{ item, props }">
+            <template v-slot:chip="{ internalItem: item, props }">
               <v-chip v-bind="props" color="#0061e0" variant="elevated">
                 <img :src="item.raw.icon" class="me-1" width="14px" />
 

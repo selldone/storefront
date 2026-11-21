@@ -86,7 +86,7 @@
         <!-- ▂▂▂▂▂▂▂▂ Chat ▂▂▂▂▂▂▂ -->
         <v-btn
           v-if="item.chat && item.chat.length"
-          class="ms-1 float-end"
+          class="ms-1 float-end sd-button-with-badge"
           color="#111"
           icon
           variant="text"

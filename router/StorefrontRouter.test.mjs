@@ -30,7 +30,7 @@ const { CommunityRoutesName } = loadTypescript(new URL(`${core}enums/route/Commu
 function fixture(home, prefix = "") {
   return loadTypescript(new URL("./StorefrontRouter.ts", import.meta.url), {
     "vue-router": { ...vueRouter, createWebHistory: vueRouter.createMemoryHistory },
-    "../store/StorefrontStore": { default: { getters: {} } },
+    "../store/StorefrontStore": { __esModule: true, default: { getters: {} } },
     "@selldone/core-js/helper/shop/ShopOptionsHelper": { ShopOptionsHelper: {} },
     "@selldone/core-js/server/SetupService": {
       SetupService: { GetMetaValue: (name) => name === "custom-home" ? home : prefix },
@@ -39,9 +39,9 @@ function fixture(home, prefix = "") {
     "@selldone/core-js/enums/route/StorefrontRoutesName": { StorefrontRoutesName },
     "@selldone/core-js/enums/route/CommunityRoutesName": { CommunityRoutesName },
     "../helpers/StorefrontSeo": { StorefrontSeo: {} },
-    "../layouts/StorefrontLayout.vue": { default: { name: "StorefrontLayout" } },
-    "@app-storefront/pages/landing/StorefrontPageLanding.vue": { default: { name: "StorefrontPageLanding" } },
-    "@app-storefront/pages/login/StorefrontPageLogin.vue": { default: { name: "StorefrontPageLogin" } },
+    "../layouts/StorefrontLayout.vue": { __esModule: true, default: { name: "StorefrontLayout" } },
+    "@app-storefront/pages/landing/StorefrontPageLanding.vue": { __esModule: true, default: { name: "StorefrontPageLanding" } },
+    "@app-storefront/pages/login/StorefrontPageLogin.vue": { __esModule: true, default: { name: "StorefrontPageLogin" } },
   }).default;
 }
 
