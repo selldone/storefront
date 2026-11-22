@@ -31,31 +31,13 @@ quantity tiers omit offers. No invented review, rating or expiry is added.
 Collections describe loaded products; articles use actual dates and author data.
 Canonical URLs retain the primary domain and local shop prefix supplied by SSR.
 
-Integration files changed for this feature:
+## Source and tests
 
-- Storefront: `helpers/StorefrontSeo.ts`, `helpers/StorefrontSeo.test.ts`,
-  `helpers/README.md`, `router/StorefrontRouter.ts`,
-  `pages/product/StorefrontPageProduct.vue`, `pages/products/StorefrontPageProducts.vue`,
-  `pages/landing/StorefrontPageLanding.vue`, `pages/blog/view/StorefrontPageBlogsView.vue`,
-  `pages/listing/StorefrontPageListing.vue`, `pages/listing/item/StorefrontPageListingItem.vue`.
-- Shared data events in `@selldone/components-vue`:
-  `storefront/products/listing/SProductsListing.vue`,
-  `storefront/listing/categories/SStorefrontListingCategories.vue`,
-  `storefront/listing/item/SStorefrontListingItemProfile.vue`.
-- Backend public page description/image projections:
-  `app/Storefront/Pages/Page.php`,
-  `app/Http/Controllers/Shop/PageBuilder/PageBuilderRenderController.php`,
-  `app/Http/Controllers/Shop/Marketplace/ShopPublicVendorsController.php`,
-  `app/Http/Controllers/Shop/PageBuilder/IncludeItems/PageBuilderIncludeItemController.php`,
-  `app/Http/Controllers/Shop/PageBuilder/IncludeItems/PageBuilderRenderIncludeItemController.php`,
-  `app/Http/Controllers/Shop/PageBuilder/Vendor/PageBuilderRenderVendorController.php`.
-- Backend schema ownership markup: `resources/views/seo-render/shop/shop-head.blade.php`.
-
-Focused verification (with a writable local `TEMP`/`TMP` directory):
-
-```text
-node ./node_modules/vitest/vitest.mjs run src/Applications/Storefront/helpers/StorefrontSeo.test.ts --config @selldone/sdk-storefront/vitest.config.ts
-```
+`router/StorefrontRouter.ts` starts each navigation. The product, collection,
+landing, article and listing pages apply the resulting SEO updates. The shared
+product and listing components in `@selldone/components-vue` supply data events.
+`helpers/StorefrontSeo.test.ts` checks rendered metadata, navigation ownership
+and compatibility with previously rendered JSON-LD.
 
 Standards: [Google JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics),
 [Product snippets](https://developers.google.com/search/docs/appearance/structured-data/product-snippet),
